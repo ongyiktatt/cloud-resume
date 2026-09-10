@@ -260,6 +260,36 @@ export const portfolioItems: PortfolioItem[] = [
 /**
  * Resume section -- TODO: Standardize resume contact format or offer MDX
  */
+export const certification: TimelineItem[] = [
+  {
+    date: 'August 2026',
+    location: 'AWS',
+    title: 'AWS Certified CloudOps Engineer - Associate',
+    url: 'https://www.credly.com/badges/209df12d-e120-4509-ad16-6c4d6fa05ca8/linked_in_profile',
+    content: <></>
+  },
+  {
+    date: 'July 2026',
+    location: 'AWS',
+    title: 'AWS Certified Solutions Architect - Associate',
+    url: 'https://www.credly.com/badges/b03143a4-ab95-45ea-93f4-068addd79ec6/linked_in_profile',
+    content: <></>
+  },
+  {
+    date: 'May 2026',
+    location: 'AWS',
+    title: 'AWS Certified Cloud Practitioner',
+    url: 'https://www.credly.com/badges/46c9f759-e3bc-42ae-8cab-73fd6da6f8ac/linked_in_profile',
+    content: <></>
+  },
+  {
+    date: 'May 2021',
+    location: 'ITIL',
+    title: 'ITIL 4 Foundation',
+    url: 'https://www.peoplecert.org/for-corporations/certificate-verification-service',
+    content: <>Credential ID: GR671273878OY</>
+  },
+];
 export const education: TimelineItem[] = [
   {
     date: 'October 2022',
@@ -268,6 +298,7 @@ export const education: TimelineItem[] = [
     content: <></>
   },
 ];
+
 
 export const experience: TimelineItem[] = [
   {
@@ -343,21 +374,21 @@ export const experience: TimelineItem[] = [
 export const testimonial: TestimonialSection = {
   imageSrc: testimonialImage,
   testimonials: [
-    // {
-    //   name: 'John Doe',
-    //   text: 'Use this as an opportunity to promote what it is like to work with you. High value testimonials include ones from current or past co-workers, managers, or from happy clients.',
-    //   image: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/169.jpg',
-    // },
-    // {
-    //   name: 'Jane Doe',
-    //   text: 'Here you should write some nice things that someone has said about you. Encourage them to be specific and include important details (notes about a project you were on together, impressive quality produced, etc).',
-    //   image: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/14.jpg',
-    // },
-    // {
-    //   name: 'Someone else',
-    //   text: 'Add several of these, and keep them as fresh as possible, but be sure to focus on quality testimonials with strong highlights of your skills/work ethic.',
-    //   image: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/69.jpg',
-    // },
+    {
+      name: 'John Doe',
+      text: 'Use this as an opportunity to promote what it is like to work with you. High value testimonials include ones from current or past co-workers, managers, or from happy clients.',
+      image: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/169.jpg',
+    },
+    {
+      name: 'Jane Doe',
+      text: 'Here you should write some nice things that someone has said about you. Encourage them to be specific and include important details (notes about a project you were on together, impressive quality produced, etc).',
+      image: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/14.jpg',
+    },
+    {
+      name: 'Someone else',
+      text: 'Add several of these, and keep them as fresh as possible, but be sure to focus on quality testimonials with strong highlights of your skills/work ethic.',
+      image: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/69.jpg',
+    },
   ],
 };
 

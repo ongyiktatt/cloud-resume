@@ -90,6 +90,7 @@ export interface TimelineItem {
   date: string;
   location: string;
   title: string;
+  url?: string;
   content: JSX.Element;
 }
 
