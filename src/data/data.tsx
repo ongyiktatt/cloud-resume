@@ -5,7 +5,7 @@ import {
   CalendarIcon,
   FlagIcon,
   MapIcon,
-  SparklesIcon,
+  // SparklesIcon,
 } from '@heroicons/react/24/outline';
 
 import GithubIcon from '../components/Icon/GithubIcon';
@@ -13,7 +13,7 @@ import InstagramIcon from '../components/Icon/InstagramIcon';
 import LinkedInIcon from '../components/Icon/LinkedInIcon';
 import StackOverflowIcon from '../components/Icon/StackOverflowIcon';
 import TwitterIcon from '../components/Icon/TwitterIcon';
-import heroImage from '../images/header-background.webp';
+import heroImage from '../images/header-background.jpg';
 import porfolioImage1 from '../images/portfolio/portfolio-1.jpg';
 import porfolioImage2 from '../images/portfolio/portfolio-2.jpg';
 import porfolioImage3 from '../images/portfolio/portfolio-3.jpg';
@@ -44,8 +44,8 @@ import {
  * Page meta data
  */
 export const homePageMeta: HomepageMeta = {
-  title: 'React Resume Template',
-  description: "Example site built with Tim Baker's react resume template",
+  title: 'Yik Tatt Ong - IT Manager, APAC',
+  description: "",
 };
 
 /**
@@ -69,18 +69,14 @@ export type SectionId = (typeof SectionId)[keyof typeof SectionId];
  */
 export const heroData: Hero = {
   imageSrc: heroImage,
-  name: `I'm Tim Baker.`,
+  name: `I'm Yik Tatt Ong.`,
   description: (
     <>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        I'm a Victoria based <strong className="text-stone-100">Full Stack Software Engineer</strong>, currently working
-        at <strong className="text-stone-100">Instant Domains</strong> helping build a modern, mobile-first, domain
-        registrar and site builder.
+        <strong className='text-stone-100'>IT Operations Leader with 10+ years</strong> across multi-country enterprise environments, now building hands-on cloud infrastructure expertise through <strong className='text-stone-100'>AWS Solutions Architect and CloudOps certifications</strong> and self-directed <strong className='text-stone-100'>Terraform and Git</strong> projects.
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        In my free time time, you can catch me training in <strong className="text-stone-100">Muay Thai</strong>,
-        plucking my <strong className="text-stone-100">banjo</strong>, or exploring beautiful{' '}
-        <strong className="text-stone-100">Vancouver Island</strong>.
+        Looking to bring proven operational rigor and stakeholder communication to a <strong className='text-stone-100'>Cloud Infrastructure Engineering role</strong>, available from January 2027.
       </p>
     </>
   ),
@@ -104,16 +100,14 @@ export const heroData: Hero = {
  */
 export const aboutData: About = {
   profileImageSrc: profilepic,
-  description: `Use this bio section as your way of describing yourself and saying what you do, what technologies you like
-  to use or feel most comfortable with, describing your personality, or whatever else you feel like throwing
-  in.`,
+  description: `What started as managing IT operations across Singapore, South Korea, and Japan grew into a genuine curiosity for how modern infrastructure gets built — leading me to spend the past year earning AWS certifications and building hands-on Terraform projects in my own homelab. I'm now looking to bring that same operational discipline to a Cloud Infrastructure Engineering role. Outside of work, I'm usually tinkering with my homelab, exploring photography, or nerding out over hi-fi audio gear.`,
   aboutItems: [
-    {label: 'Location', text: 'Victoria, BC', Icon: MapIcon},
-    {label: 'Age', text: '29', Icon: CalendarIcon},
-    {label: 'Nationality', text: 'Canadian / Irish', Icon: FlagIcon},
-    {label: 'Interests', text: 'Motorcycles, Muay Thai, Banjos', Icon: SparklesIcon},
-    {label: 'Study', text: 'University of Victoria', Icon: AcademicCapIcon},
-    {label: 'Employment', text: 'Instant Domains, inc.', Icon: BuildingOffice2Icon},
+    { label: 'Location', text: 'Singapore', Icon: MapIcon },
+    { label: 'Age', text: '31', Icon: CalendarIcon },
+    { label: 'Nationality', text: 'Malaysian, Singapore PR', Icon: FlagIcon },
+    // {label: 'Interests', text: 'Motorcycles, Muay Thai, Banjos', Icon: SparklesIcon},
+    { label: 'Study', text: 'Temasek Polytechnic', Icon: AcademicCapIcon },
+    { label: 'Employment', text: 'Wargaming.net', Icon: BuildingOffice2Icon },
   ],
 };
 
@@ -195,72 +189,72 @@ export const skills: SkillGroup[] = [
  * Portfolio section
  */
 export const portfolioItems: PortfolioItem[] = [
-  {
-    title: 'Project title 1',
-    description: 'Give a short description of your project here.',
-    url: 'https://reactresume.com',
-    image: porfolioImage1,
-  },
-  {
-    title: 'Project title 2',
-    description: 'Give a short description of your project here.',
-    url: 'https://reactresume.com',
-    image: porfolioImage2,
-  },
-  {
-    title: 'Project title 3',
-    description: 'Give a short description of your project here.',
-    url: 'https://reactresume.com',
-    image: porfolioImage3,
-  },
-  {
-    title: 'Project title 4',
-    description: 'Give a short description of your project here.',
-    url: 'https://reactresume.com',
-    image: porfolioImage4,
-  },
-  {
-    title: 'Project title 5',
-    description: 'Give a short description of your project here.',
-    url: 'https://reactresume.com',
-    image: porfolioImage5,
-  },
-  {
-    title: 'Project title 6',
-    description: 'Give a short description of your project here.',
-    url: 'https://reactresume.com',
-    image: porfolioImage6,
-  },
-  {
-    title: 'Project title 7',
-    description: 'Give a short description of your project here.',
-    url: 'https://reactresume.com',
-    image: porfolioImage7,
-  },
-  {
-    title: 'Project title 8',
-    description: 'Give a short description of your project here.',
-    url: 'https://reactresume.com',
-    image: porfolioImage8,
-  },
-  {
-    title: 'Project title 9',
-    description: 'Give a short description of your project here.',
-    url: 'https://reactresume.com',
-    image: porfolioImage9,
-  },
-  {
-    title: 'Project title 10',
-    description: 'Give a short description of your project here.',
-    url: 'https://reactresume.com',
-    image: porfolioImage10,
-  },
-  {
-    title: 'Project title 11',
-    description: 'Give a short description of your project here.',
-    url: 'https://reactresume.com',
-    image: porfolioImage11,
-  },
+  // {
+  //   title: 'Project title 1',
+  //   description: 'Give a short description of your project here.',
+  //   url: 'https://reactresume.com',
+  //   image: porfolioImage1,
+  // },
+  // {
+  //   title: 'Project title 2',
+  //   description: 'Give a short description of your project here.',
+  //   url: 'https://reactresume.com',
+  //   image: porfolioImage2,
+  // },
+  // {
+  //   title: 'Project title 3',
+  //   description: 'Give a short description of your project here.',
+  //   url: 'https://reactresume.com',
+  //   image: porfolioImage3,
+  // },
+  // {
+  //   title: 'Project title 4',
+  //   description: 'Give a short description of your project here.',
+  //   url: 'https://reactresume.com',
+  //   image: porfolioImage4,
+  // },
+  // {
+  //   title: 'Project title 5',
+  //   description: 'Give a short description of your project here.',
+  //   url: 'https://reactresume.com',
+  //   image: porfolioImage5,
+  // },
+  // {
+  //   title: 'Project title 6',
+  //   description: 'Give a short description of your project here.',
+  //   url: 'https://reactresume.com',
+  //   image: porfolioImage6,
+  // },
+  // {
+  //   title: 'Project title 7',
+  //   description: 'Give a short description of your project here.',
+  //   url: 'https://reactresume.com',
+  //   image: porfolioImage7,
+  // },
+  // {
+  //   title: 'Project title 8',
+  //   description: 'Give a short description of your project here.',
+  //   url: 'https://reactresume.com',
+  //   image: porfolioImage8,
+  // },
+  // {
+  //   title: 'Project title 9',
+  //   description: 'Give a short description of your project here.',
+  //   url: 'https://reactresume.com',
+  //   image: porfolioImage9,
+  // },
+  // {
+  //   title: 'Project title 10',
+  //   description: 'Give a short description of your project here.',
+  //   url: 'https://reactresume.com',
+  //   image: porfolioImage10,
+  // },
+  // {
+  //   title: 'Project title 11',
+  //   description: 'Give a short description of your project here.',
+  //   url: 'https://reactresume.com',
+  //   image: porfolioImage11,
+  // },
 ];
 
 /**
@@ -268,40 +262,77 @@ export const portfolioItems: PortfolioItem[] = [
  */
 export const education: TimelineItem[] = [
   {
-    date: 'April 2007',
-    location: 'Clown college',
-    title: 'Masters in Beer tasting',
-    content: <p>Describe your experience at school, what you learned, what useful skills you have acquired etc.</p>,
-  },
-  {
-    date: 'March 2003',
-    location: 'School of Business',
-    title: 'What did you study 101',
-    content: <p>Describe your experience at school, what you learned, what useful skills you have acquired etc.</p>,
+    date: 'October 2022',
+    location: 'Temasek Polytechnic, Singapore',
+    title: 'Diploma in Infocomm and Digital Media',
+    content: <></>
   },
 ];
 
 export const experience: TimelineItem[] = [
   {
-    date: 'March 2010 - Present',
-    location: 'Awesome Development Company',
-    title: 'Senior UX Engineer',
+    date: 'February 2023 - Present',
+    location: 'Wargaming.net',
+    title: 'IT Manager, APAC',
     content: (
-      <p>
-        Describe work, special projects, notable achievements, what technologies you have been working with, and
-        anything else that would be useful for an employer to know.
-      </p>
+      <ul className="list-disc list-outside pl-5 space-y-1">
+        <li><strong className='text-stone-0'>Built PowerShell automation to validate Secure Boot certificates and deploy language packs</strong>, cutting manual device setup time by 20%</li>
+        <li>Owned regional IT operations end-to-end — <strong className='text-stone-0'>S$100K annual budget</strong>, vendor SLAs, and infrastructure across 200+ users in three countries</li>
+        <li>Secured a multi-OS environment with <strong className='text-stone-0'>Microsoft Intune, Entra ID, and Conditional Access</strong>, managing endpoint compliance and identity lifecycle at scale</li>
+        <li>Led pilot testing and regional rollout of global IT initiatives, validating infrastructure changes before deployment across all three markets</li>
+        <li><strong className='text-stone-0'>Redesigned service desk workflows and introduced proactive endpoint monitoring</strong>, cutting recurring incident escalations by 20%</li>
+        <li>Managed office network infrastructure and unified communications, including Microsoft Teams Rooms deployment</li>
+      </ul>
     ),
   },
   {
-    date: 'March 2007 - February 2010',
-    location: 'Garage Startup Studio',
-    title: 'Junior bug fixer',
+    date: 'June 2022 - February 2023',
+    location: 'Tabsquare.ai',
+    title: 'Operations Manager, Deployment and Support',
     content: (
-      <p>
-        Describe work, special projects, notable achievements, what technologies you have been working with, and
-        anything else that would be useful for an employer to know.
-      </p>
+      <ul className="list-disc list-outside pl-5 space-y-1">
+        <li><strong className='text-stone-0'>Restructured an 8-person support team into two specialized units</strong> — Project Delivery and Technical Support — separating deployment work from reactive maintenance, improving deployment speed by 20%</li>
+        <li><strong className='text-stone-0'>Standardized end-to-end client onboarding and transferred ownership to autonomous team leads</strong>, cutting leadership escalations by 20% while increasing onboarding capacity by 40%</li>
+        <li>Partnered with Product Engineering on deployment feedback and recurring defect trends, directly informing product improvements and release planning</li>
+        <li>Designed and delivered technical training in <strong className='text-stone-0'>IP networking, OS virtualization, and database fundamentals</strong>, building the team's ability to troubleshoot independently</li>
+      </ul>
+    ),
+  },
+  {
+    date: 'May 2021 - June 2022',
+    location: 'SAFRA',
+    title: 'IT Infrastructure Lead',
+    content: (
+      <ul className="list-disc list-outside pl-5 space-y-1">
+        <li><strong className='text-stone-0'>Led data center migrations as part of a $2M digital transformation</strong>, moving core enterprise applications — including Microsoft Dynamics AX ERP and gaming systems — into Tier-3 co-location facilities with minimal downtime</li>
+        <li>Configured and troubleshot hybrid network security perimeters, managing <strong className='text-stone-0'>Layer 4/7 stateful filtering across F5 WAF, Palo Alto, and Check Point Next-Gen Firewalls</strong></li>
+        <li>Administered identity and access management across <strong className='text-stone-0'>Microsoft Entra ID, Microsoft 365, and AWS IAM</strong> — user provisioning, group management, and access control</li>
+        <li>Managed a <strong className='text-stone-0'>$100K annual operating budget</strong> covering Office 365 configuration and hardware fleet maintenance</li>
+        <li>Served as final Tier-3 escalation owner for systemic server and infrastructure issues, supervising outsourced desktop support vendors</li>
+      </ul>
+    ),
+  },
+  {
+    date: 'December 2017 - May 2021',
+    location: 'McDonald\'s Singapore',
+    title: 'IT Consultant II, Restaurant Technology',
+    content: (
+      <ul className="list-disc list-outside pl-5 space-y-1">
+        <li><strong className='text-stone-0'>Integrated GrabFood and Foodpanda with the POS system to automate order processing</strong> improving kitchen fulfillment speed by 60% and contributing to a 25% increase in digital sales</li>
+        <li>Managed outsourced IT vendors across <strong className='text-stone-0'>135 restaurant outlets</strong>, ensuring SLA compliance and operational support for <strong className='text-stone-0'>500+ self-order kiosks, 1,000 POS terminals, and 2,000 kitchen display systems</strong></li>
+        <li>Led hardware staging, configuration, and network readiness for the <strong className='text-stone-0'>nationwide rollout of the McDonald's App</strong> across all 135 outlets</li>
+      </ul>
+    ),
+  },
+  {
+    date: 'December 2013 - December 2017',
+    location: 'Systems Design',
+    title: 'Computer Technician',
+    content: (
+      <ul className="list-disc list-outside pl-5 space-y-1">
+        <li><strong className='text-stone-0'>Built a diagnostics script (Batch) to scan client endpoints</strong> and extract hardware models, IP addresses, and serial numbers — replacing manual asset tracking during rollouts</li>
+        <li>Staged and configured servers for customer deployments, alongside edge hardware including <strong className='text-stone-0'>Cisco routers, switches, and wireless access points</strong></li>
+      </ul>
     ),
   },
 ];
@@ -312,21 +343,21 @@ export const experience: TimelineItem[] = [
 export const testimonial: TestimonialSection = {
   imageSrc: testimonialImage,
   testimonials: [
-    {
-      name: 'John Doe',
-      text: 'Use this as an opportunity to promote what it is like to work with you. High value testimonials include ones from current or past co-workers, managers, or from happy clients.',
-      image: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/169.jpg',
-    },
-    {
-      name: 'Jane Doe',
-      text: 'Here you should write some nice things that someone has said about you. Encourage them to be specific and include important details (notes about a project you were on together, impressive quality produced, etc).',
-      image: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/14.jpg',
-    },
-    {
-      name: 'Someone else',
-      text: 'Add several of these, and keep them as fresh as possible, but be sure to focus on quality testimonials with strong highlights of your skills/work ethic.',
-      image: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/69.jpg',
-    },
+    // {
+    //   name: 'John Doe',
+    //   text: 'Use this as an opportunity to promote what it is like to work with you. High value testimonials include ones from current or past co-workers, managers, or from happy clients.',
+    //   image: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/169.jpg',
+    // },
+    // {
+    //   name: 'Jane Doe',
+    //   text: 'Here you should write some nice things that someone has said about you. Encourage them to be specific and include important details (notes about a project you were on together, impressive quality produced, etc).',
+    //   image: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/14.jpg',
+    // },
+    // {
+    //   name: 'Someone else',
+    //   text: 'Add several of these, and keep them as fresh as possible, but be sure to focus on quality testimonials with strong highlights of your skills/work ethic.',
+    //   image: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/69.jpg',
+    // },
   ],
 };
 
@@ -340,23 +371,23 @@ export const contact: ContactSection = {
   items: [
     {
       type: ContactType.Email,
-      text: 'reachout@timbaker.me',
-      href: 'mailto:reachout@timbaker.me',
+      text: 'ytong95@gmail.com',
+      href: 'mailto:ytong95@gmail.com',
     },
     {
       type: ContactType.Location,
-      text: 'Victoria BC, Canada',
-      href: 'https://www.google.ca/maps/place/Victoria,+BC/@48.4262362,-123.376775,14z',
+      text: 'Singapore',
+      // href: 'https://www.google.ca/maps/place/Victoria,+BC/@48.4262362,-123.376775,14z',
     },
-    {
-      type: ContactType.Instagram,
-      text: '@tbakerx',
-      href: 'https://www.instagram.com/tbakerx/',
-    },
+    // {
+    //   type: ContactType.Instagram,
+    //   text: '@tbakerx',
+    //   href: 'https://www.instagram.com/tbakerx/',
+    // },
     {
       type: ContactType.Github,
-      text: 'tbakerx',
-      href: 'https://github.com/tbakerx',
+      text: 'ongyiktatt',
+      href: 'https://github.com/ongyiktatt',
     },
   ],
 };
@@ -365,9 +396,9 @@ export const contact: ContactSection = {
  * Social items
  */
 export const socialLinks: Social[] = [
-  {label: 'Github', Icon: GithubIcon, href: 'https://github.com/tbakerx'},
-  {label: 'Stack Overflow', Icon: StackOverflowIcon, href: 'https://stackoverflow.com/users/8553186/tim-baker'},
-  {label: 'LinkedIn', Icon: LinkedInIcon, href: 'https://www.linkedin.com/in/timbakerx/'},
-  {label: 'Instagram', Icon: InstagramIcon, href: 'https://www.instagram.com/reactresume/'},
-  {label: 'Twitter', Icon: TwitterIcon, href: 'https://twitter.com/TimBakerx'},
+  { label: 'Github', Icon: GithubIcon, href: 'https://github.com/ongyiktatt' },
+  // { label: 'Stack Overflow', Icon: StackOverflowIcon, href: 'https://stackoverflow.com/users/8553186/tim-baker' },
+  { label: 'LinkedIn', Icon: LinkedInIcon, href: 'https://www.linkedin.com/in/ongyiktatt/' },
+  // { label: 'Instagram', Icon: InstagramIcon, href: 'https://www.instagram.com/reactresume/' },
+  // { label: 'Twitter', Icon: TwitterIcon, href: 'https://twitter.com/TimBakerx' },
 ];
