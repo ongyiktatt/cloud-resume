@@ -1,15 +1,15 @@
-import { FC, memo } from 'react';
+import {FC, memo} from 'react';
 
-import { TimelineItem } from '../../../data/dataDef';
+import {TimelineItem} from '../../../data/dataDef';
 
-const TimelineItemComponent: FC<{ item: TimelineItem }> = memo(({ item }) => {
-  const { title, date, location, content, url } = item;
+const TimelineItemComponent: FC<{item: TimelineItem}> = memo(({item}) => {
+  const {title, date, location, content, url} = item;
   return (
     <div className="flex flex-col pb-8 text-center last:pb-0 md:text-left">
       <div className="flex flex-col pb-4">
         <h2 className="text-xl font-bold">
           {url ? (
-            <a href={url} target="_blank" rel="noopener noreferrer" className="hover:underline">
+            <a className="hover:underline" href={url} rel="noopener noreferrer" target="_blank">
               {title}
             </a>
           ) : (
