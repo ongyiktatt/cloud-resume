@@ -102,13 +102,12 @@ export const aboutData: About = {
   profileImageSrc: profilepic,
   description: `What started as managing IT operations across Singapore, South Korea, and Japan grew into a genuine curiosity for how modern infrastructure gets built — leading me to spend the past year earning AWS certifications and building hands-on Terraform projects in my own homelab. I'm now looking to bring that same operational discipline to a Cloud Infrastructure Engineering role. Outside of work, I'm usually tinkering with my homelab, exploring photography, or nerding out over hi-fi audio gear.`,
   aboutItems: [
-    { label: 'Location', text: 'Singapore', Icon: MapIcon },
-    { label: 'Age', text: '31', Icon: CalendarIcon },
-    { label: 'Nationality', text: 'Malaysian, Singapore PR', Icon: FlagIcon },
+    {label: 'Location', text: 'Singapore', Icon: MapIcon},
+    {label: 'Age', text: '31', Icon: CalendarIcon},
+    {label: 'Nationality', text: 'Malaysian, Singapore PR', Icon: FlagIcon},
     // {label: 'Interests', text: 'Motorcycles, Muay Thai, Banjos', Icon: SparklesIcon},
-    { label: 'Study', text: 'Temasek Polytechnic', Icon: AcademicCapIcon },
-    { label: 'Employment', text: 'Wargaming.net', Icon: BuildingOffice2Icon },
-  ],
+    {label: 'Study', text: 'Temasek Polytechnic', Icon: AcademicCapIcon},
+    {label: 'Employment', text: 'Wargaming.net', Icon: BuildingOffice2Icon},  ],
 };
 
 /**
@@ -418,7 +417,6 @@ export const contact: ContactSection = {
 export const socialLinks: Social[] = [
   { label: 'Github', Icon: GithubIcon, href: 'https://github.com/ongyiktatt' },
   // { label: 'Stack Overflow', Icon: StackOverflowIcon, href: 'https://stackoverflow.com/users/8553186/tim-baker' },
-  { label: 'LinkedIn', Icon: LinkedInIcon, href: 'https://www.linkedin.com/in/ongyiktatt/' },
-  // { label: 'Instagram', Icon: InstagramIcon, href: 'https://www.instagram.com/reactresume/' },
-  // { label: 'Twitter', Icon: TwitterIcon, href: 'https://twitter.com/TimBakerx' },
+  {label: 'LinkedIn', Icon: LinkedInIcon, href: 'https://www.linkedin.com/in/ongyiktatt/'},
+  // { label: 'Instagram', Icon: InstagramIcon, href: 'https://www.instagram.com/reactresume/' },  // { label: 'Twitter', Icon: TwitterIcon, href: 'https://twitter.com/TimBakerx' },
 ];
