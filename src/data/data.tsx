@@ -116,6 +116,49 @@ export const aboutData: About = {
  */
 export const skills: SkillGroup[] = [
   {
+    name: 'Cloud',
+    skills: [
+      {
+        name: 'AWS(VPC, EC2, S3, IAM, Route 53)',
+        level: 8,
+      },
+      {
+        name: 'Azure(VMs, Storage Accounts, Front Door, VNet, Entra ID)',
+        level: 7
+      }
+    ]
+  },
+  {
+    name: 'Infrastructure',
+    skills: [
+      {
+        name: 'Dockers',
+        level: 9,
+      },
+      {
+        name: 'Terraform',
+        level: 8,
+      },
+    ]
+  },
+  {
+    name: 'Networking',
+    skills: [
+      {
+        name: 'TCP/IP',
+        level: 10,
+      },
+      {
+        name: 'DNS',
+        level: 10,
+      },
+      {
+        name: 'Routing',
+        level: 10,
+      }
+    ]
+  },
+  {
     name: 'Spoken languages',
     skills: [
       {
@@ -123,66 +166,12 @@ export const skills: SkillGroup[] = [
         level: 10,
       },
       {
-        name: 'French',
-        level: 4,
-      },
-      {
-        name: 'Spanish',
-        level: 3,
+        name: 'Chinese(Mandarin)',
+        level: 10,
       },
     ],
   },
-  {
-    name: 'Frontend development',
-    skills: [
-      {
-        name: 'React',
-        level: 9,
-      },
-      {
-        name: 'Typescript',
-        level: 7,
-      },
-      {
-        name: 'GraphQL',
-        level: 6,
-      },
-    ],
-  },
-  {
-    name: 'Backend development',
-    skills: [
-      {
-        name: 'Node.js',
-        level: 8,
-      },
-      {
-        name: 'Rust',
-        level: 5,
-      },
-      {
-        name: 'Golang',
-        level: 4,
-      },
-    ],
-  },
-  {
-    name: 'Mobile development',
-    skills: [
-      {
-        name: 'React Native',
-        level: 9,
-      },
-      {
-        name: 'Flutter',
-        level: 4,
-      },
-      {
-        name: 'Swift',
-        level: 3,
-      },
-    ],
-  },
+
 ];
 
 /**
