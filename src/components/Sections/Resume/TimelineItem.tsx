@@ -22,7 +22,7 @@ const TimelineItemComponent: FC<{item: TimelineItem}> = memo(({item}) => {
           <span className="flex-1 text-sm sm:flex-none">{date}</span>
         </div>
       </div>
-      {content}
+      <div className="text-left">{content}</div>
     </div>
   );
 });

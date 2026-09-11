@@ -248,7 +248,7 @@ export const certification: TimelineItem[] = [
     location: 'ITIL',
     title: 'ITIL 4 Foundation',
     url: 'https://www.peoplecert.org/for-corporations/certificate-verification-service',
-    content: <>Credential ID: GR671273878OY</>
+    content: <span className="block text-center md:text-left">Credential ID: GR671273878OY</span>,
   },
 ];
 export const education: TimelineItem[] = [
