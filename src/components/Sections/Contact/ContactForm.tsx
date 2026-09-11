@@ -9,7 +9,7 @@ interface FormData {
   message: string;
 }
 
-type SubmitStatus = 'idle' | 'submitting' | 'success' | 'error';
+type SubmitStatus = 'idle' | 'submitting' | 'success' | 'captcha' | 'error';
 
 const ContactForm: FC = memo(() => {
   const defaultData = useMemo(
@@ -43,7 +43,7 @@ const ContactForm: FC = memo(() => {
       const token = recaptchaRef.current?.getValue();
 
       if (!token) {
-        setStatus('error');
+        setStatus('captcha');
         return;
       }
 
@@ -102,9 +102,14 @@ const ContactForm: FC = memo(() => {
       <div className="w-max overflow-hidden rounded-md">
         <ReCAPTCHA ref={recaptchaRef} sitekey={recaptchaSiteKey} theme="dark" />
       </div>
+      {status === 'captcha' && (
+        <p className="text-sm text-red-400" role="alert">
+          Please complete the reCAPTCHA and try again.
+        </p>
+      )}
       {status === 'error' && (
         <p className="text-sm text-red-400" role="alert">
-          Sorry, something went wrong. Please complete the reCAPTCHA and try again.
+          Sorry, something went wrong. Please try again.
         </p>
       )}
       {status === 'success' && (

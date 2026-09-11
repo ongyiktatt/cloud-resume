@@ -2,8 +2,6 @@ import {
   AcademicCapIcon,
   ArrowDownTrayIcon,
   BuildingOffice2Icon,
-  CalendarIcon,
-  FlagIcon,
   MapIcon,
   // SparklesIcon,
 } from '@heroicons/react/24/outline';
@@ -38,13 +36,11 @@ import {
   TimelineItem,
 } from './dataDef';
 
-const currentYear = new Date().getFullYear();
-const yearOfBirth = 1995;
 /**
  * Page meta data
  */
 export const homePageMeta: HomepageMeta = {
-  title: 'Yik Tatt Ong - IT Manager, APAC',
+  title: 'Yik Tatt Ong | IT Manager → Cloud Infrastructure Engineer',
   description: "",
 };
 
@@ -68,14 +64,23 @@ export type SectionId = (typeof SectionId)[keyof typeof SectionId];
  */
 export const heroData: Hero = {
   imageSrc: heroImage,
-  name: `I'm Yik Tatt Ong.`,
+  name: 'Yik Tatt Ong',
   description: (
     <>
-      <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        <strong className='text-stone-100'>IT Operations Leader with 10+ years</strong> across multi-country enterprise environments, now building hands-on cloud infrastructure expertise through <strong className='text-stone-100'>AWS Solutions Architect and CloudOps certifications</strong> and self-directed <strong className='text-stone-100'>Terraform and Git</strong> projects.
+      <p className='text-lg font-semibold text-orange-400 sm:text-xl lg:text-2xl'>
+        IT Manager | Cloud & Infrastructure
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        Looking to bring proven operational rigor and stakeholder communication to a <strong className='text-stone-100'>Cloud Infrastructure Engineering role</strong>, available from January 2027.
+        AWS Certified Solutions Architect – Associate · AWS Certified CloudOps Engineer – Associate · Terraform · Infrastructure · Networking
+      </p>
+      <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
+        IT Manager and infrastructure professional with <strong className='text-stone-100'>10+ years of experience</strong> across enterprise IT operations, systems, networking, and regional infrastructure.
+      </p>
+      <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
+        Currently transitioning into cloud infrastructure engineering, with a focus on <strong className='text-stone-100'>AWS, Terraform, automation, and modern infrastructure practices</strong>.
+      </p>
+      <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
+        Looking to bring proven operational rigor and stakeholder communication to a <strong className='text-stone-100'>Cloud Infrastructure Engineer role</strong>, available from January 2027.
       </p>
     </>
   ),
@@ -102,11 +107,10 @@ export const aboutData: About = {
   description: `What started as managing IT operations across Singapore, South Korea, and Japan grew into a genuine curiosity for how modern infrastructure gets built — leading me to spend the past year earning AWS certifications and building hands-on Terraform projects in my own homelab. I'm now looking to bring that same operational discipline to a Cloud Infrastructure Engineering role. Outside of work, I'm usually tinkering with my homelab, exploring photography, or nerding out over hi-fi audio gear.`,
   aboutItems: [
     {label: 'Location', text: 'Singapore', Icon: MapIcon},
-    {label: 'Age', text: String(currentYear - yearOfBirth), Icon: CalendarIcon},
-    {label: 'Nationality', text: 'Malaysian, Singapore PR', Icon: FlagIcon},
     // {label: 'Interests', text: 'Motorcycles, Muay Thai, Banjos', Icon: SparklesIcon},
-    {label: 'Study', text: 'Temasek Polytechnic', Icon: AcademicCapIcon},
-    {label: 'Employment', text: 'Wargaming.net', Icon: BuildingOffice2Icon},  ],
+    {label: 'Education', text: 'Temasek Polytechnic', Icon: AcademicCapIcon},
+    {label: 'Employment', text: 'Wargaming Asia', Icon: BuildingOffice2Icon},
+  ],
 };
 
 /**
@@ -117,30 +121,47 @@ export const skills: SkillGroup[] = [
     name: 'Cloud',
     skills: [
       {
-        name: 'AWS(VPC, EC2, S3, IAM, Route 53)',
+        name: 'AWS (VPC, EC2, S3, IAM, Route 53)',
         level: 8,
       },
       {
-        name: 'Azure(VMs, Storage Accounts, Front Door, VNet, Entra ID)',
-        level: 7
-      }
-    ]
+        name: 'Azure (VMs, VNet, Front Door)',
+        level: 7,
+      },
+    ],
   },
   {
-    name: 'Infrastructure',
+    name: 'Infrastructure as Code',
     skills: [
-      {
-        name: 'Docker',
-        level: 9,
-      },
       {
         name: 'Terraform',
         level: 8,
       },
-    ]
+      {
+        name: 'Git',
+        level: 8,
+      },
+      {
+        name: 'Docker',
+        level: 9,
+      },
+    ],
   },
   {
-    name: 'Networking',
+    name: 'Automation',
+    skills: [
+      {
+        name: 'PowerShell',
+        level: 9,
+      },
+      {
+        name: 'Bash',
+        level: 7,
+      },
+    ],
+  },
+  {
+    name: 'Networking & Security',
     skills: [
       {
         name: 'TCP/IP',
@@ -153,8 +174,37 @@ export const skills: SkillGroup[] = [
       {
         name: 'Routing',
         level: 10,
-      }
-    ]
+      },
+      {
+        name: 'Firewall Administration',
+        level: 9,
+      },
+      {
+        name: 'MikroTik',
+        level: 8,
+      },
+      {
+        name: 'WireGuard',
+        level: 8,
+      },
+    ],
+  },
+  {
+    name: 'Systems & Identity',
+    skills: [
+      {
+        name: 'Proxmox',
+        level: 8,
+      },
+      {
+        name: 'Intune',
+        level: 8,
+      },
+      {
+        name: 'Entra ID',
+        level: 8,
+      },
+    ],
   },
   {
     name: 'Spoken languages',
@@ -164,12 +214,11 @@ export const skills: SkillGroup[] = [
         level: 10,
       },
       {
-        name: 'Chinese(Mandarin)',
+        name: 'Chinese (Mandarin)',
         level: 10,
       },
     ],
   },
-
 ];
 
 /**
@@ -279,7 +328,7 @@ export const certification: TimelineItem[] = [
 ];
 export const education: TimelineItem[] = [
   {
-    date: 'October 2022',
+    date: 'September 2020 - October 2022',
     location: 'Temasek Polytechnic, Singapore',
     title: 'Diploma in Infocomm and Digital Media',
     content: <></>
@@ -290,12 +339,12 @@ export const education: TimelineItem[] = [
 export const experience: TimelineItem[] = [
   {
     date: 'February 2023 - Present',
-    location: 'Wargaming.net',
+    location: 'Wargaming Asia',
     title: 'IT Manager, APAC',
     content: (
       <ul className="list-disc list-outside pl-5 space-y-1">
         <li><strong className='text-stone-0'>Built PowerShell automation to validate Secure Boot certificates and deploy language packs</strong>, cutting manual device setup time by 20%</li>
-        <li>Owned regional IT operations end-to-end — <strong className='text-stone-0'>S$100K annual budget</strong>, vendor SLAs, and infrastructure across 200+ users in three countries</li>
+        <li>Owned regional IT operations end-to-end — <strong className='text-stone-0'>S$100K annual budget</strong>, vendor SLAs, and infrastructure across 200 users in three countries</li>
         <li>Secured a multi-OS environment with <strong className='text-stone-0'>Microsoft Intune, Entra ID, and Conditional Access</strong>, managing endpoint compliance and identity lifecycle at scale</li>
         <li>Led pilot testing and regional rollout of global IT initiatives, validating infrastructure changes before deployment across all three markets</li>
         <li><strong className='text-stone-0'>Redesigned service desk workflows and introduced proactive endpoint monitoring</strong>, cutting recurring incident escalations by 20%</li>
