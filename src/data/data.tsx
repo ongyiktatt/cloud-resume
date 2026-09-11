@@ -27,6 +27,8 @@ import heroImage from '../images/header-background.jpg';
 // import porfolioImage11 from '../images/portfolio/portfolio-11.jpg';
 import profilepic from '../images/profilepic.jpg';
 import testimonialImage from '../images/testimonial.webp';
+const currentYear = new Date().getFullYear();
+const yearOfBirth = 1995;
 import {
   About,
   ContactSection,
@@ -103,7 +105,7 @@ export const aboutData: About = {
   description: `What started as managing IT operations across Singapore, South Korea, and Japan grew into a genuine curiosity for how modern infrastructure gets built — leading me to spend the past year earning AWS certifications and building hands-on Terraform projects in my own homelab. I'm now looking to bring that same operational discipline to a Cloud Infrastructure Engineering role. Outside of work, I'm usually tinkering with my homelab, exploring photography, or nerding out over hi-fi audio gear.`,
   aboutItems: [
     {label: 'Location', text: 'Singapore', Icon: MapIcon},
-    {label: 'Age', text: '31', Icon: CalendarIcon},
+    {label: 'Age', text: String(currentYear - yearOfBirth), Icon: CalendarIcon},
     {label: 'Nationality', text: 'Malaysian, Singapore PR', Icon: FlagIcon},
     // {label: 'Interests', text: 'Motorcycles, Muay Thai, Banjos', Icon: SparklesIcon},
     {label: 'Study', text: 'Temasek Polytechnic', Icon: AcademicCapIcon},
