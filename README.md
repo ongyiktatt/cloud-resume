@@ -58,6 +58,24 @@ All of the data for the site is driven via a file at `/src/data/data.tsx`. This 
 ### 5. Hook up contact form
 Due to the variety of options available for contact form providers, I've hooked up the contact form only so far as handling inputs and state. Form submission and the actual sending of the email is open to your own implementation. My personal recommendation for email provider is [Sendgrid.](https://sendgrid.com/)
 
+#### reCAPTCHA v2
+The contact form renders a reCAPTCHA v2 checkbox above the "Send Message" button
+(`src/components/Sections/Contact/ContactForm.tsx`). The widget uses the public site
+key from `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` (see `src/config.ts`), and the submitted
+token is verified server-side by an AWS Lambda function whose URL comes from
+`NEXT_PUBLIC_CONTACT_VERIFY_URL`.
+
+Because this site is a static export (`output: 'export'`) deployed to S3/CloudFront,
+there is no Next.js server to hold the secret key — the Lambda function does that.
+
+1. Deploy the verification function: see [`aws/recaptcha-verify/README.md`](aws/recaptcha-verify/README.md).
+2. Set the Function URL locally in `.env.local` and in CI as the `CONTACT_VERIFY_URL`
+   repository variable.
+
+When `NEXT_PUBLIC_CONTACT_VERIFY_URL` is not set, the form logs a warning and skips
+server-side verification (handy for local development).
+
+
 ### 6. Make any other changes you like
 
 Of course, all of the code is there and nothing is hidden from you so if you would like to make any other styling/data changes, feel free!
