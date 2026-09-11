@@ -131,7 +131,7 @@ export const skills: SkillGroup[] = [
     name: 'Infrastructure',
     skills: [
       {
-        name: 'Dockers',
+        name: 'Docker',
         level: 9,
       },
       {
