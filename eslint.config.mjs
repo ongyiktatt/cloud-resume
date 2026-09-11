@@ -2,7 +2,7 @@ import js from '@eslint/js';
 import nextPlugin from '@next/eslint-plugin-next';
 import tsPlugin from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
-import importPlugin from 'eslint-plugin-import';
+import importX from 'eslint-plugin-import-x';
 import prettierConfig from 'eslint-config-prettier/flat';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
@@ -35,7 +35,7 @@ export default [
     },
     plugins: {
       '@typescript-eslint': tsPlugin,
-      import: importPlugin,
+      'import-x': importX,
       react: reactPlugin,
       'react-hooks': reactHooks,
       'react-memo': reactMemo,
@@ -62,10 +62,10 @@ export default [
           typeLiterals: ['signature', 'method', 'constructor', 'field'],
         },
       ],
-      'import/first': 'error',
-      'import/newline-after-import': 'error',
-      'import/no-duplicates': 'error',
-      'import/order': 'off',
+      'import-x/first': 'error',
+      'import-x/newline-after-import': 'error',
+      'import-x/no-duplicates': 'error',
+      'import-x/order': 'off',
       'no-irregular-whitespace': 'off',
       '@typescript-eslint/no-unused-vars': ['warn', {argsIgnorePattern: '^_'}],
       'object-curly-spacing': ['error', 'never'],
