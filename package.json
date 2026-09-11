@@ -2,6 +2,9 @@
   "name": "react-resume-template",
   "version": "2.0.0",
   "private": true,
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "build": "yarn compile && yarn next build",
     "clean": "rm -rf build-tsc .next",
@@ -26,7 +29,7 @@
     "@next/eslint-plugin-next": "^14.0.3",
     "@tailwindcss/forms": "^0.5.4",
     "@tailwindcss/typography": "^0.5.9",
-    "@types/node": "^20.4.5",
+    "@types/node": "^24.0.0",
     "@types/react": "^18.2.18",
     "@types/react-google-recaptcha": "^2.1.9",
     "@types/tailwindcss": "^3.1.0",
