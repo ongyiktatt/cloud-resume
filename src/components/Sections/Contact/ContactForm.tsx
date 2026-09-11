@@ -50,28 +50,19 @@ const ContactForm: FC = memo(() => {
       setStatus('submitting');
 
       try {
-        if (!contactVerifyUrl) {
-          // No verification endpoint configured yet. Log so the form still works in local development.
-          console.warn('NEXT_PUBLIC_CONTACT_VERIFY_URL is not set. Skipping server-side reCAPTCHA verification.');
-        } else {
-          const response = await fetch(contactVerifyUrl, {
-            body: JSON.stringify({...data, token}),
-            headers: {'Content-Type': 'application/json'},
-            method: 'POST',
-          });
+        // The endpoint verifies the reCAPTCHA token and, when valid, emails the submission.
+        const response = await fetch(contactVerifyUrl, {
+          body: JSON.stringify({...data, token}),
+          headers: {'Content-Type': 'application/json'},
+          method: 'POST',
+        });
 
-          const result = (await response.json()) as {success?: boolean};
+        const result = (await response.json()) as {success?: boolean};
 
-          if (!response.ok || !result.success) {
-            throw new Error('reCAPTCHA verification failed');
-          }
+        if (!response.ok || !result.success) {
+          throw new Error('Failed to send message');
         }
 
-        /**
-         * The reCAPTCHA token was verified server-side (when an endpoint is configured).
-         * This is a good starting point to wire up your form submission logic
-         * */
-        console.log('Data to send: ', data);
         setData(defaultData);
         setStatus('success');
       } catch {
@@ -113,7 +104,7 @@ const ContactForm: FC = memo(() => {
       </div>
       {status === 'error' && (
         <p className="text-sm text-red-400" role="alert">
-          Please complete the reCAPTCHA and try again.
+          Sorry, something went wrong. Please complete the reCAPTCHA and try again.
         </p>
       )}
       {status === 'success' && (

@@ -18,8 +18,9 @@ export const recaptchaSiteKey: string = envOrDefault(
 );
 
 /**
- * URL of the AWS Lambda Function URL that verifies reCAPTCHA tokens server-side.
- * The secret key is only ever read by that function, never by the browser.
+ * URL of the AWS Lambda Function URL that handles the contact form: it verifies the
+ * reCAPTCHA token server-side and emails the submission via SNS. The secret key and
+ * AWS credentials are only ever read by that function, never by the browser.
  *
  * This URL is public (like the site key), so it's a safe fallback. Override with the
  * NEXT_PUBLIC_CONTACT_VERIFY_URL environment variable if the function URL changes.
