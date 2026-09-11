@@ -17,7 +17,9 @@ const Header: FC = memo(() => {
   );
 
   const intersectionHandler = useCallback((section: SectionId | null) => {
-    section && setCurrentSection(section);
+    if (section) {
+      setCurrentSection(section);
+    }
   }, []);
 
   useNavObserver(navSections.map(section => `#${section}`).join(','), intersectionHandler);
