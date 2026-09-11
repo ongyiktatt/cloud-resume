@@ -23,6 +23,7 @@ const ContactForm: FC = memo(() => {
 
   const [data, setData] = useState<FormData>(defaultData);
   const [status, setStatus] = useState<SubmitStatus>('idle');
+  const [emailError, setEmailError] = useState<string | null>(null);
   const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const onChange = useCallback(
@@ -31,10 +32,34 @@ const ContactForm: FC = memo(() => {
 
       const fieldData: Partial<FormData> = {[name]: value};
 
+      // Clear a previous email complaint as soon as the value changes.
+      if (name === 'email') {
+        setEmailError(null);
+      }
+
       setData({...data, ...fieldData});
     },
     [data],
   );
+
+  /**
+   * Validate the email when the field loses focus, reusing the browser's own constraint
+   * validation so the rules stay in sync with the input's `type`, `required` and `pattern`
+   * attributes. The `pattern` mirrors the Lambda's check — native `type="email"` alone would
+   * accept "user@localhost", which the server rejects.
+   *
+   * An empty field is left alone here; the `required` check covers that on submit.
+   */
+  const handleEmailBlur = useCallback((event: React.FocusEvent<HTMLInputElement>) => {
+    const input = event.currentTarget;
+
+    if (input.value.trim() === '') {
+      setEmailError(null);
+      return;
+    }
+
+    setEmailError(input.validity.valid ? null : 'Please enter a valid email address.');
+  }, []);
 
   const handleSendMessage = useCallback(
     async (event: React.FormEvent<HTMLFormElement>) => {
@@ -64,6 +89,7 @@ const ContactForm: FC = memo(() => {
         }
 
         setData(defaultData);
+        setEmailError(null);
         setStatus('success');
       } catch {
         setStatus('error');
@@ -90,15 +116,24 @@ const ContactForm: FC = memo(() => {
         value={data.name}
       />
       <input
+        aria-describedby={emailError ? 'email-error' : undefined}
+        aria-invalid={!!emailError}
         autoComplete="email"
         className={inputClasses}
         name="email"
+        onBlur={handleEmailBlur}
         onChange={onChange}
+        pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
         placeholder="Email"
         required
         type="email"
         value={data.email}
       />
+      {emailError && (
+        <p className="text-sm text-red-400" id="email-error" role="alert">
+          {emailError}
+        </p>
+      )}
       <textarea
         className={inputClasses}
         maxLength={250}
