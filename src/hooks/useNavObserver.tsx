@@ -1,56 +1,38 @@
 import {useEffect} from 'react';
 
-import {headerID} from '../components/Sections/Header';
 import {SectionId} from '../data/data';
 
 export const useNavObserver = (selectors: string, handler: (section: SectionId | null) => void) => {
   useEffect(() => {
     // Get all sections
     const headings = document.querySelectorAll(selectors);
-    const headingsArray = Array.from(headings);
-    const headerWrapper = document.getElementById(headerID);
 
-    // Create the IntersectionObserver API
+    // Create the IntersectionObserver API.
+    //
+    // The root is narrowed to a thin band just below the fixed header, and any overlap counts
+    // (threshold 0). Using a ratio threshold instead breaks sections taller than the band: a
+    // section much taller than the band can never reach a given ratio, so e.g. the very tall
+    // Resume section never reported as intersecting in either scroll direction.
     const observer = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
-          const currentY = entry.boundingClientRect.y;
-          const id = entry.target.getAttribute('id');
-          if (headerWrapper) {
-            // Create a decision object
-            const decision = {
-              id,
-              currentIndex: headingsArray.findIndex(heading => heading.getAttribute('id') === id),
-              isIntersecting: entry.isIntersecting,
-              currentRatio: entry.intersectionRatio,
-              aboveToc: currentY < headerWrapper.getBoundingClientRect().y,
-              belowToc: !(currentY < headerWrapper.getBoundingClientRect().y),
-            };
-            if (decision.isIntersecting) {
-              // Header at 30% from the top, update to current header
-              handler(decision.id as SectionId);
-            } else if (
-              !decision.isIntersecting &&
-              decision.currentRatio < 1 &&
-              decision.currentRatio > 0 &&
-              decision.belowToc
-            ) {
-              const currentVisible = headingsArray[decision.currentIndex - 1]?.getAttribute('id');
-              handler(currentVisible as SectionId);
-            }
+          if (entry.isIntersecting) {
+            handler(entry.target.getAttribute('id') as SectionId);
           }
         });
       },
       {
         root: null,
-        threshold: 0.1,
-        rootMargin: '0px 0px -70% 0px',
+        rootMargin: '-10% 0px -88% 0px',
+        threshold: 0,
       },
     );
+
     // Observe all the Sections
     headings.forEach(section => {
       observer.observe(section);
     });
+
     // Cleanup
     return () => {
       observer.disconnect();
