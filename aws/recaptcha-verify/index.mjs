@@ -10,9 +10,10 @@
  *   RECAPTCHA_SECRET_KEY - reCAPTCHA v2 secret key. Never expose this to the browser.
  *   SNS_TOPIC_ARN        - SNS topic that contact form notifications are published to.
  *
- * Optional environment variable:
- *   ALLOWED_ORIGIN - comma-separated list of origins allowed to call this function.
- *                    Defaults to https://ongyiktatt.com
+ * CORS is deliberately NOT handled here. It is configured once on the Function URL
+ * (the `--cors` option of create-function-url-config). If the handler also sets
+ * `Access-Control-Allow-Origin`, Lambda emits the header twice and browsers reject the
+ * response with "contains multiple values".
  */
 
 import {PublishCommand, SNSClient} from '@aws-sdk/client-sns';
@@ -26,24 +27,10 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const sns = new SNSClient({});
 
-const allowedOrigins = (process.env.ALLOWED_ORIGIN ?? 'https://ongyiktatt.com')
-  .split(',')
-  .map(origin => origin.trim())
-  .filter(Boolean);
-
-const resolveOrigin = requestOrigin => {
-  if (allowedOrigins.includes('*')) {
-    return '*';
-  }
-
-  return allowedOrigins.includes(requestOrigin) ? requestOrigin : allowedOrigins[0];
-};
-
-const corsHeaders = origin => ({
-  'Access-Control-Allow-Headers': 'Content-Type',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-  'Access-Control-Allow-Origin': origin,
-  Vary: 'Origin',
+const respond = (statusCode, body) => ({
+  body: JSON.stringify(body),
+  headers: {'Content-Type': 'application/json'},
+  statusCode,
 });
 
 /**
@@ -88,20 +75,6 @@ const formatMessage = ({name, email, message}) =>
   ].join('\n');
 
 export const handler = async event => {
-  const requestOrigin = event.headers?.origin ?? event.headers?.Origin ?? '';
-  const headers = corsHeaders(resolveOrigin(requestOrigin));
-
-  const respond = (statusCode, body) => ({
-    body: JSON.stringify(body),
-    headers: {...headers, 'Content-Type': 'application/json'},
-    statusCode,
-  });
-
-  // CORS preflight.
-  if (event.requestContext?.http?.method === 'OPTIONS') {
-    return {body: '', headers, statusCode: 204};
-  }
-
   const secret = process.env.RECAPTCHA_SECRET_KEY;
 
   if (!secret) {

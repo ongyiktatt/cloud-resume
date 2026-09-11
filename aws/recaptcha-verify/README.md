@@ -47,8 +47,7 @@ aws lambda create-function \
 aws lambda wait function-active --function-name recaptcha-verify --region ap-southeast-1
 ```
 
-Set the environment variables. Use a JSON file so the comma-separated
-`ALLOWED_ORIGIN` isn't mangled by the CLI shorthand syntax:
+Set the environment variables:
 
 ```bash
 cat > /tmp/lambda-env.json <<'JSON'
@@ -56,7 +55,6 @@ cat > /tmp/lambda-env.json <<'JSON'
   "FunctionName": "recaptcha-verify",
   "Environment": {
     "Variables": {
-      "ALLOWED_ORIGIN": "https://ongyiktatt.com,http://localhost:3000",
       "RECAPTCHA_SECRET_KEY": "<your-secret-key>"
     }
   }
@@ -99,6 +97,9 @@ aws lambda add-permission \
   --invoked-via-function-url \
   --region ap-southeast-1
 ```
+
+The `--cors` block above is the **only** place CORS is configured. Do not also set
+`Access-Control-Allow-Origin` in the handler — see the note in [Notes](#notes).
 
 Smoke test — a dummy token should come back as `invalid-input-response`, **not**
 `invalid-input-secret` (which would mean the secret is wrong):
@@ -161,7 +162,6 @@ cat > /tmp/lambda-env.json <<'JSON'
   "Timeout": 15,
   "Environment": {
     "Variables": {
-      "ALLOWED_ORIGIN": "https://ongyiktatt.com,http://localhost:3000",
       "RECAPTCHA_SECRET_KEY": "<your-secret-key>",
       "SNS_TOPIC_ARN": "arn:aws:sns:ap-southeast-1:664608326292:contact-form-notifications"
     }
@@ -220,6 +220,10 @@ strictly required. To point the site at a **different** URL, set
 - To update the code later: `rm -f function.zip && zip -q function.zip index.mjs` then
   `aws lambda update-function-code --function-name recaptcha-verify --zip-file fileb://function.zip --region ap-southeast-1`
   followed by `aws lambda wait function-updated --function-name recaptcha-verify --region ap-southeast-1`.
-- `ALLOWED_ORIGIN` accepts a comma-separated list. The first entry is used as the
-  fallback for unrecognised origins.
+- **CORS is configured in exactly one place: the Function URL's `--cors` setting.**
+  The handler must not set `Access-Control-Allow-Origin`. If it does, Lambda emits the
+  header twice and browsers reject the response with
+  *"the 'Access-Control-Allow-Origin' header contains multiple values"*, which surfaces
+  as a failed form submission. The Function URL also answers `OPTIONS` preflights on its
+  own, without invoking the function.
 - The IP address of the caller is forwarded to Google as `remoteip`.
