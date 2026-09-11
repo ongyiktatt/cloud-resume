@@ -25,6 +25,10 @@ const VERIFY_URL = 'https://www.google.com/recaptcha/api/siteverify';
 const MAX_LENGTHS = {email: 320, message: 5000, name: 200};
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+// The only hostname a token may have been solved on. `www` is deliberately absent: it
+// has no DNS record, so the site is only ever served from the apex domain.
+const ALLOWED_HOSTNAMES = new Set(['ongyiktatt.com']);
+
 const sns = new SNSClient({});
 
 const respond = (statusCode, body) => ({
@@ -34,8 +38,24 @@ const respond = (statusCode, body) => ({
 });
 
 /**
+ * Removes control characters, including CR/LF. `name` and `email` end up in the SNS
+ * Subject and in the message's own header lines, where an embedded newline can forge
+ * email headers, so they must be single-line.
+ */
+const stripControlChars = value => value.replace(/[\u0000-\u001F\u007F-\u009F]/g, '');
+
+/**
+ * The message body is plain text and legitimately multi-line, so keep newlines and
+ * tabs; normalise CRLF to LF and drop every other control character.
+ */
+const sanitiseMessage = value =>
+  value.replace(/\r\n?/g, '\n').replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F-\u009F]/g, '');
+
+/**
  * Validates and normalises the submitted form fields.
  * Returns null when anything is missing, the wrong type, too long, or not an email.
+ * Sanitising happens before the checks, so the value that is validated is exactly the
+ * value that gets published to SNS.
  */
 const parseSubmission = payload => {
   const {name, email, message} = payload;
@@ -44,7 +64,11 @@ const parseSubmission = payload => {
     return null;
   }
 
-  const submission = {email: email.trim(), message: message.trim(), name: name.trim()};
+  const submission = {
+    email: stripControlChars(email).trim(),
+    message: sanitiseMessage(message).trim(),
+    name: stripControlChars(name).trim(),
+  };
 
   if (!submission.name || !submission.email || !submission.message) {
     return null;
@@ -110,6 +134,14 @@ export const handler = async event => {
     if (!result.success) {
       console.warn('reCAPTCHA verification failed:', result['error-codes']);
       return respond(400, {errorCodes: result['error-codes'] ?? [], success: false});
+    }
+
+    // `hostname` is only present on a successful verification. Without this check any
+    // token minted with the same (public) site key would be accepted, so the domain
+    // restriction configured in the reCAPTCHA console would never actually be verified.
+    if (!ALLOWED_HOSTNAMES.has(result.hostname)) {
+      console.warn('reCAPTCHA token was solved on an unexpected hostname:', result.hostname);
+      return respond(400, {error: 'Verification failed', success: false});
     }
 
     const submission = parseSubmission(payload);

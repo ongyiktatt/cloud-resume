@@ -198,12 +198,62 @@ strictly required. To point the site at a **different** URL, set
 > If you delete and recreate the function URL, the hostname changes. Update the
 > fallback in `src/config.ts` (and `.env.local`) to match.
 
+## 6. Cap the function's concurrency
+
+The Function URL is public, so the function can be invoked directly. Requests that go
+straight to the URL never pass through the site's CloudFront distribution, which means a
+WAF rate-based rule on that distribution does not see them. Reserved concurrency is
+therefore the backstop that bounds how hard the function can be driven:
+
+```bash
+aws lambda put-function-concurrency \
+  --function-name recaptcha-verify \
+  --reserved-concurrent-executions 5 \
+  --region ap-southeast-1
+```
+
+5 concurrent submissions is comfortably above any legitimate burst; anything beyond that
+is throttled with a `429`, which the form surfaces as its generic error. This also stops a
+flood from draining the account's shared concurrency pool and affecting other functions.
+Do not set it to `0` — that disables the function entirely.
+
+> **This command currently fails on this account.** The *Concurrent executions* quota is
+> **applied at 10** while the AWS **default is 1000** — the account is still on the
+> new-account concurrency ramp, so the applied value sits *below* the default rather than
+> above it. Service Quotas only accepts requests for values **greater than the default**,
+> so a self-service increase cannot lift the applied 10; the API rejects it with
+> *"You must provide a quota value greater than the default quota value of 1000.0"*.
+> Raising it needs an AWS Support case, or the automatic ramp as the account ages.
+>
+> While this remains the account's only function, the applied value of 10 already acts as
+> a hard ceiling: the function cannot exceed 10 concurrent invocations, so a flood is
+> naturally bounded. What reserved concurrency adds is the ability to cap *below* that,
+> and to keep a flood from consuming the whole account pool — worth doing once more
+> functions exist.
+>
+> **If the account limit is ever raised, setting reserved concurrency becomes more urgent,
+> not less.** The function could then scale to the full account pool (1000 by default),
+> which is a far larger abuse ceiling than today's 10.
+
+Check the current value with:
+
+```bash
+aws lambda get-function-concurrency --function-name recaptcha-verify --region ap-southeast-1
+```
+
 ## Notes
 
 - The secret key is only ever read by this function. It must never be committed
   or placed in any `NEXT_PUBLIC_*` variable.
 - Nothing is published to SNS unless Google confirms the reCAPTCHA token, so the public
   Function URL can't be used to email you without first solving a challenge.
+- The verified token's `hostname` must be `ongyiktatt.com`. The site key is public, so
+  without this check any token minted with that key would be accepted. `www.ongyiktatt.com`
+  is deliberately not allowed because it has no DNS record — adding a `www` hostname later
+  also requires updating `ALLOWED_HOSTNAMES` in `index.mjs`.
+- `name` and `email` are stripped of control characters before they reach the SNS
+  `Subject`, so a crafted name cannot inject email headers. `message` keeps its newlines
+  (it is the plain-text body) but CRLF is normalised to LF.
 - SNS email notifications have no `Reply-To` header. The sender's address is included in
   the message body — switch to Amazon SES if you want to reply directly from your inbox.
 - Test delivery independently of the website with:
