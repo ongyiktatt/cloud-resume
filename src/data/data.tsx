@@ -41,7 +41,7 @@ import {
  */
 export const homePageMeta: HomepageMeta = {
   title: 'Yik Tatt Ong | IT Manager → Cloud Infrastructure Engineer',
-  description: "",
+  description: 'Yik Tatt Ong | IT Manager → Cloud Infrastructure Engineer',
 };
 
 /**
@@ -134,16 +134,16 @@ export const skills: SkillGroup[] = [
     name: 'Infrastructure as Code',
     skills: [
       {
+        name: 'Docker',
+        level: 9,
+      },
+      {
         name: 'Terraform',
         level: 8,
       },
       {
         name: 'Git',
         level: 8,
-      },
-      {
-        name: 'Docker',
-        level: 9,
       },
     ],
   },
@@ -178,14 +178,6 @@ export const skills: SkillGroup[] = [
       {
         name: 'Firewall Administration',
         level: 9,
-      },
-      {
-        name: 'MikroTik',
-        level: 8,
-      },
-      {
-        name: 'WireGuard',
-        level: 8,
       },
     ],
   },
@@ -224,74 +216,7 @@ export const skills: SkillGroup[] = [
 /**
  * Portfolio section
  */
-export const portfolioItems: PortfolioItem[] = [
-  // {
-  //   title: 'Project title 1',
-  //   description: 'Give a short description of your project here.',
-  //   url: 'https://reactresume.com',
-  //   image: porfolioImage1,
-  // },
-  // {
-  //   title: 'Project title 2',
-  //   description: 'Give a short description of your project here.',
-  //   url: 'https://reactresume.com',
-  //   image: porfolioImage2,
-  // },
-  // {
-  //   title: 'Project title 3',
-  //   description: 'Give a short description of your project here.',
-  //   url: 'https://reactresume.com',
-  //   image: porfolioImage3,
-  // },
-  // {
-  //   title: 'Project title 4',
-  //   description: 'Give a short description of your project here.',
-  //   url: 'https://reactresume.com',
-  //   image: porfolioImage4,
-  // },
-  // {
-  //   title: 'Project title 5',
-  //   description: 'Give a short description of your project here.',
-  //   url: 'https://reactresume.com',
-  //   image: porfolioImage5,
-  // },
-  // {
-  //   title: 'Project title 6',
-  //   description: 'Give a short description of your project here.',
-  //   url: 'https://reactresume.com',
-  //   image: porfolioImage6,
-  // },
-  // {
-  //   title: 'Project title 7',
-  //   description: 'Give a short description of your project here.',
-  //   url: 'https://reactresume.com',
-  //   image: porfolioImage7,
-  // },
-  // {
-  //   title: 'Project title 8',
-  //   description: 'Give a short description of your project here.',
-  //   url: 'https://reactresume.com',
-  //   image: porfolioImage8,
-  // },
-  // {
-  //   title: 'Project title 9',
-  //   description: 'Give a short description of your project here.',
-  //   url: 'https://reactresume.com',
-  //   image: porfolioImage9,
-  // },
-  // {
-  //   title: 'Project title 10',
-  //   description: 'Give a short description of your project here.',
-  //   url: 'https://reactresume.com',
-  //   image: porfolioImage10,
-  // },
-  // {
-  //   title: 'Project title 11',
-  //   description: 'Give a short description of your project here.',
-  //   url: 'https://reactresume.com',
-  //   image: porfolioImage11,
-  // },
-];
+export const portfolioItems: PortfolioItem[] = [];
 
 /**
  * Resume section -- TODO: Standardize resume contact format or offer MDX
@@ -442,5 +367,4 @@ export const socialLinks: Social[] = [
   {label: 'Github', Icon: GithubIcon, href: 'https://github.com/ongyiktatt'},
   // { label: 'Stack Overflow', Icon: StackOverflowIcon, href: 'https://stackoverflow.com/users/8553186/tim-baker' },
   {label: 'LinkedIn', Icon: LinkedInIcon, href: 'https://www.linkedin.com/in/ongyiktatt/'},
-  // { label: 'Instagram', Icon: InstagramIcon, href: 'https://www.instagram.com/reactresume/' },  // { label: 'Twitter', Icon: TwitterIcon, href: 'https://twitter.com/TimBakerx' },
 ];
