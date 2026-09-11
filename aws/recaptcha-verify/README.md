@@ -110,14 +110,21 @@ and set it as `NEXT_PUBLIC_CONTACT_VERIFY_URL` for the site (see below).
 
 ## 4. Point the site at the function
 
-Local development — add to `.env.local` (gitignored):
+`src/config.ts` falls back to the deployed Function URL, so no configuration is
+strictly required. To point the site at a **different** URL, set
+`NEXT_PUBLIC_CONTACT_VERIFY_URL`:
 
-```
-NEXT_PUBLIC_CONTACT_VERIFY_URL=https://6z2mcyqkmz6sqzmxzbcol7ejum0bjuoh.lambda-url.ap-southeast-1.on.aws/
-```
+- Local development — add to `.env.local` (gitignored):
 
-GitHub Actions — add a repository variable named `CONTACT_VERIFY_URL` with the
-Function URL value. It is passed to `yarn build` in `.github/workflows/main.yml`.
+  ```
+  NEXT_PUBLIC_CONTACT_VERIFY_URL=https://6z2mcyqkmz6sqzmxzbcol7ejum0bjuoh.lambda-url.ap-southeast-1.on.aws/
+  ```
+
+- GitHub Actions — optionally add a repository variable named `CONTACT_VERIFY_URL`.
+  It is passed to `yarn build` in `.github/workflows/main.yml`.
+
+> If you delete and recreate the function URL, the hostname changes. Update the
+> fallback in `src/config.ts` (and `.env.local`) to match.
 
 ## Notes
 
