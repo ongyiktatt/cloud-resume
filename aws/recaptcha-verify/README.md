@@ -9,6 +9,14 @@ the reCAPTCHA token to this function, which:
 
 It returns `{ "success": true }` only when both steps succeed.
 
+In the commands below, `$ACCOUNT_ID` is your 12-digit AWS account ID and
+`<recipient-address>` is the mailbox that should receive contact form messages. Set the
+account ID once per shell:
+
+```bash
+export ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+```
+
 ## 1. Create the execution role
 
 The function needs an IAM role that Lambda is allowed to assume. Create it once:
@@ -34,18 +42,30 @@ aws iam attach-role-policy \
 
 ```bash
 cd aws/recaptcha-verify
-rm -f function.zip && zip -q function.zip index.mjs
+rm -f /tmp/function.zip && zip -q /tmp/function.zip index.mjs
 
 aws lambda create-function \
   --function-name recaptcha-verify \
-  --runtime nodejs20.x \
+  --runtime nodejs24.x \
   --handler index.handler \
-  --role arn:aws:iam::664608326292:role/recaptcha-verify-role \
-  --zip-file fileb://function.zip \
+  --role arn:aws:iam::$ACCOUNT_ID:role/recaptcha-verify-role \
+  --memory-size 1024 \
+  --zip-file fileb:///tmp/function.zip \
   --region ap-southeast-1
 
 aws lambda wait function-active --function-name recaptcha-verify --region ap-southeast-1
 ```
+
+> **`--memory-size 1024` is not optional.** Lambda allocates CPU in proportion to memory,
+> and the AWS SDK import dominates the cold start, so the 128 MB default makes the first
+> request after a deploy roughly twice as slow. The measurements are in
+> [Function configuration](../../README.md#function-configuration) in the root README —
+> that is the single home for those numbers.
+>
+> **Optional:** `--architectures arm64` runs the function on Graviton, which is around
+> 20% cheaper per GB-second and usually faster for Node. Changing architecture also
+> changes the cold-start profile, so re-measure rather than assuming the current figures
+> carry over.
 
 Set the environment variables:
 
@@ -121,9 +141,9 @@ aws sns create-topic --name contact-form-notifications --region ap-southeast-1
 # -> copy the TopicArn from the output
 
 aws sns subscribe \
-  --topic-arn arn:aws:sns:ap-southeast-1:664608326292:contact-form-notifications \
+  --topic-arn arn:aws:sns:ap-southeast-1:$ACCOUNT_ID:contact-form-notifications \
   --protocol email \
-  --notification-endpoint ytong95@gmail.com \
+  --notification-endpoint <recipient-address> \
   --region ap-southeast-1
 ```
 
@@ -136,7 +156,7 @@ Check the subscription status with:
 
 ```bash
 aws sns list-subscriptions-by-topic \
-  --topic-arn arn:aws:sns:ap-southeast-1:664608326292:contact-form-notifications \
+  --topic-arn arn:aws:sns:ap-southeast-1:$ACCOUNT_ID:contact-form-notifications \
   --region ap-southeast-1 \
   --query 'Subscriptions[].[Endpoint,SubscriptionArn]' --output json
 ```
@@ -163,7 +183,7 @@ cat > /tmp/lambda-env.json <<'JSON'
   "Environment": {
     "Variables": {
       "RECAPTCHA_SECRET_KEY": "<your-secret-key>",
-      "SNS_TOPIC_ARN": "arn:aws:sns:ap-southeast-1:664608326292:contact-form-notifications"
+      "SNS_TOPIC_ARN": "arn:aws:sns:ap-southeast-1:$ACCOUNT_ID:contact-form-notifications"
     }
   }
 }
@@ -176,27 +196,27 @@ aws lambda update-function-configuration \
 rm -f /tmp/lambda-env.json
 ```
 
-> `Timeout` is raised from the 3 second default. The AWS SDK v3 that ships with the
-> Node.js runtime is imported at start-up (~2s on a cold start), which does not fit
-> inside 3s.
+> `Timeout` is raised from the 3 second default: the AWS SDK v3 that ships with the
+> Node.js runtime is imported at start-up, and that import alone does not fit inside 3 s.
+> Memory and timeout are both sized from measured cold-start behaviour — see
+> [Function configuration](../../README.md#function-configuration) in the root README
+> for the numbers.
 
 ## 5. Point the site at the function
 
-`src/config.ts` falls back to the deployed Function URL, so no configuration is
-strictly required. To point the site at a **different** URL, set
-`NEXT_PUBLIC_CONTACT_VERIFY_URL`:
+Set `NEXT_PUBLIC_CONTACT_VERIFY_URL` to the `FunctionUrl` printed in step 3:
 
 - Local development — add to `.env.local` (gitignored):
 
   ```
-  NEXT_PUBLIC_CONTACT_VERIFY_URL=https://6z2mcyqkmz6sqzmxzbcol7ejum0bjuoh.lambda-url.ap-southeast-1.on.aws/
+  NEXT_PUBLIC_CONTACT_VERIFY_URL=<your-function-url>
   ```
 
-- GitHub Actions — optionally add a repository variable named `CONTACT_VERIFY_URL`.
-  It is passed to `yarn build` in `.github/workflows/main.yml`.
+- GitHub Actions — add a repository variable named `CONTACT_VERIFY_URL`. It is passed
+  to `yarn build` in `.github/workflows/main.yml`.
 
-> If you delete and recreate the function URL, the hostname changes. Update the
-> fallback in `src/config.ts` (and `.env.local`) to match.
+> If you delete and recreate the function URL, the hostname changes. Update `.env.local`
+> and the repository variable to match.
 
 ## 6. Cap the function's concurrency
 
@@ -260,16 +280,17 @@ aws lambda get-function-concurrency --function-name recaptcha-verify --region ap
 
   ```bash
   aws sns publish \
-    --topic-arn arn:aws:sns:ap-southeast-1:664608326292:contact-form-notifications \
+    --topic-arn arn:aws:sns:ap-southeast-1:$ACCOUNT_ID:contact-form-notifications \
     --subject "Test" --message "Test message" \
     --region ap-southeast-1
   ```
 - Rotate the secret key in the [reCAPTCHA admin console](https://www.google.com/recaptcha/admin)
   if it has ever been shared or committed, then update the Lambda's
   `RECAPTCHA_SECRET_KEY` environment variable.
-- To update the code later: `rm -f function.zip && zip -q function.zip index.mjs` then
-  `aws lambda update-function-code --function-name recaptcha-verify --zip-file fileb://function.zip --region ap-southeast-1`
+- To update the code later: `rm -f /tmp/function.zip && zip -q /tmp/function.zip index.mjs` then
+  `aws lambda update-function-code --function-name recaptcha-verify --zip-file fileb:///tmp/function.zip --region ap-southeast-1`
   followed by `aws lambda wait function-updated --function-name recaptcha-verify --region ap-southeast-1`.
+  Build the zip in `/tmp`, not in this directory — a stray `function.zip` dirties the working tree.
 - **CORS is configured in exactly one place: the Function URL's `--cors` setting.**
   The handler must not set `Access-Control-Allow-Origin`. If it does, Lambda emits the
   header twice and browsers reject the response with
