@@ -22,13 +22,18 @@ export const recaptchaSiteKey: string = envOrDefault(
  * reCAPTCHA token server-side and emails the submission via SNS. The secret key and
  * AWS credentials are only ever read by that function, never by the browser.
  *
- * This URL is public (like the site key), so it's a safe fallback. Override with the
- * NEXT_PUBLIC_CONTACT_VERIFY_URL environment variable if the function URL changes.
+ * This deliberately has **no fallback**. A live endpoint does not belong in a public
+ * repository, and a missing value should stop the build rather than ship a form that
+ * posts nowhere. Set it in `.env.local` for local development (see `.env.example`) and
+ * as the `CONTACT_VERIFY_URL` repository variable for CI.
  */
-export const contactVerifyUrl: string = envOrDefault(
-  process.env.NEXT_PUBLIC_CONTACT_VERIFY_URL,
-  'https://6z2mcyqkmz6sqzmxzbcol7ejum0bjuoh.lambda-url.ap-southeast-1.on.aws/',
-);
+export const contactVerifyUrl: string = envOrDefault(process.env.NEXT_PUBLIC_CONTACT_VERIFY_URL, '');
+
+if (contactVerifyUrl.length === 0) {
+  throw new Error(
+    'NEXT_PUBLIC_CONTACT_VERIFY_URL is not set. Add it to .env.local, or set the CONTACT_VERIFY_URL repository variable for CI.',
+  );
+}
 
 export const isMobile = isBrowser ? window.matchMedia('(pointer: coarse)').matches : false;
 export const canUseDOM: boolean =
