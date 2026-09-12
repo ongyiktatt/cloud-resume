@@ -127,7 +127,7 @@ name, distribution id or endpoint is committed. Set them under
 | ---------------------------- | -------------------------------------------------------- |
 | `AWS_REGION`                 | region the deploy runs in                                |
 | `AWS_DEPLOY_ROLE_ARN`        | role assumed via GitHub OIDC                             |
-| `S3_BUCKET`                  | bucket that holds the exported site                      |
+| `S3_BUCKET`                  | destination URI for the sync, scheme included (`s3://…`) |
 | `CLOUDFRONT_DISTRIBUTION_ID` | distribution to invalidate after the sync                |
 
 The two build-time variables (`CONTACT_VERIFY_URL`, `RECAPTCHA_SITE_KEY`) are listed under
