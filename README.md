@@ -7,8 +7,6 @@ serves HTTP is AWS: CloudFront in front of an S3 bucket, protected by WAF and a
 security-headers policy, with a Lambda function as the only dynamic endpoint. The site is
 built and shipped entirely from GitHub Actions.
 
-![ongyiktatt.com](preview.jpg)
-
 ## AWS infrastructure
 
 | Resource               | Identifier / configuration                                                                  |
