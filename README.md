@@ -108,19 +108,37 @@ Two operational notes worth remembering:
    - `actions/upload-artifact` publishes `out/` as the `site-build` artifact
 2. **deploy** (`needs: build`, `permissions: id-token: write`)
    - `actions/download-artifact` restores `out/`
-   - `aws-actions/configure-aws-credentials` assumes the deploy role
-   - `aws s3 sync ./out s3://ongyiktatt.com-<account>-ap-southeast-1-an --delete`
-   - `aws cloudfront create-invalidation --distribution-id EXXXXXXXXXXXXX --paths "/*"`
+   - a preflight step fails fast, naming any deploy variable that is unset
+   - `aws-actions/configure-aws-credentials` assumes `AWS_DEPLOY_ROLE_ARN` in `AWS_REGION`
+   - `aws s3 sync ./out "s3://$S3_BUCKET" --delete`
+   - `aws cloudfront create-invalidation --distribution-id "$CLOUDFRONT_DISTRIBUTION_ID" --paths "/*"`
 
 All actions are on their Node 24 releases (`checkout@v7`, `setup-node@v7`,
 `upload-artifact@v7`, `download-artifact@v8`, `configure-aws-credentials@v6`); the older
 majors still target the deprecated Node 20 runtime.
 
+### Repository variables
+
+Both jobs read their configuration from **repository variables**, so no account id, bucket
+name, distribution id or endpoint is committed. Set them under
+**Settings → Secrets and variables → Actions → Variables**:
+
+| Variable                     | Value                                                    |
+| ---------------------------- | -------------------------------------------------------- |
+| `AWS_REGION`                 | region the deploy runs in                                |
+| `AWS_DEPLOY_ROLE_ARN`        | role assumed via GitHub OIDC                             |
+| `S3_BUCKET`                  | bucket that holds the exported site                      |
+| `CLOUDFRONT_DISTRIBUTION_ID` | distribution to invalidate after the sync                |
+
+The two build-time variables (`CONTACT_VERIFY_URL`, `RECAPTCHA_SITE_KEY`) are listed under
+[Configuration](#configuration). An unset variable arrives as an empty string, so the deploy
+job **fails its preflight check and names the missing variable** instead of letting the AWS
+CLI report a usage error.
+
 ### Deployment credentials
 
 CI holds **no long-lived AWS keys**. The deploy job requests a GitHub OIDC token and assumes
-`<DEPLOY_ROLE_ARN>`, whose trust policy is scoped to
-this repository and branch:
+`AWS_DEPLOY_ROLE_ARN`, whose trust policy is scoped to this repository and branch:
 
 - `sub` = `repo:<owner>/cloud-resume:ref:refs/heads/main`
 - `aud` = `sts.amazonaws.com`
@@ -228,18 +246,18 @@ Kept deliberately brief — see [`AGENTS.md`](AGENTS.md) for architecture and co
 `NEXT_PUBLIC_*` values are inlined into the bundle at build time, so they are public. Never
 put a secret in one — the reCAPTCHA secret lives only in the Lambda's environment.
 
-| Variable                         | Required | Source                                                                         |
-| -------------------------------- | -------- | ------------------------------------------------------------------------------ |
-| `NEXT_PUBLIC_CONTACT_VERIFY_URL` | **yes**  | `.env.local` locally (copy `.env.example`), `CONTACT_VERIFY_URL` repo var in CI  |
-| `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | no       | falls back to the public key hardcoded in `src/config.ts`                       |
+| Variable                         | Repository variable  | Notes                                           |
+| -------------------------------- | -------------------- | ----------------------------------------------- |
+| `NEXT_PUBLIC_CONTACT_VERIFY_URL` | `CONTACT_VERIFY_URL` | Lambda Function URL the form posts to            |
+| `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | `RECAPTCHA_SITE_KEY` | reCAPTCHA v2 site key (public half of the pair)  |
 
-The verify URL deliberately has **no fallback**: committing a live endpoint is the thing we
-are avoiding, and a missing value **fails the build** rather than shipping a form that posts
-nowhere.
+**Both are required.** Neither has a fallback in `src/config.ts`, so a missing value
+**fails the build** rather than shipping an empty configuration. Locally, copy
+`.env.example` to `.env.local`; in CI, set the two repository variables above.
 
-> Use `envOrDefault()` from `src/config.ts` for public-var fallbacks rather than `??`. GitHub
-> Actions substitutes an empty string for an unset repository variable, and `'' ?? fallback`
-> is `''`, which would silently ship an empty reCAPTCHA site key.
+> GitHub Actions substitutes an empty string for an unset repository variable, so an empty
+> value is treated as missing — which is what turns a misconfigured deploy into a build
+> failure instead of a form that silently posts nowhere.
 
 `yarn lint` rewrites files (`prettier --write` + `eslint --fix`); to check without modifying,
 use `yarn eslint 'src/**/*.{ts,tsx}' --max-warnings=0`.

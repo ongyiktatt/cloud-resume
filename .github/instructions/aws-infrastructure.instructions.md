@@ -14,6 +14,7 @@ first. This file records the live-resource facts and account constraints that ar
 
 - Account `<ACCOUNT_ID>`, region `ap-southeast-1` (Lambda, SNS, S3, IAM). CloudFront and its WAF ACL are global / `us-east-1`.
 - **This file is committed to a public repository, so account-scoped values are placeholders.** Resolve them at runtime: `aws sts get-caller-identity --query Account --output text`, `aws lambda get-function-url-config --function-name recaptcha-verify`, `aws cloudfront list-distributions`, `aws wafv2 list-web-acls --scope CLOUDFRONT --region us-east-1`.
+- **The deploy workflow is parameterised.** `.github/workflows/main.yml` reads `AWS_REGION`, `AWS_DEPLOY_ROLE_ARN`, `S3_BUCKET` and `CLOUDFRONT_DISTRIBUTION_ID` from repository variables via job-level `env:`, so the file holds no account-scoped literals — do not reintroduce them. A preflight step fails the deploy and names any variable that is unset (an unset variable arrives as an empty string, which the AWS CLI would otherwise report as a usage error).
 - The CLI uses `aws login` (short-lived credentials), not long-lived access keys. Expired sessions fail with `CreateOAuth2Token … authorization grant is invalid, expired, revoked, or malformed` — the fix is for the **user** to run `aws login` (browser-based). Never run it on their behalf.
 
 ## Live resources

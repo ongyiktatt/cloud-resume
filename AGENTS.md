@@ -44,7 +44,7 @@ There is no test suite.
   - `react-memo/require-memo` + `require-usememo` — every component needs `memo()`, and every local value passed into JSX or a dependency array needs `useMemo`/`useCallback` (use the `// eslint-disable-next-line react-memo/require-memo` escape only for `next/dynamic`, as `src/pages/index.tsx` does).
 - The `react-memo` plugin is **vendored and patched** at `tools/eslint-plugin-react-memo/` (upstream is from 2015). Read its [README](./tools/eslint-plugin-react-memo/README.md) before touching it.
 - Prettier (`.prettierrc`): single quotes, no bracket spacing, 120 columns, `bracketSameLine`, `arrowParens: avoid`. It does **not** set `jsxSingleQuote`, so Prettier rewrites JSX attributes to double quotes — running it over `src/data/data.tsx` produces ~100 lines of unrelated churn. Avoid.
-- Use `envOrDefault()` from `src/config.ts` for `NEXT_PUBLIC_*` fallbacks, **never `??`**: GitHub Actions substitutes `""` for an unset repository variable, and `'' ?? fallback` is `''`.
+- Both `NEXT_PUBLIC_*` values are **required** — `src/config.ts` throws at build time when one is missing or empty, and GitHub Actions substitutes `""` for an unset repository variable, so empty counts as missing. Locally they go in `.env.local`; in CI they come from the `RECAPTCHA_SITE_KEY` and `CONTACT_VERIFY_URL` repository variables. There are no committed fallbacks.
 - Components are `memo()`-wrapped function components with a default export; pages live in `src/pages/`, sections in `src/components/Sections/`.
 - Nav scroll-spy (`src/hooks/useNavObserver.tsx`) deliberately uses a thin detection band with `threshold: 0`. Section ids are `hero, about, resume, portfolio, contact` — there is no `#home`.
 

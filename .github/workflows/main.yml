@@ -35,20 +35,40 @@ jobs:
     permissions:
       id-token: write
       contents: read
+    env:
+      AWS_REGION: ${{ vars.AWS_REGION }}
+      AWS_DEPLOY_ROLE_ARN: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+      S3_BUCKET: ${{ vars.S3_BUCKET }}
+      CLOUDFRONT_DISTRIBUTION_ID: ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}
     steps:
       - name: Download build artifact
         uses: actions/download-artifact@v8
         with:
           name: site-build
           path: out/
+
+      # An unset repository variable becomes an empty string, which the aws CLI reports as a
+      # usage error rather than naming the culprit. Fail here instead. printenv keeps this
+      # shell-agnostic (no bash-only indirect expansion).
+      - name: Check required repository variables
+        run: |
+          missing=0
+          for name in AWS_REGION AWS_DEPLOY_ROLE_ARN S3_BUCKET CLOUDFRONT_DISTRIBUTION_ID; do
+            if [ -z "$(printenv "$name")" ]; then
+              echo "::error::$name is not set. Add it under Settings > Secrets and variables > Actions > Variables."
+              missing=1
+            fi
+          done
+          exit "$missing"
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v6
         with:
-          role-to-assume: arn:aws:iam::664608326292:role/github-actions-deploy-role
-          aws-region: ap-southeast-1
+          role-to-assume: ${{ env.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
 
       - name: Deploy to S3
-        run: aws s3 sync ./out s3://ongyiktatt.com-664608326292-ap-southeast-1-an --delete
+        run: aws s3 sync ./out "s3://${S3_BUCKET}" --delete
 
       - name: Invalidate CloudFront cache
-        run: aws cloudfront create-invalidation --distribution-id E2YBG7WMHRYWVH --paths "/*"
+        run: aws cloudfront create-invalidation --distribution-id "${CLOUDFRONT_DISTRIBUTION_ID}" --paths "/*"
