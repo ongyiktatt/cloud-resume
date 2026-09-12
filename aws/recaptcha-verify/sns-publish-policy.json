@@ -5,7 +5,7 @@
       "Sid": "PublishContactFormNotifications",
       "Effect": "Allow",
       "Action": "sns:Publish",
-      "Resource": "arn:aws:sns:ap-southeast-1:664608326292:contact-form-notifications"
+      "Resource": "arn:aws:sns:ap-southeast-1:<ACCOUNT_ID>:contact-form-notifications"
     }
   ]
 }

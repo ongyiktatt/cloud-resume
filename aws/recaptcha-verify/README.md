@@ -167,10 +167,17 @@ aws sns list-subscriptions-by-topic \
 Grant the function permission to publish to that topic:
 
 ```bash
+# sns-publish-policy.json is a template: `<ACCOUNT_ID>` is substituted here, at apply
+# time, so the committed file never carries a real account ID. Render it to /tmp first —
+# the AWS CLI would otherwise read the placeholder verbatim and reject the policy.
+sed "s/<ACCOUNT_ID>/$ACCOUNT_ID/g" sns-publish-policy.json > /tmp/sns-publish-policy.json
+
 aws iam put-role-policy \
   --role-name <lambda-execution-role> \
   --policy-name sns-publish-contact-form \
-  --policy-document file://sns-publish-policy.json
+  --policy-document file:///tmp/sns-publish-policy.json
+
+rm -f /tmp/sns-publish-policy.json
 ```
 
 Then add the topic ARN to the function's environment. Include the existing variables as
