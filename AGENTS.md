@@ -14,6 +14,16 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 Personal resume site for **ongyiktatt.com**: Next.js 16 (Pages Router) + React 18 + Tailwind 3 + TypeScript (strict), deployed as a **static export** to S3/CloudFront. The contact form is the only dynamic feature and is backed by an AWS Lambda.
 
+Toolchain: **Node 24** (`.nvmrc`, `engines`) and **Yarn 1**. Run `yarn install` before anything else.
+
+## Public repository
+
+This repository is public, so everything committed is world-readable.
+
+- **Never commit an account id, ARN, role name, bucket name, distribution id, Function URL or the contact-form notification address.** Docs use `<PLACEHOLDER>` values and the real ones are resolved at runtime with the aws CLI — see `.github/instructions/aws-infrastructure.instructions.md`.
+- Deploy configuration lives in **GitHub repository variables** read by `.github/workflows/main.yml`. Do not reintroduce literals into the workflow.
+- `NEXT_PUBLIC_*` values are inlined into the bundle at build time, so they are **public by design**. No secret belongs in this repo; the reCAPTCHA secret lives only in the Lambda's environment.
+
 ## Commands
 
 | Command                                                 | Notes                                                                                                                                             |
@@ -39,12 +49,13 @@ There is no test suite.
 - TypeScript is `strict` with `noUnusedLocals`/`noUnusedParameters`. CI type-checks with `tsc --build` **before** `next build`, so a type error fails the deploy.
 - ESLint runs at `--max-warnings=0` (`eslint.config.mjs`) and enforces things that look unusual:
   - `simple-import-sort` — imports must be sorted (unused imports are auto-removed by `--fix`).
-  - `react/jsx-sort-props` — JSX props in alphabetical order.
+  - `perfectionist/sort-jsx-props` — JSX props in alphabetical order.
   - `object-curly-spacing: never` — `{a, b}`, never `{ a, b }`.
   - `react-memo/require-memo` + `require-usememo` — every component needs `memo()`, and every local value passed into JSX or a dependency array needs `useMemo`/`useCallback` (use the `// eslint-disable-next-line react-memo/require-memo` escape only for `next/dynamic`, as `src/pages/index.tsx` does).
 - The `react-memo` plugin is **vendored and patched** at `tools/eslint-plugin-react-memo/` (upstream is from 2015). Read its [README](./tools/eslint-plugin-react-memo/README.md) before touching it.
 - Prettier (`.prettierrc`): single quotes, no bracket spacing, 120 columns, `bracketSameLine`, `arrowParens: avoid`. It does **not** set `jsxSingleQuote`, so Prettier rewrites JSX attributes to double quotes — running it over `src/data/data.tsx` produces ~100 lines of unrelated churn. Avoid.
-- Both `NEXT_PUBLIC_*` values are **required** — `src/config.ts` throws at build time when one is missing or empty, and GitHub Actions substitutes `""` for an unset repository variable, so empty counts as missing. Locally they go in `.env.local`; in CI they come from the `RECAPTCHA_SITE_KEY` and `CONTACT_VERIFY_URL` repository variables. There are no committed fallbacks.
+- `.yarnrc` sets `workspaces-experimental false` deliberately. Yarn 1 prints "Workspaces can only be enabled in private projects" once per dependency path on a clean install, because `eslint` publishes a `workspaces` field without `private: true`. Keep the setting if the warning reappears — do not silence it by adding `private: true`.
+- Both `NEXT_PUBLIC_*` values are **required** — `src/config.ts` throws at build time when one is missing or empty, and GitHub Actions substitutes `""` for an unset repository variable, so empty counts as missing. Locally, copy `.env.example` to `.env.local` and fill both in (`.env.local` is gitignored — never commit it); in CI they come from the `RECAPTCHA_SITE_KEY` and `CONTACT_VERIFY_URL` repository variables. There are no committed fallbacks.
 - Components are `memo()`-wrapped function components with a default export; pages live in `src/pages/`, sections in `src/components/Sections/`.
 - Nav scroll-spy (`src/hooks/useNavObserver.tsx`) deliberately uses a thin detection band with `threshold: 0`. Section ids are `hero, about, resume, portfolio, contact` — there is no `#home`.
 
