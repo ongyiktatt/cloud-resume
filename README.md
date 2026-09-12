@@ -100,11 +100,14 @@ Two operational notes worth remembering:
 ### Pipeline
 
 1. **build** (`ubuntu-latest`)
-   - `actions/checkout` → `actions/setup-node` with `node-version: 24`
+   - `actions/checkout` → `actions/setup-node` with `node-version: 24` and `cache: yarn`, so the
+     Yarn store is reused between runs
    - `yarn install --frozen-lockfile`
+   - `actions/cache` restores `.next/cache` and `tsconfig.tsbuildinfo`, keyed on `yarn.lock`
+     plus a hash of the source — a cold build measures ~7s against ~3s warm
    - `yarn build`, with `NEXT_PUBLIC_CONTACT_VERIFY_URL` and
      `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` injected from the repository variables
-     `vars.CONTACT_VERIFY_URL` and `vars.RECAPTCHA_SITE_KEY`
+     `CONTACT_VERIFY_URL` and `RECAPTCHA_SITE_KEY`
    - `actions/upload-artifact` publishes `out/` as the `site-build` artifact
 2. **deploy** (`needs: build`, `permissions: id-token: write`)
    - `actions/download-artifact` restores `out/`
@@ -113,9 +116,10 @@ Two operational notes worth remembering:
    - `aws s3 sync ./out "s3://$S3_BUCKET" --delete`
    - `aws cloudfront create-invalidation --distribution-id "$CLOUDFRONT_DISTRIBUTION_ID" --paths "/*"`
 
-All actions are on their Node 24 releases (`checkout@v7`, `setup-node@v7`,
+All actions are on their Node 24 releases (`checkout@v7`, `setup-node@v7`, `cache@v6`,
 `upload-artifact@v7`, `download-artifact@v8`, `configure-aws-credentials@v6`); the older
-majors still target the deprecated Node 20 runtime.
+majors still target the deprecated Node 20 runtime — `actions/cache@v4`, which the Next.js
+docs still show, is one of them.
 
 ### Repository variables
 
