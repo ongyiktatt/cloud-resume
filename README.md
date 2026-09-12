@@ -7,6 +7,8 @@ serves HTTP is AWS: CloudFront in front of an S3 bucket, protected by WAF and a
 security-headers policy, with a Lambda function as the only dynamic endpoint. The site is
 built and shipped entirely from GitHub Actions.
 
+![ongyiktatt.com](preview.jpg)
+
 ## AWS infrastructure
 
 | Resource               | Identifier / configuration                                                                  |
@@ -149,6 +151,9 @@ aws lambda update-function-code \
 
 Build the zip in `/tmp`, not in the repo — a stray `function.zip` dirties the working tree.
 
+Full runbook — execution role, Function URL permissions, SNS subscription confirmation and
+smoke tests: [`aws/recaptcha-verify/README.md`](aws/recaptcha-verify/README.md).
+
 ### Local AWS access
 
 The CLI authenticates with **`aws login`**, which issues short-lived credentials. Re-run
@@ -188,13 +193,13 @@ succeed — no email is ever sent for an unsolved challenge.
 - A public Function URL needs **both** `lambda:InvokeFunctionUrl` and `lambda:InvokeFunction`
   resource-policy statements. Missing either returns `403 Forbidden`.
 
-### Known constraint: concurrency
+### Concurrency
 
-The account's *Concurrent executions* quota is applied at **10** while the AWS default is
-**1000** (new-account ramp), so it sits *below* the default. Consequently
-`put-function-concurrency` fails, and Service Quotas rejects any request that is not above the
-default — raising it needs an AWS Support case or the automatic ramp. While this is the only
-function in the account, the applied 10 already caps it.
+Reserved concurrency is the right backstop for a public Function URL — it caps how hard the
+function can be driven, independently of CloudFront and the WAF rate rule. It is not set here
+yet: the account's *Concurrent executions* quota is the constraint, and raising it means going
+through AWS Support. That quota bounds the function in the meantime, which is sufficient while
+it is the only function in the account.
 
 ### SNS delivery
 
@@ -218,8 +223,21 @@ Kept deliberately brief — see [`AGENTS.md`](AGENTS.md) for architecture and co
 - Node 24 (`.nvmrc`), Yarn 1.
 - `yarn dev` starts the dev server; `yarn build` type-checks and writes `out/` — the same
   artifact CI uploads.
-- Content is data-driven: `src/data/data.tsx`, with types in `src/data/dataDef.ts` and the
-  `NEXT_PUBLIC_*` fallbacks in `src/config.ts`.
+- Content is data-driven: `src/data/data.tsx`, with types in `src/data/dataDef.ts`.
+
+### Configuration
+
+`NEXT_PUBLIC_*` values are inlined into the bundle at build time, so they are public. Never
+put a secret in one — the reCAPTCHA secret lives only in the Lambda's environment.
+
+| Variable                         | Required | Source                                                                         |
+| -------------------------------- | -------- | ------------------------------------------------------------------------------ |
+| `NEXT_PUBLIC_CONTACT_VERIFY_URL` | **yes**  | `.env.local` locally (copy `.env.example`), `CONTACT_VERIFY_URL` repo var in CI  |
+| `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | no       | falls back to the public key hardcoded in `src/config.ts`                       |
+
+The verify URL deliberately has **no fallback**: committing a live endpoint is the thing we
+are avoiding, and a missing value **fails the build** rather than shipping a form that posts
+nowhere.
 
 > Use `envOrDefault()` from `src/config.ts` for public-var fallbacks rather than `??`. GitHub
 > Actions substitutes an empty string for an unset repository variable, and `'' ?? fallback`
