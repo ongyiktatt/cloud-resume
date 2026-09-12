@@ -1,9 +1,4 @@
-import {
-  AcademicCapIcon,
-  ArrowDownTrayIcon,
-  BuildingOffice2Icon,
-  MapIcon,
-} from '@heroicons/react/24/outline';
+import {AcademicCapIcon, ArrowDownTrayIcon, BuildingOffice2Icon, MapIcon} from '@heroicons/react/24/outline';
 
 import GithubIcon from '../components/Icon/GithubIcon';
 import LinkedInIcon from '../components/Icon/LinkedInIcon';
@@ -52,20 +47,25 @@ export const heroData: Hero = {
   name: 'Yik Tatt Ong',
   description: (
     <>
-      <p className='text-lg font-semibold text-orange-400 sm:text-xl lg:text-2xl'>
+      <p className="text-lg font-semibold text-orange-400 sm:text-xl lg:text-2xl">
         IT Manager | Cloud & Infrastructure
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        AWS Certified Solutions Architect – Associate · AWS Certified CloudOps Engineer – Associate · Terraform · Infrastructure · Networking
+        AWS Certified Solutions Architect – Associate · AWS Certified CloudOps Engineer – Associate · Terraform ·
+        Infrastructure · Networking
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        IT Manager and infrastructure professional with <strong className='text-stone-100'>10+ years of experience</strong> across enterprise IT operations, systems, networking, and regional infrastructure.
+        IT Manager and infrastructure professional with{' '}
+        <strong className="text-stone-100">10+ years of experience</strong> across enterprise IT operations, systems,
+        networking, and regional infrastructure.
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        Currently transitioning into cloud infrastructure engineering, with a focus on <strong className='text-stone-100'>AWS, Terraform, automation, and modern infrastructure practices</strong>.
+        Currently transitioning into cloud infrastructure engineering, with a focus on{' '}
+        <strong className="text-stone-100">AWS, Terraform, automation, and modern infrastructure practices</strong>.
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        Looking to bring proven operational rigor and stakeholder communication to a <strong className='text-stone-100'>Cloud Infrastructure Engineer role</strong>, available from January 2027.
+        Looking to bring proven operational rigor and stakeholder communication to a{' '}
+        <strong className="text-stone-100">Cloud Infrastructure Engineer role</strong>, available from January 2027.
       </p>
     </>
   ),
@@ -200,7 +200,15 @@ export const skills: SkillGroup[] = [
 /**
  * Portfolio section
  */
-export const portfolioItems: PortfolioItem[] = [];
+export const portfolioItems: PortfolioItem[] = [
+  {
+    title: 'Personal resume website',
+    description:
+      'Next.js site shipped end-to-end on AWS: static export on S3 + CloudFront behind a WAF, keyless deploys via GitHub Actions OIDC, and a serverless Lambda + SNS contact form that emails me on submit.',
+    tech: 'S3 · CloudFront · WAF · Lambda · SNS · GitHub Actions (OIDC)',
+    url: 'https://github.com/ongyiktatt/cloud-resume',
+  },
+];
 
 /**
  * Resume section -- TODO: Standardize resume contact format or offer MDX
@@ -211,21 +219,21 @@ export const certification: TimelineItem[] = [
     location: 'AWS',
     title: 'AWS Certified CloudOps Engineer - Associate',
     url: 'https://www.credly.com/badges/209df12d-e120-4509-ad16-6c4d6fa05ca8/linked_in_profile',
-    content: <></>
+    content: <></>,
   },
   {
     date: 'July 2026',
     location: 'AWS',
     title: 'AWS Certified Solutions Architect - Associate',
     url: 'https://www.credly.com/badges/b03143a4-ab95-45ea-93f4-068addd79ec6/linked_in_profile',
-    content: <></>
+    content: <></>,
   },
   {
     date: 'May 2026',
     location: 'AWS',
     title: 'AWS Certified Cloud Practitioner',
     url: 'https://www.credly.com/badges/46c9f759-e3bc-42ae-8cab-73fd6da6f8ac/linked_in_profile',
-    content: <></>
+    content: <></>,
   },
   {
     date: 'May 2021',
@@ -240,10 +248,9 @@ export const education: TimelineItem[] = [
     date: 'September 2020 - October 2022',
     location: 'Temasek Polytechnic, Singapore',
     title: 'Diploma in Infocomm and Digital Media',
-    content: <></>
+    content: <></>,
   },
 ];
-
 
 export const experience: TimelineItem[] = [
   {
@@ -252,12 +259,34 @@ export const experience: TimelineItem[] = [
     title: 'IT Manager, APAC',
     content: (
       <ul className="list-disc list-outside pl-5 space-y-1">
-        <li><strong className='text-stone-0'>Built PowerShell automation to validate Secure Boot certificates and deploy language packs</strong>, cutting manual device setup time by 20%</li>
-        <li>Owned regional IT operations end-to-end — <strong className='text-stone-0'>S$100K annual budget</strong>, vendor SLAs, and infrastructure across 200 users in three countries</li>
-        <li>Secured a multi-OS environment with <strong className='text-stone-0'>Microsoft Intune, Entra ID, and Conditional Access</strong>, managing endpoint compliance and identity lifecycle at scale</li>
-        <li>Led pilot testing and regional rollout of global IT initiatives, validating infrastructure changes before deployment across all three markets</li>
-        <li><strong className='text-stone-0'>Redesigned service desk workflows and introduced proactive endpoint monitoring</strong>, cutting recurring incident escalations by 20%</li>
-        <li>Managed office network infrastructure and unified communications, including Microsoft Teams Rooms deployment</li>
+        <li>
+          <strong className="text-stone-0">
+            Built PowerShell automation to validate Secure Boot certificates and deploy language packs
+          </strong>
+          , cutting manual device setup time by 20%
+        </li>
+        <li>
+          Owned regional IT operations end-to-end — <strong className="text-stone-0">S$100K annual budget</strong>,
+          vendor SLAs, and infrastructure across 200 users in three countries
+        </li>
+        <li>
+          Secured a multi-OS environment with{' '}
+          <strong className="text-stone-0">Microsoft Intune, Entra ID, and Conditional Access</strong>, managing
+          endpoint compliance and identity lifecycle at scale
+        </li>
+        <li>
+          Led pilot testing and regional rollout of global IT initiatives, validating infrastructure changes before
+          deployment across all three markets
+        </li>
+        <li>
+          <strong className="text-stone-0">
+            Redesigned service desk workflows and introduced proactive endpoint monitoring
+          </strong>
+          , cutting recurring incident escalations by 20%
+        </li>
+        <li>
+          Managed office network infrastructure and unified communications, including Microsoft Teams Rooms deployment
+        </li>
       </ul>
     ),
   },
@@ -267,10 +296,26 @@ export const experience: TimelineItem[] = [
     title: 'Operations Manager, Deployment and Support',
     content: (
       <ul className="list-disc list-outside pl-5 space-y-1">
-        <li><strong className='text-stone-0'>Restructured an 8-person support team into two specialized units</strong> — Project Delivery and Technical Support — separating deployment work from reactive maintenance, improving deployment speed by 20%</li>
-        <li><strong className='text-stone-0'>Standardized end-to-end client onboarding and transferred ownership to autonomous team leads</strong>, cutting leadership escalations by 20% while increasing onboarding capacity by 40%</li>
-        <li>Partnered with Product Engineering on deployment feedback and recurring defect trends, directly informing product improvements and release planning</li>
-        <li>Designed and delivered technical training in <strong className='text-stone-0'>IP networking, OS virtualization, and database fundamentals</strong>, building the team's ability to troubleshoot independently</li>
+        <li>
+          <strong className="text-stone-0">Restructured an 8-person support team into two specialized units</strong> —
+          Project Delivery and Technical Support — separating deployment work from reactive maintenance, improving
+          deployment speed by 20%
+        </li>
+        <li>
+          <strong className="text-stone-0">
+            Standardized end-to-end client onboarding and transferred ownership to autonomous team leads
+          </strong>
+          , cutting leadership escalations by 20% while increasing onboarding capacity by 40%
+        </li>
+        <li>
+          Partnered with Product Engineering on deployment feedback and recurring defect trends, directly informing
+          product improvements and release planning
+        </li>
+        <li>
+          Designed and delivered technical training in{' '}
+          <strong className="text-stone-0">IP networking, OS virtualization, and database fundamentals</strong>,
+          building the team's ability to troubleshoot independently
+        </li>
       </ul>
     ),
   },
@@ -280,23 +325,56 @@ export const experience: TimelineItem[] = [
     title: 'IT Infrastructure Lead',
     content: (
       <ul className="list-disc list-outside pl-5 space-y-1">
-        <li><strong className='text-stone-0'>Led data center migrations as part of a $2M digital transformation</strong>, moving core enterprise applications — including Microsoft Dynamics AX ERP and gaming systems — into Tier-3 co-location facilities with minimal downtime</li>
-        <li>Configured and troubleshot hybrid network security perimeters, managing <strong className='text-stone-0'>Layer 4/7 stateful filtering across F5 WAF, Palo Alto, and Check Point Next-Gen Firewalls</strong></li>
-        <li>Administered identity and access management across <strong className='text-stone-0'>Microsoft Entra ID, Microsoft 365, and AWS IAM</strong> — user provisioning, group management, and access control</li>
-        <li>Managed a <strong className='text-stone-0'>$100K annual operating budget</strong> covering Office 365 configuration and hardware fleet maintenance</li>
-        <li>Served as final Tier-3 escalation owner for systemic server and infrastructure issues, supervising outsourced desktop support vendors</li>
+        <li>
+          <strong className="text-stone-0">Led data center migrations as part of a $2M digital transformation</strong>,
+          moving core enterprise applications — including Microsoft Dynamics AX ERP and gaming systems — into Tier-3
+          co-location facilities with minimal downtime
+        </li>
+        <li>
+          Configured and troubleshot hybrid network security perimeters, managing{' '}
+          <strong className="text-stone-0">
+            Layer 4/7 stateful filtering across F5 WAF, Palo Alto, and Check Point Next-Gen Firewalls
+          </strong>
+        </li>
+        <li>
+          Administered identity and access management across{' '}
+          <strong className="text-stone-0">Microsoft Entra ID, Microsoft 365, and AWS IAM</strong> — user provisioning,
+          group management, and access control
+        </li>
+        <li>
+          Managed a <strong className="text-stone-0">$100K annual operating budget</strong> covering Office 365
+          configuration and hardware fleet maintenance
+        </li>
+        <li>
+          Served as final Tier-3 escalation owner for systemic server and infrastructure issues, supervising outsourced
+          desktop support vendors
+        </li>
       </ul>
     ),
   },
   {
     date: 'December 2017 - May 2021',
-    location: 'McDonald\'s Singapore',
+    location: "McDonald's Singapore",
     title: 'IT Consultant II, Restaurant Technology',
     content: (
       <ul className="list-disc list-outside pl-5 space-y-1">
-        <li><strong className='text-stone-0'>Integrated GrabFood and Foodpanda with the POS system to automate order processing</strong> improving kitchen fulfillment speed by 60% and contributing to a 25% increase in digital sales</li>
-        <li>Managed outsourced IT vendors across <strong className='text-stone-0'>135 restaurant outlets</strong>, ensuring SLA compliance and operational support for <strong className='text-stone-0'>500+ self-order kiosks, 1,000 POS terminals, and 2,000 kitchen display systems</strong></li>
-        <li>Led hardware staging, configuration, and network readiness for the <strong className='text-stone-0'>nationwide rollout of the McDonald's App</strong> across all 135 outlets</li>
+        <li>
+          <strong className="text-stone-0">
+            Integrated GrabFood and Foodpanda with the POS system to automate order processing
+          </strong>{' '}
+          improving kitchen fulfillment speed by 60% and contributing to a 25% increase in digital sales
+        </li>
+        <li>
+          Managed outsourced IT vendors across <strong className="text-stone-0">135 restaurant outlets</strong>,
+          ensuring SLA compliance and operational support for{' '}
+          <strong className="text-stone-0">
+            500+ self-order kiosks, 1,000 POS terminals, and 2,000 kitchen display systems
+          </strong>
+        </li>
+        <li>
+          Led hardware staging, configuration, and network readiness for the{' '}
+          <strong className="text-stone-0">nationwide rollout of the McDonald's App</strong> across all 135 outlets
+        </li>
       </ul>
     ),
   },
@@ -306,8 +384,14 @@ export const experience: TimelineItem[] = [
     title: 'Computer Technician',
     content: (
       <ul className="list-disc list-outside pl-5 space-y-1">
-        <li><strong className='text-stone-0'>Built a diagnostics script (Batch) to scan client endpoints</strong> and extract hardware models, IP addresses, and serial numbers — replacing manual asset tracking during rollouts</li>
-        <li>Staged and configured servers for customer deployments, alongside edge hardware including <strong className='text-stone-0'>Cisco routers, switches, and wireless access points</strong></li>
+        <li>
+          <strong className="text-stone-0">Built a diagnostics script (Batch) to scan client endpoints</strong> and
+          extract hardware models, IP addresses, and serial numbers — replacing manual asset tracking during rollouts
+        </li>
+        <li>
+          Staged and configured servers for customer deployments, alongside edge hardware including{' '}
+          <strong className="text-stone-0">Cisco routers, switches, and wireless access points</strong>
+        </li>
       </ul>
     ),
   },

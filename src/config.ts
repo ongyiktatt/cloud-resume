@@ -54,3 +54,10 @@ export const canUseDOM: boolean =
   typeof window.document !== 'undefined' &&
   typeof window.document.createElement !== 'undefined';
 export const isApple: boolean = canUseDOM && /Mac|iPod|iPhone|iPad/.test(navigator.platform);
+
+/**
+ * In-page anchors (e.g. `#contact`) must keep navigating in the current tab. Everything
+ * else — external URLs and same-origin files such as the resume PDF — opens in a new tab,
+ * so this is the single place that policy is expressed.
+ */
+export const isInPageAnchor = (href: string): boolean => href.startsWith('#');

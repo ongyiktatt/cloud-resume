@@ -11,20 +11,26 @@ import Section from '../Layout/Section';
 
 const Portfolio: FC = memo(() => {
   return (
-    <Section className="bg-neutral-800" sectionId={SectionId.Portfolio}>
+    <Section className="bg-neutral-800" maxWidthClassName="max-w-screen-2xl" sectionId={SectionId.Portfolio}>
       <div className="flex flex-col gap-y-8">
         <h2 className="self-center text-xl font-bold text-white">Check out some of my work</h2>
-        <div className=" w-full columns-2 md:columns-3 lg:columns-4">
+        <div className="flex w-full flex-wrap justify-center">
           {portfolioItems.map((item, index) => {
             const {title, image} = item;
             return (
-              <div className="pb-6" key={`${title}-${index}`}>
+              <div className="w-1/2 p-3 md:w-1/3 lg:w-1/4" key={`${title}-${index}`}>
                 <div
                   className={classNames(
                     'relative h-max w-full overflow-hidden rounded-lg shadow-lg shadow-black/30 lg:shadow-xl',
                   )}>
-                  <Image alt={title} className="h-full w-full" placeholder="blur" src={image} />
-                  <ItemOverlay item={item} />
+                  {image ? (
+                    <>
+                      <Image alt={title} className="h-full w-full" placeholder="blur" src={image} />
+                      <ItemOverlay item={item} />
+                    </>
+                  ) : (
+                    <ItemCard item={item} />
+                  )}
                 </div>
               </div>
             );
@@ -38,7 +44,7 @@ const Portfolio: FC = memo(() => {
 Portfolio.displayName = 'Portfolio';
 export default Portfolio;
 
-const ItemOverlay: FC<{item: PortfolioItem}> = memo(({item: {url, title, description}}) => {
+const ItemOverlay: FC<{item: PortfolioItem}> = memo(({item: {url, title, description, tech}}) => {
   const [mobile, setMobile] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
   const linkRef = useRef<HTMLAnchorElement>(null);
@@ -71,14 +77,32 @@ const ItemOverlay: FC<{item: PortfolioItem}> = memo(({item: {url, title, descrip
       href={url}
       onClick={handleItemClick}
       ref={linkRef}
+      rel="noopener noreferrer"
       target="_blank">
       <div className="relative h-full w-full p-4">
         <div className="flex h-full w-full flex-col gap-y-2 overflow-y-auto overscroll-contain">
           <h2 className="text-center font-bold text-white opacity-100">{title}</h2>
           <p className="text-xs text-white opacity-100 sm:text-sm">{description}</p>
+          {tech && <p className="text-xs font-medium tracking-wide text-orange-400">{tech}</p>}
         </div>
         <ArrowTopRightOnSquareIcon className="absolute bottom-1 right-1 h-4 w-4 shrink-0 text-white sm:bottom-2 sm:right-2" />
       </div>
     </a>
   );
 });
+
+/** Text-only card, used for a portfolio item that has no image to show. */
+const ItemCard: FC<{item: PortfolioItem}> = memo(({item: {url, title, description, tech}}) => (
+  <a
+    className="flex h-full w-full flex-col gap-y-2 bg-gray-900 p-4 transition-colors duration-300 hover:bg-gray-800"
+    href={url}
+    rel="noopener noreferrer"
+    target="_blank">
+    <h2 className="font-bold text-white">{title}</h2>
+    <p className="text-xs text-white sm:text-sm">{description}</p>
+    {tech && <p className="text-xs font-medium tracking-wide text-orange-400">{tech}</p>}
+    <ArrowTopRightOnSquareIcon className="mt-auto h-4 w-4 shrink-0 self-end text-white" />
+  </a>
+));
+
+ItemCard.displayName = 'ItemCard';

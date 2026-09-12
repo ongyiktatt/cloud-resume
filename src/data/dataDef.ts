@@ -80,7 +80,10 @@ export interface PortfolioItem {
   title: string;
   description: string;
   url: string;
-  image: string | StaticImageData;
+  /** Optional: an item with no image renders as a text-only card. */
+  image?: string | StaticImageData;
+  /** Optional stack line, rendered under the description. */
+  tech?: string;
 }
 
 /**
