@@ -9,9 +9,10 @@ the reCAPTCHA token to this function, which:
 
 It returns `{ "success": true }` only when both steps succeed.
 
-In the commands below, `$ACCOUNT_ID` is your 12-digit AWS account ID and
-`<recipient-address>` is the mailbox that should receive contact form messages. Set the
-account ID once per shell:
+In the commands below, `$ACCOUNT_ID` is your 12-digit AWS account ID, `<recipient-address>`
+is the mailbox that should receive contact form messages, and `<lambda-execution-role>` is
+the name of the function's execution role (any name works — use the same one throughout).
+Set the account ID once per shell:
 
 ```bash
 export ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
@@ -25,11 +26,11 @@ The function needs an IAM role that Lambda is allowed to assume. Create it once:
 cd aws/recaptcha-verify
 
 aws iam create-role \
-  --role-name recaptcha-verify-role \
+  --role-name <lambda-execution-role> \
   --assume-role-policy-document file://trust-policy.json
 
 aws iam attach-role-policy \
-  --role-name recaptcha-verify-role \
+  --role-name <lambda-execution-role> \
   --policy-arn arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
 ```
 
@@ -48,7 +49,7 @@ aws lambda create-function \
   --function-name recaptcha-verify \
   --runtime nodejs24.x \
   --handler index.handler \
-  --role arn:aws:iam::$ACCOUNT_ID:role/recaptcha-verify-role \
+  --role arn:aws:iam::$ACCOUNT_ID:role/<lambda-execution-role> \
   --memory-size 1024 \
   --zip-file fileb:///tmp/function.zip \
   --region ap-southeast-1
@@ -167,7 +168,7 @@ Grant the function permission to publish to that topic:
 
 ```bash
 aws iam put-role-policy \
-  --role-name recaptcha-verify-role \
+  --role-name <lambda-execution-role> \
   --policy-name sns-publish-contact-form \
   --policy-document file://sns-publish-policy.json
 ```

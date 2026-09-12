@@ -12,7 +12,8 @@ first. This file records the live-resource facts and account constraints that ar
 
 ## Account and auth
 
-- Account `664608326292`, region `ap-southeast-1` (Lambda, SNS, S3, IAM). CloudFront and its WAF ACL are global / `us-east-1`.
+- Account `<ACCOUNT_ID>`, region `ap-southeast-1` (Lambda, SNS, S3, IAM). CloudFront and its WAF ACL are global / `us-east-1`.
+- **This file is committed to a public repository, so account-scoped values are placeholders.** Resolve them at runtime: `aws sts get-caller-identity --query Account --output text`, `aws lambda get-function-url-config --function-name recaptcha-verify`, `aws cloudfront list-distributions`, `aws wafv2 list-web-acls --scope CLOUDFRONT --region us-east-1`.
 - The CLI uses `aws login` (short-lived credentials), not long-lived access keys. Expired sessions fail with `CreateOAuth2Token … authorization grant is invalid, expired, revoked, or malformed` — the fix is for the **user** to run `aws login` (browser-based). Never run it on their behalf.
 
 ## Live resources
@@ -20,17 +21,17 @@ first. This file records the live-resource facts and account constraints that ar
 | Resource              | Identifier                                                                        |
 | --------------------- | --------------------------------------------------------------------------------- |
 | Lambda                | `recaptcha-verify` (nodejs24.x, handler `index.handler`, **1024 MB**, timeout **15 s**) |
-| Lambda Function URL    | `https://6z2mcyqkmz6sqzmxzbcol7ejum0bjuoh.lambda-url.ap-southeast-1.on.aws/` (AuthType `NONE`) |
-| Lambda execution role | `recaptcha-verify-role`                                                           |
-| Deploy role           | `github-actions-deploy-role` (GitHub OIDC, `repo:ongyiktatt/cloud-resume:ref:refs/heads/main`) |
-| SNS topic             | `arn:aws:sns:ap-southeast-1:664608326292:contact-form-notifications`               |
-| S3 bucket             | `ongyiktatt.com-664608326292-ap-southeast-1-an`                                     |
-| CloudFront            | `E2YBG7WMHRYWVH` (ongyiktatt.com, prod-resume stack)                                |
-| CloudFront            | `E3PGP5B4V28U47` (azure.ongyiktatt.com — a **separate** `azure-prod-resume` stack)   |
-| WAF web ACL           | `CreatedByCloudFront-9f9d6553` (`28a892a9-6aab-401a-8b59-941f2620ed42`), CLOUDFRONT scope |
+| Lambda Function URL    | `<your-function-url>` (AuthType `NONE`)                                            |
+| Lambda execution role | `<LAMBDA_EXECUTION_ROLE>`                                                         |
+| Deploy role           | `<DEPLOY_ROLE_NAME>` (GitHub OIDC, `repo:<owner>/cloud-resume:ref:refs/heads/main`) |
+| SNS topic             | `arn:aws:sns:ap-southeast-1:<ACCOUNT_ID>:contact-form-notifications`               |
+| S3 bucket             | `ongyiktatt.com-<account>-ap-southeast-1-an`                                        |
+| CloudFront            | `<CLOUDFRONT_PROD_ID>` (ongyiktatt.com, prod-resume stack)                          |
+| CloudFront            | `<CLOUDFRONT_AZURE_ID>` (azure.ongyiktatt.com — a **separate** `azure-prod-resume` stack) |
+| WAF web ACL           | `CreatedByCloudFront-<suffix>` (`<WAF_WEB_ACL_ID>`), CLOUDFRONT scope               |
 
 **Tagging convention:** `environment=production` + `stack=prod-resume` on the prod
-resume resources. Do **not** tag `E3PGP5B4V28U47` with `prod-resume` — it belongs to
+resume resources. Do **not** tag `<CLOUDFRONT_AZURE_ID>` with `prod-resume` — it belongs to
 the `azure-prod-resume` stack.
 
 ## Constraints worth knowing before changing anything
