@@ -8,7 +8,7 @@
   "scripts": {
     "build": "yarn compile && yarn next build",
     "clean": "rm -rf build-tsc .next",
-    "compile": "yarn run -T tsc --build --verbose",
+    "compile": "yarn run -T tsc --build",
     "dev": "yarn compile && yarn next dev",
     "lint": "yarn run -T prettier --write './src/**/*.{js,jsx,json,ts,tsx}' && eslint './src/**/*.{js,jsx,ts,tsx}' --fix --max-warnings=0",
     "start": "yarn next start"

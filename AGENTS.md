@@ -20,7 +20,7 @@ Personal resume site for **ongyiktatt.com**: Next.js 16 (Pages Router) + React 1
 | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `yarn dev`                                              | `tsc --build` then `next dev` (Turbopack).                                                                                                        |
 | `yarn build`                                            | `yarn compile && next build` → static export in `out/`. **This is exactly what CI runs.**                                                         |
-| `yarn compile`                                          | `tsc --build --verbose` only — a fast type-check without a full build.                                                                             |
+| `yarn compile`                                          | `tsc --build` only — a fast type-check without a full build.                                                                                      |
 | `yarn lint`                                             | ⚠️ **Mutates files** (`prettier --write` + `eslint --fix`). Not a check.                                                                          |
 | `yarn eslint 'src/**/*.{ts,tsx}' --max-warnings=0`      | Read-only lint check (no `--fix`). Use this to verify instead of `yarn lint`.                                                                     |
 
