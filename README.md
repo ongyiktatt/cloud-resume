@@ -1,105 +1,239 @@
-# React JS Resume Website Template
+# cloud-resume
 
-![ReactJS Resume Website Template](resume-screenshot.jpg?raw=true 'ReactJS Resume Website Template')
+Personal resume site for **[ongyiktatt.com](https://ongyiktatt.com)**.
 
-<div align="center">
+The site is a **static export** — there is no Next.js server at runtime. Everything that
+serves HTTP is AWS: CloudFront in front of an S3 bucket, protected by WAF and a
+security-headers policy, with a Lambda function as the only dynamic endpoint. The site is
+built and shipped entirely from GitHub Actions.
 
-<img alt="GitHub release (latest by date including pre-releases" src="https://img.shields.io/github/v/release/tbakerx/react-resume-template?include_prereleases">
+## AWS infrastructure
 
-<img alt="GitHub top language" src="https://img.shields.io/github/languages/top/tbakerx/react-resume-template?style=flat">
+| Resource               | Identifier / configuration                                                                  |
+| ---------------------- | ------------------------------------------------------------------------------------------- |
+| Account / region       | `<ACCOUNT_ID>` / `ap-southeast-1` (CloudFront + its WAF ACL are global / `us-east-1`)         |
+| S3 bucket              | `ongyiktatt.com-<account>-ap-southeast-1-an` — holds the exported site                       |
+| CloudFront distribution | `EXXXXXXXXXXXXX` — custom domain `ongyiktatt.com`, origin = the S3 bucket                    |
+| Security headers       | managed `Managed-SecurityHeadersPolicy` + CloudFront Function `prod-resume-response-headers` |
+| WAF web ACL            | `CreatedByCloudFront-<suffix>`, scope `CLOUDFRONT`                                            |
+| Lambda function        | `recaptcha-verify` — `nodejs24.x`, 1024 MB, 15 s timeout                                     |
+| Lambda Function URL    | public (`AuthType: NONE`) with CORS restricted to the site origin                            |
+| Lambda execution role  | `<LAMBDA_EXECUTION_ROLE>` + inline policy `sns-publish-contact-form`                         |
+| SNS topic              | `arn:aws:sns:ap-southeast-1:<ACCOUNT_ID>:contact-form-notifications`                         |
+| CI deploy role         | `<DEPLOY_ROLE_ARN>` — assumed by GitHub Actions via OIDC                                     |
 
-<img alt="GitHub Repo forks" src="https://img.shields.io/github/forks/tbakerx/react-resume-template?style=flat&color=success">
+Tagging convention: `environment=production` and `stack=prod-resume`.
 
-<img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/tbakerx/react-resume-template?style=flat&color=yellow">
+### Request path
 
-<img alt="GitHub package.json dependency version (prod)" src="https://img.shields.io/github/package-json/dependency-version/tbakerx/react-resume-template/react?style=flat">
+```mermaid
+flowchart LR
+    dev["git push → main"] --> build["build job<br/>yarn install --frozen-lockfile<br/>yarn build → out/"]
+    build -->|artifact| deploy["deploy job<br/>OIDC assume role"]
+    deploy -->|"aws s3 sync --delete"| s3[("S3 bucket")]
+    deploy -->|CreateInvalidation| cf["CloudFront"]
+    cf --> waf["WAF web ACL<br/>managed rules + rate limit"]
+    waf --> fn["CloudFront Function<br/>CSP + Permissions-Policy"]
+    fn --> s3
+    user["Browser"] --> cf
+    user -. "POST — bypasses CloudFront" .-> lambda["Lambda Function URL<br/>recaptcha-verify"]
+    lambda --> google["Google siteverify"]
+    lambda --> sns["SNS topic<br/>contact-form-notifications"]
+    sns --> mail["Email"]
+```
 
-<img alt="Github Repo Sponsors" src="https://img.shields.io/github/sponsors/tbakerx?style=flat&color=blueviolet">
+### CloudFront
 
-## React based template for software developer-focused resume websites
+A single default cache behaviour — no extra behaviours, no path-based routing. The origin is
+the S3 bucket, `DefaultRootObject` is `index.html`, and viewers are forced to HTTPS
+(`redirect-to-https`). Because the export is fully static and fingerprinted by Next.js, there
+is no origin-side compute to manage.
 
-</div>
+CloudFront is also the **only** path that applies WAF rules and security headers.
 
-### View a [live demo here.](https://reactresume.com)
+### Edge security headers
 
-#### If this template has helped you and you'd like to support my work, feel free to [♥️ Sponsor](https://github.com/sponsors/tbakerx) the project
+The distribution serves the AWS managed security-headers policy:
 
-### 🎉 Version 2 is here! New features:
-1. Completely rebuilt with React and full typescript support
-2. Built on the [Next.js](https://nextjs.org/) framework for easy server side rendering/static generation, image optimization, api routes, and deployment
-3. Styled entirely with [TailwindCss](https://tailwindcss.com/)
-4. Re-organized data population file for customizing site.
-5. Significant improvement/modernization of all site sections
- 
-**Looking for the old version? You can find it [here.](https://github.com/tbakerx/react-resume-template/releases/tag/v1.0.0)**
+- `Strict-Transport-Security: max-age=31536000`
+- `X-Content-Type-Options: nosniff`
+- `X-Frame-Options: SAMEORIGIN`
+- `Referrer-Policy: strict-origin-when-cross-origin`
+- `X-XSS-Protection: 1; mode=block`
 
-## Description
+The managed policy covers neither `Content-Security-Policy` nor `Permissions-Policy`, so a
+**CloudFront Function** (`prod-resume-response-headers`, `cloudfront-js-2.0`, `viewer-response`)
+adds exactly those two — deliberately *only* those two, so the headers can never be emitted
+twice.
 
-This is a React based personal resume website template. Built with typescript on the Next.js framework, styled with Tailwind css, and populated with data from a single file, you can easily create, customize and host your own personal website in minutes. Even better, the site is fully mobile-optimized and server-side rendered to ensure fast loading and a clean UI on any device. Read on to learn how to make it your own.
+> CloudFront's `SecurityHeadersConfig` has no field for `Permissions-Policy` at all, so it
+> can only ever be set by an edge function.
 
-## Make it Your Own!
+The CSP is strict because the export contains no inline executable scripts. It still needs
+`style-src 'unsafe-inline'` (one inline `style` attribute plus reCAPTCHA-injected styles),
+and it allowlists `www.google.com` / `www.gstatic.com` for the reCAPTCHA widget with the
+Lambda Function URL in `connect-src`.
 
-### 1. Make sure you have what you need
+### WAF
 
-To build this website, you will need to have the latest stable versions of Node and Yarn downloaded and installed on your machine. If you don't already have them, you can get Node [here,](https://nodejs.org/en/download/) and Yarn [here.](https://yarnpkg.com/getting-started/install)
+The `CreatedByCloudFront-*` ACL is associated with the distribution through
+`DistributionConfig.WebACLId`:
 
-### 2. Fork and download this repo (and star if you like!)
+| Priority | Rule                          | Action |
+| -------- | ----------------------------- | ------ |
+| 0        | `AWSManagedRulesAmazonIpReputationList` | Block  |
+| 1        | `AWSManagedRulesCommonRuleSet`          | Block  |
+| 2        | `AWSManagedRulesKnownBadInputsRuleSet`  | Block  |
+| 3        | `RateLimitPerIp` — rate-based, IP aggregate key, 300 s window, limit **1000** | Block |
 
-Next, find the `Fork` button in the top right of this page. This will allow you to make your own copy, for more info on forking repo's see [here.](https://docs.github.com/en/get-started/quickstart/fork-a-repo#forking-a-repository) After this, download to your development machine using the green `Code` button at the top of the repo page.
+Two operational notes worth remembering:
 
-### 3. Install dependencies and run
+- **The rate limit does not protect the contact form.** The browser posts straight to the
+  Lambda Function URL, which never passes through CloudFront.
+- **WAF changes take a few minutes to propagate.** A burst fired immediately after an ACL
+  update can still return `200` while the rule is already in place.
 
-Once you have your own copy of this repo forked and downloaded, open the folder in your favorite terminal and run `yarn install` to install dependencies. Following this, run `yarn dev` to run the project. In your terminal you should be given the url of the running instance (usually http://localhost:3000 unless you have something else running).
+## CI/CD
 
-### 4. Customize the data to make it your own
+`.github/workflows/main.yml` — two jobs, triggered on every push to `main`.
 
-All of the data for the site is driven via a file at `/src/data/data.tsx`. This is where you'll find the existing content, and updating the values here will be reflected on the site. If you have the site running as described above, you should see these changes reflected on save. The data types for all of these items are given in the same folder in the `dataDef.ts` file. Example images can be found at `src/images/` and are imported in the data file. To change, simply update these images using the same name and location, or add new images and update the imports. 
+### Pipeline
 
-### 5. Hook up contact form
-The contact form posts to an AWS Lambda function URL, which verifies a reCAPTCHA v2
-challenge and then emails the submission via Amazon SNS. It is wired up end to end —
-see [`aws/recaptcha-verify/README.md`](aws/recaptcha-verify/README.md) for deployment
-and the SNS subscription confirmation step (required before any mail is delivered).
+1. **build** (`ubuntu-latest`)
+   - `actions/checkout` → `actions/setup-node` with `node-version: 24`
+   - `yarn install --frozen-lockfile`
+   - `yarn build`, with `NEXT_PUBLIC_CONTACT_VERIFY_URL` and
+     `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` injected from the repository variables
+     `vars.CONTACT_VERIFY_URL` and `vars.RECAPTCHA_SITE_KEY`
+   - `actions/upload-artifact` publishes `out/` as the `site-build` artifact
+2. **deploy** (`needs: build`, `permissions: id-token: write`)
+   - `actions/download-artifact` restores `out/`
+   - `aws-actions/configure-aws-credentials` assumes the deploy role
+   - `aws s3 sync ./out s3://ongyiktatt.com-<account>-ap-southeast-1-an --delete`
+   - `aws cloudfront create-invalidation --distribution-id EXXXXXXXXXXXXX --paths "/*"`
 
-#### reCAPTCHA v2
-The form renders a reCAPTCHA v2 checkbox above the "Send Message" button
-(`src/components/Sections/Contact/ContactForm.tsx`). The widget uses the public site
-key from `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` (see `src/config.ts`), and the submission is
-sent to the endpoint in `NEXT_PUBLIC_CONTACT_VERIFY_URL`.
+All actions are on their Node 24 releases (`checkout@v7`, `setup-node@v7`,
+`upload-artifact@v7`, `download-artifact@v8`, `configure-aws-credentials@v6`); the older
+majors still target the deprecated Node 20 runtime.
 
-Because this site is a static export (`output: 'export'`) deployed to S3/CloudFront,
-there is no Next.js server to hold secrets — the Lambda function holds the reCAPTCHA
-secret key and the AWS credentials.
+### Deployment credentials
 
-Both values have public, non-secret fallbacks in `src/config.ts`, so the form works
-without any environment configuration. Set `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` or
-`NEXT_PUBLIC_CONTACT_VERIFY_URL` only to override them.
+CI holds **no long-lived AWS keys**. The deploy job requests a GitHub OIDC token and assumes
+`<DEPLOY_ROLE_ARN>`, whose trust policy is scoped to
+this repository and branch:
 
-On success the form shows "Thanks! Your message has been sent."; any failure
-(unsolved reCAPTCHA, invalid fields, SNS error) shows an error and resets the widget.
+- `sub` = `repo:<owner>/cloud-resume:ref:refs/heads/main`
+- `aud` = `sts.amazonaws.com`
 
+Its inline policy (`deploy-permissions`) is least-privilege: the S3 object operations the
+`sync` needs on that one bucket, plus `cloudfront:CreateInvalidation` on the distribution
+only.
 
-### 6. Make any other changes you like
+### What CI enforces
 
-Of course, all of the code is there and nothing is hidden from you so if you would like to make any other styling/data changes, feel free!
+`yarn build` runs `tsc --build` **before** `next build`, so a type error fails the deploy
+before anything reaches S3.
 
-### 7. Deploy to Vercel and enjoy your new Resume Website
+### Deploying the Lambda
 
-Deploying your new site to Vercel is simple, and can be done by following their guide [here.](https://vercel.com/guides/deploying-nextjs-with-vercel) When you're all done and the build succeeds, you should be given a url for your live site, go there and you'll see your new personal resume website! Congratulations!
+Build the bundle and update the function:
 
-## Project Created & Maintained By
+```bash
+cd aws/recaptcha-verify
+rm -f /tmp/function.zip && zip -q /tmp/function.zip index.mjs
+aws lambda update-function-code \
+  --function-name recaptcha-verify \
+  --zip-file fileb:///tmp/function.zip \
+  --region ap-southeast-1
+```
 
-### Tim Baker
+Build the zip in `/tmp`, not in the repo — a stray `function.zip` dirties the working tree.
 
-<a href="https://twitter.com/timbakerx"><img src="https://github.com/aritraroy/social-icons/blob/master/twitter-icon.png?raw=true" width="60"></a><a href="https://instagram.com/tbakerx"><img src="https://github.com/aritraroy/social-icons/blob/master/instagram-icon.png?raw=true" width="60"></a>
+### Local AWS access
 
-[![GitHub followers](https://img.shields.io/github/followers/tbakerx.svg?style=social&label=Follow)](https://github.com/tbakerx/)
+The CLI authenticates with **`aws login`**, which issues short-lived credentials. Re-run
+`aws login` when they expire.
 
-## Stargazers
+## Contact form backend
 
-[![Stargazers repo roster for @tbakerx/react-resume-template](https://reporoster.com/stars/dark/tbakerx/react-resume-template)](https://github.com/tbakerx/react-resume-template/stargazers)
+The only dynamic component. The Lambda is invoked directly by the browser, so it — not
+CloudFront — is what faces the internet for this path.
 
-## Forkers
+### Invocation flow
 
-[![Forkers repo roster for @tbakerx/react-resume-template](https://reporoster.com/forks/dark/tbakerx/react-resume-template)](https://github.com/tbakerx/react-resume-template/network/members)
+1. Browser POSTs `{name, email, message, token}` to the Function URL.
+2. The function verifies `token` against Google's `siteverify` endpoint using the secret key.
+3. It requires the verified `hostname` to be `ongyiktatt.com`. The site key is public, so
+   without this check any token minted with it would be accepted.
+4. It validates the fields and strips control characters from `name`/`email` before they reach
+   the SNS subject line, so a crafted name cannot inject email headers.
+5. It publishes to the SNS topic, which emails the subscribed address.
 
+`{ "success": true }` is returned only when *both* the reCAPTCHA check and the SNS publish
+succeed — no email is ever sent for an unsolved challenge.
+
+### Function configuration
+
+- **1024 MB, not 256 MB.** Memory drives CPU, and the AWS SDK import dominates cold start:
+  measured end-to-end to the Function URL, 256 MB is ~1.96 s cold vs ~0.93 s at 1024 MB, with
+  warm invocations around 0.08 s.
+- **15 s timeout.** The 3 s default does not cover a cold start.
+- **Environment:** `RECAPTCHA_SECRET_KEY` and `SNS_TOPIC_ARN` only. Secrets exist nowhere
+  else — a static export has no server to hold them, and `NEXT_PUBLIC_*` values are public
+  because they are inlined into the bundle at build time.
+- **CORS lives in exactly one place:** the Function URL's `--cors` config (origins
+  `https://ongyiktatt.com` and `http://localhost:3000`). The handler must never set
+  `Access-Control-Allow-Origin`, or Lambda emits the header twice and browsers reject the
+  response.
+- A public Function URL needs **both** `lambda:InvokeFunctionUrl` and `lambda:InvokeFunction`
+  resource-policy statements. Missing either returns `403 Forbidden`.
+
+### Known constraint: concurrency
+
+The account's *Concurrent executions* quota is applied at **10** while the AWS default is
+**1000** (new-account ramp), so it sits *below* the default. Consequently
+`put-function-concurrency` fails, and Service Quotas rejects any request that is not above the
+default — raising it needs an AWS Support case or the automatic ramp. While this is the only
+function in the account, the applied 10 already caps it.
+
+### SNS delivery
+
+Submissions are published to `contact-form-notifications`, which has an **email**
+subscription. The recipient must click **Confirm subscription** in the confirmation mail
+before anything is delivered — messages published before confirmation are dropped. Check with:
+
+```bash
+aws sns list-subscriptions-by-topic \
+  --topic-arn arn:aws:sns:ap-southeast-1:<ACCOUNT_ID>:contact-form-notifications \
+  --region ap-southeast-1 --query 'Subscriptions[].[Endpoint,SubscriptionArn]' --output json
+```
+
+`PendingConfirmation` means it is not active yet.
+
+## Application
+
+Kept deliberately brief — see [`AGENTS.md`](AGENTS.md) for architecture and conventions.
+
+- Next.js 16 (Pages Router), static export (`output: 'export'`); Turbopack is the bundler.
+- Node 24 (`.nvmrc`), Yarn 1.
+- `yarn dev` starts the dev server; `yarn build` type-checks and writes `out/` — the same
+  artifact CI uploads.
+- Content is data-driven: `src/data/data.tsx`, with types in `src/data/dataDef.ts` and the
+  `NEXT_PUBLIC_*` fallbacks in `src/config.ts`.
+
+> Use `envOrDefault()` from `src/config.ts` for public-var fallbacks rather than `??`. GitHub
+> Actions substitutes an empty string for an unset repository variable, and `'' ?? fallback`
+> is `''`, which would silently ship an empty reCAPTCHA site key.
+
+`yarn lint` rewrites files (`prettier --write` + `eslint --fix`); to check without modifying,
+use `yarn eslint 'src/**/*.{ts,tsx}' --max-warnings=0`.
+
+## Credits
+
+Built from [tbakerx/react-resume-template](https://github.com/tbakerx/react-resume-template)
+(MIT). The layout and component structure originate there; the AWS infrastructure,
+CI/CD pipeline and contact-form backend are specific to this site.
+
+## License
+
+[MIT](LICENSE)
