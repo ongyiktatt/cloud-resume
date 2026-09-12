@@ -113,7 +113,8 @@ Two operational notes worth remembering:
    - `actions/download-artifact` restores `out/`
    - a preflight step fails fast, naming any deploy variable that is unset
    - `aws-actions/configure-aws-credentials` assumes `AWS_DEPLOY_ROLE_ARN` in `AWS_REGION`
-   - `aws s3 sync ./out "s3://$S3_BUCKET" --delete`
+   - `aws s3 sync ./out "${S3_BUCKET}" --delete` — `S3_BUCKET` already carries the
+     `s3://` scheme, so it is passed through verbatim
    - `aws cloudfront create-invalidation --distribution-id "$CLOUDFRONT_DISTRIBUTION_ID" --paths "/*"`
 
 All actions are on their Node 24 releases (`checkout@v7`, `setup-node@v7`, `cache@v6`,
