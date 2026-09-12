@@ -1,6 +1,12 @@
 {
-  "name": "react-resume-template",
-  "short_name": "react-resume-template",
+  "name": "Yik Tatt Ong — Cloud Infrastructure Engineer",
+  "short_name": "Yik Tatt Ong",
+  "start_url": "/",
+  "scope": "/",
+  "icons": [
+    {"src": "/icon-192.png", "type": "image/png", "sizes": "192x192"},
+    {"src": "/icon-512.png", "type": "image/png", "sizes": "512x512"}
+  ],
   "theme_color": "#515455",
   "background_color": "#515455",
   "display": "standalone"

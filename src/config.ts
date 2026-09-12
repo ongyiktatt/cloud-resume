@@ -1,6 +1,12 @@
 export const isBrowser = typeof window !== 'undefined';
 
 /**
+ * Origin of the deployed site. The canonical and Open Graph url tags must be absolute, so
+ * this is kept in one place rather than repeated as a literal in the page head.
+ */
+export const siteUrl = 'https://ongyiktatt.com';
+
+/**
  * Reads a required public environment variable.
  *
  * `NEXT_PUBLIC_*` values are inlined into the bundle at build time, so they are public by
