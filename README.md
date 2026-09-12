@@ -100,8 +100,9 @@ Two operational notes worth remembering:
 ### Pipeline
 
 1. **build** (`ubuntu-latest`)
-   - `actions/checkout` → `actions/setup-node` with `node-version: 24` and `cache: yarn`, so the
-     Yarn store is reused between runs
+   - `actions/checkout` → `actions/setup-node` with `node-version-file: .nvmrc` and
+     `cache: yarn`, so the Node version comes from the same file `nvm` reads locally and
+     the Yarn store is reused between runs
    - `yarn install --frozen-lockfile`
    - `actions/cache` restores `.next/cache` and `tsconfig.tsbuildinfo`, keyed on `yarn.lock`
      plus a hash of the source — a cold build measures ~7s against ~3s warm

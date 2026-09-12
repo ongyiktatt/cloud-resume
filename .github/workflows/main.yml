@@ -12,7 +12,7 @@ jobs:
 
       - uses: actions/setup-node@v7
         with:
-          node-version: 24
+          node-version-file: .nvmrc
           # Caches the Yarn store keyed on yarn.lock, so `yarn install` only downloads
           # what changed.
           cache: yarn
