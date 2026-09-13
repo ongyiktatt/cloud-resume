@@ -31,11 +31,23 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ hashFiles('yarn.lock') }}-
 
-      # The résumé PDF is generated from resume/resume.tex so the published file cannot drift
-      # from its source. It has to be written into public/ before `yarn build`, which copies
-      # public/ into the static export. A LaTeX failure fails the deploy rather than shipping
-      # the previously committed PDF silently.
+      # The compiled PDF is cached against the source it was built from, so a deploy that does
+      # not touch resume/resume.tex skips the TeX Live image pull entirely — that pull alone
+      # measures ~125s. Keying on the file hash rather than the commit means a hit is always
+      # the PDF for the current source, and any edit to the source misses and rebuilds. Bump
+      # the v1 prefix to force a rebuild.
+      - name: Restore the compiled resume PDF
+        id: resume-cache
+        uses: actions/cache/restore@v6
+        with:
+          path: public/assets/Resume_Ong Yik Tatt.pdf
+          key: resume-pdf-v1-${{ hashFiles('resume/resume.tex') }}
+
+      # On a cache miss the PDF is rebuilt and written into public/ before `yarn build`, which
+      # copies public/ into the static export. A LaTeX failure fails the deploy rather than
+      # shipping a stale PDF silently.
       - name: Build resume PDF
+        if: steps.resume-cache.outputs.cache-hit != 'true'
         uses: xu-cheng/latex-action@v4
         with:
           root_file: resume.tex
@@ -45,7 +57,18 @@ jobs:
       # succeeds: both resume/ and public/assets/ belong to the runner, and rename only needs
       # write permission on the directories.
       - name: Publish resume PDF as a static asset
+        if: steps.resume-cache.outputs.cache-hit != 'true'
         run: mv resume/resume.pdf "public/assets/Resume_Ong Yik Tatt.pdf"
+
+      # Saved explicitly rather than relying on actions/cache's post-step: a post-step runs even
+      # when an earlier step failed, which would cache the stale committed PDF under the new
+      # source's key and then serve that stale file on every later run.
+      - name: Cache the compiled resume PDF
+        if: steps.resume-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v6
+        with:
+          path: public/assets/Resume_Ong Yik Tatt.pdf
+          key: resume-pdf-v1-${{ hashFiles('resume/resume.tex') }}
 
       - name: Build
         env:
