@@ -10,6 +10,11 @@ const Resume: FC = memo(() => {
   return (
     <Section className="bg-neutral-100" sectionId={SectionId.Resume}>
       <div className="flex flex-col divide-y-2 divide-neutral-300">
+        <ResumeSection title="Work">
+          {experience.map((item, index) => (
+            <TimelineItem item={item} key={`${item.title}-${index}`} />
+          ))}
+        </ResumeSection>
         <ResumeSection title="Certification">
           {certification.map((item, index) => (
             <TimelineItem item={item} key={`${item.title}-${index}`} />
@@ -21,11 +26,6 @@ const Resume: FC = memo(() => {
               <SkillGroup key={`${skillgroup.name}-${index}`} skillGroup={skillgroup} />
             ))}
           </div>
-        </ResumeSection>
-        <ResumeSection title="Work">
-          {experience.map((item, index) => (
-            <TimelineItem item={item} key={`${item.title}-${index}`} />
-          ))}
         </ResumeSection>
         <ResumeSection title="Education">
           {education.map((item, index) => (

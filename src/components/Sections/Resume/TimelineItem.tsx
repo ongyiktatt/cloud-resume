@@ -3,7 +3,7 @@ import {FC, memo} from 'react';
 import {TimelineItem} from '../../../data/dataDef';
 
 const TimelineItemComponent: FC<{item: TimelineItem}> = memo(({item}) => {
-  const {title, date, location, content, url} = item;
+  const {title, date, location, content, url, roles} = item;
   return (
     <div className="flex flex-col pb-8 text-center last:pb-0 md:text-left">
       <div className="flex flex-col pb-4">
@@ -22,7 +22,21 @@ const TimelineItemComponent: FC<{item: TimelineItem}> = memo(({item}) => {
           <span className="flex-1 text-sm sm:flex-none">{date}</span>
         </div>
       </div>
-      <div className="text-left">{content}</div>
+      {roles ? (
+        <div className="flex flex-col gap-y-6">
+          {roles.map((role, index) => (
+            <div className="flex flex-col gap-y-2" key={`${role.title}-${index}`}>
+              <div className="flex flex-col">
+                <h3 className="text-base font-bold">{role.title}</h3>
+                <span className="text-sm italic">{role.date}</span>
+              </div>
+              <div className="text-left">{role.content}</div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="text-left">{content}</div>
+      )}
     </div>
   );
 });

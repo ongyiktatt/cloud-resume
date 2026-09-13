@@ -1,4 +1,10 @@
-import {AcademicCapIcon, ArrowDownTrayIcon, BuildingOffice2Icon, MapIcon} from '@heroicons/react/24/outline';
+import {
+  AcademicCapIcon,
+  ArrowDownTrayIcon,
+  BuildingOffice2Icon,
+  MapIcon,
+  ShieldCheckIcon,
+} from '@heroicons/react/24/outline';
 
 import GithubIcon from '../components/Icon/GithubIcon';
 import LinkedInIcon from '../components/Icon/LinkedInIcon';
@@ -48,24 +54,23 @@ export const heroData: Hero = {
   description: (
     <>
       <p className="text-lg font-semibold text-orange-400 sm:text-xl lg:text-2xl">
-        IT Manager | Cloud & Infrastructure
+        Cloud Infrastructure Engineer · Hybrid Cloud · Identity &amp; Automation
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        AWS Certified Solutions Architect – Associate · AWS Certified CloudOps Engineer – Associate · Terraform ·
-        Infrastructure · Networking
+        AWS Certified Solutions Architect – Associate · AWS Certified CloudOps Engineer – Associate · AWS Certified
+        Cloud Practitioner · ITIL 4 Foundation
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        IT Manager and infrastructure professional with{' '}
-        <strong className="text-stone-100">10+ years of experience</strong> across enterprise IT operations, systems,
-        networking, and regional infrastructure.
+        I keep enterprise infrastructure up — on-prem, in co-location, and in AWS — then automate the parts that
+        shouldn't need a human.
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        Currently transitioning into cloud infrastructure engineering, with a focus on{' '}
-        <strong className="text-stone-100">AWS, Terraform, automation, and modern infrastructure practices</strong>.
+        <strong className="text-stone-100">12+ years in enterprise IT</strong> across Singapore and the APAC region,
+        now building on AWS with Terraform and keyless CI/CD.
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        Looking to bring proven operational rigor and stakeholder communication to a{' '}
-        <strong className="text-stone-100">Cloud Infrastructure Engineer role</strong>, available from January 2027.
+        Open to <strong className="text-stone-100">Cloud Engineer and Infrastructure Engineer</strong> roles in
+        Singapore. Available for interviews immediately; available to start January 2027.
       </p>
     </>
   ),
@@ -91,11 +96,33 @@ export const heroData: Hero = {
  */
 export const aboutData: About = {
   profileImageSrc: profilepic,
-  description: `What started as managing IT operations across Singapore, South Korea, and Japan grew into a genuine curiosity for how modern infrastructure gets built — leading me to spend the past year earning AWS certifications and building hands-on Terraform projects in my own homelab. I'm now looking to bring that same operational discipline to a Cloud Infrastructure Engineering role. Outside of work, I'm usually tinkering with my homelab, exploring photography, or nerding out over hi-fi audio gear.`,
+  description: (
+    <>
+      <p>
+        I've spent 12+ years keeping enterprise infrastructure running — data centre migrations into Tier-3 co-location
+        under a S$2M programme, and regional IT operations for 200 users across Singapore, Japan and South Korea.
+      </p>
+      <p>
+        That taught me what production demands. I've since turned it outward — three AWS certifications in 2026, plus a
+        live stack this site runs on: S3 and CloudFront behind WAF, deployed by GitHub Actions with OIDC and no stored
+        access keys.
+      </p>
+      <p>
+        What I'm building toward is the overlap: infrastructure I've run in production, defined as code I can review,
+        version and roll back.
+      </p>
+      <p>Off the clock: cameras, hi-fi audio, and tinkering with the homelab.</p>
+    </>
+  ),
   aboutItems: [
     {label: 'Location', text: 'Singapore', Icon: MapIcon},
     {label: 'Education', text: 'Temasek Polytechnic', Icon: AcademicCapIcon},
     {label: 'Employment', text: 'Wargaming Asia', Icon: BuildingOffice2Icon},
+    {
+      label: 'Certifications',
+      text: ['AWS SAA', 'CloudOps', 'Cloud Practitioner', 'ITIL 4 Foundation'],
+      Icon: ShieldCheckIcon,
+    },
   ],
 };
 
@@ -104,37 +131,108 @@ export const aboutData: About = {
  */
 export const skills: SkillGroup[] = [
   {
-    name: 'Cloud',
+    name: 'Cloud Platforms',
     skills: [
       {
-        name: 'AWS (VPC, EC2, S3, IAM, Route 53)',
+        name: 'AWS Compute & Networking (VPC, EC2, S3, Route 53)',
         level: 8,
       },
       {
-        name: 'Azure (VMs, VNet, Front Door)',
+        name: 'AWS Serverless & Edge (Lambda, CloudFront, WAF)',
+        level: 7,
+      },
+      {
+        name: 'Microsoft Azure (VMs, VNet)',
         level: 7,
       },
     ],
   },
   {
-    name: 'Infrastructure as Code',
+    name: 'Infrastructure as Code & CI/CD',
     skills: [
       {
-        name: 'Docker',
-        level: 9,
-      },
-      {
         name: 'Terraform',
-        level: 8,
+        level: 7,
       },
       {
         name: 'Git',
         level: 8,
       },
+      {
+        name: 'GitHub Actions (OIDC keyless deployment)',
+        level: 7,
+      },
     ],
   },
   {
-    name: 'Automation',
+    name: 'Identity & Access Management',
+    skills: [
+      {
+        name: 'Microsoft Entra ID (Azure AD)',
+        level: 9,
+      },
+      {
+        name: 'Microsoft Intune',
+        level: 9,
+      },
+      {
+        name: 'Conditional Access',
+        level: 8,
+      },
+      {
+        name: 'AWS IAM',
+        level: 7,
+      },
+      {
+        name: 'Microsoft 365',
+        level: 8,
+      },
+    ],
+  },
+  {
+    name: 'Networking & Security',
+    skills: [
+      {
+        name: 'TCP/IP & DNS',
+        level: 9,
+      },
+      {
+        name: 'Routing & Switching',
+        level: 8,
+      },
+      {
+        name: 'VLANs & Network Segmentation',
+        level: 8,
+      },
+      {
+        name: 'Firewall Administration (F5, Palo Alto, Check Point)',
+        level: 8,
+      },
+      {
+        name: 'MikroTik (RouterOS) & WireGuard VPN',
+        level: 8,
+      },
+    ],
+  },
+  {
+    name: 'Systems, Containers & Virtualisation',
+    skills: [
+      {
+        name: 'Linux (Debian)',
+        level: 7,
+      },
+      {
+        name: 'Docker',
+        level: 8,
+      },
+      {
+        name: 'Proxmox VE',
+        level: 8,
+      },
+    ],
+  },
+  {
+    name: 'Automation & Scripting',
     skills: [
       {
         name: 'PowerShell',
@@ -146,57 +244,6 @@ export const skills: SkillGroup[] = [
       },
     ],
   },
-  {
-    name: 'Networking & Security',
-    skills: [
-      {
-        name: 'TCP/IP',
-        level: 10,
-      },
-      {
-        name: 'DNS',
-        level: 10,
-      },
-      {
-        name: 'Routing',
-        level: 10,
-      },
-      {
-        name: 'Firewall Administration',
-        level: 9,
-      },
-    ],
-  },
-  {
-    name: 'Systems & Identity',
-    skills: [
-      {
-        name: 'Proxmox',
-        level: 8,
-      },
-      {
-        name: 'Intune',
-        level: 8,
-      },
-      {
-        name: 'Entra ID',
-        level: 8,
-      },
-    ],
-  },
-  {
-    name: 'Spoken languages',
-    skills: [
-      {
-        name: 'English',
-        level: 10,
-      },
-      {
-        name: 'Chinese (Mandarin)',
-        level: 10,
-      },
-    ],
-  },
 ];
 
 /**
@@ -204,16 +251,22 @@ export const skills: SkillGroup[] = [
  */
 export const portfolioItems: PortfolioItem[] = [
   {
-    title: 'Personal resume website',
+    title: 'Portfolio site on AWS (this site)',
     description:
       'Next.js site shipped end-to-end on AWS: static export on S3 + CloudFront behind a WAF, keyless deploys via GitHub Actions OIDC, and a serverless Lambda + SNS contact form that emails me on submit.',
-    tech: 'S3 · CloudFront · WAF · Lambda · SNS · GitHub Actions (OIDC)',
+    tech: ['S3', 'CloudFront', 'WAF', 'Lambda', 'SNS', 'GitHub Actions (OIDC)'],
     url: 'https://github.com/ongyiktatt/cloud-resume',
+  },
+  {
+    title: 'Virtualisation & Networking Homelab',
+    description:
+      'Multi-site lab on Proxmox VE: Debian VMs and containerised workloads, MikroTik routing with VLAN segmentation and WireGuard tunnels, plus self-hosted DNS and remote access. Where I validate network and infrastructure patterns before they matter.',
+    tech: ['Proxmox VE', 'Debian', 'Docker', 'MikroTik (RouterOS)', 'WireGuard', 'VLANs'],
   },
 ];
 
 /**
- * Resume section -- TODO: Standardize resume contact format or offer MDX
+ * Resume section -- TODO: Standardise resume contact format or offer MDX
  */
 export const certification: TimelineItem[] = [
   {
@@ -256,58 +309,77 @@ export const education: TimelineItem[] = [
 
 export const experience: TimelineItem[] = [
   {
-    date: 'February 2023 - Present',
-    location: 'Wargaming Asia',
-    title: 'IT Manager, APAC',
-    content: (
-      <ul className="list-disc list-outside pl-5 space-y-1">
-        <li>
-          <strong className="text-stone-0">
-            Built PowerShell automation to validate Secure Boot certificates and deploy language packs
-          </strong>
-          , cutting manual device setup time by 20%
-        </li>
-        <li>
-          Owned regional IT operations end-to-end — <strong className="text-stone-0">S$100K annual budget</strong>,
-          vendor SLAs, and infrastructure across 200 users in three countries
-        </li>
-        <li>
-          Secured a multi-OS environment with{' '}
-          <strong className="text-stone-0">Microsoft Intune, Entra ID, and Conditional Access</strong>, managing
-          endpoint compliance and identity lifecycle at scale
-        </li>
-        <li>
-          Led pilot testing and regional rollout of global IT initiatives, validating infrastructure changes before
-          deployment across all three markets
-        </li>
-        <li>
-          <strong className="text-stone-0">
-            Redesigned service desk workflows and introduced proactive endpoint monitoring
-          </strong>
-          , cutting recurring incident escalations by 20%
-        </li>
-        <li>
-          Managed office network infrastructure and unified communications, including Microsoft Teams Rooms deployment
-        </li>
-      </ul>
-    ),
+    date: 'February 2023 - December 2026',
+    location: 'Singapore',
+    title: 'Wargaming Asia',
+    // Two roles at one employer, so the promotion reads as a progression rather than two jobs.
+    roles: [
+      {
+        title: 'IT Manager, APAC',
+        date: 'May 2025 - December 2026',
+        content: (
+          <ul className="list-disc list-outside pl-5 space-y-1">
+            <li>
+              Owned regional IT operations end-to-end — <strong className="text-stone-0">S$100K annual budget</strong>,
+              vendor SLAs, and infrastructure across 200 users in three countries
+            </li>
+            <li>
+              Led pilot testing and regional rollout of global IT initiatives, validating infrastructure changes before
+              deployment across all three markets
+            </li>
+            <li>
+              <strong className="text-stone-0">
+                Redesigned service desk workflows and introduced proactive endpoint monitoring
+              </strong>
+              , cutting recurring incident escalations by 20%
+              {/* TODO: convert to absolute figure, e.g. "from X to Y tickets per month" */}
+            </li>
+          </ul>
+        ),
+      },
+      {
+        title: 'IT Specialist, APAC',
+        date: 'February 2023 - May 2025',
+        content: (
+          <ul className="list-disc list-outside pl-5 space-y-1">
+            <li>
+              <strong className="text-stone-0">
+                Built PowerShell automation to validate Secure Boot certificates and deploy language packs
+              </strong>
+              , cutting manual device setup time by 20%
+              {/* TODO: convert to absolute figure, e.g. "from X to Y minutes per device" */}
+            </li>
+            <li>
+              Secured a multi-OS environment with{' '}
+              <strong className="text-stone-0">Microsoft Intune, Entra ID, and Conditional Access</strong>, managing
+              endpoint compliance and identity lifecycle at scale
+            </li>
+            <li>
+              Managed office network infrastructure and unified communications, including Microsoft Teams Rooms
+              deployment
+            </li>
+          </ul>
+        ),
+      },
+    ],
   },
   {
     date: 'June 2022 - February 2023',
     location: 'Tabsquare.ai',
-    title: 'Operations Manager, Deployment and Support',
+    title: 'Operations Manager',
     content: (
       <ul className="list-disc list-outside pl-5 space-y-1">
         <li>
-          <strong className="text-stone-0">Restructured an 8-person support team into two specialized units</strong> —
+          <strong className="text-stone-0">Restructured an 8-person support team into two specialised units</strong> —
           Project Delivery and Technical Support — separating deployment work from reactive maintenance, improving
           deployment speed by 20%
         </li>
         <li>
           <strong className="text-stone-0">
-            Standardized end-to-end client onboarding and transferred ownership to autonomous team leads
+            Standardised end-to-end client onboarding and transferred ownership to autonomous team leads
           </strong>
           , cutting leadership escalations by 20% while increasing onboarding capacity by 40%
+          {/* TODO: convert to absolute figure, e.g. "from X to Y escalations per month" */}
         </li>
         <li>
           Partnered with Product Engineering on deployment feedback and recurring defect trends, directly informing
@@ -315,7 +387,7 @@ export const experience: TimelineItem[] = [
         </li>
         <li>
           Designed and delivered technical training in{' '}
-          <strong className="text-stone-0">IP networking, OS virtualization, and database fundamentals</strong>,
+          <strong className="text-stone-0">IP networking, OS virtualisation, and database fundamentals</strong>,
           building the team's ability to troubleshoot independently
         </li>
       </ul>
@@ -328,7 +400,7 @@ export const experience: TimelineItem[] = [
     content: (
       <ul className="list-disc list-outside pl-5 space-y-1">
         <li>
-          <strong className="text-stone-0">Led data center migrations as part of a $2M digital transformation</strong>,
+          <strong className="text-stone-0">Led data centre migrations as part of a $2M digital transformation</strong>,
           moving core enterprise applications — including Microsoft Dynamics AX ERP and gaming systems — into Tier-3
           co-location facilities with minimal downtime
         </li>
@@ -357,14 +429,14 @@ export const experience: TimelineItem[] = [
   {
     date: 'December 2017 - May 2021',
     location: "McDonald's Singapore",
-    title: 'IT Consultant II, Restaurant Technology',
+    title: 'IT Consultant II',
     content: (
       <ul className="list-disc list-outside pl-5 space-y-1">
         <li>
           <strong className="text-stone-0">
             Integrated GrabFood and Foodpanda with the POS system to automate order processing
           </strong>{' '}
-          improving kitchen fulfillment speed by 60% and contributing to a 25% increase in digital sales
+          improving kitchen fulfilment speed by 60% and contributing to a 25% increase in digital sales
         </li>
         <li>
           Managed outsourced IT vendors across <strong className="text-stone-0">135 restaurant outlets</strong>,
@@ -393,6 +465,10 @@ export const experience: TimelineItem[] = [
         <li>
           Staged and configured servers for customer deployments, alongside edge hardware including{' '}
           <strong className="text-stone-0">Cisco routers, switches, and wireless access points</strong>
+        </li>
+        <li>
+          Installed and maintained point-of-sale servers and kitchen display hardware across new corporate client
+          accounts
         </li>
       </ul>
     ),

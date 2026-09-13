@@ -67,6 +67,6 @@ There is no test suite.
 
 ## Reference
 
-- User-facing setup and customization guide: [README.md](./README.md)
+- User-facing setup and customisation guide: [README.md](./README.md)
 - Next.js 16 docs are vendored at `node_modules/next/dist/docs/` (Pages Router pages under `02-pages/`). Read the relevant page before using a Next API — this version differs from older releases.
 

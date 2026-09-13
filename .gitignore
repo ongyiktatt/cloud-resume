@@ -46,3 +46,27 @@ yarn-error.log*
 /resume/*.out
 /resume/*.pdf
 /resume/*.synctex.gz
+
+# terraform — aws/terraform/ is hand-maintained; only its local working files are ignored.
+# `.terraform/` is the provider and module cache (hundreds of MB, machine-specific) and state can
+# hold resource attributes, so neither belongs in a public repo.
+**/.terraform/*
+.terraform.tfstate.lock.info
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+# Variable files commonly carry the contact-form notification address and other values this public
+# repo is not allowed to publish. Force-add one with `git add -f` if it is genuinely safe to share.
+*.tfvars
+*.tfvars.json
+# Local overrides and CLI config
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+
+# NOTE: `.terraform.lock.hcl` is deliberately NOT ignored — it pins the provider versions every
+# machine and CI run must resolve to, so it is meant to be committed.
