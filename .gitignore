@@ -35,3 +35,14 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# latex — resume/resume.tex is the source of truth. The published PDF is committed at
+# public/assets/Resume_Ong Yik Tatt.pdf so the site can be built without a TeX installation;
+# CI regenerates it from the source on every deploy. Only the build by-products are ignored.
+/resume/*.aux
+/resume/*.fdb_latexmk
+/resume/*.fls
+/resume/*.log
+/resume/*.out
+/resume/*.pdf
+/resume/*.synctex.gz

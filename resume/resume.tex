@@ -1,0 +1,245 @@
+%-------------------------
+% Resume in LaTeX - Yik Tatt Ong
+% Based on Jake Gutierrez's resume (github.com/jakegut/resume), MIT
+% Build: pdflatex resume.tex   (or: latexmk -pdf resume.tex)
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+%----------FONT OPTIONS----------
+% Default is Computer Modern (serif). Uncomment ONE to change:
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Machine-readable output so parsers read characters, not glyph junk
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+% Single-line entry: name left, date right - used for certifications
+\newcommand{\resumeCertItem}[2]{
+  \item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \small #1 & \small #2 \\
+    \end{tabular*}\vspace{-6pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Yik Tatt Ong} \\ \vspace{4pt}
+    \small Cloud Infrastructure Engineer $\cdot$ Hybrid Cloud $\cdot$ Identity \& Automation \\ \vspace{2pt}
+    \small Singapore $\cdot$ +65 8342 9085 $\cdot$
+    \href{mailto:ytong95@gmail.com}{ytong95@gmail.com} \\ \vspace{2pt}
+    \small \href{https://ongyiktatt.com}{ongyiktatt.com} $\cdot$
+    \href{https://github.com/ongyiktatt}{GitHub} $\cdot$
+    \href{https://www.linkedin.com/in/ongyiktatt/}{LinkedIn}
+\end{center}
+
+%----------SUMMARY----------
+\section{Summary}
+  \resumeItemListStart
+    \resumeItem{Cloud infrastructure engineer with 12+ years in enterprise IT across Singapore and the APAC region, pairing hands-on AWS and Azure build work with deep on-premises infrastructure, identity, and networking experience.}
+    \resumeItem{AWS Certified Solutions Architect -- Associate and AWS Certified CloudOps Engineer -- Associate; deploys infrastructure with Terraform, Git, and keyless CI/CD in self-directed lab environments.}
+    \resumeItem{Strong hybrid-cloud grounding: migrated core enterprise applications into Tier-3 co-location under a S\$2M programme, administers AWS IAM and Microsoft Entra ID side by side, and runs a multi-site Proxmox VE and MikroTik lab covering VLANs and WireGuard VPN.}
+    \resumeItem{Owns infrastructure end to end --- automation, least-privilege access, perimeter security, and Tier-3 escalation --- and translates technical detail into clear stakeholder decisions.}
+    \resumeItem{Available from January 2027.}
+  \resumeItemListEnd
+
+%----------SKILLS----------
+\section{Skills}
+  \resumeSubHeadingListStart
+    \item\small{
+      \textbf{Cloud Platforms:} AWS (VPC, EC2, S3, IAM, CloudFront, Lambda, Route 53, WAF) \\
+      \textbf{Microsoft Cloud:} Microsoft Entra ID (Azure AD), Microsoft Intune, Conditional Access \\
+      \textbf{Infrastructure as Code:} Terraform $\cdot$ Git \\
+      \textbf{CI/CD:} GitHub Actions (OIDC keyless deployment) \\
+      \textbf{Containers \& Virtualization:} Docker $\cdot$ Proxmox VE \\
+      \textbf{Networking:} TCP/IP $\cdot$ DNS $\cdot$ Routing $\cdot$ VLANs $\cdot$ MikroTik $\cdot$ WireGuard $\cdot$ Firewall Administration \\
+      \textbf{Scripting:} PowerShell $\cdot$ Bash
+      \vspace{-6pt}
+    }
+  \resumeSubHeadingListEnd
+
+%----------CERTIFICATIONS----------
+\section{Certifications}
+  \resumeSubHeadingListStart
+    \resumeCertItem{\href{https://www.credly.com/badges/209df12d-e120-4509-ad16-6c4d6fa05ca8/linked_in_profile}{AWS Certified CloudOps Engineer -- Associate}}{Aug 2026}
+    \resumeCertItem{\href{https://www.credly.com/badges/b03143a4-ab95-45ea-93f4-068addd79ec6/linked_in_profile}{AWS Certified Solutions Architect -- Associate}}{Jul 2026}
+    \resumeCertItem{\href{https://www.credly.com/badges/46c9f759-e3bc-42ae-8cab-73fd6da6f8ac/linked_in_profile}{AWS Certified Cloud Practitioner}}{May 2026}
+    \resumeCertItem{Microsoft Certified: Azure Administrator Associate (AZ-104) \textit{--- in progress}}{Est. Oct 2026}
+    \resumeCertItem{HashiCorp Certified: Terraform Associate \textit{--- in progress}}{Est. Nov 2026}
+    \resumeCertItem{ITIL 4 Foundation \textit{(Certificate ID: GR671273878OY)}}{May 2021}
+    % When earned, wrap these in \href too:
+    % AZ-104 badge:  \href{<credly-url>}{Microsoft Certified: Azure Administrator Associate}
+    % Terraform:     \href{<credly-url>}{HashiCorp Certified: Terraform Associate}
+  \resumeSubHeadingListEnd
+
+%----------PROJECTS----------
+\section{Cloud \& Infrastructure Projects}
+  \resumeSubHeadingListStart
+
+    \resumeProjectHeading
+      {\textbf{Personal Resume Website} $|$ \emph{Next.js, S3, CloudFront, Route 53, WAF, Lambda, SNS, GitHub Actions (OIDC)}}{}
+      \resumeItemListStart
+        \resumeItem{Deployed a live Next.js resume site on AWS, adapting an open-source template: S3 static export served via CloudFront with a custom domain, ACM TLS, and blocked direct bucket access.}
+        \resumeItem{Automated releases with GitHub Actions using OIDC role assumption --- no stored access keys --- so each merge to main builds, syncs, and invalidates the CDN.}
+        \resumeItem{Hardened the stack with AWS WAF rules and least-privilege IAM, and added a serverless contact form (Lambda + SNS) that emails me on submission.}
+      \resumeItemListEnd
+
+    \resumeProjectHeading
+      {\textbf{Virtualization \& Networking Lab} $|$ \emph{Proxmox VE, MikroTik, Docker, WireGuard}}{}
+      \resumeItemListStart
+        \resumeItem{Built a multi-site homelab using Proxmox VE, MikroTik, Docker and WireGuard VPN.}
+        \resumeItem{Deploy containerized workloads and virtual machines to simulate production environments.}
+        \resumeItem{Configure VLANs, VPN tunnels, firewall rules, and network segmentation.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%----------EXPERIENCE----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Wargaming Asia}{Feb 2023 -- Present}
+      {IT Manager, APAC}{Singapore}
+      \resumeItemListStart
+        \resumeItem{Administer endpoint compliance and identity security for 200 users across a Windows and macOS estate using Microsoft Intune, Microsoft Entra ID (Azure AD), and Conditional Access.}
+        \resumeItem{Lead infrastructure validation, pilot deployments, and regional rollout of global IT initiatives across Singapore, Japan, and South Korea.}
+        \resumeItem{Developed PowerShell automation to automate Secure Boot certificate validation and language-pack deployment, reducing manual setup time by 20\%.}
+        \resumeItem{Redesigned service desk workflows and introduced proactive endpoint monitoring, reducing recurring incident escalations by 20\%.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {TabSquare}{Jun 2022 -- Feb 2023}
+      {Operations Manager}{Singapore}
+      \resumeItemListStart
+        \resumeItem{Restructured an 8-person support team into two specialized units --- Project Delivery and Technical Support --- separating deployment work from reactive maintenance, which improved deployment speed by 20\%.}
+        \resumeItem{Standardized the end-to-end client onboarding workflow and transferred ownership to autonomous team leads, cutting leadership escalations by 20\% and increasing onboarding capacity by 40\%.}
+        \resumeItem{Designed and delivered technical training covering IP networking, OS virtualization, and database fundamentals, improving the team's ability to troubleshoot issues independently.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Safra}{May 2021 -- Jun 2022}
+      {IT Infrastructure Lead}{Singapore}
+      \resumeItemListStart
+        \resumeItem{Administered identity and access management across Microsoft Entra ID (Azure AD), Microsoft 365, and AWS IAM, including least-privilege access control, user provisioning, and group management.}
+        \resumeItem{Led migration of core enterprise applications --- including Microsoft Dynamics AX ERP and gaming systems --- into Tier-3 co-location facilities as part of a S\$2M digital transformation programme, with minimal downtime.}
+        \resumeItem{Configured and troubleshot hybrid network security perimeters, managing Layer 4/7 stateful filtering across F5 WAF, Palo Alto, and Check Point Next-Gen Firewalls.}
+        \resumeItem{Served as final Tier-3 escalation owner for systemic server and infrastructure issues, and supervised outsourced desktop support vendors.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {McDonald's Singapore}{Dec 2017 -- May 2021}
+      {IT Consultant II}{Singapore}
+      \resumeItemListStart
+        \resumeItem{Integrated GrabFood and Foodpanda with the POS system to automate order processing, improving kitchen fulfilment speed by 60\% and contributing to a 25\% increase in digital sales.}
+        \resumeItem{Led hardware staging, configuration, and network readiness for the nationwide rollout of the McDonald's Singapore mobile app across 135 outlets.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Systems Design}{Dec 2013 -- Dec 2017}
+      {Computer Technician}{Singapore}
+      \resumeItemListStart
+        \resumeItem{Built a diagnostics script (Batch) to scan client endpoints and extract hardware models, IP addresses, and serial numbers, replacing manual asset tracking during rollouts.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%----------EDUCATION----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Temasek Polytechnic}{Sep 2020 -- Oct 2022}
+      {Diploma in Infocomm and Digital Media}{Singapore}
+  \resumeSubHeadingListEnd
+
+%----------------------------------------------------------------------
+% FROM JAN 2027: change Wargaming dates to "Feb 2023 -- Dec 2026", then
+% add this as the first entry under \section{Experience}. It keeps your
+% 2027 activity visible on the timeline rather than leaving a gap.
+%
+%  \resumeSubheading
+%    {Career Development Sabbatical}{Jan 2027 -- Present}
+%    {Cloud Infrastructure Engineering}{Singapore}
+%    \resumeItemListStart
+%      \resumeItem{Built and shipped a production resume site on AWS --- S3, CloudFront, WAF, Lambda, SNS, Route 53 --- managed as code with a keyless GitHub Actions pipeline via OIDC.}
+%      \resumeItem{Built and operate a multi-site Proxmox VE and MikroTik homelab covering VLANs, VPN tunnels, firewall rules, and network segmentation.}
+%      \resumeItem{Preparing for the Microsoft Azure Administrator Associate (AZ-104) and HashiCorp Terraform Associate exams.}
+%    \resumeItemListEnd
+%----------------------------------------------------------------------
+
+\end{document}

@@ -31,6 +31,22 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ hashFiles('yarn.lock') }}-
 
+      # The résumé PDF is generated from resume/resume.tex so the published file cannot drift
+      # from its source. It has to be written into public/ before `yarn build`, which copies
+      # public/ into the static export. A LaTeX failure fails the deploy rather than shipping
+      # the previously committed PDF silently.
+      - name: Build resume PDF
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: resume.tex
+          working_directory: resume
+
+      # The action runs in Docker as root, so the PDF it writes is root-owned. `mv` still
+      # succeeds: both resume/ and public/assets/ belong to the runner, and rename only needs
+      # write permission on the directories.
+      - name: Publish resume PDF as a static asset
+        run: mv resume/resume.pdf "public/assets/Resume_Ong Yik Tatt.pdf"
+
       - name: Build
         env:
           NEXT_PUBLIC_CONTACT_VERIFY_URL: ${{ vars.CONTACT_VERIFY_URL }}

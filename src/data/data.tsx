@@ -71,7 +71,9 @@ export const heroData: Hero = {
   ),
   actions: [
     {
-      href: '/assets/resume.pdf',
+      // Percent-encoded because the published file is "Resume_Ong Yik Tatt.pdf";
+      // it is generated from resume/resume.tex.
+      href: '/assets/Resume_Ong%20Yik%20Tatt.pdf',
       text: 'Resume',
       primary: true,
       Icon: ArrowDownTrayIcon,
