@@ -68,6 +68,15 @@
     \end{tabular*}\vspace{-7pt}
 }
 
+% Second-level entry: a role held within the same employer, e.g. after a promotion.
+% Same shape as \resumeSubheading's title line, without repeating the company.
+\newcommand{\resumeSubSubheading}[2]{
+  \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
 \newcommand{\resumeProjectHeading}[2]{
     \item
     \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
@@ -175,13 +184,18 @@
 
     \resumeSubheading
       {Wargaming Asia}{Feb 2023 -- Present}
-      {IT Manager, APAC}{Singapore}
+      {Singapore}{}
+      \resumeSubSubheading{IT Manager, APAC}{May 2025 -- Present}
       \resumeItemListStart
-        \resumeItem{Administer endpoint compliance and identity security for 200 users across a Windows and macOS estate using Microsoft Intune, Microsoft Entra ID (Azure AD), and Conditional Access.}
-        \resumeItem{Lead infrastructure validation, pilot deployments, and regional rollout of global IT initiatives across Singapore, Japan, and South Korea.}
-        \resumeItem{Developed PowerShell automation to automate Secure Boot certificate validation and language-pack deployment, reducing manual setup time by 20\%.}
+        \resumeItem{Led infrastructure validation, pilot deployments, and regional rollout of global IT initiatives across Singapore, Japan, and South Korea.}
         \resumeItem{Redesigned service desk workflows and introduced proactive endpoint monitoring, reducing recurring incident escalations by 20\%.}
       \resumeItemListEnd
+      \resumeSubSubheading{IT Specialist, APAC}{Feb 2023 -- May 2025}
+      \resumeItemListStart
+        \resumeItem{Administered endpoint compliance and identity security for 200 users across a Windows and macOS estate using Microsoft Intune, Microsoft Entra ID (Azure AD), and Conditional Access.}
+        \resumeItem{Developed PowerShell automation for Secure Boot certificate validation and language-pack deployment, reducing manual setup time by 20\%.}
+        \resumeItem{Maintained core office infrastructure, network perimeters, and unified communications platforms, owning patch compliance, identity access lifecycles, and Microsoft Teams Rooms support.}
+      \resumeItemListEnd    
 
     \resumeSubheading
       {TabSquare}{Jun 2022 -- Feb 2023}
