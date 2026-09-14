@@ -26,8 +26,8 @@ import {
  * Page meta data
  */
 export const homePageMeta: HomepageMeta = {
-  title: 'Yik Tatt Ong | IT Manager → Cloud Infrastructure Engineer',
-  description: 'Yik Tatt Ong | IT Manager → Cloud Infrastructure Engineer',
+  title: 'Yik Tatt Ong | Cloud Infrastructure Engineer',
+  description: 'Yik Tatt Ong | Cloud Infrastructure Engineer',
 };
 
 /**
