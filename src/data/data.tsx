@@ -27,7 +27,8 @@ import {
  */
 export const homePageMeta: HomepageMeta = {
   title: 'Yik Tatt Ong | Cloud Infrastructure Engineer',
-  description: 'Yik Tatt Ong | Cloud Infrastructure Engineer',
+  description:
+    'Cloud infrastructure engineer in Singapore with 12+ years in enterprise IT — AWS, Terraform, hybrid cloud, identity and keyless CI/CD.',
 };
 
 /**
