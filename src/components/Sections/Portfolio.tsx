@@ -21,7 +21,7 @@ const Portfolio: FC = memo(() => {
           {portfolioItems.map((item, index) => {
             const {title, image} = item;
             return (
-              <div className="w-1/2 p-3 md:w-1/3 lg:w-1/4" key={`${title}-${index}`}>
+              <div className="w-full p-3 sm:w-1/2 md:w-1/3 lg:w-1/4" key={`${title}-${index}`}>
                 <div
                   className={classNames(
                     'relative w-full overflow-hidden rounded-lg shadow-lg shadow-black/30 lg:shadow-xl',
@@ -52,7 +52,9 @@ export default Portfolio;
 
 /** Stack line: separators are added, and each entry is kept whole so it cannot break across lines. */
 const TechList: FC<{tech: string | string[]}> = memo(({tech}) => (
-  <p className="text-xs font-medium tracking-wide text-orange-400">
+  // min-w-0 lets the row shrink below its widest nowrap entry, so the external-link icon sharing
+  // that row is never pushed past the card's edge and clipped away.
+  <p className="min-w-0 text-xs font-medium tracking-wide text-orange-400">
     {Array.isArray(tech)
       ? tech.map((entry, index) => (
           <Fragment key={entry}>
