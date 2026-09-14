@@ -152,14 +152,14 @@ export const skills: SkillGroup[] = [
     skills: [
       {
         name: 'Terraform',
-        level: 7,
-      },
-      {
-        name: 'Git',
         level: 8,
       },
       {
         name: 'GitHub Actions (OIDC keyless deployment)',
+        level: 8,
+      },
+      {
+        name: 'Git',
         level: 7,
       },
     ],
@@ -180,12 +180,12 @@ export const skills: SkillGroup[] = [
         level: 8,
       },
       {
-        name: 'AWS IAM',
-        level: 7,
-      },
-      {
         name: 'Microsoft 365',
         level: 8,
+      },
+      {
+        name: 'AWS IAM',
+        level: 7,
       },
     ],
   },
@@ -215,12 +215,8 @@ export const skills: SkillGroup[] = [
     ],
   },
   {
-    name: 'Systems, Containers & Virtualisation',
+    name: 'Systems & Virtualisation',
     skills: [
-      {
-        name: 'Linux (Debian)',
-        level: 7,
-      },
       {
         name: 'Docker',
         level: 8,
@@ -228,6 +224,10 @@ export const skills: SkillGroup[] = [
       {
         name: 'Proxmox VE',
         level: 8,
+      },
+      {
+        name: 'Linux (Debian)',
+        level: 7,
       },
     ],
   },
@@ -274,6 +274,7 @@ export const certification: TimelineItem[] = [
     location: 'AWS',
     title: 'AWS Certified CloudOps Engineer - Associate',
     url: 'https://www.credly.com/badges/209df12d-e120-4509-ad16-6c4d6fa05ca8/linked_in_profile',
+    compact: true,
     content: <></>,
   },
   {
@@ -281,6 +282,7 @@ export const certification: TimelineItem[] = [
     location: 'AWS',
     title: 'AWS Certified Solutions Architect - Associate',
     url: 'https://www.credly.com/badges/b03143a4-ab95-45ea-93f4-068addd79ec6/linked_in_profile',
+    compact: true,
     content: <></>,
   },
   {
@@ -288,6 +290,7 @@ export const certification: TimelineItem[] = [
     location: 'AWS',
     title: 'AWS Certified Cloud Practitioner',
     url: 'https://www.credly.com/badges/46c9f759-e3bc-42ae-8cab-73fd6da6f8ac/linked_in_profile',
+    compact: true,
     content: <></>,
   },
   {
@@ -295,6 +298,7 @@ export const certification: TimelineItem[] = [
     location: 'ITIL',
     title: 'ITIL 4 Foundation',
     url: 'https://www.peoplecert.org/for-corporations/certificate-verification-service',
+    compact: true,
     content: <span className="block text-center md:text-left">Credential ID: GR671273878OY</span>,
   },
 ];

@@ -110,6 +110,11 @@ export interface TimelineItem {
   location: string;
   title: string;
   url?: string;
+  /**
+   * A single-line entry such as a certification: a title, a date and no body, so it is rendered
+   * with tighter vertical spacing than an entry carrying bullet points.
+   */
+  compact?: boolean;
   /** The entry body, for an entry that is a single role. */
   content?: JSX.Element;
   /**

@@ -1,12 +1,15 @@
+import classNames from 'classnames';
 import {FC, memo} from 'react';
 
 import {TimelineItem} from '../../../data/dataDef';
 
 const TimelineItemComponent: FC<{item: TimelineItem}> = memo(({item}) => {
-  const {title, date, location, content, url, roles} = item;
+  const {title, date, location, content, url, roles, compact} = item;
   return (
-    <div className="flex flex-col pb-8 text-center last:pb-0 md:text-left">
-      <div className="flex flex-col pb-4">
+    // A compact entry (a certification) is a single line with no body, so it gets far less
+    // breathing room than an entry carrying bullet points.
+    <div className={classNames('flex flex-col text-center last:pb-0 md:text-left', compact ? 'pb-3' : 'pb-8')}>
+      <div className={classNames('flex flex-col', compact ? 'pb-2' : 'pb-4')}>
         <h2 className="text-xl font-bold">
           {url ? (
             <a className="hover:underline" href={url} rel="noopener noreferrer" target="_blank">
