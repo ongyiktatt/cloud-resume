@@ -14,6 +14,16 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/*
+ * Skill bars start empty and fill when scrolled into view, which needs JavaScript. With scripting
+ * disabled they would stay empty forever, so fall back to the real level held in --skill-level.
+ */
+@media (scripting: none) {
+  [data-skill-bar] {
+    width: var(--skill-level) !important;
+  }
+}
+
 html {
   -webkit-tap-highlight-color: transparent;
   scroll-behavior: smooth;
