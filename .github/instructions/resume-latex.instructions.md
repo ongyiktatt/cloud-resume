@@ -6,9 +6,11 @@ applyTo: "resume/**,.github/workflows/main.yml"
 # Résumé (LaTeX source)
 
 `resume/resume.tex` is the **source of truth** for the résumé PDF. The website does not
-render résumé content — it only links the compiled file. Read the long comment block at
-the top of that file **in full** before editing; it is the authority on positioning,
-pagination and the traps below, and it should be kept accurate as you go.
+render résumé content — it only links the compiled file.
+
+**This file is the authority.** `resume.tex` is deliberately kept free of editing notes so
+it reads as a document; it carries only a one-line pointer back here. Anything you learn
+while editing it belongs in this file, not as a comment in the source.
 
 ## Positioning is deliberate — do not drift
 
@@ -22,8 +24,8 @@ that choice is load-bearing:
 - No claim to lead a large team. The honest model is a lean regional owner with
   vendor-supplied engineers in two markets.
 - **Terraform and IaC are deliberately absent.** Do not reintroduce "Infrastructure as
-  Code", "Terraform" or "provisioned as code"; the Terraform certification row is
-  commented out on purpose.
+  Code", "Terraform" or "provisioned as code". The Terraform certification row has been
+  removed outright — see *Deliberately removed content* below to put it back.
 - Wargaming bullets are **present tense** while the role runs to 31 Dec 2026. Convert them
   to past tense on 1 Jan 2027.
 
@@ -35,8 +37,7 @@ Terraform/IaC prohibition above still applies there.
 
 ## Layout traps
 
-These are documented in the header comment; they are repeated here only because getting
-them wrong produces silent damage:
+These all cause silent damage — the typeset output looks fine while being wrong:
 
 - **Never add a global `\setlist[itemize]{…}` override.** It also applies to the outer
   heading list and the certification list, whose spacing the template's negative
@@ -49,8 +50,9 @@ them wrong produces silent damage:
   argument is a **date field only** — keep it short or `{}`.
 - The hard `\newpage` before SAFRA keeps that entry from being orphaned, so **any edit
   above it requires a pagination re-check**.
-- Before publishing, search the file for `[VERIFY]` — two items are deliberately
-  unconfirmed.
+- Two open questions are parked in the source as `% TODO:` comments: the endpoint
+  monitoring platform is still unnamed, and it is unconfirmed whether the SAFRA role was
+  a contract (a `(Contract)` variant line sits commented out beneath that heading).
 
 ## How the PDF reaches the site
 
@@ -80,3 +82,29 @@ always overwrites it (restore on a hit, `mv` on a miss).
 `src/data/data.tsx` links to `/assets/Resume_Ong%20Yik%20Tatt.pdf`. Do not "fix" that to a
 literal space. If the file is ever renamed, update that literal, the three paths in
 `main.yml` and the two entries in `.gitignore` together.
+
+## Deliberately removed content
+
+These were taken out of `resume.tex` by decision, not by accident, and the exact snippets
+live here so they can be restored without rewriting them:
+
+- **Terraform certification row** — removed so the keyword never appears anywhere in the
+document. Add it back with the other certifications only if that positioning changes:
+
+  ```latex
+  \resumeCertItem{Hashicorp Certified: Terraform Associate \textit{--- in progress}}{Est. Nov 2026}
+  ```
+
+- **2027 sabbatical entry** — add as the first entry under Experience if the 2027 gap
+  should be visible on the timeline. Do this on the same day the Wargaming bullets are
+  converted to past tense:
+
+  ```latex
+  \resumeSubheading
+    {Career Development Sabbatical}{Jan 2027 -- Present}
+    {Cloud Infrastructure Engineering}{Singapore}
+    \resumeItemListStart
+      \resumeItem{Built and shipped a production portfolio site on AWS --- S3, CloudFront, WAF, Lambda, SNS, Route 53 --- with a keyless GitHub Actions release pipeline via OIDC.}
+      \resumeItem{Operate a multi-site Proxmox VE and MikroTik homelab covering VLANs, VPN tunnels, firewall rules and network segmentation.}
+    \resumeItemListEnd
+  ```
