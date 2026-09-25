@@ -1,10 +1,46 @@
 %-------------------------
 % Resume in LaTeX - Yik Tatt Ong
+% VARIANT A: IT MANAGER / REGIONAL IT INFRASTRUCTURE LEADERSHIP (PRIMARY)
 % Based on Jake Gutierrez's resume (github.com/jakegut/resume), MIT
 % Build: pdflatex resume.tex   (or: latexmk -pdf resume.tex)
-%------------------------
+%
+% LAYOUT - 2-PAGE FIT WITHOUT SQUEEZING THE TYPE.
+% Page savings come from: 10pt base font, textheight +0.1in, slightly tighter
+% section rules, and itemsep=0 on the INNER bullet lists only.
+% A hard \newpage sits before SAFRA so that entry cannot be orphaned across
+% the page boundary. If you edit anything above it, re-check pagination.
+%
+% CRITICAL - DO NOT USE A GLOBAL \setlist[itemize]{...} OVERRIDE.
+% That applies to the outer heading list and the certification list too, whose
+% spacing the template's negative \vspace values were calibrated against.
+% Overriding it makes every \vspace{-5/-6pt} over-pull and the text overlaps.
+% Scope list spacing to \resumeItemListStart only. Same rule for topsep: never
+% set topsep=0pt - the negative vspaces exist to cancel the default topsep.
+%
+% POSITIONING: leadership, vendor governance and delivery scope first. Cloud
+% appears ONLY as governance evidence (cost/vendor/SLA oversight, identity
+% governance, least-privilege access, release credential hygiene) - never as IC
+% build capability. No claim to lead a large team: the honest model is a lean
+% regional owner with vendor-supplied engineers in two markets.
+%
+% TERRAFORM / IaC: deliberately ABSENT. The portfolio site is NOT IaC-deployed.
+% Do not reintroduce "Infrastructure as Code", "Terraform" or "provisioned as
+% code". The Terraform cert row is commented out.
+%
+% TENSE: Wargaming bullets are PRESENT tense (still employed to 31 Dec 2026).
+% On 1 Jan 2027 convert them to past tense - same day as the LinkedIn change.
+%
+% WARNING - SILENT OVERFLOW BUG IN THIS TEMPLATE:
+% The four two-column macros use tabular* with l@{\extracolsep{\fill}}r. Columns
+% l and r do NOT wrap. If the content exceeds 0.97\textwidth, LaTeX emits NO
+% warning and prints it past the right margin. The right-hand argument is a DATE
+% FIELD ONLY - a short date or {}. Keep the tech lists in \resumeProjectHeading
+% short; anything longer belongs in the bullet below.
+%
+% BEFORE SENDING: search for "[VERIFY]" - two items are unconfirmed.
+%-------------------------
 
-\documentclass[letterpaper,11pt]{article}
+\documentclass[letterpaper,10pt]{article}
 
 \usepackage{latexsym}
 \usepackage[empty]{fullpage}
@@ -32,22 +68,22 @@
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 
-% Adjust margins
+% Adjust margins - only textheight is nudged for the 2-page fit
 \addtolength{\oddsidemargin}{-0.5in}
 \addtolength{\evensidemargin}{-0.5in}
 \addtolength{\textwidth}{1in}
 \addtolength{\topmargin}{-.5in}
-\addtolength{\textheight}{1.0in}
+\addtolength{\textheight}{1.1in}
 
 \urlstyle{same}
 \raggedbottom
 \raggedright
 \setlength{\tabcolsep}{0in}
 
-% Section formatting
+% Section formatting - 1pt tighter than the original, safe
 \titleformat{\section}{
-  \vspace{-4pt}\scshape\raggedright\large
-}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+  \vspace{-5pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-6pt}]
 
 % Machine-readable output so parsers read characters, not glyph junk
 \pdfgentounicode=1
@@ -69,7 +105,7 @@
 }
 
 % Second-level entry: a role held within the same employer, e.g. after a promotion.
-% Same shape as \resumeSubheading's title line, without repeating the company.
+% Arg 2 = short date or {}.
 \newcommand{\resumeSubSubheading}[2]{
   \item
     \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
@@ -77,6 +113,8 @@
     \end{tabular*}\vspace{-7pt}
 }
 
+% Arg 2 = short date or {}. NOT a label - it will collide silently.
+% Keep arg 1 short: this cell does NOT wrap.
 \newcommand{\resumeProjectHeading}[2]{
     \item
     \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
@@ -98,7 +136,8 @@
 
 \newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
-\newcommand{\resumeItemListStart}{\begin{itemize}}
+% itemsep scoped to the INNER bullet list ONLY. topsep deliberately unset.
+\newcommand{\resumeItemListStart}{\begin{itemize}[itemsep=0pt, parsep=0pt]}
 \newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
 
 %-------------------------------------------
@@ -109,7 +148,7 @@
 %----------HEADING----------
 \begin{center}
     \textbf{\Huge \scshape Yik Tatt Ong} \\ \vspace{4pt}
-    \small Cloud Infrastructure Engineer $\cdot$ Hybrid Cloud $\cdot$ Identity \& Automation \\ \vspace{2pt}
+    \small Regional IT Manager $\cdot$ Multi-Country IT Operations $\cdot$ Cloud \& Identity Governance \\ \vspace{2pt}
     \small Singapore $\cdot$ +65 8342 9085 $\cdot$
     \href{mailto:ytong95@gmail.com}{ytong95@gmail.com} \\ \vspace{2pt}
     \small \href{https://ongyiktatt.com}{ongyiktatt.com} $\cdot$
@@ -119,28 +158,106 @@
 
 %----------SUMMARY----------
 \section{Summary}
-  \resumeItemListStart
-    \resumeItem{Cloud infrastructure engineer with 12+ years in enterprise IT across Singapore and the APAC region, pairing hands-on AWS and Azure build work with deep on-premises infrastructure, identity, and networking experience.}
-    \resumeItem{AWS Certified Solutions Architect -- Associate and AWS Certified CloudOps Engineer -- Associate; deploys infrastructure with Terraform, Git, and keyless CI/CD in self-directed lab environments.}
-    \resumeItem{Strong hybrid-cloud grounding: migrated core enterprise applications into Tier-3 co-location under a S\$2M programme, administers AWS IAM and Microsoft Entra ID side by side, and runs a Debian-based multi-site Proxmox VE and MikroTik lab covering VLANs, DNS, and WireGuard VPN.}
-    \resumeItem{Owns infrastructure end to end --- automation, least-privilege access, perimeter security, and Tier-3 escalation --- and translates technical detail into clear stakeholder decisions.}
-    \resumeItem{Available for interviews immediately; available to start January 2027.}
-  \resumeItemListEnd
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Regional IT manager with 12+ years in enterprise IT} across Singapore, Japan and South Korea, running multi-country infrastructure, service delivery and vendor operations. \\
+     \textbf{Owns a S\$100K annual operating budget} and vendor/SLA performance across a distributed regional vendor ecosystem, holding compliance with no increase in headcount. \\
+     \textbf{Promoted from IT Specialist to IT Manager in 27 months}; restructured an 8-person support operation into specialised delivery and support units, raising client onboarding capacity by 40\%. \\
+     \textbf{Governs cloud, identity and endpoint risk} for a 200-user estate --- Microsoft Entra ID, Intune, Conditional Access, Microsoft 365 and AWS IAM --- with least-privilege access, lifecycle control and audit-ready patch baselines. \\
+     \textbf{Led a S\$2M data centre programme} migrating core enterprise applications into Tier-3 co-location with minimal production downtime, as final escalation owner. \\
+     \textbf{AWS Certified Solutions Architect and CloudOps Engineer, ITIL 4 Foundation}; Microsoft Azure Administrator (AZ-104) in progress. \textbf{Available for interviews immediately; available to start January 2027.}
+     \vspace{-6pt}
+    }}
+ \end{itemize}
 
-%----------SKILLS----------
+%----------SKILLS (leadership first - this is the manager signal)----------
 \section{Skills}
   \resumeSubHeadingListStart
     \item\small{
-      \textbf{Cloud Platforms:} AWS (VPC, EC2, S3, IAM, CloudFront, Lambda, Route 53, WAF) \\
-      \textbf{Microsoft Cloud:} Microsoft Entra ID (Azure AD), Microsoft Intune, Conditional Access \\
-      \textbf{Operating Systems:} Linux (Debian, Ubuntu) $\cdot$ Windows Server $\cdot$ Windows 10/11 $\cdot$ macOS \\
-      \textbf{Infrastructure as Code:} Terraform $\cdot$ Git \\
-      \textbf{CI/CD:} GitHub Actions (OIDC keyless deployment) \\
-      \textbf{Containers \& Virtualisation:} Docker $\cdot$ Proxmox VE \\
-      \textbf{Networking:} TCP/IP $\cdot$ DNS $\cdot$ Routing $\cdot$ VLANs $\cdot$ MikroTik $\cdot$ WireGuard $\cdot$ Firewall Administration \\
-      \textbf{Scripting:} PowerShell $\cdot$ Bash
+      \textbf{Leadership \& Regional Delivery:} Multi-Country IT Operations (SG / JP / KR) $\cdot$ Vendor-Led Service Delivery $\cdot$ IT Budget Ownership $\cdot$ Team Structuring \& Capability Building $\cdot$ Stakeholder Management $\cdot$ ITIL 4 Service Management \\
+      \textbf{Vendor \& SLA Governance:} Vendor Performance \& SLA Compliance $\cdot$ Contract, Renewal \& Escalation Management $\cdot$ Outsourced Service Delivery $\cdot$ Service Metrics Reporting \\
+      \textbf{Identity \& Access Management:} Microsoft Entra ID (Azure AD) $\cdot$ Microsoft Intune $\cdot$ Conditional Access $\cdot$ Microsoft 365 $\cdot$ AWS IAM $\cdot$ Least-Privilege Access Control \\
+      \textbf{Cloud \& Infrastructure Oversight:} AWS (VPC, EC2, S3, IAM, CloudFront, Route 53, Lambda, WAF) $\cdot$ Release Credential Hygiene (OIDC, no long-lived keys) $\cdot$ Compliance Baselines \\
+      \textbf{Networking \& Perimeter Security:} TCP/IP $\cdot$ DNS $\cdot$ Routing $\cdot$ VLANs $\cdot$ Firewall Administration $\cdot$ F5 WAF $\cdot$ Palo Alto $\cdot$ Check Point $\cdot$ MikroTik $\cdot$ WireGuard \\
+      \textbf{Systems, Automation \& Scripting:} Windows $\cdot$ macOS $\cdot$ Linux (Debian) $\cdot$ Docker $\cdot$ Proxmox VE $\cdot$ PowerShell $\cdot$ Git $\cdot$ GitHub Actions (OIDC)
       \vspace{-6pt}
     }
+  \resumeSubHeadingListEnd
+
+%----------EXPERIENCE (above Certifications for a manager reader)----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    % arg 3 = role field (empty), arg 4 = location. Do NOT put the location in
+    % arg 3 - it prints where the job title belongs.
+    \resumeSubheading
+      {Wargaming Asia}{Feb 2023 -- Dec 2026}
+      {}{Singapore}
+      \resumeSubSubheading{IT Manager, APAC}{May 2025 -- Dec 2026}
+      \resumeItemListStart
+        \resumeItem{Own regional IT operations across Singapore, Japan and South Korea as the sole internal IT resource in the Singapore regional office --- a S\$100K annual operating budget, vendor performance and SLA compliance.}
+        \resumeItem{Direct vendor-supplied engineers in Japan and South Korea, setting work priorities, reviewing weekly service metrics and holding response and resolution targets across separate vendor ecosystems.}
+        \resumeItem{Continue to own Singapore site infrastructure hands-on alongside the regional remit --- network, unified communications including Microsoft Teams Rooms, and patch compliance.}
+        \resumeItem{Lead local validation, pilot deployment and regional rollout of global IT initiatives for 200 users across three markets.}
+        \resumeItem{Redesign regional service desk workflows and introduce proactive endpoint monitoring, cutting recurring incident escalations by 20\%.}
+        % [VERIFY] Named monitoring platform - "proactive endpoint monitoring" still names no
+        % tool. One product name beats an adjective. Confirm what actually ran it.
+      \resumeItemListEnd
+      \resumeSubSubheading{IT Specialist, APAC}{Feb 2023 -- May 2025}
+      \resumeItemListStart
+        \resumeItem{Administered endpoint compliance and configuration baselines for a mixed Windows and macOS fleet using Microsoft Intune, Microsoft Entra ID (Azure AD) and Conditional Access.}
+        \resumeItem{Developed PowerShell automation for Secure Boot certificate validation and language-pack deployment, cutting manual device setup time by 20\%.}
+        \resumeItem{Owned end-to-end identity access lifecycles --- user provisioning, group management, least-privilege access and offboarding.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {TabSquare}{Jun 2022 -- Feb 2023}
+      {Operations Manager}{Singapore}
+      \resumeItemListStart
+        \resumeItem{Restructured an 8-person support operation into two specialised units --- Project Delivery and Technical Support --- separating deployment work from reactive maintenance and cutting client deployment time by 20\%.}
+        \resumeItem{Standardised end-to-end client onboarding and transferred day-to-day ownership to autonomous team leads, lifting client onboarding capacity by 40\%.}
+        \resumeItem{Partnered with Product Engineering on deployment feedback and recurring defect trends, feeding live operating issues into product release planning.}
+        \resumeItem{Designed and delivered technical training in IP networking, OS virtualisation and database fundamentals, raising independent troubleshooting capability across the team.}
+      \resumeItemListEnd
+
+    % ---- PAGE BREAK: forces SAFRA to start page 2 so its heading is never
+    % orphaned from its bullets. If \newpage misbehaves inside this list, replace
+    % it with \clearpage. Re-check pagination after any edit above this point.
+    \newpage
+
+    % [VERIFY] "(Contract)" - contract or permanent? If the offer letter says contract,
+    % uncomment the variant on the next line. If permanent, leave it as is.
+    \resumeSubheading
+      {SAFRA}{May 2021 -- Jun 2022}
+      % {SAFRA}{May 2021 -- Jun 2022 (Contract)}
+      {IT Infrastructure Lead}{Singapore}
+      \resumeItemListStart
+        \resumeItem{Led migration of core enterprise applications --- including Microsoft Dynamics AX ERP and gaming systems --- into Tier-3 co-location facilities as part of a S\$2M digital transformation programme, with minimal production downtime.}
+        \resumeItem{Administered identity and access management across Microsoft Entra ID (Azure AD), Microsoft 365 and AWS IAM --- least-privilege access control, user provisioning and group management.}
+        \resumeItem{Directed a S\$100K dedicated budget line covering Microsoft 365 platform configuration, hardware fleet maintenance and repairs.}
+        \resumeItem{Governed corporate IT hardware leasing lifecycles, asset discovery and deployment schedules across an enterprise fleet of 300+ connected devices.}
+        \resumeItem{Served as final escalation owner for systemic infrastructure issues, and supervised outsourced desktop support vendors against agreed service levels.}
+        \resumeItem{Configured and troubleshot hybrid network security perimeters across F5 WAF, Palo Alto and Check Point next-gen firewalls, including Layer 4/7 stateful filtering.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {McDonald's Singapore}{Dec 2017 -- May 2021}
+      {IT Consultant II}{Singapore}
+      \resumeItemListStart
+        \resumeItem{Managed outsourced IT vendors for SLA compliance, hardware availability and operational support across 135 restaurant outlets --- 500+ self-order kiosks, 1,000 POS terminals and 2,000 kitchen display systems.}
+        \resumeItem{Integrated GrabFood and Foodpanda with the POS system to automate order processing, improving kitchen fulfilment speed by 60\% and contributing to a 25\% increase in digital sales.}
+        \resumeItem{Led hardware staging, configuration and network readiness for the nationwide rollout of the McDonald's Singapore mobile app across 135 outlets.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Systems Design}{Dec 2013 -- Dec 2017}
+      {IT Field Technician}{Singapore}
+      \resumeItemListStart
+        \resumeItem{Staged and configured servers and edge hardware --- Cisco routers, switches, thin clients and wireless access points --- for customer deployments.}
+        \resumeItem{Installed and maintained point-of-sale servers and kitchen display hardware across new client site openings, including McDonald's Singapore outlets.}
+        \resumeItem{Built a diagnostics script (Batch) to extract hardware models, IP addresses and serial numbers from client endpoints, replacing manual asset tracking during rollouts.}
+      \resumeItemListEnd
+
   \resumeSubHeadingListEnd
 
 %----------CERTIFICATIONS----------
@@ -150,86 +267,29 @@
     \resumeCertItem{\href{https://www.credly.com/badges/b03143a4-ab95-45ea-93f4-068addd79ec6/linked_in_profile}{AWS Certified Solutions Architect -- Associate}}{Jul 2026}
     \resumeCertItem{\href{https://www.credly.com/badges/46c9f759-e3bc-42ae-8cab-73fd6da6f8ac/linked_in_profile}{AWS Certified Cloud Practitioner}}{May 2026}
     \resumeCertItem{Microsoft Certified: Azure Administrator Associate (AZ-104) \textit{--- in progress}}{Est. Oct 2026}
-    \resumeCertItem{HashiCorp Certified: Terraform Associate \textit{--- in progress}}{Est. Nov 2026}
+    % TERRAFORM CERT ROW REMOVED BY DECISION. To restore the keyword, uncomment:
+    % \resumeCertItem{HashiCorp Certified: Terraform Associate \textit{--- in progress}}{Est. Nov 2026}
     \resumeCertItem{ITIL 4 Foundation \textit{(Certificate ID: GR671273878OY)}}{May 2021}
-    % When earned, wrap these in \href too:
-    % AZ-104 badge:  \href{<credly-url>}{Microsoft Certified: Azure Administrator Associate}
-    % Terraform:     \href{<credly-url>}{HashiCorp Certified: Terraform Associate}
   \resumeSubHeadingListEnd
 
-%----------PROJECTS----------
-\section{Cloud \& Infrastructure Projects}
+%----------TECHNICAL PROJECTS (1 bullet each to hold 2 pages)----------
+% TWO SEPARATE BUILDS - do not merge:
+% (1) Portfolio site - S3 + CloudFront + Route 53 + ACM + WAF + Lambda + SNS + OIDC. No Terraform.
+% (2) Homelab - Proxmox / LXC / MikroTik / WireGuard, proxied by Cloudflare.
+% Keep the project tech lists SHORT - arg 1 of \resumeProjectHeading does not wrap.
+\section{Technical Projects}
   \resumeSubHeadingListStart
 
     \resumeProjectHeading
-      {\textbf{Personal Resume Website} $|$ \emph{Next.js, S3, CloudFront, Route 53, WAF, Lambda, SNS, GitHub Actions (OIDC)}}{}
+      {\textbf{Live Portfolio Site on AWS} $|$ \emph{Next.js, S3, CloudFront, Route 53, ACM, WAF, Lambda, SNS, GitHub Actions (OIDC)}}{}
       \resumeItemListStart
-        \resumeItem{Deployed a live Next.js resume site on AWS, adapting an open-source template: S3 static export served via CloudFront with a custom domain, ACM TLS, and blocked direct bucket access.}
-        \resumeItem{Automated releases with GitHub Actions using OIDC role assumption --- no stored access keys --- so each merge to main builds, syncs, and invalidates the CDN.}
-        \resumeItem{Hardened the stack with AWS WAF rules and least-privilege IAM, and added a serverless contact form (Lambda + SNS) that emails me on submission.}
+        \resumeItem{Deployed and hardened a public-facing Next.js site on AWS --- S3 static export behind CloudFront with a custom domain and ACM TLS, blocked direct bucket access, WAF rules and least-privilege IAM --- released through a GitHub Actions pipeline using OIDC role assumption, so no long-lived access keys exist in the delivery path; includes a serverless Lambda + SNS contact form.}
       \resumeItemListEnd
 
     \resumeProjectHeading
-      {\textbf{Virtualisation \& Networking Lab} $|$ \emph{Debian 12, Proxmox VE, Docker, Technitium DNS, MikroTik RouterOS, WireGuard}}{}
+      {\textbf{Virtualisation \& Networking Lab} $|$ \emph{Proxmox VE, LXC, Debian 12, MikroTik, Docker, WireGuard}}{}
       \resumeItemListStart
-        \resumeItem{Built a multi-site Debian 12 environment on Proxmox VE, hosting containerised workloads and virtual machines that mirror production network segmentation.}
-        \resumeItem{Operate a Technitium DNS recursive resolver as a systemd service on Linux, diagnosing resolution failures across the host and LAN clients.}
-        \resumeItem{Configure VLANs, WireGuard VPN tunnels, firewall rules, and network segmentation on MikroTik RouterOS.}
-      \resumeItemListEnd
-
-  \resumeSubHeadingListEnd
-
-%----------EXPERIENCE----------
-\section{Experience}
-  \resumeSubHeadingListStart
-
-    \resumeSubheading
-      {Wargaming Asia}{Feb 2023 -- Dec 2026}
-      {Singapore}{}
-      \resumeSubSubheading{IT Manager, APAC}{May 2025 -- Dec 2026}
-      \resumeItemListStart
-        \resumeItem{Led infrastructure validation, pilot deployments, and regional rollout of global IT initiatives across Singapore, Japan, and South Korea.}
-        \resumeItem{Redesigned service desk workflows and introduced proactive endpoint monitoring, reducing recurring incident escalations by 20\%.}
-      \resumeItemListEnd
-      \resumeSubSubheading{IT Specialist, APAC}{Feb 2023 -- May 2025}
-      \resumeItemListStart
-        \resumeItem{Administered endpoint compliance and identity security for 200 users across a Windows and macOS estate using Microsoft Intune, Microsoft Entra ID (Azure AD), and Conditional Access.}
-        \resumeItem{Developed PowerShell automation for Secure Boot certificate validation and language-pack deployment, reducing manual setup time by 20\%.}
-        \resumeItem{Maintained network perimeter and firewall configuration across the regional estate, owning patch compliance and end-to-end identity access lifecycles.}
-      \resumeItemListEnd  
-
-    \resumeSubheading
-      {TabSquare}{Jun 2022 -- Feb 2023}
-      {Operations Manager}{Singapore}
-      \resumeItemListStart
-        \resumeItem{Restructured an 8-person support team into two specialised units --- Project Delivery and Technical Support --- separating deployment work from reactive maintenance, which improved deployment speed by 20\%.}
-        \resumeItem{Standardised the end-to-end client onboarding workflow and transferred ownership to autonomous team leads, cutting leadership escalations by 20\% and increasing onboarding capacity by 40\%.}
-        \resumeItem{Designed and delivered technical training covering IP networking, OS virtualisation, and database fundamentals, improving the team's ability to troubleshoot issues independently.}
-      \resumeItemListEnd
-
-    \resumeSubheading
-      {Safra}{May 2021 -- Jun 2022}
-      {IT Infrastructure Lead}{Singapore}
-      \resumeItemListStart
-        \resumeItem{Administered identity and access management across Microsoft Entra ID (Azure AD), Microsoft 365, and AWS IAM, including least-privilege access control, user provisioning, and group management.}
-        \resumeItem{Led migration of core enterprise applications --- including Microsoft Dynamics AX ERP and gaming systems --- into Tier-3 co-location facilities as part of a S\$2M digital transformation programme, with minimal downtime.}
-        \resumeItem{Configured and troubleshot hybrid network security perimeters, managing Layer 4/7 stateful filtering across F5 WAF, Palo Alto, and Check Point Next-Gen Firewalls.}
-        \resumeItem{Served as final Tier-3 escalation owner for systemic server and infrastructure issues, and supervised outsourced desktop support vendors.}
-      \resumeItemListEnd
-
-    \resumeSubheading
-      {McDonald's Singapore}{Dec 2017 -- May 2021}
-      {IT Consultant II}{Singapore}
-      \resumeItemListStart
-        \resumeItem{Integrated GrabFood and Foodpanda with the POS system to automate order processing, improving kitchen fulfilment speed by 60\% and contributing to a 25\% increase in digital sales.}
-        \resumeItem{Led hardware staging, configuration, and network readiness for the nationwide rollout of the McDonald's Singapore mobile app across 135 outlets.}
-      \resumeItemListEnd
-
-    \resumeSubheading
-      {Systems Design}{Dec 2013 -- Dec 2017}
-      {Computer Technician}{Singapore}
-      \resumeItemListStart
-        \resumeItem{Built a diagnostics script (Batch) to scan client endpoints and extract hardware models, IP addresses, and serial numbers, replacing manual asset tracking during rollouts.}
+        \resumeItem{Runs a multi-site lab on Proxmox VE and MikroTik covering VLAN segmentation, WireGuard VPN tunnels, firewall rules and a self-hosted Technitium DNS resolver operated as a systemd service --- used to validate infrastructure changes before they reach production.}
       \resumeItemListEnd
 
   \resumeSubHeadingListEnd
@@ -243,17 +303,15 @@
   \resumeSubHeadingListEnd
 
 %----------------------------------------------------------------------
-% FROM JAN 2027: change Wargaming dates to "Feb 2023 -- Dec 2026", then
-% add this as the first entry under \section{Experience}. It keeps your
-% 2027 activity visible on the timeline rather than leaving a gap.
+% FROM JAN 2027: convert all Wargaming bullets to PAST tense. If you want the
+% gap visible on the timeline, add this as the first entry under Experience:
 %
 %  \resumeSubheading
 %    {Career Development Sabbatical}{Jan 2027 -- Present}
 %    {Cloud Infrastructure Engineering}{Singapore}
 %    \resumeItemListStart
-%      \resumeItem{Built and shipped a production resume site on AWS --- S3, CloudFront, WAF, Lambda, SNS, Route 53 --- managed as code with a keyless GitHub Actions pipeline via OIDC.}
-%      \resumeItem{Built and operate a multi-site Proxmox VE and MikroTik homelab covering VLANs, VPN tunnels, firewall rules, and network segmentation.}
-%      \resumeItem{Preparing for the Microsoft Azure Administrator Associate (AZ-104) and HashiCorp Terraform Associate exams.}
+%      \resumeItem{Built and shipped a production portfolio site on AWS --- S3, CloudFront, WAF, Lambda, SNS, Route 53 --- with a keyless GitHub Actions release pipeline via OIDC.}
+%      \resumeItem{Operate a multi-site Proxmox VE and MikroTik homelab covering VLANs, VPN tunnels, firewall rules and network segmentation.}
 %    \resumeItemListEnd
 %----------------------------------------------------------------------
 
