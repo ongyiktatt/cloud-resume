@@ -34,7 +34,7 @@ This repository is public, so everything committed is world-readable.
 | `yarn lint`                                             | ⚠️ **Mutates files** (`prettier --write` + `eslint --fix`). Not a check.                                                                          |
 | `yarn eslint 'src/**/*.{ts,tsx}' --max-warnings=0`      | Read-only lint check (no `--fix`). Use this to verify instead of `yarn lint`.                                                                     |
 
-There is no test suite.
+There is no test suite, and **no local LaTeX toolchain** (no `pdflatex`, `latexmk` or `docker`) — `resume/resume.tex` can only be compiled by CI.
 
 ## Architecture
 
@@ -43,6 +43,7 @@ There is no test suite.
 - **Deploy** is GitHub Actions (`.github/workflows/main.yml`): push to `main` → `yarn build` → `aws s3 sync out/ …` → CloudFront invalidation.
 - **Content is data-driven.** Copy lives in `src/data/data.tsx` (types in `src/data/dataDef.ts`); site-wide constants and env-var fallbacks live in `src/config.ts`. Prefer editing data over components.
 - **Contact form**: `src/components/Sections/Contact/ContactForm.tsx` → Lambda Function URL from `src/config.ts`. The backend is `aws/recaptcha-verify/` — see its [README](./aws/recaptcha-verify/README.md).
+- **The résumé PDF is built from LaTeX in CI.** `resume/resume.tex` is the source of truth; the workflow compiles it and publishes it as `public/assets/Resume_Ong Yik Tatt.pdf`. Read [.github/instructions/resume-latex.instructions.md](./.github/instructions/resume-latex.instructions.md) before editing the source or its CI steps.
 
 ## Conventions
 
@@ -54,10 +55,13 @@ There is no test suite.
   - `react-memo/require-memo` + `require-usememo` — every component needs `memo()`, and every local value passed into JSX or a dependency array needs `useMemo`/`useCallback` (use the `// eslint-disable-next-line react-memo/require-memo` escape only for `next/dynamic`, as `src/pages/index.tsx` does).
 - The `react-memo` plugin is **vendored and patched** at `tools/eslint-plugin-react-memo/` (upstream is from 2015). Read its [README](./tools/eslint-plugin-react-memo/README.md) before touching it.
 - Prettier (`.prettierrc`): single quotes, no bracket spacing, 120 columns, `bracketSameLine`, `arrowParens: avoid`. It does **not** set `jsxSingleQuote`, so Prettier rewrites JSX attributes to double quotes — running it over `src/data/data.tsx` produces ~100 lines of unrelated churn. Avoid.
+- **Copy is British English**: `-ise`/`-isation`, `behaviour`, `centre`, `programme` (a scheme — `program` stays for software), `fulfilment`, `organisation`. This covers site copy, the résumé source, comments and documentation. Do not convert it back; note that `yarn.lock` package names such as `@img/colour` are not prose.
+- `next-env.d.ts` is tracked but auto-generated: it points at `./.next/types/…` after `next build` and `./.next/dev/types/…` after `next dev`, so it dirties the working tree whenever you switch command. It is not part of the `tsc` program (`tsconfig.json` only includes `./src/**/*`). Revert the churn rather than committing it.
 - `.yarnrc` sets `workspaces-experimental false` deliberately. Yarn 1 prints "Workspaces can only be enabled in private projects" once per dependency path on a clean install, because `eslint` publishes a `workspaces` field without `private: true`. Keep the setting if the warning reappears — do not silence it by adding `private: true`.
 - Both `NEXT_PUBLIC_*` values are **required** — `src/config.ts` throws at build time when one is missing or empty, and GitHub Actions substitutes `""` for an unset repository variable, so empty counts as missing. Locally, copy `.env.example` to `.env.local` and fill both in (`.env.local` is gitignored — never commit it); in CI they come from the `RECAPTCHA_SITE_KEY` and `CONTACT_VERIFY_URL` repository variables. There are no committed fallbacks.
 - Components are `memo()`-wrapped function components with a default export; pages live in `src/pages/`, sections in `src/components/Sections/`.
-- Nav scroll-spy (`src/hooks/useNavObserver.tsx`) deliberately uses a thin detection band with `threshold: 0`. Section ids are `hero, about, resume, portfolio, contact` — there is no `#home`.
+- Nav scroll-spy (`src/hooks/useNavObserver.tsx`) deliberately uses a thin detection band with `threshold: 0`. Section ids are `hero, about, resume, portfolio, contact` — there is no `#home`. **The rendered order is `Hero → About → Resume → Portfolio → Contact`**, and Resume sitting above Portfolio is deliberate (see the comment in `src/pages/index.tsx`) — keep the `navSections` array in `Header.tsx` in that same visual order or the nav lies.
+- **Site identity lives in three places** and they have to change together: `homePageMeta.title` and `homePageMeta.description` in `src/data/data.tsx`, and the `name` field in `public/site.webmanifest`. `src/components/Layout/Page.tsx` renders the first two into `<title>`, `<meta name="description">`, `og:*` and `twitter:*`; the manifest supplies the installed-app name. Changing only the title leaves the retired wording in search results and link previews.
 
 ## AWS
 

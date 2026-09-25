@@ -52,3 +52,21 @@ the `azure-prod-resume` stack.
 - `aws lambda create-function` can fail with "role cannot be assumed by Lambda" right after creating the role (IAM propagation). Retry before troubleshooting.
 - Deleting and recreating the Function URL changes its hostname — update `src/config.ts`, `.env.local` and the CI variable together.
 - `aws cloudfront create-function --function-code` requires **raw base64**; the `fileb64://` prefix is not supported by this CLI.
+
+## Terraform (a work in progress, not the deployment path)
+
+`aws/terraform/` exists but is **not** how this site is deployed — the workflow uses the
+AWS CLI and the live stack was built by hand, so where they disagree the **live account
+wins**. At the time of writing it is a provider-only skeleton: `environments/prod/main.tf`
+pins `hashicorp/aws = 6.64.0` alongside a committed `.terraform.lock.hcl`, while
+`bootstrap/` and the four `modules/` directories are still empty (git does not track empty
+directories, so committing the folder today would add exactly two files).
+
+- The folder is **untracked and owned by the user**. Do not commit it, restructure it, or
+  "finish" it unless asked.
+- `.gitignore` ignores `**/.terraform/*`. The trailing `/*` matters: only the **contents**
+  of a `.terraform` directory are ignored, not the directory entry itself, so
+  `git check-ignore` on the bare directory exits non-zero and looks like a broken rule.
+- `.terraform.lock.hcl` is deliberately **not** ignored — it pins provider versions and is
+  meant to be committed.
+- `*.tfvars` and state files are ignored because this repository is public.
