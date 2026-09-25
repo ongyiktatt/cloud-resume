@@ -26,9 +26,9 @@ import {
  * Page meta data
  */
 export const homePageMeta: HomepageMeta = {
-  title: 'Yik Tatt Ong | Cloud Infrastructure Engineer',
+  title: 'Yik Tatt Ong | IT Manager, APAC — Regional IT Operations',
   description:
-    'Cloud infrastructure engineer in Singapore with 12+ years in enterprise IT — AWS, Terraform, hybrid cloud, identity and keyless CI/CD.',
+    'Regional IT manager in Singapore with 12+ years in enterprise IT — multi-country operations across Singapore, Japan and South Korea, vendor and SLA governance, identity and hybrid-cloud oversight.',
 };
 
 /**
@@ -55,7 +55,7 @@ export const heroData: Hero = {
   description: (
     <>
       <p className="text-lg font-semibold text-orange-400 sm:text-xl lg:text-2xl">
-        Cloud Infrastructure Engineer · Hybrid Cloud · Identity &amp; Automation
+        IT Manager, APAC · Regional IT Operations · Infrastructure, Identity &amp; Cloud Governance
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
         AWS Certified Solutions Architect – Associate · AWS Certified CloudOps Engineer – Associate · AWS Certified
@@ -66,19 +66,17 @@ export const heroData: Hero = {
         shouldn't need a human.
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        <strong className="text-stone-100">12+ years in enterprise IT</strong> across Singapore and the APAC region,
-        now building on AWS with Terraform and keyless CI/CD.
+        <strong>12+ years in enterprise IT</strong> across Singapore and the APAC region — multi-country operations for
+        200 users, a S$100K regional budget, and vendor and SLA accountability across three markets.
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        Open to <strong className="text-stone-100">Cloud Engineer and Infrastructure Engineer</strong> roles in
-        Singapore. Available for interviews immediately; available to start January 2027.
+        Open to <strong>IT Manager, IT Infrastructure Manager and IT Operations Manager</strong> roles in Singapore.
+        Available for interviews immediately; available to start January 2027.
       </p>
     </>
   ),
   actions: [
     {
-      // Percent-encoded because the published file is "Resume_Ong Yik Tatt.pdf";
-      // it is generated from resume/resume.tex.
       href: '/assets/Resume_Ong%20Yik%20Tatt.pdf',
       text: 'Resume',
       primary: true,
@@ -103,14 +101,10 @@ export const aboutData: About = {
         I've spent 12+ years keeping enterprise infrastructure running — data centre migrations into Tier-3 co-location
         under a S$2M programme, and regional IT operations for 200 users across Singapore, Japan and South Korea.
       </p>
+      <p>Three AWS certifications in 2026, studied alongside my current role.</p>
       <p>
-        That taught me what production demands. I've since turned it outward — three AWS certifications in 2026, plus a
-        live stack this site runs on: S3 and CloudFront behind WAF, deployed by GitHub Actions with OIDC and no stored
-        access keys.
-      </p>
-      <p>
-        What I'm building toward is the overlap: infrastructure I've run in production, defined as code I can review,
-        version and roll back.
+        This site runs on the stack I built and hardened — S3 and CloudFront behind a WAF, released by GitHub Actions
+        with OIDC and no stored access keys.
       </p>
       <p>Off the clock: cameras, hi-fi audio, and tinkering with the homelab.</p>
     </>
@@ -132,36 +126,44 @@ export const aboutData: About = {
  */
 export const skills: SkillGroup[] = [
   {
-    name: 'Cloud Platforms',
+    name: 'Leadership & Regional Delivery',
     skills: [
       {
-        name: 'AWS Compute & Networking (VPC, EC2, S3, Route 53)',
+        name: 'Multi-Country IT Operations (SG · JP · KR)',
+        level: 9,
+      },
+      {
+        name: 'IT Budget Ownership (S$100K opex)',
         level: 8,
       },
       {
-        name: 'AWS Serverless & Edge (Lambda, CloudFront, WAF)',
-        level: 7,
+        name: 'Team Structuring & Capability Building',
+        level: 8,
       },
       {
-        name: 'Microsoft Azure (VMs, VNet)',
-        level: 7,
+        name: 'ITIL 4 Service Management',
+        level: 8,
       },
     ],
   },
   {
-    name: 'Infrastructure as Code & CI/CD',
+    name: 'Vendor & SLA Governance',
     skills: [
       {
-        name: 'Terraform',
+        name: 'Vendor Performance & SLA Compliance',
+        level: 9,
+      },
+      {
+        name: 'Contract, Renewal & Escalation Management',
         level: 8,
       },
       {
-        name: 'GitHub Actions (OIDC keyless deployment)',
-        level: 8,
+        name: 'Outsourced Service Delivery',
+        level: 9,
       },
       {
-        name: 'Git',
-        level: 7,
+        name: 'Stakeholder Management',
+        level: 8,
       },
     ],
   },
@@ -191,6 +193,27 @@ export const skills: SkillGroup[] = [
     ],
   },
   {
+    name: 'Cloud & Infrastructure Oversight',
+    skills: [
+      {
+        name: 'AWS (VPC, EC2, S3, Route 53)',
+        level: 8,
+      },
+      {
+        name: 'AWS Serverless & Edge (Lambda, CloudFront, WAF)',
+        level: 7,
+      },
+      {
+        name: 'Least-Privilege & Compliance Baselines',
+        level: 8,
+      },
+      {
+        name: 'Release Credential Hygiene (OIDC, no stored keys)',
+        level: 8,
+      },
+    ],
+  },
+  {
     name: 'Networking & Security',
     skills: [
       {
@@ -216,32 +239,23 @@ export const skills: SkillGroup[] = [
     ],
   },
   {
-    name: 'Systems & Virtualisation',
+    name: 'Systems, Automation & Scripting',
     skills: [
       {
-        name: 'Docker',
+        name: 'Windows · macOS · Linux (Debian)',
         level: 8,
       },
       {
-        name: 'Proxmox VE',
+        name: 'Docker & Proxmox VE',
         level: 8,
       },
-      {
-        name: 'Linux (Debian)',
-        level: 7,
-      },
-    ],
-  },
-  {
-    name: 'Automation & Scripting',
-    skills: [
       {
         name: 'PowerShell',
         level: 9,
       },
       {
-        name: 'Bash',
-        level: 7,
+        name: 'Git & GitHub Actions',
+        level: 8,
       },
     ],
   },
@@ -254,20 +268,20 @@ export const portfolioItems: PortfolioItem[] = [
   {
     title: 'Portfolio site on AWS (this site)',
     description:
-      'Next.js site shipped end-to-end on AWS: static export on S3 + CloudFront behind a WAF, keyless deploys via GitHub Actions OIDC, and a serverless Lambda + SNS contact form that emails me on submit.',
+      'Built and hardened this site on AWS: static export on S3 + CloudFront behind a WAF, released by GitHub Actions with OIDC role assumption so no long-lived access keys exist in the delivery path, plus a serverless Lambda + SNS contact form.',
     tech: ['S3', 'CloudFront', 'WAF', 'Lambda', 'SNS', 'GitHub Actions (OIDC)'],
     url: 'https://github.com/ongyiktatt/cloud-resume',
   },
   {
     title: 'Virtualisation & Networking Homelab',
     description:
-      'Multi-site lab on Proxmox VE: Debian VMs and containerised workloads, MikroTik routing with VLAN segmentation and WireGuard tunnels, plus self-hosted DNS and remote access. Where I validate network and infrastructure patterns before they matter.',
+      'Multi-site lab on Proxmox VE: Debian VMs and containerised workloads, MikroTik routing with VLAN segmentation and WireGuard tunnels, plus self-hosted DNS and remote access — where I validate network and infrastructure changes before they matter.',
     tech: ['Proxmox VE', 'Debian', 'Docker', 'MikroTik (RouterOS)', 'WireGuard', 'VLANs'],
   },
 ];
 
 /**
- * Resume section -- TODO: Standardise resume contact format or offer MDX
+ * Resume section
  */
 export const certification: TimelineItem[] = [
   {
@@ -295,6 +309,15 @@ export const certification: TimelineItem[] = [
     content: <></>,
   },
   {
+    // Optional. Keep only if you are comfortable showing an in-progress credential
+    // on a public page. It is labelled clearly and carries no verification link.
+    date: 'In progress',
+    location: 'Microsoft',
+    title: 'Azure Administrator Associate (AZ-104)',
+    compact: true,
+    content: <></>,
+  },
+  {
     date: 'May 2021',
     location: 'ITIL',
     title: 'ITIL 4 Foundation',
@@ -303,6 +326,7 @@ export const certification: TimelineItem[] = [
     content: <span className="block text-center md:text-left">Credential ID: GR671273878OY</span>,
   },
 ];
+
 export const education: TimelineItem[] = [
   {
     date: 'September 2020 - October 2022',
@@ -317,7 +341,6 @@ export const experience: TimelineItem[] = [
     date: 'February 2023 - December 2026',
     location: 'Singapore',
     title: 'Wargaming Asia',
-    // Two roles at one employer, so the promotion reads as a progression rather than two jobs.
     roles: [
       {
         title: 'IT Manager, APAC',
@@ -325,18 +348,26 @@ export const experience: TimelineItem[] = [
         content: (
           <ul className="list-disc list-outside pl-5 space-y-1">
             <li>
-              Owned regional IT operations end-to-end — <strong className="text-stone-0">S$100K annual budget</strong>,
-              vendor SLAs, and infrastructure across 200 users in three countries
+              Own regional IT operations across Singapore, Japan and South Korea as the{' '}
+              <strong>sole internal IT resource in the Singapore regional office</strong> — S$100K annual operating
+              budget, vendor performance and SLA compliance
             </li>
             <li>
-              Led pilot testing and regional rollout of global IT initiatives, validating infrastructure changes before
-              deployment across all three markets
+              <strong>Direct vendor-supplied engineers in Japan and South Korea</strong> — setting work priorities,
+              reviewing weekly service metrics and holding response and resolution targets across separate vendor
+              ecosystems
             </li>
             <li>
-              <strong className="text-stone-0">
-                Redesigned service desk workflows and introduced proactive endpoint monitoring
-              </strong>
-              , cutting recurring incident escalations by 20%
+              Remain hands-on in Singapore: endpoint compliance, identity and access management, network and unified
+              communications
+            </li>
+            <li>
+              Lead local validation, pilot deployment and regional rollout of global IT initiatives for 200 users across
+              three markets
+            </li>
+            <li>
+              <strong>Redesigned service desk workflows and introduced proactive endpoint monitoring</strong>, cutting
+              recurring incident escalations by 20%
               {/* TODO: convert to absolute figure, e.g. "from X to Y tickets per month" */}
             </li>
           </ul>
@@ -348,20 +379,17 @@ export const experience: TimelineItem[] = [
         content: (
           <ul className="list-disc list-outside pl-5 space-y-1">
             <li>
-              <strong className="text-stone-0">
-                Built PowerShell automation to validate Secure Boot certificates and deploy language packs
-              </strong>
-              , cutting manual device setup time by 20%
+              Administered endpoint compliance and configuration baselines for a mixed Windows and macOS fleet using{' '}
+              <strong>Microsoft Intune, Microsoft Entra ID and Conditional Access</strong>
+            </li>
+            <li>
+              <strong>Built PowerShell automation to validate Secure Boot certificates and deploy language packs</strong>,
+              cutting manual device setup time by 20%
               {/* TODO: convert to absolute figure, e.g. "from X to Y minutes per device" */}
             </li>
             <li>
-              Secured a multi-OS environment with{' '}
-              <strong className="text-stone-0">Microsoft Intune, Entra ID, and Conditional Access</strong>, managing
-              endpoint compliance and identity lifecycle at scale
-            </li>
-            <li>
-              Managed office network infrastructure and unified communications, including Microsoft Teams Rooms
-              deployment
+              Owned end-to-end identity access lifecycles — user provisioning, group management, least-privilege access
+              and offboarding
             </li>
           </ul>
         ),
@@ -375,58 +403,56 @@ export const experience: TimelineItem[] = [
     content: (
       <ul className="list-disc list-outside pl-5 space-y-1">
         <li>
-          <strong className="text-stone-0">Restructured an 8-person support team into two specialised units</strong> —
-          Project Delivery and Technical Support — separating deployment work from reactive maintenance, improving
-          deployment speed by 20%
+          <strong>Restructured an 8-person support team into two specialised units</strong> — Project Delivery and
+          Technical Support — separating deployment work from reactive maintenance and cutting client deployment time by
+          20%
         </li>
         <li>
-          <strong className="text-stone-0">
-            Standardised end-to-end client onboarding and transferred ownership to autonomous team leads
-          </strong>
-          , cutting leadership escalations by 20% while increasing onboarding capacity by 40%
-          {/* TODO: convert to absolute figure, e.g. "from X to Y escalations per month" */}
+          <strong>Standardised end-to-end client onboarding and transferred ownership to autonomous team leads</strong>,
+          lifting client onboarding capacity by 40%
         </li>
         <li>
-          Partnered with Product Engineering on deployment feedback and recurring defect trends, directly informing
-          product improvements and release planning
+          Partnered with Product Engineering on deployment feedback and recurring defect trends, feeding live operating
+          issues into product release planning
         </li>
         <li>
           Designed and delivered technical training in{' '}
-          <strong className="text-stone-0">IP networking, OS virtualisation, and database fundamentals</strong>,
-          building the team's ability to troubleshoot independently
+          <strong>IP networking, OS virtualisation and database fundamentals</strong>
         </li>
       </ul>
     ),
   },
   {
-    date: 'May 2021 - June 2022',
+    date: 'May 2021 - June 2022 (Contract)',
     location: 'SAFRA',
     title: 'IT Infrastructure Lead',
     content: (
       <ul className="list-disc list-outside pl-5 space-y-1">
         <li>
-          <strong className="text-stone-0">Led data centre migrations as part of a $2M digital transformation</strong>,
-          moving core enterprise applications — including Microsoft Dynamics AX ERP and gaming systems — into Tier-3
-          co-location facilities with minimal downtime
-        </li>
-        <li>
-          Configured and troubleshot hybrid network security perimeters, managing{' '}
-          <strong className="text-stone-0">
-            Layer 4/7 stateful filtering across F5 WAF, Palo Alto, and Check Point Next-Gen Firewalls
-          </strong>
+          <strong>Led data centre migration as part of a S$2M digital transformation</strong>, moving core enterprise
+          applications — including Microsoft Dynamics AX ERP and gaming systems — into Tier-3 co-location facilities
+          with minimal production downtime
         </li>
         <li>
           Administered identity and access management across{' '}
-          <strong className="text-stone-0">Microsoft Entra ID, Microsoft 365, and AWS IAM</strong> — user provisioning,
-          group management, and access control
+          <strong>Microsoft Entra ID, Microsoft 365 and AWS IAM</strong> — least-privilege access control, user
+          provisioning and group management
         </li>
         <li>
-          Managed a <strong className="text-stone-0">$100K annual operating budget</strong> covering Office 365
-          configuration and hardware fleet maintenance
+          Directed a <strong>S$100K dedicated budget line</strong> covering Microsoft 365 platform configuration,
+          hardware fleet maintenance and repairs
         </li>
         <li>
-          Served as final Tier-3 escalation owner for systemic server and infrastructure issues, supervising outsourced
-          desktop support vendors
+          Governed corporate IT hardware leasing lifecycles, asset discovery and deployment schedules across an
+          enterprise fleet of 300+ connected devices
+        </li>
+        <li>
+          Served as final escalation owner for systemic infrastructure issues, supervising outsourced desktop support
+          vendors against agreed service levels
+        </li>
+        <li>
+          Configured and troubleshot hybrid network security perimeters across F5 WAF, Palo Alto and Check Point
+          next-gen firewalls, including Layer 4/7 stateful filtering
         </li>
       </ul>
     ),
@@ -438,21 +464,17 @@ export const experience: TimelineItem[] = [
     content: (
       <ul className="list-disc list-outside pl-5 space-y-1">
         <li>
-          <strong className="text-stone-0">
-            Integrated GrabFood and Foodpanda with the POS system to automate order processing
-          </strong>{' '}
-          improving kitchen fulfilment speed by 60% and contributing to a 25% increase in digital sales
+          Managed outsourced IT vendors across <strong>135 restaurant outlets</strong>, ensuring SLA compliance and
+          operational support for{' '}
+          <strong>500+ self-order kiosks, 1,000 POS terminals and 2,000 kitchen display systems</strong>
         </li>
         <li>
-          Managed outsourced IT vendors across <strong className="text-stone-0">135 restaurant outlets</strong>,
-          ensuring SLA compliance and operational support for{' '}
-          <strong className="text-stone-0">
-            500+ self-order kiosks, 1,000 POS terminals, and 2,000 kitchen display systems
-          </strong>
+          <strong>Integrated GrabFood and Foodpanda with the POS system to automate order processing</strong>, improving
+          kitchen fulfilment speed by 60% and contributing to a 25% increase in digital sales
         </li>
         <li>
-          Led hardware staging, configuration, and network readiness for the{' '}
-          <strong className="text-stone-0">nationwide rollout of the McDonald's App</strong> across all 135 outlets
+          Led hardware staging, configuration and network readiness for the{' '}
+          <strong>nationwide rollout of the McDonald's App</strong> across the full outlet estate
         </li>
       </ul>
     ),
@@ -460,20 +482,20 @@ export const experience: TimelineItem[] = [
   {
     date: 'December 2013 - December 2017',
     location: 'Systems Design',
-    title: 'Computer Technician',
+    title: 'IT Field Technician',
     content: (
       <ul className="list-disc list-outside pl-5 space-y-1">
         <li>
-          <strong className="text-stone-0">Built a diagnostics script (Batch) to scan client endpoints</strong> and
-          extract hardware models, IP addresses, and serial numbers — replacing manual asset tracking during rollouts
-        </li>
-        <li>
           Staged and configured servers for customer deployments, alongside edge hardware including{' '}
-          <strong className="text-stone-0">Cisco routers, switches, and wireless access points</strong>
+          <strong>Cisco routers, switches and wireless access points</strong>
         </li>
         <li>
-          Installed and maintained point-of-sale servers and kitchen display hardware across new corporate client
-          accounts
+          Installed and maintained point-of-sale servers and kitchen display hardware across new client site openings,
+          including <strong>McDonald's Singapore outlets</strong>
+        </li>
+        <li>
+          <strong>Built a diagnostics script (Batch) to scan client endpoints</strong> and extract hardware models, IP
+          addresses and serial numbers — replacing manual asset tracking during rollouts
         </li>
       </ul>
     ),
@@ -500,6 +522,11 @@ export const contact: ContactSection = {
       type: ContactType.Github,
       text: 'ongyiktatt',
       href: 'https://github.com/ongyiktatt',
+    },
+    {
+      type: ContactType.LinkedIn,
+      text: 'ongyiktatt',
+      href: 'https://www.linkedin.com/in/ongyiktatt/',
     },
   ],
 };

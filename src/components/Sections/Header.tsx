@@ -11,7 +11,9 @@ export const headerID = 'headerNav';
 
 const Header: FC = memo(() => {
   const [currentSection, setCurrentSection] = useState<SectionId | null>(null);
-  const navSections = useMemo(() => [SectionId.About, SectionId.Portfolio, SectionId.Resume, SectionId.Contact], []);
+  // Kept in the order the sections are rendered by src/pages/index.tsx, so the nav reads in the
+  // same order the reader scrolls. Resume sits above Portfolio there deliberately.
+  const navSections = useMemo(() => [SectionId.About, SectionId.Resume, SectionId.Portfolio, SectionId.Contact], []);
 
   const intersectionHandler = useCallback((section: SectionId | null) => {
     if (section) {
