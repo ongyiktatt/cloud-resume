@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Single-page site: one canonical URL. There is deliberately no <lastmod> or
+  <changefreq> here. A hand-maintained lastmod goes stale, and Google ignores
+  the field once it looks unreliable, so omitting it is better than lying about
+  it. If an accurate lastmod becomes worth having, generate this file at build
+  time rather than editing the date by hand.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://ongyiktatt.com/</loc>
+  </url>
+</urlset>

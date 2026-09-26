@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# The site is a single page, so there is one URL to list.
+Sitemap: https://ongyiktatt.com/sitemap.xml
