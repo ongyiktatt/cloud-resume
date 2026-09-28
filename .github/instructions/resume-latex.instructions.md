@@ -23,9 +23,9 @@ that choice is load-bearing:
   build capability.
 - No claim to lead a large team. The honest model is a lean regional owner with
   vendor-supplied engineers in two markets.
-- **Terraform and IaC are deliberately absent.** Do not reintroduce "Infrastructure as
-  Code", "Terraform" or "provisioned as code". The Terraform certification row has been
-  removed outright — see *Deliberately removed content* below to put it back.
+- **Infrastructure-as-code tooling is deliberately absent.** Do not reintroduce
+  provisioning-as-code language, state-management vocabulary or a certification row for
+  it — that invites a question about state handling that cannot be defended.
 - Wargaming bullets are **present tense** while the role runs to 31 Dec 2026. Convert them
   to past tense on 1 Jan 2027.
 
@@ -33,7 +33,7 @@ that choice is load-bearing:
 role — `homePageMeta` and the hero both lead with IT Manager / regional IT operations —
 but it deliberately carries more AWS and automation detail than this file allows. Do not
 copy website copy into the résumé: the PDF is the more conservative document, and the
-Terraform/IaC prohibition above still applies there.
+infrastructure-as-code prohibition above still applies there.
 
 ## Layout traps
 
@@ -85,15 +85,8 @@ literal space. If the file is ever renamed, update that literal, the three paths
 
 ## Deliberately removed content
 
-These were taken out of `resume.tex` by decision, not by accident, and the exact snippets
-live here so they can be restored without rewriting them:
-
-- **Terraform certification row** — removed so the keyword never appears anywhere in the
-document. Add it back with the other certifications only if that positioning changes:
-
-  ```latex
-  \resumeCertItem{Hashicorp Certified: Terraform Associate \textit{--- in progress}}{Est. Nov 2026}
-  ```
+These were taken out of `resume.tex` by decision, not by accident, and the exact snippet is
+kept here so it can be restored without rewriting it:
 
 - **2027 sabbatical entry** — add as the first entry under Experience if the 2027 gap
   should be visible on the timeline. Do this on the same day the Wargaming bullets are
