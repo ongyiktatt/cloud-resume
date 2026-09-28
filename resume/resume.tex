@@ -4,6 +4,34 @@
 % Build: pdflatex resume.tex   (or: latexmk -pdf resume.tex)
 %
 % Editing rules for this file: .github/instructions/resume-latex.instructions.md
+%
+% REVISION 28 Sep 2026 (b) - EUC / SERVICE DELIVERY variant.
+%   Headline + Summary repositioned from infrastructure toward end-user
+%   computing and service delivery. Evidence added for the ITIL practices
+%   previously claimed in Skills but not evidenced in Experience:
+%     - major incident ownership (SAFRA Tier-3 SAN failure)
+%     - change assessment and approval authority (SAFRA)
+%     - problem management reframing of the -20% escalation reduction
+%   EUC depth added: WSUS patch management (SAFRA only) and Ivanti MDM.
+%   Technical Projects section REMOVED (cloud/homelab projects are neutral
+%   for EUC/SDM roles and the space was needed for service-management
+%   evidence). Certifications retained, including AWS.
+%   NOTE: the earlier generalist version with Technical Projects is the
+%   better fit for a GIC-style infrastructure application - see chat.
+%
+% LEVEL CALIBRATION - do not inflate: Windows Server at McDonald's = build
+%   imaging; at SAFRA = TROUBLESHOOT ONLY. No SCCM, PKI, SCOM, Citrix,
+%   Nutanix, Autopilot or Ansible is claimed anywhere. No post-incident
+%   review ownership is claimed.
+%
+%   TERRAFORM / IaC IS DELIBERATELY EXCLUDED FROM THIS FILE ENTIRELY
+%   (standing decision, 28 Sep 2026): the portfolio site was built
+%   MANUALLY - S3, CloudFront, Route 53, WAF, Lambda and ACM were
+%   configured by hand, and only the release pipeline is automated. At
+%   most, the release pipeline is CI/CD. The HashiCorp Terraform
+%   Associate cert row has ALSO been removed (it invited a state-management
+%   question he could not defend). Do NOT re-add Terraform, the Terraform
+%   cert row, Infrastructure-as-Code, IaC or remote-state language.
 %-------------------------
 
 \documentclass[letterpaper,10pt]{article}
@@ -34,7 +62,6 @@
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 
-% Adjust margins
 \addtolength{\oddsidemargin}{-0.5in}
 \addtolength{\evensidemargin}{-0.5in}
 \addtolength{\textwidth}{1in}
@@ -54,12 +81,18 @@
 % Machine-readable output so parsers read characters, not glyph junk
 \pdfgentounicode=1
 
-%-------------------------
-% Custom commands
+% --- BULLET SPACING FIX ---------------------------------------------------
+% \small is now declared ONCE for the whole list, before the first \item -
+% the same pattern the Summary section already uses. Previously \small was
+% applied per item AFTER \item, and every item ended with \vspace{-2pt}.
+% A \vspace at the end of a paragraph inside a list item is emitted
+% inconsistently by TeX: it can be absorbed into \parsep, or applied after
+% the paragraph, depending on whether another \item or \end{itemize}
+% follows. That is what made the gaps between bullets look uneven.
+% All bullet spacing is now set in ONE place, in \resumeItemListStart below.
+% To change density, adjust itemsep ONLY - do not re-add per-item \vspace.
 \newcommand{\resumeItem}[1]{
-  \item\small{
-    {#1 \vspace{-2pt}}
-  }
+  \item{#1}
 }
 
 \newcommand{\resumeSubheading}[4]{
@@ -70,8 +103,6 @@
     \end{tabular*}\vspace{-7pt}
 }
 
-% Second-level entry: a role held within the same employer, e.g. after a promotion.
-% Arg 2 = short date or {}.
 \newcommand{\resumeSubSubheading}[2]{
   \item
     \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
@@ -79,8 +110,6 @@
     \end{tabular*}\vspace{-7pt}
 }
 
-% Arg 2 = short date or {}. NOT a label - it will collide silently.
-% Keep arg 1 short: this cell does NOT wrap.
 \newcommand{\resumeProjectHeading}[2]{
     \item
     \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
@@ -88,7 +117,6 @@
     \end{tabular*}\vspace{-7pt}
 }
 
-% Single-line entry: name left, date right - used for certifications
 \newcommand{\resumeCertItem}[2]{
   \item
     \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
@@ -96,25 +124,24 @@
     \end{tabular*}\vspace{-6pt}
 }
 
-\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}}
 
 \renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
 
 \newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
 % itemsep scoped to the INNER bullet list ONLY. topsep deliberately unset.
-\newcommand{\resumeItemListStart}{\begin{itemize}[itemsep=0pt, parsep=0pt]}
+\newcommand{\resumeItemListStart}{\begin{itemize}[itemsep=0pt, parsep=0pt]\small}
 \newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
 
 %-------------------------------------------
-%%%%%%  RESUME STARTS HERE  %%%%%%
 
 \begin{document}
 
 %----------HEADING----------
 \begin{center}
     \textbf{\Huge \scshape Yik Tatt Ong} \\ \vspace{4pt}
-    \small Regional IT Manager $\cdot$ Multi-Country IT Operations $\cdot$ Cloud \& Identity Governance \\ \vspace{2pt}
+    \small Regional IT Manager $\cdot$ End User Computing \& Service Delivery $\cdot$ Multi-Country IT Operations \\ \vspace{2pt}
     \small Singapore $\cdot$ +65 8342 9085 $\cdot$
     \href{mailto:ytong95@gmail.com}{ytong95@gmail.com} \\ \vspace{2pt}
     \small \href{https://ongyiktatt.com}{ongyiktatt.com} $\cdot$
@@ -126,53 +153,53 @@
 \section{Summary}
  \begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{
-     \textbf{Regional IT manager with 12+ years in enterprise IT} across Singapore, Japan and South Korea, running multi-country infrastructure, service delivery and vendor operations. \\
-     \textbf{Owns a S\$100K annual operating budget} and vendor/SLA performance across a distributed regional vendor ecosystem, holding compliance with no increase in headcount. \\
-     \textbf{Promoted from IT Specialist to IT Manager in 27 months}; restructured an 8-person support operation into specialised delivery and support units, raising client onboarding capacity by 40\%. \\
-     \textbf{Governs cloud, identity and endpoint risk} for a 200-user estate --- Microsoft Entra ID, Intune, Conditional Access, Microsoft 365 and AWS IAM --- with least-privilege access, lifecycle control and audit-ready patch baselines. \\
-     \textbf{Led a S\$2M data centre programme} migrating core enterprise applications into Tier-3 co-location with minimal production downtime, as final escalation owner. \\
-     \textbf{AWS Certified Solutions Architect and CloudOps Engineer, ITIL 4 Foundation}; Microsoft Azure Administrator (AZ-104) in progress. \textbf{Available for interviews immediately; available to start January 2027.}
+     \textbf{Regional IT manager with 12+ years in enterprise IT}, running end-user computing and service delivery for a 200-user estate across Singapore, Japan and South Korea --- Microsoft Intune, Microsoft Entra ID, Conditional Access and Group Policy across a mixed Windows and macOS fleet. \\
+     \textbf{Owns ITIL-aligned service operations} --- major incident coordination, change assessment and approval, problem management and post-incident corrective action --- certified in ITIL 4 Foundation. \\
+     \textbf{Owns a S\$100K annual operating budget} and vendor performance across a distributed regional vendor ecosystem, holding SLA and service compliance with no increase in headcount. \\
+     \textbf{Restructured an 8-person support operation into specialised delivery and support units}, transferring ownership to autonomous leads and lifting client onboarding capacity by 40\%; later promoted from IT Specialist to IT Manager to own regional delivery across three markets. \\
+     \textbf{Governs identity and endpoint risk} --- least-privilege access, lifecycle management, WSUS patch baselines and audit-ready device compliance across a 300+ device estate. \\
+     \textbf{Directed recovery of a Tier-3 data centre failure} as major incident owner, restoring production service with minimal disruption as part of a S\$2M infrastructure programme. \textbf{AWS Certified Solutions Architect and CloudOps Engineer; AZ-104 in progress. Available for interviews immediately; available to start January 2027.}
      \vspace{-6pt}
     }}
  \end{itemize}
 
-%----------SKILLS (leadership first - this is the manager signal)----------
+%----------SKILLS----------
 \section{Skills}
   \resumeSubHeadingListStart
     \item\small{
-      \textbf{Leadership \& Regional Delivery:} Multi-Country IT Operations (SG / JP / KR) $\cdot$ Vendor-Led Service Delivery $\cdot$ IT Budget Ownership $\cdot$ Team Structuring \& Capability Building $\cdot$ Stakeholder Management $\cdot$ ITIL 4 Service Management \\
-      \textbf{Vendor \& SLA Governance:} Vendor Performance \& SLA Compliance $\cdot$ Contract, Renewal \& Escalation Management $\cdot$ Outsourced Service Delivery $\cdot$ Service Metrics Reporting \\
-      \textbf{Identity \& Access Management:} Microsoft Entra ID (Azure AD) $\cdot$ Microsoft Intune $\cdot$ Conditional Access $\cdot$ Microsoft 365 $\cdot$ AWS IAM $\cdot$ Least-Privilege Access Control \\
-      \textbf{Cloud \& Infrastructure Oversight:} AWS (VPC, EC2, S3, IAM, CloudFront, Route 53, Lambda, WAF) $\cdot$ Release Credential Hygiene (OIDC, no long-lived keys) $\cdot$ Compliance Baselines \\
+      \textbf{Leadership, Vendor \& Service Delivery:} Multi-Country IT Operations (SG / JP / KR) $\cdot$ Vendor-Led Service Delivery $\cdot$ Vendor Performance \& SLA Compliance $\cdot$ Contract, Renewal \& Escalation Management $\cdot$ IT Budget Ownership $\cdot$ Team Structuring \& Capability Building $\cdot$ Stakeholder Management \\
+      \textbf{IT Service Management:} ITIL 4 Foundation $\cdot$ Major Incident Coordination \& Escalation $\cdot$ Change Assessment \& Approval $\cdot$ Problem Management \& Root-Cause Analysis $\cdot$ Service Desk Workflow Design $\cdot$ SLA \& KPI Monitoring $\cdot$ Service Metrics Reporting $\cdot$ ServiceNow (user) $\cdot$ Jira / Jira Service Management (user) \\
+      \textbf{End User Computing \& Endpoint Management:} Microsoft Intune $\cdot$ Ivanti MDM $\cdot$ Conditional Access $\cdot$ Device Compliance Baselines $\cdot$ WSUS Patch Management $\cdot$ Device Lifecycle \& Asset Management $\cdot$ Windows \& macOS \\
+      \textbf{Identity \& Access Management:} Microsoft Entra ID (Azure AD) $\cdot$ Active Directory (AD DS) $\cdot$ Group Policy (GPO) $\cdot$ DNS $\cdot$ Microsoft 365 $\cdot$ AWS IAM $\cdot$ Least-Privilege Access Control \\
+      \textbf{On-Premises \& Server Platforms:} Windows Server (administration, troubleshooting, standard build imaging, patch compliance) $\cdot$ VMware vSphere (administration) $\cdot$ Server \& Edge Hardware Staging \\
+      \textbf{Cloud \& Infrastructure Oversight:} AWS (VPC, EC2, S3, IAM, CloudFront, Route 53, Lambda, WAF) $\cdot$ Compliance Baselines \\
       \textbf{Networking \& Perimeter Security:} TCP/IP $\cdot$ DNS $\cdot$ Routing $\cdot$ VLANs $\cdot$ Firewall Administration $\cdot$ F5 WAF $\cdot$ Palo Alto $\cdot$ Check Point $\cdot$ MikroTik $\cdot$ WireGuard \\
-      \textbf{Systems, Automation \& Scripting:} Windows $\cdot$ macOS $\cdot$ Linux (Debian) $\cdot$ Docker $\cdot$ Proxmox VE $\cdot$ PowerShell $\cdot$ Git $\cdot$ GitHub Actions (OIDC)
+      \textbf{Systems, Automation \& Scripting:} Windows $\cdot$ macOS $\cdot$ Linux (Debian) $\cdot$ PowerShell $\cdot$ Docker $\cdot$ Proxmox VE $\cdot$ Git $\cdot$ GitHub Actions
       \vspace{-6pt}
     }
   \resumeSubHeadingListEnd
 
-%----------EXPERIENCE (above Certifications for a manager reader)----------
+%----------EXPERIENCE----------
 \section{Experience}
   \resumeSubHeadingListStart
 
-    % arg 3 = role field (empty), arg 4 = location. Do NOT put the location in
-    % arg 3 - it prints where the job title belongs.
     \resumeSubheading
       {Wargaming Asia}{Feb 2023 -- Dec 2026}
       {}{Singapore}
       \resumeSubSubheading{IT Manager, APAC}{May 2025 -- Dec 2026}
       \resumeItemListStart
-        \resumeItem{Own regional IT operations across Singapore, Japan and South Korea as the sole internal IT resource in the Singapore regional office --- a S\$100K annual operating budget, vendor performance and SLA compliance.}
-        \resumeItem{Direct vendor-supplied engineers in Japan and South Korea, setting work priorities, reviewing weekly service metrics and holding response and resolution targets across separate vendor ecosystems.}
-        \resumeItem{Continue to own Singapore site infrastructure hands-on alongside the regional remit --- network, unified communications including Microsoft Teams Rooms, and patch compliance.}
-        \resumeItem{Lead local validation, pilot deployment and regional rollout of global IT initiatives for 200 users across three markets.}
-        \resumeItem{Redesign regional service desk workflows and introduce proactive endpoint monitoring, cutting recurring incident escalations by 20\%.}
-        % TODO: name the endpoint monitoring platform behind this claim.
+        \resumeItem{Own regional IT operations across Singapore, Japan and South Korea as the sole internal IT resource in the Singapore regional office --- a S\$100K annual operating budget, vendor performance and SLA compliance --- and direct vendor-supplied engineers in Japan and South Korea against response and resolution targets.}
+        \resumeItem{Own regional incident escalation across three markets, coordinating vendor engineers and holding communication with business stakeholders through to service restoration.}
+        \resumeItem{Apply problem management to recurring incident patterns --- introducing proactive endpoint monitoring and redesigning service desk workflows to cut recurring incident escalations by 20\%.}
+        \resumeItem{Govern change for regional IT initiatives across Singapore, Japan and South Korea --- validating readiness, piloting locally and sequencing deployments to avoid business disruption.}
+        \resumeItem{Continue to own Singapore site infrastructure hands-on alongside the regional remit --- network, Active Directory and Group Policy administration, unified communications including Microsoft Teams Rooms, and patch compliance.}
+        \resumeItem{Troubleshoot Windows Server and VMware-hosted workloads, applying structured root-cause analysis and escalating systemic issues with remediation plans.}
       \resumeItemListEnd
       \resumeSubSubheading{IT Specialist, APAC}{Feb 2023 -- May 2025}
       \resumeItemListStart
-        \resumeItem{Administered endpoint compliance and configuration baselines for a mixed Windows and macOS fleet using Microsoft Intune, Microsoft Entra ID (Azure AD) and Conditional Access.}
+        \resumeItem{Administered endpoint compliance and configuration baselines for a mixed Windows and macOS fleet using Microsoft Intune, Microsoft Entra ID (Azure AD), Group Policy and Conditional Access.}
         \resumeItem{Developed PowerShell automation for Secure Boot certificate validation and language-pack deployment, cutting manual device setup time by 20\%.}
-        \resumeItem{Owned end-to-end identity access lifecycles --- user provisioning, group management, least-privilege access and offboarding.}
+        \resumeItem{Owned end-to-end identity access lifecycles --- user provisioning, Active Directory group management, least-privilege access and offboarding.}
       \resumeItemListEnd
 
     \resumeSubheading
@@ -185,21 +212,18 @@
         \resumeItem{Designed and delivered technical training in IP networking, OS virtualisation and database fundamentals, raising independent troubleshooting capability across the team.}
       \resumeItemListEnd
 
-    % ---- page break: keeps SAFRA on page 2 with its bullets ----
-    \newpage
-
-    % TODO: confirm whether this role was a contract. The variant below is parked.
     \resumeSubheading
       {SAFRA}{May 2021 -- Jun 2022}
-      % {SAFRA}{May 2021 -- Jun 2022 (Contract)}
       {IT Infrastructure Lead}{Singapore}
       \resumeItemListStart
         \resumeItem{Led migration of core enterprise applications --- including Microsoft Dynamics AX ERP and gaming systems --- into Tier-3 co-location facilities as part of a S\$2M digital transformation programme, with minimal production downtime.}
+        \resumeItem{Directed the response to a major incident in which a Tier-3 data centre SAN failure took production workloads offline --- coordinating recovery across vendors, holding stakeholder communication and driving restoration of service.}
+        \resumeItem{Held change approval authority for infrastructure changes --- assessing risk, impact and readiness, and scheduling implementation windows to avoid service disruption.}
+        \resumeItem{Administered Active Directory, Group Policy and DNS for the corporate environment, and managed the VMware vSphere virtualisation platform hosting core enterprise services.}
+        \resumeItem{Managed WSUS patch deployment across the server and endpoint estate, and administered the Ivanti MDM estate for enrolled mobile devices.}
         \resumeItem{Administered identity and access management across Microsoft Entra ID (Azure AD), Microsoft 365 and AWS IAM --- least-privilege access control, user provisioning and group management.}
-        \resumeItem{Directed a S\$100K dedicated budget line covering Microsoft 365 platform configuration, hardware fleet maintenance and repairs.}
-        \resumeItem{Governed corporate IT hardware leasing lifecycles, asset discovery and deployment schedules across an enterprise fleet of 300+ connected devices.}
-        \resumeItem{Served as final escalation owner for systemic infrastructure issues, and supervised outsourced desktop support vendors against agreed service levels.}
-        \resumeItem{Configured and troubleshot hybrid network security perimeters across F5 WAF, Palo Alto and Check Point next-gen firewalls, including Layer 4/7 stateful filtering.}
+        \resumeItem{Governed corporate IT hardware leasing lifecycles, asset discovery and deployment schedules across an enterprise fleet of 300+ connected devices within a S\$100K dedicated budget line.}
+        \resumeItem{Served as final escalation owner for systemic infrastructure and Windows Server troubleshooting, and supervised outsourced desktop support vendors against agreed service levels.}
       \resumeItemListEnd
 
     \resumeSubheading
@@ -207,6 +231,8 @@
       {IT Consultant II}{Singapore}
       \resumeItemListStart
         \resumeItem{Managed outsourced IT vendors for SLA compliance, hardware availability and operational support across 135 restaurant outlets --- 500+ self-order kiosks, 1,000 POS terminals and 2,000 kitchen display systems.}
+        \resumeItem{Administered Active Directory and Group Policy across the corporate estate, controlling user access and enforcing device configuration standards at 135 outlets.}
+        \resumeItem{Troubleshot Windows Server and built new server images for the restaurant estate, standardising the build applied to POS and site servers during new outlet openings.}
         \resumeItem{Integrated GrabFood and Foodpanda with the POS system to automate order processing, improving kitchen fulfilment speed by 60\% and contributing to a 25\% increase in digital sales.}
         \resumeItem{Led hardware staging, configuration and network readiness for the nationwide rollout of the McDonald's Singapore mobile app across 135 outlets.}
       \resumeItemListEnd
@@ -215,8 +241,9 @@
       {Systems Design}{Dec 2013 -- Dec 2017}
       {IT Field Technician}{Singapore}
       \resumeItemListStart
-        \resumeItem{Staged and configured servers and edge hardware --- Cisco routers, switches, thin clients and wireless access points --- for customer deployments.}
+        \resumeItem{Staged and configured Windows Server and edge hardware --- Cisco routers, switches, thin clients and wireless access points --- for customer deployments, including hardware and server troubleshooting through to handover.}
         \resumeItem{Installed and maintained point-of-sale servers and kitchen display hardware across new client site openings, including McDonald's Singapore outlets.}
+        \resumeItem{Logged, tracked and resolved incidents and service requests in ServiceNow, building the ITIL-aligned service management discipline applied in later roles.}
         \resumeItem{Built a diagnostics script (Batch) to extract hardware models, IP addresses and serial numbers from client endpoints, replacing manual asset tracking during rollouts.}
       \resumeItemListEnd
 
@@ -230,24 +257,6 @@
     \resumeCertItem{\href{https://www.credly.com/badges/46c9f759-e3bc-42ae-8cab-73fd6da6f8ac/linked_in_profile}{AWS Certified Cloud Practitioner}}{May 2026}
     \resumeCertItem{Microsoft Certified: Azure Administrator Associate (AZ-104) \textit{--- in progress}}{Est. Oct 2026}
     \resumeCertItem{ITIL 4 Foundation \textit{(Certificate ID: GR671273878OY)}}{May 2021}
-  \resumeSubHeadingListEnd
-
-%----------TECHNICAL PROJECTS----------
-\section{Technical Projects}
-  \resumeSubHeadingListStart
-
-    \resumeProjectHeading
-      {\textbf{Live Portfolio Site on AWS} $|$ \emph{Next.js, S3, CloudFront, Route 53, ACM, WAF, Lambda, SNS, GitHub Actions (OIDC)}}{}
-      \resumeItemListStart
-        \resumeItem{Deployed and hardened a public-facing Next.js site on AWS --- S3 static export behind CloudFront with a custom domain and ACM TLS, blocked direct bucket access, WAF rules and least-privilege IAM --- released through a GitHub Actions pipeline using OIDC role assumption, so no long-lived access keys exist in the delivery path; includes a serverless Lambda + SNS contact form.}
-      \resumeItemListEnd
-
-    \resumeProjectHeading
-      {\textbf{Virtualisation \& Networking Lab} $|$ \emph{Proxmox VE, LXC, Debian 12, MikroTik, Docker, WireGuard}}{}
-      \resumeItemListStart
-        \resumeItem{Runs a multi-site lab on Proxmox VE and MikroTik covering VLAN segmentation, WireGuard VPN tunnels, firewall rules and a self-hosted Technitium DNS resolver operated as a systemd service --- used to validate infrastructure changes before they reach production.}
-      \resumeItemListEnd
-
   \resumeSubHeadingListEnd
 
 %----------EDUCATION----------
