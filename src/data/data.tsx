@@ -280,7 +280,6 @@ export const experience: TimelineItem[] = [
             <li>
               Apply <strong>problem management to recurring incident patterns</strong> — introducing proactive endpoint
               monitoring and redesigning service desk workflows to cut recurring incident escalations by 20%
-              {/* TODO: convert to absolute figure, e.g. "from X to Y tickets per month" */}
             </li>
             <li>
               <strong>Govern change for regional IT initiatives</strong> across Singapore, Japan and South Korea —
@@ -309,7 +308,6 @@ export const experience: TimelineItem[] = [
             <li>
               <strong>Built PowerShell automation to validate Secure Boot certificates and deploy language packs</strong>,
               cutting manual device setup time by 20%
-              {/* TODO: convert to absolute figure, e.g. "from X to Y minutes per device" */}
             </li>
             <li>
               Owned end-to-end identity access lifecycles — user provisioning, group management, least-privilege access
@@ -351,7 +349,7 @@ export const experience: TimelineItem[] = [
     location: 'SAFRA',
     title: 'IT Infrastructure Lead',
     content: (
-      <ul className="list-disc list-disc list-outside pl-5 space-y-1">
+      <ul className="list-disc list-outside pl-5 space-y-1">
         <li>
           <strong>Led data centre migration as part of a S$2M digital transformation</strong>, moving core enterprise
           applications — including Microsoft Dynamics AX ERP and gaming systems — into Tier-3 co-location facilities
