@@ -26,9 +26,9 @@ import {
  * Page meta data
  */
 export const homePageMeta: HomepageMeta = {
-  title: 'Yik Tatt Ong | IT Manager, APAC — Regional IT Operations',
+  title: 'Yik Tatt Ong | Service Delivery & End User Computing Manager',
   description:
-    'Regional IT manager in Singapore with 12+ years in enterprise IT — multi-country operations across Singapore, Japan and South Korea, vendor and SLA governance, identity and hybrid-cloud oversight.',
+    'Regional IT manager in Singapore with 12+ years in enterprise IT — service delivery and end user computing across Singapore, Japan and South Korea, with ITIL-aligned incident, change and problem management, vendor and SLA governance.',
 };
 
 /**
@@ -55,23 +55,27 @@ export const heroData: Hero = {
   description: (
     <>
       <p className="text-lg font-semibold text-orange-400 sm:text-xl lg:text-2xl">
-        IT Manager, APAC · Regional IT Operations · Infrastructure, Identity &amp; Cloud Governance
+        IT Manager, APAC · Service Delivery &amp; End User Computing · Multi-Country IT Operations
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        AWS Certified Solutions Architect – Associate · AWS Certified CloudOps Engineer – Associate · AWS Certified
-        Cloud Practitioner · ITIL 4 Foundation
+        ITIL 4 Foundation · AWS Certified Solutions Architect – Associate · AWS Certified CloudOps Engineer – Associate ·
+        AWS Certified Cloud Practitioner
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        I keep enterprise infrastructure up — on-prem, in co-location, and in AWS — then automate the parts that
-        shouldn't need a human.
+        I run IT services for 200 users across Singapore, Japan and South Korea — vendor-delivered and ITIL-aligned,
+        and I still do the hands-on work myself.
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        <strong>12+ years in enterprise IT</strong> across Singapore and the APAC region — multi-country operations for
-        200 users, a S$100K regional budget, and vendor and SLA accountability across three markets.
+        <strong>12+ years in enterprise IT</strong> across Singapore and the APAC region — a 200-user estate and a
+        S$100K regional budget across Singapore, Japan and South Korea, with vendor, SLA and service-performance
+        accountability throughout.
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        Open to <strong>IT Manager, IT Infrastructure Manager and IT Operations Manager</strong> roles in Singapore.
-        Available for interviews immediately; available to start January 2027.
+        Open to{' '}
+        <strong>
+          Service Delivery Manager, IT Service Manager, End User Computing Manager and IT Manager
+        </strong>{' '}
+        roles in Singapore. Available for interviews immediately; available to start January 2027.
       </p>
     </>
   ),
@@ -98,13 +102,17 @@ export const aboutData: About = {
   description: (
     <>
       <p>
-        I've spent 12+ years keeping enterprise infrastructure running — data centre migrations into Tier-3 co-location
-        under a S$2M programme, and regional IT operations for 200 users across Singapore, Japan and South Korea.
+        I've spent 12+ years running and supporting enterprise IT — a S$2M data centre migration into Tier-3
+        co-location, and day-to-day service delivery for a 200-user estate across Singapore, Japan and South Korea.
       </p>
-      <p>Three AWS certifications in 2026, studied alongside my current role.</p>
       <p>
-        This site runs on the stack I built and hardened — S3 and CloudFront behind a WAF, released by GitHub Actions
-        with OIDC and no stored access keys.
+        Most of it has been service management rather than tooling — coordinating major incidents, assessing change,
+        and running monthly service reviews with our vendor service desk. At McDonald's that covered 135 outlets and a
+        1,000-terminal POS estate.
+      </p>
+      <p>
+        I'm comfortable on both sides: holding vendors to their SLAs and doing the technical work myself. I added three
+        AWS certifications this year alongside the role.
       </p>
       <p>Off the clock: cameras, hi-fi audio, and tinkering with the homelab.</p>
     </>
@@ -115,7 +123,7 @@ export const aboutData: About = {
     {label: 'Employment', text: 'Wargaming Asia', Icon: BuildingOffice2Icon},
     {
       label: 'Certifications',
-      text: ['AWS SAA', 'CloudOps', 'Cloud Practitioner', 'ITIL 4 Foundation'],
+      text: ['ITIL 4 Foundation', 'AWS SAA', 'CloudOps', 'Cloud Practitioner'],
       Icon: ShieldCheckIcon,
     },
   ],
@@ -126,137 +134,43 @@ export const aboutData: About = {
  */
 export const skills: SkillGroup[] = [
   {
-    name: 'Leadership & Regional Delivery',
+    name: 'Service Delivery & Vendor Management',
     skills: [
-      {
-        name: 'Multi-Country IT Operations (SG · JP · KR)',
-        level: 9,
-      },
-      {
-        name: 'IT Budget Ownership (S$100K opex)',
-        level: 8,
-      },
-      {
-        name: 'Team Structuring & Capability Building',
-        level: 8,
-      },
-      {
-        name: 'ITIL 4 Service Management',
-        level: 8,
-      },
+      {name: 'Multi-Country IT Operations (SG · JP · KR)', level: 9},
+      {name: 'Vendor Performance & SLA Compliance', level: 9},
+      {name: 'Outsourced Service Delivery', level: 8},
+      {name: 'IT Budget Ownership (S$100K)', level: 8},
+      {name: 'Team Structuring & Capability Building', level: 8},
     ],
   },
   {
-    name: 'Vendor & SLA Governance',
+    name: 'IT Service Management',
     skills: [
-      {
-        name: 'Vendor Performance & SLA Compliance',
-        level: 9,
-      },
-      {
-        name: 'Contract, Renewal & Escalation Management',
-        level: 8,
-      },
-      {
-        name: 'Outsourced Service Delivery',
-        level: 9,
-      },
-      {
-        name: 'Stakeholder Management',
-        level: 8,
-      },
+      {name: 'Major Incident Coordination & Escalation', level: 9},
+      {name: 'Problem Management & Root Cause', level: 9},
+      {name: 'SLA & KPI Monitoring & Reporting', level: 8},
+      {name: 'Change Assessment & Approval', level: 8},
+      {name: 'ITIL 4 Foundation', level: 7},
     ],
   },
   {
-    name: 'Identity & Access Management',
+    name: 'End User Computing & Identity',
     skills: [
-      {
-        name: 'Microsoft Entra ID (Azure AD)',
-        level: 9,
-      },
-      {
-        name: 'Microsoft Intune',
-        level: 9,
-      },
-      {
-        name: 'Conditional Access',
-        level: 8,
-      },
-      {
-        name: 'Microsoft 365',
-        level: 8,
-      },
-      {
-        name: 'AWS IAM',
-        level: 7,
-      },
+      {name: 'Microsoft Intune & Device Compliance', level: 9},
+      {name: 'Entra ID & Conditional Access', level: 9},
+      {name: 'Active Directory & Group Policy', level: 8},
+      {name: 'Endpoint Patching (WSUS · Ivanti)', level: 8},
+      {name: 'Device Lifecycle & Asset Management', level: 8},
     ],
   },
   {
-    name: 'Cloud & Infrastructure Oversight',
+    name: 'Systems & Platforms',
     skills: [
-      {
-        name: 'AWS (VPC, EC2, S3, Route 53)',
-        level: 8,
-      },
-      {
-        name: 'AWS Serverless & Edge (Lambda, CloudFront, WAF)',
-        level: 7,
-      },
-      {
-        name: 'Least-Privilege & Compliance Baselines',
-        level: 8,
-      },
-      {
-        name: 'Release Credential Hygiene (OIDC, no stored keys)',
-        level: 8,
-      },
-    ],
-  },
-  {
-    name: 'Networking & Security',
-    skills: [
-      {
-        name: 'TCP/IP & DNS',
-        level: 9,
-      },
-      {
-        name: 'Routing & Switching',
-        level: 8,
-      },
-      {
-        name: 'VLANs & Network Segmentation',
-        level: 8,
-      },
-      {
-        name: 'Firewall Administration (F5, Palo Alto, Check Point)',
-        level: 8,
-      },
-      {
-        name: 'MikroTik (RouterOS) & WireGuard VPN',
-        level: 8,
-      },
-    ],
-  },
-  {
-    name: 'Systems, Automation & Scripting',
-    skills: [
-      {
-        name: 'Windows · macOS · Linux (Debian)',
-        level: 8,
-      },
-      {
-        name: 'Docker & Proxmox VE',
-        level: 8,
-      },
-      {
-        name: 'PowerShell',
-        level: 9,
-      },
-      {
-        name: 'Git & GitHub Actions',
-        level: 8,
-      },
+      {name: 'Windows Server — Admin & Imaging', level: 8},
+      {name: 'Windows · macOS · DNS', level: 8},
+      {name: 'VMware vSphere (Administration)', level: 7},
+      {name: 'Server & Hardware Lifecycle', level: 7},
+      {name: 'PowerShell & Batch Automation', level: 9},
     ],
   },
 ];
@@ -266,17 +180,23 @@ export const skills: SkillGroup[] = [
  */
 export const portfolioItems: PortfolioItem[] = [
   {
-    title: 'Portfolio site on AWS (this site)',
+    title: 'Vulnerability triage automation — WannaCry response',
     description:
-      'Built and hardened this site on AWS: static export on S3 + CloudFront behind a WAF, released by GitHub Actions with OIDC role assumption so no long-lived access keys exist in the delivery path, plus a serverless Lambda + SNS contact form.',
-    tech: ['S3', 'CloudFront', 'WAF', 'Lambda', 'SNS', 'GitHub Actions (OIDC)'],
-    url: 'https://github.com/ongyiktatt/cloud-resume',
+      'Wrote a Batch automation script during the WannaCry ransomware outbreak that scanned 60+ retail sites for exposure, collated results to a central server for triage, and prioritised patching of affected devices. The triage-and-prioritise pattern is the same one I applied years later to service desk workflows and proactive endpoint monitoring.',
+    tech: ['Batch', 'Endpoint Patching', 'Risk-Based Prioritisation', 'Incident Response'],
   },
   {
-    title: 'Virtualisation & Networking Homelab',
+    title: 'Endpoint asset discovery automation',
     description:
-      'Multi-site lab on Proxmox VE: Debian VMs and containerised workloads, MikroTik routing with VLAN segmentation and WireGuard tunnels, plus self-hosted DNS and remote access — where I validate network and infrastructure changes before they matter.',
-    tech: ['Proxmox VE', 'Debian', 'Docker', 'MikroTik (RouterOS)', 'WireGuard', 'VLANs'],
+      'Built a diagnostics script (Batch) to scan client endpoints and extract hardware models, IP addresses and serial numbers — replacing manual asset tracking during rollouts, and forming the basis for the device-lifecycle and asset-management discipline I have run since.',
+    tech: ['Batch', 'Asset Discovery', 'Device Lifecycle Management'],
+  },
+  {
+    title: 'This site',
+    description:
+      'Built and hardened this site myself — static export served through a CDN with a WAF and least-privilege access, and released through an automated CI/CD pipeline. It is here as evidence of technical grounding rather than as the day job.',
+    tech: ['Static Site Delivery', 'CDN', 'WAF', 'CI/CD', 'Least-Privilege Access'],
+    url: 'https://github.com/ongyiktatt/cloud-resume',
   },
 ];
 
@@ -284,6 +204,23 @@ export const portfolioItems: PortfolioItem[] = [
  * Resume section
  */
 export const certification: TimelineItem[] = [
+  {
+    date: 'May 2021',
+    location: 'ITIL',
+    title: 'ITIL 4 Foundation',
+    url: 'https://www.peoplecert.org/for-corporations/certificate-verification-service',
+    compact: true,
+    content: <span className="block text-center md:text-left">Credential ID: GR671273878OY</span>,
+  },
+  {
+    // Optional. Keep only if you are comfortable showing an in-progress credential
+    // on a public page. It is labelled clearly and carries no verification link.
+    date: 'In progress',
+    location: 'Microsoft',
+    title: 'Azure Administrator Associate (AZ-104)',
+    compact: true,
+    content: <></>,
+  },
   {
     date: 'August 2026',
     location: 'AWS',
@@ -307,23 +244,6 @@ export const certification: TimelineItem[] = [
     url: 'https://www.credly.com/badges/46c9f759-e3bc-42ae-8cab-73fd6da6f8ac/linked_in_profile',
     compact: true,
     content: <></>,
-  },
-  {
-    // Optional. Keep only if you are comfortable showing an in-progress credential
-    // on a public page. It is labelled clearly and carries no verification link.
-    date: 'In progress',
-    location: 'Microsoft',
-    title: 'Azure Administrator Associate (AZ-104)',
-    compact: true,
-    content: <></>,
-  },
-  {
-    date: 'May 2021',
-    location: 'ITIL',
-    title: 'ITIL 4 Foundation',
-    url: 'https://www.peoplecert.org/for-corporations/certificate-verification-service',
-    compact: true,
-    content: <span className="block text-center md:text-left">Credential ID: GR671273878OY</span>,
   },
 ];
 
@@ -350,25 +270,29 @@ export const experience: TimelineItem[] = [
             <li>
               Own regional IT operations across Singapore, Japan and South Korea as the{' '}
               <strong>sole internal IT resource in the Singapore regional office</strong> — S$100K annual operating
-              budget, vendor performance and SLA compliance
+              budget, vendor performance and SLA compliance — and direct vendor-supplied engineers in Japan and South
+              Korea against response and resolution targets
             </li>
             <li>
-              <strong>Direct vendor-supplied engineers in Japan and South Korea</strong> — setting work priorities,
-              reviewing weekly service metrics and holding response and resolution targets across separate vendor
-              ecosystems
+              <strong>Own regional incident escalation across three markets</strong>, coordinating vendor engineers and
+              holding communication with business stakeholders through to service restoration
             </li>
             <li>
-              Remain hands-on in Singapore: endpoint compliance, identity and access management, network and unified
-              communications
-            </li>
-            <li>
-              Lead local validation, pilot deployment and regional rollout of global IT initiatives for 200 users across
-              three markets
-            </li>
-            <li>
-              <strong>Redesigned service desk workflows and introduced proactive endpoint monitoring</strong>, cutting
-              recurring incident escalations by 20%
+              Apply <strong>problem management to recurring incident patterns</strong> — introducing proactive endpoint
+              monitoring and redesigning service desk workflows to cut recurring incident escalations by 20%
               {/* TODO: convert to absolute figure, e.g. "from X to Y tickets per month" */}
+            </li>
+            <li>
+              <strong>Govern change for regional IT initiatives</strong> across Singapore, Japan and South Korea —
+              validating readiness, piloting locally and sequencing deployments to avoid business disruption
+            </li>
+            <li>
+              Continue to own Singapore end-user computing hands-on — Active Directory and Group Policy administration,
+              unified communications including Microsoft Teams Rooms, and patch compliance
+            </li>
+            <li>
+              Remain <strong>technically hands-on at manager level</strong> — troubleshooting Windows Server and
+              VMware-hosted workloads and resolving systemic issues through structured root-cause analysis
             </li>
           </ul>
         ),
@@ -380,7 +304,7 @@ export const experience: TimelineItem[] = [
           <ul className="list-disc list-outside pl-5 space-y-1">
             <li>
               Administered endpoint compliance and configuration baselines for a mixed Windows and macOS fleet using{' '}
-              <strong>Microsoft Intune, Microsoft Entra ID and Conditional Access</strong>
+              <strong>Microsoft Intune, Microsoft Entra ID, Group Policy and Conditional Access</strong>
             </li>
             <li>
               <strong>Built PowerShell automation to validate Secure Boot certificates and deploy language packs</strong>,
@@ -412,12 +336,12 @@ export const experience: TimelineItem[] = [
           lifting client onboarding capacity by 40%
         </li>
         <li>
-          Partnered with Product Engineering on deployment feedback and recurring defect trends, feeding live operating
-          issues into product release planning
+          Designed and delivered technical training that built <strong>independent troubleshooting capability</strong>{' '}
+          across the team, reducing reliance on escalation
         </li>
         <li>
-          Designed and delivered technical training in{' '}
-          <strong>IP networking, OS virtualisation and database fundamentals</strong>
+          Partnered with Product Engineering on recurring defect trends from live deployments, feeding operating issues
+          into product release planning
         </li>
       </ul>
     ),
@@ -427,32 +351,37 @@ export const experience: TimelineItem[] = [
     location: 'SAFRA',
     title: 'IT Infrastructure Lead',
     content: (
-      <ul className="list-disc list-outside pl-5 space-y-1">
+      <ul className="list-disc list-disc list-outside pl-5 space-y-1">
         <li>
           <strong>Led data centre migration as part of a S$2M digital transformation</strong>, moving core enterprise
           applications — including Microsoft Dynamics AX ERP and gaming systems — into Tier-3 co-location facilities
           with minimal production downtime
         </li>
         <li>
-          Administered identity and access management across{' '}
-          <strong>Microsoft Entra ID, Microsoft 365 and AWS IAM</strong> — least-privilege access control, user
-          provisioning and group management
+          <strong>Directed the response to a major incident</strong> in which a Tier-3 data centre SAN failure took
+          production workloads offline — coordinating recovery across vendors, holding stakeholder communication and
+          driving restoration of service
         </li>
         <li>
-          Directed a <strong>S$100K dedicated budget line</strong> covering Microsoft 365 platform configuration,
-          hardware fleet maintenance and repairs
+          <strong>Held change approval authority</strong> for infrastructure changes — assessing risk, impact and
+          readiness, and scheduling implementation windows to avoid service disruption
+        </li>
+        <li>
+          Administered Active Directory and Group Policy for the corporate environment, and managed{' '}
+          <strong>WSUS patch deployment</strong> across the server and endpoint estate alongside the{' '}
+          <strong>Ivanti endpoint management</strong> estate
+        </li>
+        <li>
+          Administered identity and access management across <strong>Microsoft Entra ID and Microsoft 365</strong> —
+          least-privilege access control, user provisioning and group management
         </li>
         <li>
           Governed corporate IT hardware leasing lifecycles, asset discovery and deployment schedules across an
-          enterprise fleet of 300+ connected devices
+          enterprise fleet of 300+ connected devices within a <strong>S$100K dedicated budget line</strong>
         </li>
         <li>
           Served as final escalation owner for systemic infrastructure issues, supervising outsourced desktop support
           vendors against agreed service levels
-        </li>
-        <li>
-          Configured and troubleshot hybrid network security perimeters across F5 WAF, Palo Alto and Check Point
-          next-gen firewalls, including Layer 4/7 stateful filtering
         </li>
       </ul>
     ),
@@ -464,16 +393,29 @@ export const experience: TimelineItem[] = [
     content: (
       <ul className="list-disc list-outside pl-5 space-y-1">
         <li>
-          Managed outsourced IT vendors across <strong>135 restaurant outlets</strong>, ensuring SLA compliance and
-          operational support for{' '}
-          <strong>500+ self-order kiosks, 1,000 POS terminals and 2,000 kitchen display systems</strong>
+          Managed outsourced IT vendors against SLA and availability commitments across{' '}
+          <strong>135 restaurant outlets</strong> — <strong>500+ self-order kiosks, 1,000 POS terminals and 2,000
+          kitchen display systems</strong>
         </li>
         <li>
-          <strong>Integrated GrabFood and Foodpanda with the POS system to automate order processing</strong>, improving
-          kitchen fulfilment speed by 60% and contributing to a 25% increase in digital sales
+          <strong>Ran monthly service reviews with the outsourced vendor service desk</strong> and reported service desk
+          performance to management — holding vendors to agreed SLAs and translating incident and request trends into
+          prioritised service improvements
         </li>
         <li>
-          Led hardware staging, configuration and network readiness for the{' '}
+          <strong>Reviewed service tickets to identify recurring causes and applied permanent fixes</strong> to stop
+          issues recurring rather than closing them repeatedly
+        </li>
+        <li>
+          <strong>Engaged 135 restaurant outlets monthly</strong> to surface technology pain points before they
+          escalated, feeding findings into the service improvement backlog
+        </li>
+        <li>
+          Administered Active Directory and Group Policy across the corporate estate, controlling user access and
+          enforcing device configuration standards
+        </li>
+        <li>
+          Led hardware staging, configuration and readiness for the{' '}
           <strong>nationwide rollout of the McDonald's App</strong> across the full outlet estate
         </li>
       </ul>
@@ -486,12 +428,18 @@ export const experience: TimelineItem[] = [
     content: (
       <ul className="list-disc list-outside pl-5 space-y-1">
         <li>
-          Staged and configured servers for customer deployments, alongside edge hardware including{' '}
-          <strong>Cisco routers, switches and wireless access points</strong>
+          <strong>Wrote a Batch automation script during the WannaCry ransomware outbreak</strong> — scanning 60+ retail
+          sites for exposure, collating results to a central server for triage, and prioritising patching of affected
+          devices
         </li>
         <li>
-          Installed and maintained point-of-sale servers and kitchen display hardware across new client site openings,
-          including <strong>McDonald's Singapore outlets</strong>
+          <strong>Logged, tracked and resolved incidents and service requests in ServiceNow</strong>, building the
+          ITIL-aligned service management discipline applied in later roles
+        </li>
+        <li>
+          Delivered on-site hardware deployment and maintenance for{' '}
+          <strong>point-of-sale and kitchen display systems</strong> across new client site openings, including
+          McDonald's Singapore outlets
         </li>
         <li>
           <strong>Built a diagnostics script (Batch) to scan client endpoints</strong> and extract hardware models, IP
