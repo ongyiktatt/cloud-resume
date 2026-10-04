@@ -3,83 +3,8 @@
 % Based on Jake Gutierrez's resume (github.com/jakegut/resume), MIT
 % Build: pdflatex resume.tex   (or: latexmk -pdf resume.tex)
 %
-% Editing rules for this file: .github/instructions/resume-latex.instructions.md
-%
-% TARGET: SERVICE DELIVERY MANAGEMENT + END USER COMPUTING. The file is
-% deliberately UNIVERSAL across both lanes rather than tuned to one advert -
-% every line should hold up for an EUC Manager, EUC Lead/Specialist, Service
-% Delivery Manager or IT Service Manager role.
-%
-% REVISION 28 Sep 2026 (d) - MCDONALD'S SERVICE-MANAGEMENT DEPTH ADDED.
-% The role had been under-written at 3 bullets, all of them hardware/vendor.
-% New content he supplied and confirmed:
-%   - ran MONTHLY SERVICE REVIEWS with the outsourced vendor service desk
-%   - REPORTED SERVICE DESK METRICS monthly to management
-%   - REVIEWED SERVICE TICKETS and applied permanent fixes to stop recurrence
-%   - engaged 135 RESTAURANT OPERATORS MONTHLY to surface technology pain
-%     points before they escalated
-% McDonald's is now 6 bullets and reads as a service-management role, which
-% is what it actually was. This maps directly onto NSCC's JD (service reviews,
-% SLA/KPI monitoring, service performance reporting, problem management,
-% continual service improvement, stakeholder coordination) and onto the EUC
-% JDs' SLA / vendor / service-standard requirements.
-%
-% GOVERNING FILTER: a line stays only if it serves SERVICE DELIVERY or END
-% USER COMPUTING. Cloud architecture and network engineering are OUT - they
-% belong to the infrastructure lane he has declined.
-%
-% ONE DELIBERATE EXCEPTION (re-added 28 Sep 2026 at his request): the
-% 'Systems & Platforms (Technical Grounding)' skills line. Rationale in his
-% words: 'people want SDM with technical knowledge'. SDM job specs routinely
-% require demonstrable platform depth alongside the governance skill, and his
-% differentiator is being a manager who can still do the work. Kept TIGHT and
-% accurately levelled - administration / troubleshooting / build imaging only,
-% no architecture, no clustering, no SCCM. Still EXCLUDED: the cloud services
-% line, the networking/firewall line, and Cisco hardware staging.
-%
-% THE WARGAMING TECHNICAL BULLET WAS RESTORED (28 Sep 2026, his request) --
-% 'Remain technically hands-on at manager level'. It is worded to carry the
-% hands-on credibility signal WITHOUT tripling up on the escalation and
-% root-cause language already used in the two bullets above it. If you
-% rewrite it, keep those two words out.
-% Cut in 28 Sep 2026 (c): Skills lines 'Cloud & Infrastructure Oversight',
-% 'Networking & Perimeter Security', 'On-Premises & Server Platforms';
-% Wargaming 'Windows Server / VMware troubleshooting'; SAFRA DNS + VMware +
-% AWS IAM; McDonald's Windows Server / server-imaging bullet; Systems Design
-% Cisco router / switch staging.
-%
-% DELIBERATELY KEPT (they pass the filter):
-%   - SAFRA Tier-3 co-location migration - anchors the major incident story
-%     and evidences large-scale change delivered with minimal service
-%     disruption.
-%   - Microsoft Teams Rooms as Unified Communications (end-user collaboration
-%     technology = EUC).
-%   - WannaCry Batch script (endpoint vulnerability patching automation).
-%   - ServiceNow incident/request logging (ITSM tooling).
-%   - Batch diagnostics script (asset discovery automation).
-%   - All five certifications incl. AWS - NSCC names cloud certs as
-%     advantageous and SIA names AWS as preferred, so the credentials stay
-%     even though the cloud SKILLS depth does not.
-%
-% DO NOT RE-ADD (standing decisions): Terraform, IaC, the Terraform cert row,
-%   OIDC / keyless credential framing, or the client name in the WannaCry
-%   bullet.
-%
-% TERMINOLOGY CORRECTIONS (28 Sep 2026, his instruction):
-%   - IVANTI: an ENDPOINT MANAGEMENT platform, NOT MDM. Do not write
-%     'Ivanti MDM' anywhere, and do not limit it to 'enrolled mobile
-%     devices' - that framing was wrong and understated its scope.
-%   - The app rollout is 'the McDONALD'S APP' (the official name). Do NOT
-%     write 'McDonald's Singapore mobile app' or 'mobile application'.
-%
-% LEVEL CALIBRATION - do not inflate: Windows Server at McDonald's = build
-%   imaging; at SAFRA = TROUBLESHOOT ONLY. No SCCM, PKI, SCOM, Citrix,
-%   Nutanix, Autopilot or Ansible claimed. No post-incident review ownership
-%   claimed. No metric figures invented for the new McDonald's bullets - he
-%   did not supply numbers, so none are asserted.
-%-------------------------
 
-\documentclass[letterpaper,10pt]{article}
+\documentclass[a4paper,10pt]{article}
 
 \usepackage{latexsym}
 \usepackage[empty]{fullpage}
@@ -192,12 +117,10 @@
 \section{Summary}
  \begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{
-     \textbf{Regional IT manager with 12+ years in enterprise IT}, running service delivery and end-user computing for a 200-user estate across Singapore, Japan and South Korea --- Microsoft Intune, Microsoft Entra ID, Conditional Access and Group Policy across a mixed Windows and macOS fleet. \\
-     \textbf{Owns ITIL-aligned service operations} --- major incident coordination, change assessment and approval, problem management, vendor service reviews and monthly service performance reporting --- certified in ITIL 4 Foundation. \\
-     \textbf{Owns a S\$100K annual operating budget} and vendor performance across a distributed regional vendor ecosystem, holding SLA and service compliance with no increase in headcount. \\
+     \textbf{Regional IT manager with 12+ years in enterprise IT}, running service delivery and end-user computing across Singapore, Japan and South Korea --- Microsoft Intune, Microsoft Entra ID, Conditional Access and Group Policy across a mixed Windows and macOS fleet, with least-privilege identity governance and audit-ready device compliance baselines. \\
+     \textbf{Owns ITIL-aligned service operations end to end} --- major incident coordination, change assessment and approval, problem management, vendor service reviews and monthly service performance reporting across a distributed regional vendor ecosystem. \\
      \textbf{Restructured an 8-person support operation into specialised delivery and support units}, transferring ownership to autonomous leads and lifting client onboarding capacity by 40\%; later promoted from IT Specialist to IT Manager to own regional delivery across three markets. \\
-     \textbf{Governs identity and endpoint risk} --- least-privilege access, lifecycle management, WSUS patch baselines and audit-ready device compliance across a 300+ device estate. \\
-     \textbf{Directed recovery of a Tier-3 data centre failure} as major incident owner, restoring production service with minimal disruption. \textbf{ITIL 4 Foundation certified; AWS Certified Solutions Architect and CloudOps Engineer, AZ-104 in progress. Available for interviews immediately; available to start January 2027.}
+     \textbf{Directed recovery of a Tier-3 data centre failure} as major incident owner, restoring production service with minimal disruption. ITIL 4 Foundation certified; AWS Certified Solutions Architect and CloudOps Engineer. \textbf{Available for interviews immediately; available to start January 2027.}
      \vspace{-6pt}
     }}
  \end{itemize}
@@ -210,7 +133,8 @@
       \textbf{IT Service Management:} ITIL 4 Foundation $\cdot$ Major Incident Coordination \& Escalation $\cdot$ Change Assessment \& Approval $\cdot$ Problem Management \& Root-Cause Analysis $\cdot$ Service Desk Operations \& Workflow Design $\cdot$ SLA \& KPI Monitoring $\cdot$ Service Performance Reporting $\cdot$ Vendor Service Reviews $\cdot$ Continual Service Improvement $\cdot$ ServiceNow (user) $\cdot$ Jira / Jira Service Management (user) \\
       \textbf{End User Computing \& Endpoint Management:} Microsoft Intune $\cdot$ Ivanti Endpoint Management $\cdot$ Conditional Access $\cdot$ Device Compliance Baselines $\cdot$ WSUS Patch Management $\cdot$ Device Lifecycle \& Asset Management $\cdot$ Unified Communications (Microsoft Teams Rooms) $\cdot$ Windows \& macOS $\cdot$ PowerShell \& Batch Automation \\
       \textbf{Systems \& Platforms (Technical Grounding):} Windows Server (administration, troubleshooting, standard build imaging, patch compliance) $\cdot$ VMware vSphere (administration) $\cdot$ DNS $\cdot$ Server \& Hardware Lifecycle Management \\
-      \textbf{Identity \& Access Management:} Microsoft Entra ID (Azure AD) $\cdot$ Active Directory (AD DS) $\cdot$ Group Policy (GPO) $\cdot$ Microsoft 365 $\cdot$ Identity Lifecycle Management $\cdot$ Least-Privilege Access Control
+      \textbf{Identity \& Access Management:} Microsoft Entra ID (Azure AD) $\cdot$ Active Directory (AD DS) $\cdot$ Group Policy (GPO) $\cdot$ Microsoft 365 $\cdot$ Identity Lifecycle Management $\cdot$ Least-Privilege Access Control \\
+      \textbf{AI Tools \& Automation:} AI-assisted script development and debugging (PowerShell automation) $\cdot$ AI-assisted drafting of employee communications and service notices $\cdot$ Validating AI-generated output before implementation
       \vspace{-6pt}
     }
   \resumeSubHeadingListEnd
@@ -224,9 +148,9 @@
       {}{Singapore}
       \resumeSubSubheading{IT Manager, APAC}{May 2025 -- Dec 2026}
       \resumeItemListStart
-        \resumeItem{Own regional IT operations across Singapore, Japan and South Korea as the sole internal IT resource in the Singapore regional office --- a S\$100K annual operating budget, vendor performance and SLA compliance --- and direct vendor-supplied engineers in Japan and South Korea against response and resolution targets.}
+        \resumeItem{Own regional IT operations across Singapore, Japan and South Korea as the sole internal IT resource --- holding a S\$100K annual operating budget, vendor performance and SLA compliance, and directing vendor-supplied engineers against response and resolution targets.}
         \resumeItem{Own regional incident escalation across three markets, coordinating vendor engineers and holding communication with business stakeholders through to service restoration.}
-        \resumeItem{Apply problem management to recurring incident patterns --- introducing proactive endpoint monitoring and redesigning service desk workflows to cut recurring incident escalations by 20\%.}
+        \resumeItem{Apply problem management to recurring incident patterns --- introducing proactive Zabbix monitoring for printers, Microsoft Teams Rooms systems and virtual machines, cutting recurring incident escalations by 20\%.}
         \resumeItem{Govern change for regional IT initiatives across Singapore, Japan and South Korea --- validating readiness, piloting locally and sequencing deployments to avoid business disruption.}
         \resumeItem{Continue to own Singapore end-user computing hands-on alongside the regional remit --- Active Directory and Group Policy administration, unified communications including Microsoft Teams Rooms, and patch compliance.}
         \resumeItem{Remain technically hands-on at manager level --- troubleshooting Windows Server and VMware-hosted workloads and resolving systemic issues through structured root-cause analysis.}
@@ -234,7 +158,7 @@
       \resumeSubSubheading{IT Specialist, APAC}{Feb 2023 -- May 2025}
       \resumeItemListStart
         \resumeItem{Administered endpoint compliance and configuration baselines for a mixed Windows and macOS fleet using Microsoft Intune, Microsoft Entra ID (Azure AD), Group Policy and Conditional Access.}
-        \resumeItem{Developed PowerShell automation for Secure Boot certificate validation and language-pack deployment, cutting manual device setup time by 20\%.}
+        \resumeItem{Developed PowerShell automation for Secure Boot certificate validation and language-pack deployment --- using AI-assisted development to accelerate script authoring and debugging --- cutting manual device setup time by 20\%.}
         \resumeItem{Owned end-to-end identity access lifecycles --- user provisioning, Active Directory group management, least-privilege access and offboarding.}
       \resumeItemListEnd
 
@@ -258,7 +182,7 @@
         \resumeItem{Administered Active Directory and Group Policy for the corporate environment, controlling user access and enforcing configuration standards.}
         \resumeItem{Managed WSUS patch deployment across the server and endpoint estate, and administered the Ivanti endpoint management estate.}
         \resumeItem{Administered identity and access management across Microsoft Entra ID (Azure AD) and Microsoft 365 --- least-privilege access control, user provisioning and group management.}
-        \resumeItem{Governed corporate IT hardware leasing lifecycles, asset discovery and deployment schedules across an enterprise fleet of 300+ connected devices within a S\$100K dedicated budget line.}
+        \resumeItem{Governed corporate IT hardware leasing lifecycles, asset discovery and deployment schedules across an enterprise fleet of 300+ connected devices within a S\$100K annual hardware fleet budget line.}
         \resumeItem{Served as final escalation owner for systemic infrastructure issues, and supervised outsourced desktop support vendors against agreed service levels.}
       \resumeItemListEnd
 
@@ -290,10 +214,10 @@
 \section{Certifications}
   \resumeSubHeadingListStart
     \resumeCertItem{ITIL 4 Foundation \textit{(Certificate ID: GR671273878OY)}}{May 2021}
-    \resumeCertItem{Microsoft Certified: Azure Administrator Associate (AZ-104) \textit{--- in progress}}{Est. Oct 2026}
     \resumeCertItem{\href{https://www.credly.com/badges/209df12d-e120-4509-ad16-6c4d6fa05ca8/linked_in_profile}{AWS Certified CloudOps Engineer -- Associate}}{Aug 2026}
     \resumeCertItem{\href{https://www.credly.com/badges/b03143a4-ab95-45ea-93f4-068addd79ec6/linked_in_profile}{AWS Certified Solutions Architect -- Associate}}{Jul 2026}
     \resumeCertItem{\href{https://www.credly.com/badges/46c9f759-e3bc-42ae-8cab-73fd6da6f8ac/linked_in_profile}{AWS Certified Cloud Practitioner}}{May 2026}
+    \resumeCertItem{Microsoft Certified: Azure Administrator Associate (AZ-104)}{In progress}
   \resumeSubHeadingListEnd
 
 %----------EDUCATION----------
