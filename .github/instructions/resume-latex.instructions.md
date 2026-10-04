@@ -14,13 +14,21 @@ while editing it belongs in this file, not as a comment in the source.
 
 ## Positioning is deliberate — do not drift
 
-The file declares **VARIANT A: IT Manager / Regional IT Infrastructure Leadership**, and
-that choice is load-bearing:
+The file targets **service delivery management and end user computing**, and is kept
+**universal across both lanes** rather than tuned to a single advert: every line has to
+hold up for an EUC Manager, EUC Lead/Specialist, Service Delivery Manager or IT Service
+Manager role. The governing filter is that a line stays only if it serves service delivery
+or end user computing. That choice is load-bearing:
 
 - Leadership, vendor governance and delivery scope come first.
-- Cloud appears **only as governance evidence** (cost/vendor/SLA oversight, identity
-  governance, least-privilege access, release credential hygiene) — never as hands-on
-  build capability.
+- Cloud and network engineering are **out as hands-on capability** — the infrastructure
+  lane was declined deliberately. AWS survives only as certifications.
+- **One standing exception: the `Systems & Platforms (Technical Grounding)` skills line.**
+  Service delivery adverts routinely ask for demonstrable platform depth, and the
+  differentiator is a manager who can still do the work. Keep it tight and accurately
+  levelled — no architecture, no clustering.
+- The document is **A4** (`\documentclass[a4paper,…]`), switched from US Letter on
+  4 Oct 2026 for the Singapore market.
 - No claim to lead a large team. The honest model is a lean regional owner with
   vendor-supplied engineers in two markets.
 - **Infrastructure-as-code tooling is deliberately absent.** Do not reintroduce
@@ -29,11 +37,33 @@ that choice is load-bearing:
 - Wargaming bullets are **present tense** while the role runs to 31 Dec 2026. Convert them
   to past tense on 1 Jan 2027.
 
-**The website in `src/data/data.tsx` is a separate artefact.** It now targets the same
-role — `homePageMeta` and the hero both lead with IT Manager / regional IT operations —
-but it deliberately carries more AWS and automation detail than this file allows. Do not
-copy website copy into the résumé: the PDF is the more conservative document, and the
-infrastructure-as-code prohibition above still applies there.
+**The website in `src/data/data.tsx` is a separate artefact.** It targets the same lane —
+`homePageMeta`, the hero and the skills groups all lead with service delivery and end user
+computing — but its portfolio entries deliberately carry more cloud and tooling detail
+than this file allows. Do not copy website copy into the résumé: the PDF is the more
+conservative document, and the infrastructure-as-code prohibition above still applies
+there.
+
+## Calibration — do not inflate
+
+This knowledge used to sit in the source as comments. It belongs here instead.
+
+- **Windows Server** is build imaging at McDonald's, troubleshooting only at SAFRA, and
+  staging at Systems Design. No server-upgrade or migration programme leadership is
+  claimed anywhere.
+- **Platform claims stay at administration level**: VMware vSphere, Windows Server, WSUS
+  patch management, and **Ivanti endpoint management** — never "Ivanti MDM", and never
+  scoped to enrolled mobile devices.
+- **Zabbix** is the named monitoring platform behind the proactive-monitoring claim.
+- **Not claimed anywhere**: SCCM, PKI, SCOM, Citrix, Nutanix, Autopilot, Ansible,
+  post-incident review ownership, or any infrastructure-as-code tooling.
+- **Never invent a figure.** Where no number was supplied, none is asserted, and the
+  existing percentages are not to be rounded or softened.
+- **AI tooling is claimed as assisted delivery only** — AI-assisted script authoring and
+  debugging, AI-assisted drafting, and validating output before use. Do not escalate it
+  to strategy or leadership wording.
+- **The WannaCry bullet stays client-agnostic** ("60+ retail sites"). Naming the client
+  would disclose an involvement that could not be confirmed as publicly known.
 
 ## Layout traps
 
@@ -48,11 +78,10 @@ These all cause silent damage — the typeset output looks fine while being wron
   with `l@{\extracolsep{\fill}}r`, and those columns do not wrap: past `0.97\textwidth`
   LaTeX prints beyond the right margin with **no warning at all**. The right-hand
   argument is a **date field only** — keep it short or `{}`.
-- The hard `\newpage` before SAFRA keeps that entry from being orphaned, so **any edit
-  above it requires a pagination re-check**.
-- Two open questions are parked in the source as `% TODO:` comments: the endpoint
-  monitoring platform is still unnamed, and it is unconfirmed whether the SAFRA role was
-  a contract (a `(Contract)` variant line sits commented out beneath that heading).
+- **There is no hard `\newpage` in the file any more** (removed 28 Sep 2026, never
+  restored), so pagination is fully automatic. Combined with A4 that means **every content
+  edit needs the compiled PDF checked** — nothing local can show where the page boundary
+  falls, and the whole document is `\small`, so one added bullet can push an entry over.
 
 ## How the PDF reaches the site
 
@@ -85,8 +114,12 @@ literal space. If the file is ever renamed, update that literal, the three paths
 
 ## Deliberately removed content
 
-These were taken out of `resume.tex` by decision, not by accident, and the exact snippet is
-kept here so it can be restored without rewriting it:
+These were taken out of `resume.tex` by decision, not by accident, and the exact snippets
+are kept here so they can be restored without rewriting them:
+
+- **SAFRA as a contract role** — whether that engagement was a contract was never
+  confirmed. If it becomes relevant, the date field is
+  `{May 2021 -- Jun 2022 (Contract)}`.
 
 - **2027 sabbatical entry** — add as the first entry under Experience if the 2027 gap
   should be visible on the timeline. Do this on the same day the Wargaming bullets are
