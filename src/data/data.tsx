@@ -58,8 +58,8 @@ export const heroData: Hero = {
         IT Manager, APAC · Service Delivery &amp; End User Computing · Multi-Country IT Operations
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        ITIL 4 Foundation · AWS Certified Solutions Architect – Associate · AWS Certified CloudOps Engineer – Associate ·
-        AWS Certified Cloud Practitioner
+        ITIL 4 Foundation · Microsoft Certified: Azure Administrator Associate (AZ-104) · AWS Certified Solutions
+        Architect – Associate · AWS Certified CloudOps Engineer – Associate · AWS Certified Cloud Practitioner
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
         I run IT services for 200 users across Singapore, Japan and South Korea — vendor-delivered and ITIL-aligned,
@@ -111,8 +111,7 @@ export const aboutData: About = {
         1,000-terminal POS estate.
       </p>
       <p>
-        I'm comfortable on both sides: holding vendors to their SLAs and doing the technical work myself. I added three
-        AWS certifications this year alongside the role.
+        I'm comfortable on both sides: holding vendors to their SLAs and doing the technical work myself. I passed Microsoft's Azure Administrator Associate (AZ-104) in October 2026, and added three AWS certifications earlier this year alongside the role.
       </p>
       <p>Off the clock: cameras, hi-fi audio, and tinkering with the homelab.</p>
     </>
@@ -123,7 +122,7 @@ export const aboutData: About = {
     {label: 'Employment', text: 'Wargaming Asia', Icon: BuildingOffice2Icon},
     {
       label: 'Certifications',
-      text: ['ITIL 4 Foundation', 'AWS SAA', 'CloudOps', 'Cloud Practitioner'],
+      text: ['ITIL 4 Foundation', 'Azure Administrator (AZ-104)', 'AWS SAA', 'CloudOps', 'Cloud Practitioner'],
       Icon: ShieldCheckIcon,
     },
   ],
@@ -168,6 +167,7 @@ export const skills: SkillGroup[] = [
     skills: [
       {name: 'Windows Server — Admin & Imaging', level: 8},
       {name: 'Windows · macOS · DNS', level: 8},
+      {name: 'Microsoft Azure Administration (AZ-104)', level: 7},
       {name: 'VMware vSphere (Administration)', level: 7},
       {name: 'Server & Hardware Lifecycle', level: 7},
       {name: 'PowerShell & Batch Automation', level: 9},
@@ -213,11 +213,10 @@ export const certification: TimelineItem[] = [
     content: <span className="block text-center md:text-left">Credential ID: GR671273878OY</span>,
   },
   {
-    // Optional. Keep only if you are comfortable showing an in-progress credential
-    // on a public page. It is labelled clearly and carries no verification link.
-    date: 'In progress',
+    date: 'October 2026',
     location: 'Microsoft',
     title: 'Azure Administrator Associate (AZ-104)',
+    url: 'https://learn.microsoft.com/en-sg/users/yiktattong-4161/credentials/2f92fdf4519b60ad',
     compact: true,
     content: <></>,
   },
