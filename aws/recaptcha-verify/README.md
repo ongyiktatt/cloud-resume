@@ -269,6 +269,49 @@ Check the current value with:
 aws lambda get-function-concurrency --function-name recaptcha-verify --region ap-southeast-1
 ```
 
+## 7. Apply managed runtime patches
+
+`index.mjs` imports only `@aws-sdk/client-sns`, which the runtime provides — there is no
+`package.json` here and nothing for `npm audit` to report. Node security fixes therefore
+arrive through the **managed runtime version**, not through the code.
+
+Runtime management is set to **`FunctionUpdate`**, so the function adopts the newest
+`nodejs24.x` runtime version whenever its configuration is updated. To pull a patch in
+deliberately:
+
+```bash
+# 1. Policy: refresh on every configuration update (idempotent)
+aws lambda put-runtime-management-config \
+  --function-name recaptcha-verify \
+  --update-runtime-on FunctionUpdate
+
+# 2. Force a configuration update — the runtime version refreshes as part of it
+aws lambda update-function-configuration \
+  --function-name recaptcha-verify \
+  --description "Contact form backend: verifies reCAPTCHA tokens and publishes submissions to SNS"
+
+aws lambda wait function-updated --function-name recaptcha-verify
+
+# 3. Confirm the version ARN changed
+aws lambda get-function-configuration \
+  --function-name recaptcha-verify \
+  --query 'RuntimeVersionConfig.RuntimeVersionArn'
+```
+
+> **`put-runtime-management-config` alone does not change the runtime version** — it only
+> changes the policy. The ARN moves on the next `update-function-configuration`.
+
+`aws lambda list-runtimes` is unavailable in the installed CLI. To check whether a newer
+runtime version exists, create a throwaway function with the same runtime, read its
+`RuntimeVersionConfig.RuntimeVersionArn` and delete it — a new function always gets the
+newest version.
+
+Afterwards, smoke-test with an invalid token (step 5): `{"errorCodes":["invalid-input-response"],"success":false}`
+proves the runtime boots, the SDK resolves and the secret is valid, without sending email.
+
+> Applied 2026-10-24 for **CVE-2026-111497** (brotli, fixed in Node 24.22.1). The function
+> moved to the newer managed runtime version (`…88e03c92`).
+
 ## Notes
 
 - The secret key is only ever read by this function. It must never be committed
