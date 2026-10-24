@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "private": true,
   "engines": {
-    "node": ">=24"
+    "node": ">=26"
   },
   "scripts": {
     "build": "yarn compile && yarn next build",
@@ -17,18 +17,18 @@
     "@headlessui/react": "^1.7.19",
     "@heroicons/react": "^2.2.0",
     "classnames": "^2.5.1",
-    "next": "16.3.4",
+    "next": "16.4.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-google-recaptcha": "^3.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@next/eslint-plugin-next": "16.3.4",
+    "@next/eslint-plugin-next": "16.4.3",
     "@stylistic/eslint-plugin": "^5.10.0",
     "@tailwindcss/forms": "^0.5.11",
     "@tailwindcss/typography": "^0.5.20",
-    "@types/node": "^24.0.0",
+    "@types/node": "^26.6.5",
     "@types/react": "^18.3.31",
     "@types/react-google-recaptcha": "^2.1.9",
     "@typescript-eslint/eslint-plugin": "^8.70.0",

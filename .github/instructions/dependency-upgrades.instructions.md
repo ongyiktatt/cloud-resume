@@ -40,6 +40,9 @@ applyTo: "package.json,yarn.lock"
 
 - **React is pinned to 18 on purpose.** Next 16's Pages Router peers `react: ^18.2.0`, and
   React 19 would force a `@headlessui/react` v2 migration (`^16 || ^17 || ^18` today).
+  Since `next@16.4.3`, every build prints *"React 18 support is deprecated in Next.js 16
+  and will be removed in Next.js 17"* — the Headless UI v2 + React 19 migration is now on
+  a deadline, but do not treat it as an incidental bump.
 - **`resolutions["@types/react"]` must move in lockstep with the `@types/react`
   devDependency.** `@types/react-google-recaptcha` declares `@types/react: "*"`, which
   otherwise resolves to React 19 types and breaks JSX.

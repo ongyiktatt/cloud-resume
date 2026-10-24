@@ -242,7 +242,7 @@ aws sns list-subscriptions-by-topic \
 Kept deliberately brief — see [`AGENTS.md`](AGENTS.md) for architecture and conventions.
 
 - Next.js 16 (Pages Router), static export (`output: 'export'`); Turbopack is the bundler.
-- Node 24 (`.nvmrc`), Yarn 1.
+- Node 26 (`.nvmrc`), Yarn 1.
 - `yarn dev` starts the dev server; `yarn build` type-checks and writes `out/` — the same
   artifact CI uploads.
 - Content is data-driven: `src/data/data.tsx`, with types in `src/data/dataDef.ts`.

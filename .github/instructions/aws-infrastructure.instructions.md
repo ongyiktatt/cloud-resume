@@ -1,6 +1,6 @@
 ---
 description: "Use when working on AWS infrastructure for this site: Lambda contact form, S3/CloudFront hosting, WAF, security headers, IAM roles, deployments, or any aws CLI command."
-applyTo: "aws/**"
+applyTo: "aws/**,src/config.ts,src/components/Sections/Contact/**,.github/workflows/main.yml"
 ---
 
 # AWS infrastructure

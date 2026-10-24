@@ -14,7 +14,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 Personal resume site for **ongyiktatt.com**: Next.js 16 (Pages Router) + React 18 + Tailwind 3 + TypeScript (strict), deployed as a **static export** to S3/CloudFront. The contact form is the only dynamic feature and is backed by an AWS Lambda.
 
-Toolchain: **Node 24** (`.nvmrc`, `engines`) and **Yarn 1**. Run `yarn install` before anything else.
+Toolchain: **Node 26** (`.nvmrc`, `engines`) and **Yarn 1**. Run `yarn install` before anything else.
 
 ## Public repository
 
@@ -23,6 +23,18 @@ This repository is public, so everything committed is world-readable.
 - **Never commit an account id, ARN, role name, bucket name, distribution id, Function URL or the contact-form notification address.** Docs use `<PLACEHOLDER>` values and the real ones are resolved at runtime with the aws CLI — see `.github/instructions/aws-infrastructure.instructions.md`.
 - Deploy configuration lives in **GitHub repository variables** read by `.github/workflows/main.yml`. Do not reintroduce literals into the workflow.
 - `NEXT_PUBLIC_*` values are inlined into the bundle at build time, so they are **public by design**. No secret belongs in this repo; the reCAPTCHA secret lives only in the Lambda's environment.
+
+## Scoped instructions
+
+These instruction files load automatically for matching paths. Read the one that applies before editing:
+
+| File                                                                                              | Applies to                                                      | Holds                                                                                  |
+| ------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| [aws-infrastructure](./.github/instructions/aws-infrastructure.instructions.md)                     | `aws/**`, `src/config.ts`, Contact section, deploy workflow     | Live AWS resource facts, account quotas, CORS and Free-plan constraints                 |
+| [dependency-upgrades](./.github/instructions/dependency-upgrades.instructions.md)                   | `package.json`, `yarn.lock`                                     | How to read `yarn audit`/`yarn outdated`, the React 18 pin, `yarn upgrade` over `resolutions` |
+| [resume-latex](./.github/instructions/resume-latex.instructions.md)                                 | `resume/**`, `.github/workflows/main.yml`                       | Résumé positioning rules, LaTeX layout traps, the PDF cache pipeline                   |
+
+[redact-public-docs](./.github/prompts/redact-public-docs.prompt.md) is the checklist for stripping account identifiers before publishing.
 
 ## Commands
 
@@ -62,6 +74,15 @@ There is no test suite, and **no local LaTeX toolchain** (no `pdflatex`, `latexm
 - Components are `memo()`-wrapped function components with a default export; pages live in `src/pages/`, sections in `src/components/Sections/`.
 - Nav scroll-spy (`src/hooks/useNavObserver.tsx`) deliberately uses a thin detection band with `threshold: 0`. Section ids are `hero, about, resume, portfolio, contact` — there is no `#home`. **The rendered order is `Hero → About → Resume → Portfolio → Contact`**, and Resume sitting above Portfolio is deliberate (see the comment in `src/pages/index.tsx`) — keep the `navSections` array in `Header.tsx` in that same visual order or the nav lies.
 - **Site identity lives in three places** and they have to change together: `homePageMeta.title` and `homePageMeta.description` in `src/data/data.tsx`, and the `name` field in `public/site.webmanifest`. `src/components/Layout/Page.tsx` renders the first two into `<title>`, `<meta name="description">`, `og:*` and `twitter:*`; the manifest supplies the installed-app name. Changing only the title leaves the retired wording in search results and link previews.
+
+### Editing content and layout
+
+- **Long copy in `src/data/data.tsx` is JSX.** `Hero.description` and `About.description` are `JSX.Element`, and `About` renders them inside `<div className="prose">`, so write one `<p>` per paragraph. A plain string — or several paragraphs inside a single `<p>` — has its blank lines collapsed by HTML whitespace rules.
+- **`AboutItem.text` and `PortfolioItem.tech` accept `string | string[]`.** Use an array whenever an entry is more than one word: each entry renders `whitespace-nowrap` with `·` separators, so `ITIL 4 Foundation` cannot break in half. A pre-joined string is broken at any space.
+- **Portfolio card sizing is load-bearing.** The wrapper is `w-full p-3 sm:w-1/2 md:w-1/3 lg:w-1/4`; the card is `h-full` for text cards but `h-max` when it renders an `<Image>` (otherwise the image stretches); the stack line keeps `min-w-0` so it shrinks instead of pushing the external-link icon past the card's `overflow-hidden` edge.
+- **`Skills` is rendered inside `Resume/index.tsx`** (Work → Certification → Skills → Education). The commented-out `<Skills />` in `src/pages/index.tsx` is a stale leftover — uncommenting it duplicates the section.
+- **Skill-bar widths come from CSS custom properties**, `--skill-fill` (animates from 0) and `--skill-level` (always the true value), via `w-[var(--skill-fill)]`. Do not switch to an inline `width`: `globalStyles.scss` uses `--skill-level` for its `@media (scripting: none)` fallback, and a `<noscript><style>` fallback would break hydration.
+- **Skills are ranked at render time, not in data order.** `SkillGroup` in `Skills.tsx` sorts a copy by `level` descending (stable, so ties keep their data order), so reordering `skills` in `data.tsx` changes nothing. The group heading reserves two lines (`min-h-14`, bottom-aligned) to keep both columns aligned, while skill labels deliberately reserve no height — a name that wraps pushes its bar, and every bar below it in that column, out of line. Keep skill names short enough to stay on one line at 1280px.
 
 ## AWS
 
