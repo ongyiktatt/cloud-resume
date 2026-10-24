@@ -6,7 +6,7 @@
     "node": ">=26"
   },
   "scripts": {
-    "build": "yarn compile && yarn next build",
+    "build": "yarn compile && yarn next build --webpack",
     "clean": "rm -rf build-tsc .next",
     "compile": "yarn run -T tsc --build",
     "dev": "yarn compile && yarn next dev",

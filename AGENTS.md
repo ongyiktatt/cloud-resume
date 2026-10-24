@@ -51,7 +51,7 @@ There is no test suite, and **no local LaTeX toolchain** (no `pdflatex`, `latexm
 ## Architecture
 
 - **Static export.** `next.config.js` sets `output: 'export'`; there is no Next.js server, no API routes and no SSR. `out/` is the deployable artifact, so anything needing a secret must live in AWS.
-- **Turbopack is the default bundler** for both `next dev` and `next build`. Any `webpack` key in `next.config.js` makes the build fail by design — do not add one.
+- **Bundlers are split on purpose.** `next dev` uses Turbopack (the Next 16 default), but the **production build runs `next build --webpack`**. Next 16.4's Turbopack export injects an inline `globalThis["TURBOPACK"].push(…)` bootstrap script, and the production CSP has no `script-src 'unsafe-inline'`, so the browser blocked it — hydration never started and the client-only `Header` disappeared from the live site (2026-10-24). The webpack export has **zero executable inline scripts**, which is the property the CSP depends on. A `webpack` *key* in `next.config.js` is still forbidden (it makes the Turbopack dev build fail by design); the CLI flag is the supported opt-out.
 - **Deploy** is GitHub Actions (`.github/workflows/main.yml`): push to `main` → `yarn build` → `aws s3 sync out/ …` → CloudFront invalidation.
 - **Content is data-driven.** Copy lives in `src/data/data.tsx` (types in `src/data/dataDef.ts`); site-wide constants and env-var fallbacks live in `src/config.ts`. Prefer editing data over components.
 - **Contact form**: `src/components/Sections/Contact/ContactForm.tsx` → Lambda Function URL from `src/config.ts`. The backend is `aws/recaptcha-verify/` — see its [README](./aws/recaptcha-verify/README.md).
