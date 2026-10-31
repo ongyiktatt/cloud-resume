@@ -5,9 +5,7 @@
 %
 % Editing rules for this file: .github/instructions/resume-latex.instructions.md
 %
-
 \documentclass[a4paper,10pt]{article}
-
 \usepackage{latexsym}
 \usepackage[empty]{fullpage}
 \usepackage{titlesec}
@@ -18,7 +16,6 @@
 \usepackage[english]{babel}
 \usepackage{tabularx}
 \input{glyphtounicode}
-
 %----------FONT OPTIONS----------
 % Default is Computer Modern (serif). Uncomment ONE to change:
 % \usepackage[sfdefault]{FiraSans}
@@ -27,32 +24,26 @@
 % \usepackage[default]{sourcesanspro}
 % \usepackage{CormorantGaramond}
 % \usepackage{charter}
-
 \pagestyle{fancy}
 \fancyhf{}
 \fancyfoot{}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
-
 \addtolength{\oddsidemargin}{-0.5in}
 \addtolength{\evensidemargin}{-0.5in}
 \addtolength{\textwidth}{1in}
 \addtolength{\topmargin}{-.5in}
 \addtolength{\textheight}{1.1in}
-
 \urlstyle{same}
 \raggedbottom
 \raggedright
 \setlength{\tabcolsep}{0in}
-
 % Section formatting
 \titleformat{\section}{
   \vspace{-5pt}\scshape\raggedright\large
 }{}{0em}{}[\color{black}\titlerule \vspace{-6pt}]
-
 % Machine-readable output so parsers read characters, not glyph junk
 \pdfgentounicode=1
-
 % --- BULLET SPACING ---
 % \small is declared ONCE for the whole list, before the first \item.
 % All bullet spacing is set in ONE place, in \resumeItemListStart below.
@@ -60,7 +51,6 @@
 \newcommand{\resumeItem}[1]{
   \item{#1}
 }
-
 \newcommand{\resumeSubheading}[4]{
   \vspace{-2pt}\item
     \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
@@ -68,42 +58,33 @@
       \textit{\small#3} & \textit{\small #4} \\
     \end{tabular*}\vspace{-7pt}
 }
-
 \newcommand{\resumeSubSubheading}[2]{
   \item
     \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
       \textit{\small#1} & \textit{\small #2} \\
     \end{tabular*}\vspace{-7pt}
 }
-
 \newcommand{\resumeProjectHeading}[2]{
     \item
     \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
       \small#1 & #2 \\
     \end{tabular*}\vspace{-7pt}
 }
-
 \newcommand{\resumeCertItem}[2]{
   \item
     \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
       \small #1 & \small #2 \\
     \end{tabular*}\vspace{-6pt}
 }
-
 \newcommand{\resumeSubItem}[1]{\resumeItem{#1}}
-
 \renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
-
 \newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
 % itemsep scoped to the INNER bullet list ONLY. topsep deliberately unset.
 \newcommand{\resumeItemListStart}{\begin{itemize}[itemsep=0pt, parsep=0pt]\small}
 \newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
-
 %-------------------------------------------
-
 \begin{document}
-
 %----------HEADING----------
 \begin{center}
     \textbf{\Huge \scshape Yik Tatt Ong} \\ \vspace{4pt}
@@ -114,19 +95,17 @@
     \href{https://github.com/ongyiktatt}{GitHub} $\cdot$
     \href{https://www.linkedin.com/in/ongyiktatt/}{LinkedIn}
 \end{center}
-
 %----------SUMMARY----------
 \section{Summary}
- \begin{itemize}[leftmargin=0.15in, label={}]
+\begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{
      \textbf{Regional IT manager with 12+ years in enterprise IT}, running service delivery and end-user computing across Singapore, Japan and South Korea --- Microsoft Intune, Microsoft Entra ID, Conditional Access and Group Policy across a mixed Windows and macOS fleet, with least-privilege identity governance and audit-ready device compliance baselines. \\
      \textbf{Owns ITIL-aligned service operations end to end} --- major incident coordination, change assessment and approval, problem management, vendor service reviews and monthly service performance reporting across a distributed regional vendor ecosystem. \\
      \textbf{Restructured an 8-person support operation into specialised delivery and support units}, transferring ownership to autonomous leads and lifting client onboarding capacity by 40\%; later promoted from IT Specialist to IT Manager to own regional delivery across three markets. \\
-     \textbf{Directed recovery of a Tier-3 data centre failure} as major incident owner, restoring production service with minimal disruption. ITIL 4 Foundation certified; Microsoft Certified: Azure Administrator Associate (AZ-104); AWS Certified Solutions Architect and CloudOps Engineer. \textbf{Available for interviews immediately; available to start January 2027.}
+     \textbf{Directed recovery of a Tier-3 data centre failure} as major incident owner, restoring production service with minimal disruption. ITIL 4 Foundation certified; Microsoft 365 Certified: Endpoint Administrator Associate (MD-102) and Microsoft Certified: Azure Administrator Associate (AZ-104); AWS Certified Solutions Architect and CloudOps Engineer. \textbf{Available for interviews immediately; available to start January 2027.}
      \vspace{-6pt}
     }}
- \end{itemize}
-
+\end{itemize}
 %----------SKILLS----------
 \section{Skills}
   \resumeSubHeadingListStart
@@ -140,11 +119,9 @@
       \vspace{-6pt}
     }
   \resumeSubHeadingListEnd
-
 %----------EXPERIENCE----------
 \section{Experience}
   \resumeSubHeadingListStart
-
     \resumeSubheading
       {Wargaming Asia}{Feb 2023 -- Dec 2026}
       {}{Singapore}
@@ -163,7 +140,6 @@
         \resumeItem{Developed PowerShell automation for Secure Boot certificate validation and language-pack deployment --- using AI-assisted development to accelerate script authoring and debugging --- cutting manual device setup time by 20\%.}
         \resumeItem{Owned end-to-end identity access lifecycles --- user provisioning, Active Directory group management, least-privilege access and offboarding.}
       \resumeItemListEnd
-
     \resumeSubheading
       {TabSquare}{Jun 2022 -- Feb 2023}
       {Operations Manager}{Singapore}
@@ -173,7 +149,6 @@
         \resumeItem{Designed and delivered technical training that built independent troubleshooting capability across the team, reducing reliance on escalation.}
         \resumeItem{Partnered with Product Engineering on recurring defect trends from live deployments, feeding operating issues into product release planning.}
       \resumeItemListEnd
-
     \resumeSubheading
       {SAFRA}{May 2021 -- Jun 2022}
       {IT Infrastructure Lead}{Singapore}
@@ -187,7 +162,6 @@
         \resumeItem{Governed corporate IT hardware leasing lifecycles, asset discovery and deployment schedules across an enterprise fleet of 300+ connected devices within a S\$100K annual hardware fleet budget line.}
         \resumeItem{Served as final escalation owner for systemic infrastructure issues, and supervised outsourced desktop support vendors against agreed service levels.}
       \resumeItemListEnd
-
     \resumeSubheading
       {McDonald's Singapore}{Dec 2017 -- May 2021}
       {IT Consultant II}{Singapore}
@@ -199,7 +173,6 @@
         \resumeItem{Administered Active Directory and Group Policy across the corporate estate, controlling user access and enforcing device configuration standards at 135 outlets.}
         \resumeItem{Led hardware staging, configuration and readiness for the nationwide rollout of the McDonald's App across 135 outlets.}
       \resumeItemListEnd
-
     \resumeSubheading
       {Systems Design}{Dec 2013 -- Dec 2017}
       {IT Field Technician}{Singapore}
@@ -209,19 +182,17 @@
         \resumeItem{Delivered on-site hardware deployment and maintenance for point-of-sale and kitchen display systems across new client site openings, including McDonald's Singapore outlets.}
         \resumeItem{Built a diagnostics script (Batch) to extract hardware models, IP addresses and serial numbers from client endpoints, replacing manual asset tracking during rollouts.}
       \resumeItemListEnd
-
   \resumeSubHeadingListEnd
-
 %----------CERTIFICATIONS----------
 \section{Certifications}
   \resumeSubHeadingListStart
     \resumeCertItem{ITIL 4 Foundation \textit{(Certificate ID: GR671273878OY)}}{May 2021}
+    \resumeCertItem{\href{https://learn.microsoft.com/en-us/users/yiktattong-4161/credentials/ae5cff38fbbc119e}{Microsoft 365 Certified: Endpoint Administrator Associate (MD-102)}}{Oct 2026}
     \resumeCertItem{\href{https://learn.microsoft.com/en-sg/users/yiktattong-4161/credentials/2f92fdf4519b60ad}{Microsoft Certified: Azure Administrator Associate (AZ-104)}}{Oct 2026}
     \resumeCertItem{\href{https://www.credly.com/badges/209df12d-e120-4509-ad16-6c4d6fa05ca8/linked_in_profile}{AWS Certified CloudOps Engineer -- Associate}}{Aug 2026}
     \resumeCertItem{\href{https://www.credly.com/badges/b03143a4-ab95-45ea-93f4-068addd79ec6/linked_in_profile}{AWS Certified Solutions Architect -- Associate}}{Jul 2026}
     \resumeCertItem{\href{https://www.credly.com/badges/46c9f759-e3bc-42ae-8cab-73fd6da6f8ac/linked_in_profile}{AWS Certified Cloud Practitioner}}{May 2026}
   \resumeSubHeadingListEnd
-
 %----------EDUCATION----------
 \section{Education}
   \resumeSubHeadingListStart
@@ -229,5 +200,4 @@
       {Temasek Polytechnic}{Sep 2020 -- Oct 2022}
       {Diploma in Infocomm and Digital Media}{Singapore}
   \resumeSubHeadingListEnd
-
 \end{document}

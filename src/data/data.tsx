@@ -58,8 +58,9 @@ export const heroData: Hero = {
         IT Manager, APAC · Service Delivery &amp; End User Computing · Multi-Country IT Operations
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        ITIL 4 Foundation · Microsoft Certified: Azure Administrator Associate (AZ-104) · AWS Certified Solutions
-        Architect – Associate · AWS Certified CloudOps Engineer – Associate · AWS Certified Cloud Practitioner
+        ITIL 4 Foundation · Microsoft 365 Certified: Endpoint Administrator Associate (MD-102) · Microsoft Certified:
+        Azure Administrator Associate (AZ-104) · AWS Certified Solutions Architect – Associate · AWS Certified CloudOps
+        Engineer – Associate · AWS Certified Cloud Practitioner
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
         I run IT services for 200 users across Singapore, Japan and South Korea — vendor-delivered and ITIL-aligned,
@@ -111,7 +112,9 @@ export const aboutData: About = {
         1,000-terminal POS estate.
       </p>
       <p>
-        I'm comfortable on both sides: holding vendors to their SLAs and doing the technical work myself. I passed Microsoft's Azure Administrator Associate (AZ-104) in October 2026, and added three AWS certifications earlier this year alongside the role.
+        I'm comfortable on both sides: holding vendors to their SLAs and doing the technical work myself. In October
+        2026 I passed Microsoft's Endpoint Administrator Associate (MD-102) and Azure Administrator Associate (AZ-104),
+        having added three AWS certifications earlier in the year alongside the role.
       </p>
       <p>Off the clock: cameras, hi-fi audio, and tinkering with the homelab.</p>
     </>
@@ -122,7 +125,7 @@ export const aboutData: About = {
     {label: 'Employment', text: 'Wargaming Asia', Icon: BuildingOffice2Icon},
     {
       label: 'Certifications',
-      text: ['ITIL 4 Foundation', 'Azure Administrator (AZ-104)', 'AWS SAA', 'CloudOps', 'Cloud Practitioner'],
+      text: ['ITIL 4 Foundation', 'Microsoft MD-102 · AZ-104', 'AWS SAA', 'CloudOps', 'Cloud Practitioner'],
       Icon: ShieldCheckIcon,
     },
   ],
@@ -211,6 +214,14 @@ export const certification: TimelineItem[] = [
     url: 'https://www.peoplecert.org/for-corporations/certificate-verification-service',
     compact: true,
     content: <span className="block text-center md:text-left">Credential ID: GR671273878OY</span>,
+  },
+  {
+    date: 'October 2026',
+    location: 'Microsoft',
+    title: 'Microsoft 365 Endpoint Administrator Associate (MD-102)',
+    url: 'https://learn.microsoft.com/en-us/users/yiktattong-4161/credentials/ae5cff38fbbc119e',
+    compact: true,
+    content: <></>,
   },
   {
     date: 'October 2026',
