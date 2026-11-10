@@ -14,46 +14,46 @@ while editing it belongs in this file, not as a comment in the source.
 
 ## Positioning is deliberate — do not drift
 
-The file targets **service delivery management and end user computing**, and is kept
-**universal across both lanes** rather than tuned to a single advert: every line has to
-hold up for an EUC Manager, EUC Lead/Specialist, Service Delivery Manager or IT Service
-Manager role. The governing filter is that a line stays only if it serves service delivery
-or end user computing. That choice is load-bearing:
+As of **10 Nov 2026** the file targets a **hands-on senior infrastructure engineering**
+lane — Senior Infrastructure Engineer, Systems Engineer, Technical Lead, Platform / Cloud
+Engineer — rather than the service-delivery / EUC management lane it carried before.
+Every line has to hold up for those titles in Singapore. What that means in practice:
 
-- Leadership, vendor governance and delivery scope come first.
-- Cloud and network engineering are **out as hands-on capability** — the infrastructure
-  lane was declined deliberately. AWS survives only as certifications.
-- **One standing exception: the `Systems & Platforms (Technical Grounding)` skills line.**
-  Service delivery adverts routinely ask for demonstrable platform depth, and the
-  differentiator is a manager who can still do the work. Keep it tight and accurately
-  levelled — no architecture, no clustering.
-- The document is **A4** (`\documentclass[a4paper,…]`), switched from US Letter on
-  4 Oct 2026 for the Singapore market.
-- No claim to lead a large team. The honest model is a lean regional owner with
-  vendor-supplied engineers in two markets.
+- Systems, identity and endpoint depth come first. ITIL-aligned service management stays
+  as the differentiator, not the headline.
+- The manager titles at Wargaming and TabSquare are presented as **administrative
+  seniority, never people management** — the copy says explicitly that the systems work
+  never went away. No claim to lead a large team.
+- Cloud is certifications plus context (**"Hybrid Cloud (Azure / AWS)"** in the header),
+  not a deep cloud-engineering claim. No architecture, landing-zone or IaC work.
+- Networking **is** claimed, at perimeter level only: Layer 4/7 stateful firewall policy
+  across F5 WAF, Palo Alto and Check Point, routing and switching, VLAN segmentation,
+  VPN (IPSec, WireGuard). Configuration and troubleshooting, not network design.
 - **Infrastructure-as-code tooling is deliberately absent.** Do not reintroduce
   provisioning-as-code language, state-management vocabulary or a certification row for
   it — that invites a question about state handling that cannot be defended.
+- The document is **A4** (`\documentclass[a4paper,…]`), switched from US Letter on
+  4 Oct 2026 for the Singapore market.
 - Wargaming bullets are **present tense** while the role runs to 31 Dec 2026. Convert them
   to past tense on 1 Jan 2027.
 
-**The website in `src/data/data.tsx` is a separate artefact.** It targets the same lane —
-`homePageMeta`, the hero and the skills groups all lead with service delivery and end user
-computing — but its portfolio entries deliberately carry more cloud and tooling detail
-than this file allows. Do not copy website copy into the résumé: the PDF is the more
-conservative document, and the infrastructure-as-code prohibition above still applies
-there.
+**The website in `src/data/data.tsx` is a separate artefact**, but it now targets the same
+lane: `homePageMeta.title` ("Senior Infrastructure Engineer"), the hero, the skills groups
+and the experience bullets all lead with infrastructure. Its portfolio entries carry more
+tooling detail than this file allows. Do not copy website copy into the résumé: the PDF is
+the more conservative document, and the infrastructure-as-code prohibition still applies
+there. Remember the manifest in `public/site.webmanifest` carries the site name too.
 
 ## Calibration — do not inflate
 
 This knowledge used to sit in the source as comments. It belongs here instead.
 
-- **Windows Server** is build imaging at McDonald's, troubleshooting only at SAFRA, and
-  staging at Systems Design. No server-upgrade or migration programme leadership is
-  claimed anywhere.
-- **Platform claims stay at administration level**: VMware vSphere, Windows Server, WSUS
-  patch management, and **Ivanti endpoint management** — never "Ivanti MDM", and never
-  scoped to enrolled mobile devices.
+- **Windows Server** is administration, troubleshooting and standard build imaging —
+  hands-on administration, never server-upgrade or migration programme leadership. The
+  S$2M Tier-3 co-location project is an **application** migration, not a server build-out.
+- **Platform claims stay at administration level**: VMware vSphere, Proxmox VE and Docker
+  (lab and homelab scale), Windows Server, WSUS patch management, and **Ivanti endpoint
+  management** — never "Ivanti MDM", and never scoped to enrolled mobile devices.
 - **Zabbix** is the named monitoring platform behind the proactive-monitoring claim.
 - **Not claimed anywhere**: SCCM, PKI, SCOM, Citrix, Nutanix, Autopilot, Ansible,
   post-incident review ownership, or any infrastructure-as-code tooling.
