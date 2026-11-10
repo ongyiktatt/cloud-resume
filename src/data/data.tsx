@@ -26,9 +26,9 @@ import {
  * Page meta data
  */
 export const homePageMeta: HomepageMeta = {
-  title: 'Yik Tatt Ong | Service Delivery & End User Computing Manager',
+  title: 'Yik Tatt Ong | Senior Infrastructure Engineer',
   description:
-    'Regional IT manager in Singapore with 12+ years in enterprise IT — service delivery and end user computing across Singapore, Japan and South Korea, with ITIL-aligned incident, change and problem management, vendor and SLA governance.',
+    'Senior infrastructure engineer in Singapore with 12+ years across Windows Server, Active Directory, identity, endpoint management and hybrid cloud — hands-on across a three-market APAC estate, with PowerShell automation and root-cause discipline.',
 };
 
 /**
@@ -55,27 +55,25 @@ export const heroData: Hero = {
   description: (
     <>
       <p className="text-lg font-semibold text-orange-400 sm:text-xl lg:text-2xl">
-        IT Manager, APAC · Service Delivery &amp; End User Computing · Multi-Country IT Operations
+        Senior Infrastructure Engineer · Windows Server, Identity &amp; Endpoint · Hybrid Cloud (Azure / AWS)
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        ITIL 4 Foundation · Microsoft 365 Certified: Endpoint Administrator Associate (MD-102) · Microsoft Certified:
-        Azure Administrator Associate (AZ-104) · AWS Certified Solutions Architect – Associate · AWS Certified CloudOps
-        Engineer – Associate · AWS Certified Cloud Practitioner
+        Microsoft Certified: Azure Administrator Associate (AZ-104) · Microsoft 365 Certified: Endpoint Administrator
+        Associate (MD-102) · AWS Certified Solutions Architect – Associate · AWS Certified CloudOps Engineer – Associate
+        · AWS Certified Cloud Practitioner · ITIL 4 Foundation
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        I run IT services for 200 users across Singapore, Japan and South Korea — vendor-delivered and ITIL-aligned,
-        and I still do the hands-on work myself.
+        I administer the systems myself — Windows Server, Active Directory, Group Policy, Entra ID, Intune and VMware
+        vSphere — across a three-market APAC estate, and I still take the Tier-3 escalation when something breaks.
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        <strong>12+ years in enterprise IT</strong> across Singapore and the APAC region — a 200-user estate and a
-        S$100K regional budget across Singapore, Japan and South Korea, with vendor, SLA and service-performance
-        accountability throughout.
+        <strong>12+ years in enterprise IT</strong> across Singapore and the APAC region — a 200-user estate spanning
+        Singapore, Japan and South Korea, with production incident resolution, root-cause analysis and automation
+        throughout.
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
         Open to{' '}
-        <strong>
-          Service Delivery Manager, IT Service Manager, End User Computing Manager and IT Manager
-        </strong>{' '}
+        <strong>Senior Infrastructure Engineer, Systems Engineer, Technical Lead and Platform / Cloud Engineer</strong>{' '}
         roles in Singapore. Available for interviews immediately; available to start January 2027.
       </p>
     </>
@@ -103,20 +101,22 @@ export const aboutData: About = {
   description: (
     <>
       <p>
-        I've spent 12+ years running and supporting enterprise IT — a S$2M data centre migration into Tier-3
-        co-location, and day-to-day service delivery for a 200-user estate across Singapore, Japan and South Korea.
+        I've spent 12+ years administering and supporting enterprise systems — a S$2M data centre migration into Tier-3
+        co-location, and day-to-day hands-on care of a 200-user estate across Singapore, Japan and South Korea.
       </p>
       <p>
-        Most of it has been service management rather than tooling — coordinating major incidents, assessing change,
-        and running monthly service reviews with our vendor service desk. At McDonald's that covered 135 outlets and a
-        1,000-terminal POS estate.
+        My strength is depth rather than headcount. As the sole internal IT resource in the Singapore regional office, I
+        do the Windows Server, Active Directory, Group Policy, Entra ID, Intune and VMware work myself, then escalate
+        and coordinate vendors when a problem runs past what I can fix alone. The manager titles I've held were mostly
+        administrative — the systems work never went away.
       </p>
       <p>
-        I'm comfortable on both sides: holding vendors to their SLAs and doing the technical work myself. In October
-        2026 I passed Microsoft's Endpoint Administrator Associate (MD-102) and Azure Administrator Associate (AZ-104),
-        having added three AWS certifications earlier in the year alongside the role.
+        I like problems that other people have given up on. Recurring escalations get root-caused rather than closed;
+        repetitive work gets scripted. In October 2026 I passed Microsoft's Endpoint Administrator Associate (MD-102)
+        and Azure Administrator Associate (AZ-104), having added three AWS certifications earlier in the year alongside
+        the role.
       </p>
-      <p>Off the clock: cameras, hi-fi audio, and tinkering with the homelab.</p>
+      <p>Off the clock: cameras, hi-fi audio, and a homelab that's never quite finished.</p>
     </>
   ),
   aboutItems: [
@@ -125,7 +125,7 @@ export const aboutData: About = {
     {label: 'Employment', text: 'Wargaming Asia', Icon: BuildingOffice2Icon},
     {
       label: 'Certifications',
-      text: ['ITIL 4 Foundation', 'Microsoft MD-102 · AZ-104', 'AWS SAA', 'CloudOps', 'Cloud Practitioner'],
+      text: ['Microsoft MD-102 · AZ-104', 'AWS SAA', 'CloudOps', 'Cloud Practitioner', 'ITIL 4 Foundation'],
       Icon: ShieldCheckIcon,
     },
   ],
@@ -136,44 +136,60 @@ export const aboutData: About = {
  */
 export const skills: SkillGroup[] = [
   {
-    name: 'Service Delivery & Vendor Management',
+    name: 'Systems & Server Infrastructure',
     skills: [
-      {name: 'Multi-Country IT Operations (SG · JP · KR)', level: 9},
-      {name: 'Vendor Performance & SLA Compliance', level: 9},
-      {name: 'Outsourced Service Delivery', level: 8},
-      {name: 'IT Budget Ownership (S$100K)', level: 8},
-      {name: 'Team Structuring & Capability Building', level: 8},
+      {name: 'Windows Server — Admin, Imaging & Troubleshooting', level: 9},
+      {name: 'VMware vSphere (Administration)', level: 8},
+      {name: 'Proxmox VE & Docker', level: 8},
+      {name: 'DNS & Server Lifecycle Management', level: 8},
+      {name: 'Capacity & Performance Tuning', level: 7},
+    ],
+  },
+  {
+    name: 'Identity & Directory Services',
+    skills: [
+      {name: 'Active Directory (AD DS)', level: 9},
+      {name: 'Group Policy (GPO)', level: 9},
+      {name: 'Microsoft Entra ID & Conditional Access', level: 9},
+      {name: 'Identity Lifecycle & Least Privilege', level: 8},
+      {name: 'Authentication & Access Troubleshooting', level: 8},
+    ],
+  },
+  {
+    name: 'Endpoint & Modern Workplace',
+    skills: [
+      {name: 'Microsoft Intune & Device Compliance', level: 9},
+      {name: 'Ivanti Endpoint Management', level: 8},
+      {name: 'WSUS Patch Management', level: 8},
+      {name: 'Device Lifecycle & Asset Management', level: 8},
+      {name: 'Microsoft 365 · Teams Rooms', level: 8},
+    ],
+  },
+  {
+    name: 'Networking & Security',
+    skills: [
+      {name: 'Layer 4/7 Firewall Policy (Palo Alto · Check Point · F5 WAF)', level: 8},
+      {name: 'Routing, Switching & VLAN Segmentation', level: 8},
+      {name: 'VPN (IPSec · WireGuard) & TCP/IP', level: 8},
+      {name: 'Infrastructure Hardening & Patch Remediation', level: 8},
+    ],
+  },
+  {
+    name: 'Automation & Scripting',
+    skills: [
+      {name: 'PowerShell & Batch Automation', level: 9},
+      {name: 'Proactive Monitoring (Zabbix)', level: 8},
+      {name: 'AI-Assisted Script Development & Debugging', level: 8},
+      {name: 'Root-Cause Analysis & Permanent Fixes', level: 9},
     ],
   },
   {
     name: 'IT Service Management',
     skills: [
       {name: 'Major Incident Coordination & Escalation', level: 9},
-      {name: 'Problem Management & Root Cause', level: 9},
-      {name: 'SLA & KPI Monitoring & Reporting', level: 8},
-      {name: 'Change Assessment & Approval', level: 8},
-      {name: 'ITIL 4 Foundation', level: 7},
-    ],
-  },
-  {
-    name: 'End User Computing & Identity',
-    skills: [
-      {name: 'Microsoft Intune & Device Compliance', level: 9},
-      {name: 'Entra ID & Conditional Access', level: 9},
-      {name: 'Active Directory & Group Policy', level: 8},
-      {name: 'Endpoint Patching (WSUS · Ivanti)', level: 8},
-      {name: 'Device Lifecycle & Asset Management', level: 8},
-    ],
-  },
-  {
-    name: 'Systems & Platforms',
-    skills: [
-      {name: 'Windows Server — Admin & Imaging', level: 8},
-      {name: 'Windows · macOS · DNS', level: 8},
-      {name: 'Microsoft Azure Administration (AZ-104)', level: 7},
-      {name: 'VMware vSphere (Administration)', level: 7},
-      {name: 'Server & Hardware Lifecycle', level: 7},
-      {name: 'PowerShell & Batch Automation', level: 9},
+      {name: 'Problem Management & Change Assessment', level: 8},
+      {name: 'ITIL 4 Foundation · ServiceNow · Jira', level: 7},
+      {name: 'Vendor Service Reviews & SLA Compliance', level: 8},
     ],
   },
 ];
@@ -182,6 +198,18 @@ export const skills: SkillGroup[] = [
  * Portfolio section
  */
 export const portfolioItems: PortfolioItem[] = [
+  {
+    title: 'Access control platform replacement — vendor-led, end to end',
+    description:
+      'Replaced an unsupported Singapore access control system with one carrying proper audit trails: scoped requirements, evaluated vendors, made the recommendation with trade-offs stated, ran the deployment around a live office so nobody was locked out, and handed it into BAU. I still administer the access control server today — patching, access database and exception handling.',
+    tech: ['Vendor Selection', 'Physical Security Integration', 'Server Administration', 'Deployment & Handover'],
+  },
+  {
+    title: 'Tier-3 data centre SAN failure — major incident coordination',
+    description:
+      'A SAN failure at the Tier-3 co-location facility took production workloads offline. I owned the incident as escalation point: working the recovery alongside the MSP that owned the SAN platform, coordinating across vendors, holding stakeholder communication throughout, and driving restoration of service with minimal disruption.',
+    tech: ['Major Incident Coordination', 'Vendor & MSP Management', 'Disaster Recovery', 'Stakeholder Communication'],
+  },
   {
     title: 'Vulnerability triage automation — WannaCry response',
     description:
@@ -278,30 +306,32 @@ export const experience: TimelineItem[] = [
         content: (
           <ul className="list-disc list-outside pl-5 space-y-1">
             <li>
-              Own regional IT operations across Singapore, Japan and South Korea as the{' '}
-              <strong>sole internal IT resource in the Singapore regional office</strong> — S$100K annual operating
-              budget, vendor performance and SLA compliance — and direct vendor-supplied engineers in Japan and South
-              Korea against response and resolution targets
+              <strong>Sole internal IT resource for Singapore, Japan and South Korea</strong> — personally hands-on
+              across the entire regional estate rather than directing a team, covering Windows Server, VMware-hosted
+              workloads, Active Directory, Group Policy and endpoint management across all three markets
             </li>
             <li>
-              <strong>Own regional incident escalation across three markets</strong>, coordinating vendor engineers and
-              holding communication with business stakeholders through to service restoration
+              Own the Singapore end-user computing estate hands-on — <strong>Active Directory and Group Policy
+              administration</strong>, Microsoft Teams Rooms unified communications, patch compliance and device
+              configuration standards
             </li>
             <li>
-              Apply <strong>problem management to recurring incident patterns</strong> — introducing proactive endpoint
-              monitoring and redesigning service desk workflows to cut recurring incident escalations by 20%
+              Led <strong>vendor selection, quotation, deployment and ongoing server maintenance</strong> for the
+              Singapore access control platform — replacing an unsupported system with one carrying proper audit
+              trails, and retaining hands-on ownership of the access control server
             </li>
             <li>
-              <strong>Govern change for regional IT initiatives</strong> across Singapore, Japan and South Korea —
-              validating readiness, piloting locally and sequencing deployments to avoid business disruption
+              Resolve systemic technical issues through <strong>structured root-cause analysis</strong> — troubleshooting
+              Windows Server and virtualised workloads directly rather than escalating to third parties
             </li>
             <li>
-              Continue to own Singapore end-user computing hands-on — Active Directory and Group Policy administration,
-              unified communications including Microsoft Teams Rooms, and patch compliance
+              Apply <strong>problem management to recurring incident patterns</strong> — introducing proactive Zabbix
+              monitoring for printers, Teams Rooms systems and virtual machines, cutting recurring incident escalations
+              by 20%
             </li>
             <li>
-              Remain <strong>technically hands-on at manager level</strong> — troubleshooting Windows Server and
-              VMware-hosted workloads and resolving systemic issues through structured root-cause analysis
+              Own regional incident escalation across three markets — coordinating vendor-supplied engineers
+              technically and holding business stakeholder communication through to service restoration
             </li>
           </ul>
         ),
@@ -316,12 +346,13 @@ export const experience: TimelineItem[] = [
               <strong>Microsoft Intune, Microsoft Entra ID, Group Policy and Conditional Access</strong>
             </li>
             <li>
-              <strong>Built PowerShell automation to validate Secure Boot certificates and deploy language packs</strong>,
-              cutting manual device setup time by 20%
+              <strong>Built PowerShell automation to validate Secure Boot certificates and deploy language packs</strong>{' '}
+              — using AI-assisted development to accelerate script authoring and debugging — cutting manual device
+              setup time by 20%
             </li>
             <li>
-              Owned end-to-end identity access lifecycles — user provisioning, group management, least-privilege access
-              and offboarding
+              Owned end-to-end identity access lifecycles — user provisioning, Active Directory group management,
+              least-privilege access and offboarding
             </li>
           </ul>
         ),
@@ -335,21 +366,20 @@ export const experience: TimelineItem[] = [
     content: (
       <ul className="list-disc list-outside pl-5 space-y-1">
         <li>
-          <strong>Restructured an 8-person support team into two specialised units</strong> — Project Delivery and
-          Technical Support — separating deployment work from reactive maintenance and cutting client deployment time by
-          20%
+          <strong>Standardised end-to-end client deployment and onboarding workflows</strong> across an 8-person
+          operation — separating deployment work from reactive maintenance and cutting client deployment time by 20%
         </li>
         <li>
-          <strong>Standardised end-to-end client onboarding and transferred ownership to autonomous team leads</strong>,
-          lifting client onboarding capacity by 40%
-        </li>
-        <li>
-          Designed and delivered technical training that built <strong>independent troubleshooting capability</strong>{' '}
-          across the team, reducing reliance on escalation
+          Designed and delivered <strong>technical training on IP networking, OS virtualisation and database
+          fundamentals</strong>, building independent troubleshooting capability and reducing reliance on escalation
         </li>
         <li>
           Partnered with Product Engineering on recurring defect trends from live deployments, feeding operating issues
           into product release planning
+        </li>
+        <li>
+          Transferred day-to-day ownership to autonomous team leads while retaining <strong>technical authority over
+          escalations</strong>, lifting client onboarding capacity by 40%
         </li>
       </ul>
     ),
@@ -361,35 +391,44 @@ export const experience: TimelineItem[] = [
     content: (
       <ul className="list-disc list-outside pl-5 space-y-1">
         <li>
+          <strong>Owned the response to a major incident</strong> in which a Tier-3 data centre SAN failure took
+          production workloads offline — acting as escalation owner, working the recovery alongside the MSP that owned
+          the SAN platform, holding stakeholder communication and driving restoration of service with minimal
+          disruption
+        </li>
+        <li>
           <strong>Led data centre migration as part of a S$2M digital transformation</strong>, moving core enterprise
           applications — including Microsoft Dynamics AX ERP and gaming systems — into Tier-3 co-location facilities
           with minimal production downtime
         </li>
         <li>
-          <strong>Directed the response to a major incident</strong> in which a Tier-3 data centre SAN failure took
-          production workloads offline — coordinating recovery across vendors, holding stakeholder communication and
-          driving restoration of service
+          Administered <strong>Active Directory and Group Policy</strong> for the corporate environment — controlling user
+          access and enforcing configuration standards across the estate
         </li>
         <li>
-          <strong>Held change approval authority</strong> for infrastructure changes — assessing risk, impact and
-          readiness, and scheduling implementation windows to avoid service disruption
+          Managed <strong>WSUS patch deployment</strong> across the server and endpoint estate, and administered the{' '}
+          <strong>Ivanti endpoint management</strong> platform
         </li>
         <li>
-          Administered Active Directory and Group Policy for the corporate environment, and managed{' '}
-          <strong>WSUS patch deployment</strong> across the server and endpoint estate alongside the{' '}
-          <strong>Ivanti endpoint management</strong> estate
+          Configured and troubleshot hybrid network security perimeters, managing{' '}
+          <strong>Layer 4/7 stateful filtering across F5 WAF, Palo Alto and Check Point</strong> next-generation
+          firewalls
         </li>
         <li>
           Administered identity and access management across <strong>Microsoft Entra ID and Microsoft 365</strong> —
           least-privilege access control, user provisioning and group management
         </li>
         <li>
+          Held <strong>change approval authority</strong> for infrastructure changes — assessing risk, impact and
+          readiness, and scheduling implementation windows to avoid service disruption
+        </li>
+        <li>
           Governed corporate IT hardware leasing lifecycles, asset discovery and deployment schedules across an
           enterprise fleet of 300+ connected devices within a <strong>S$100K dedicated budget line</strong>
         </li>
         <li>
-          Served as final escalation owner for systemic infrastructure issues, supervising outsourced desktop support
-          vendors against agreed service levels
+          Served as <strong>final technical escalation owner</strong> for systemic infrastructure issues, and supervised
+          outsourced desktop support vendors against agreed service levels
         </li>
       </ul>
     ),
@@ -401,30 +440,28 @@ export const experience: TimelineItem[] = [
     content: (
       <ul className="list-disc list-outside pl-5 space-y-1">
         <li>
-          Managed outsourced IT vendors against SLA and availability commitments across{' '}
-          <strong>135 restaurant outlets</strong> — <strong>500+ self-order kiosks, 1,000 POS terminals and 2,000
-          kitchen display systems</strong>
+          Administered <strong>Active Directory and Group Policy</strong> across the corporate estate, controlling user
+          access and enforcing device configuration standards across <strong>135 restaurant outlets</strong>
         </li>
         <li>
-          <strong>Ran monthly service reviews with the outsourced vendor service desk</strong> and reported service desk
-          performance to management — holding vendors to agreed SLAs and translating incident and request trends into
-          prioritised service improvements
+          Led hardware staging, configuration and network readiness for the{' '}
+          <strong>nationwide rollout of the McDonald's App</strong> across 135 outlets
         </li>
         <li>
-          <strong>Reviewed service tickets to identify recurring causes and applied permanent fixes</strong> to stop
-          issues recurring rather than closing them repeatedly
+          <strong>Reviewed service tickets to identify recurring technical causes and applied permanent fixes</strong>{' '}
+          rather than closing the same issue repeatedly
+        </li>
+        <li>
+          Managed outsourced IT vendors against SLA and availability commitments across 135 outlets —{' '}
+          <strong>500+ self-order kiosks, 1,000 POS terminals and 2,000 kitchen display systems</strong>
+        </li>
+        <li>
+          Ran monthly service reviews with the outsourced vendor service desk and reported service desk performance to
+          management — translating incident and request trends into prioritised technical improvements
         </li>
         <li>
           <strong>Engaged 135 restaurant outlets monthly</strong> to surface technology pain points before they
           escalated, feeding findings into the service improvement backlog
-        </li>
-        <li>
-          Administered Active Directory and Group Policy across the corporate estate, controlling user access and
-          enforcing device configuration standards
-        </li>
-        <li>
-          Led hardware staging, configuration and readiness for the{' '}
-          <strong>nationwide rollout of the McDonald's App</strong> across the full outlet estate
         </li>
       </ul>
     ),
@@ -441,8 +478,8 @@ export const experience: TimelineItem[] = [
           devices
         </li>
         <li>
-          <strong>Logged, tracked and resolved incidents and service requests in ServiceNow</strong>, building the
-          ITIL-aligned service management discipline applied in later roles
+          <strong>Built a diagnostics script (Batch) to scan client endpoints</strong> and extract hardware models, IP
+          addresses and serial numbers — replacing manual asset tracking during rollout programmes
         </li>
         <li>
           Delivered on-site hardware deployment and maintenance for{' '}
@@ -450,8 +487,8 @@ export const experience: TimelineItem[] = [
           McDonald's Singapore outlets
         </li>
         <li>
-          <strong>Built a diagnostics script (Batch) to scan client endpoints</strong> and extract hardware models, IP
-          addresses and serial numbers — replacing manual asset tracking during rollouts
+          <strong>Logged, tracked and resolved incidents and service requests in ServiceNow</strong>, building the
+          ITIL-aligned service management discipline applied in later roles
         </li>
       </ul>
     ),
