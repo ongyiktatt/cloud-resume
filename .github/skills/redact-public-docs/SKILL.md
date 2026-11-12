@@ -1,8 +1,8 @@
 ---
+name: redact-public-docs
 description: "Audit the repo's committed files for AWS account identifiers, resource names, endpoints and notification addresses, then replace them with runtime-resolvable placeholders. Use before making the repository public or after adding infrastructure docs."
-agent: "agent"
+disable-model-invocation: true
 ---
-
 This repository is **public**, so every committed value is world-readable. Scan the
 committed files for anything that identifies the AWS account or private infrastructure
 and replace each hit with a placeholder.

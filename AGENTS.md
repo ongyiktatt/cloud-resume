@@ -34,7 +34,7 @@ These instruction files load automatically for matching paths. Read the one that
 | [dependency-upgrades](./.github/instructions/dependency-upgrades.instructions.md)                   | `package.json`, `yarn.lock`                                     | How to read `yarn audit`/`yarn outdated`, the React 18 pin, `yarn upgrade` over `resolutions` |
 | [resume-latex](./.github/instructions/resume-latex.instructions.md)                                 | `resume/**`, `.github/workflows/main.yml`                       | Résumé positioning rules, LaTeX layout traps, the PDF cache pipeline                   |
 
-[redact-public-docs](./.github/prompts/redact-public-docs.prompt.md) is the checklist for stripping account identifiers before publishing.
+[redact-public-docs](./.github/skills/redact-public-docs/SKILL.md) is the checklist for stripping account identifiers before publishing.
 
 ## Commands
 
