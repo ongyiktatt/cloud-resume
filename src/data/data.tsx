@@ -28,7 +28,7 @@ import {
 export const homePageMeta: HomepageMeta = {
   title: 'Yik Tatt Ong | Senior Infrastructure Engineer',
   description:
-    'Senior infrastructure engineer in Singapore with 12+ years across Windows Server, Active Directory, identity, endpoint management and hybrid cloud — hands-on across a three-market APAC estate, with PowerShell automation and root-cause discipline.',
+    'Senior infrastructure engineer in Singapore with 12+ years across Windows Server, Active Directory, identity, endpoint management and cloud platforms — hands-on across a three-market APAC estate, with PowerShell automation, infrastructure monitoring and root-cause discipline.',
 };
 
 /**
@@ -55,16 +55,17 @@ export const heroData: Hero = {
   description: (
     <>
       <p className="text-lg font-semibold text-orange-400 sm:text-xl lg:text-2xl">
-        Senior Infrastructure Engineer · Windows Server, Identity &amp; Endpoint · Hybrid Cloud (Azure / AWS)
+        Senior Infrastructure Engineer · Windows Server, Identity &amp; Endpoint · Hybrid Cloud (Azure / AWS Certified)
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        Microsoft Certified: Azure Administrator Associate (AZ-104) · Microsoft 365 Certified: Endpoint Administrator
-        Associate (MD-102) · AWS Certified Solutions Architect – Associate · AWS Certified CloudOps Engineer – Associate
+        Microsoft 365 Certified: Endpoint Administrator Associate (MD-102) · Microsoft Certified: Azure Administrator
+        Associate (AZ-104) · AWS Certified Solutions Architect – Associate · AWS Certified CloudOps Engineer – Associate
         · AWS Certified Cloud Practitioner · ITIL 4 Foundation
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        I administer the systems myself — Windows Server, Active Directory, Group Policy, Entra ID, Intune and VMware
-        vSphere — across a three-market APAC estate, and I still take the Tier-3 escalation when something breaks.
+        I do the systems work myself — Windows Server, Active Directory, Entra ID and Intune endpoints, Group Policy
+        troubleshooting, and a VMware-hosted server estate I use day to day — across a three-market APAC estate, and I
+        still take the Tier-3 escalation when something breaks.
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
         <strong>12+ years in enterprise IT</strong> across Singapore and the APAC region — a 200-user estate spanning
@@ -106,9 +107,10 @@ export const aboutData: About = {
       </p>
       <p>
         My strength is depth rather than headcount. As the sole internal IT resource in the Singapore regional office, I
-        do the Windows Server, Active Directory, Group Policy, Entra ID, Intune and VMware work myself, then escalate
-        and coordinate vendors when a problem runs past what I can fix alone. The manager titles I've held were mostly
-        administrative — the systems work never went away.
+        handle the Windows Server troubleshooting, Group Policy and Active Directory work, Entra ID and Intune endpoint
+        management, and day-to-day work on a VMware-hosted server estate — then escalate and coordinate vendors when a
+        problem runs past what I can fix alone. The manager titles I've held were mostly administrative; the systems
+        work never went away.
       </p>
       <p>
         I like problems that other people have given up on. Recurring escalations get root-caused rather than closed;
@@ -139,8 +141,7 @@ export const skills: SkillGroup[] = [
     name: 'Systems & Server Infrastructure',
     skills: [
       {name: 'Windows Server — Admin, Imaging & Troubleshooting', level: 9},
-      {name: 'VMware vSphere (Administration)', level: 8},
-      {name: 'Proxmox VE & Docker', level: 8},
+      {name: 'VMware vSphere — VM Operations & Guest Troubleshooting', level: 8},
       {name: 'DNS & Server Lifecycle Management', level: 8},
       {name: 'Capacity & Performance Tuning', level: 7},
     ],
@@ -149,7 +150,7 @@ export const skills: SkillGroup[] = [
     name: 'Identity & Directory Services',
     skills: [
       {name: 'Active Directory (AD DS)', level: 9},
-      {name: 'Group Policy (GPO)', level: 9},
+      {name: 'Group Policy (GPO) — Administration & Troubleshooting', level: 9},
       {name: 'Microsoft Entra ID & Conditional Access', level: 9},
       {name: 'Identity Lifecycle & Least Privilege', level: 8},
       {name: 'Authentication & Access Troubleshooting', level: 8},
@@ -168,27 +169,41 @@ export const skills: SkillGroup[] = [
   {
     name: 'Networking & Security',
     skills: [
-      {name: 'Layer 4/7 Firewall Policy (Palo Alto · Check Point · F5 WAF)', level: 8},
+      {name: 'Next-Generation Firewall Policy (Palo Alto · Check Point)', level: 8},
+      {name: 'F5 Web Application Firewall (WAF)', level: 7},
       {name: 'Routing, Switching & VLAN Segmentation', level: 8},
       {name: 'VPN (IPSec · WireGuard) & TCP/IP', level: 8},
       {name: 'Infrastructure Hardening & Patch Remediation', level: 8},
     ],
   },
   {
-    name: 'Automation & Scripting',
+    name: 'Automation, Scripting & Observability',
     skills: [
       {name: 'PowerShell & Batch Automation', level: 9},
-      {name: 'Proactive Monitoring (Zabbix)', level: 8},
+      {name: 'Infrastructure Monitoring (PRTG · Zabbix)', level: 8},
+      {name: 'Application Observability (Datadog logs & traces)', level: 7},
       {name: 'AI-Assisted Script Development & Debugging', level: 8},
       {name: 'Root-Cause Analysis & Permanent Fixes', level: 9},
     ],
   },
   {
-    name: 'IT Service Management',
+    name: 'Containers & Homelab (self-hosted)',
     skills: [
-      {name: 'Major Incident Coordination & Escalation', level: 9},
-      {name: 'Problem Management & Change Assessment', level: 8},
-      {name: 'ITIL 4 Foundation · ServiceNow · Jira', level: 7},
+      {name: 'Docker & Docker Compose', level: 8},
+      {name: 'Proxmox VE', level: 7},
+      {name: 'NetBox (IPAM) & Device Inventory', level: 8},
+      {name: 'Nginx Proxy Manager (Reverse Proxy · TLS)', level: 8},
+      {name: 'Technitium DNS Server', level: 7},
+    ],
+  },
+  {
+    name: 'Technical Service Management',
+    skills: [
+      {name: 'Major Incident Response & Technical Escalation', level: 9},
+      {name: 'Problem Documentation & Root-Cause Discipline', level: 9},
+      {name: 'Change Risk Assessment & Rollback Planning', level: 8},
+      {name: 'Ticket Triage & Fault Isolation', level: 8},
+      {name: 'ServiceNow · Jira · ITIL 4 Foundation', level: 7},
       {name: 'Vendor Service Reviews & SLA Compliance', level: 8},
     ],
   },
@@ -205,10 +220,16 @@ export const portfolioItems: PortfolioItem[] = [
     tech: ['Vendor Selection', 'Physical Security Integration', 'Server Administration', 'Deployment & Handover'],
   },
   {
-    title: 'Tier-3 data centre SAN failure — major incident coordination',
+    title: 'Tier-3 data centre SAN failure — major incident response',
     description:
-      'A SAN failure at the Tier-3 co-location facility took production workloads offline. I owned the incident as escalation point: working the recovery alongside the MSP that owned the SAN platform, coordinating across vendors, holding stakeholder communication throughout, and driving restoration of service with minimal disruption.',
-    tech: ['Major Incident Coordination', 'Vendor & MSP Management', 'Disaster Recovery', 'Stakeholder Communication'],
+      'A SAN failure at the Tier-3 co-location facility took production workloads offline. I owned the technical response: working the recovery alongside the MSP that owned the SAN platform, coordinating across vendors, holding stakeholder communication throughout, and driving restoration of service with minimal disruption. Infrastructure health across servers, VMs and network gear was visible throughout via PRTG.',
+    tech: ['Major Incident Response', 'MSP Coordination', 'Disaster Recovery', 'PRTG Monitoring'],
+  },
+  {
+    title: 'Homelab — container host, IPAM and internal DNS',
+    description:
+      'A self-hosted environment I run continuously: Docker host with Compose-defined service stacks, Nginx Proxy Manager handling reverse proxy and TLS termination, NetBox as the source of truth for IP address management and device inventory, and Technitium as the internal DNS resolver. Kept deliberately documented rather than ad hoc — addressing, naming and service exposure all recorded.',
+    tech: ['Docker', 'NetBox (IPAM)', 'Nginx Proxy Manager', 'Technitium DNS'],
   },
   {
     title: 'Vulnerability triage automation — WannaCry response',
@@ -233,16 +254,9 @@ export const portfolioItems: PortfolioItem[] = [
 
 /**
  * Resume section
+ * Certifications ordered newest to oldest.
  */
 export const certification: TimelineItem[] = [
-  {
-    date: 'May 2021',
-    location: 'ITIL',
-    title: 'ITIL 4 Foundation',
-    url: 'https://www.peoplecert.org/for-corporations/certificate-verification-service',
-    compact: true,
-    content: <span className="block text-center md:text-left">Credential ID: GR671273878OY</span>,
-  },
   {
     date: 'October 2026',
     location: 'Microsoft',
@@ -283,6 +297,14 @@ export const certification: TimelineItem[] = [
     compact: true,
     content: <></>,
   },
+  {
+    date: 'May 2021',
+    location: 'ITIL',
+    title: 'ITIL 4 Foundation',
+    url: 'https://www.peoplecert.org/for-corporations/certificate-verification-service',
+    compact: true,
+    content: <span className="block text-center md:text-left">Credential ID: GR671273878OY</span>,
+  },
 ];
 
 export const education: TimelineItem[] = [
@@ -307,12 +329,13 @@ export const experience: TimelineItem[] = [
           <ul className="list-disc list-outside pl-5 space-y-1">
             <li>
               <strong>Sole internal IT resource for Singapore, Japan and South Korea</strong> — personally hands-on
-              across the entire regional estate rather than directing a team, covering Windows Server, VMware-hosted
-              workloads, Active Directory, Group Policy and endpoint management across all three markets
+              across the entire regional estate rather than directing a team, covering Windows Server, Active Directory
+              and Group Policy troubleshooting, a VMware-hosted server estate and endpoint management across all three
+              markets
             </li>
             <li>
               Own the Singapore end-user computing estate hands-on — <strong>Active Directory and Group Policy
-              administration</strong>, Microsoft Teams Rooms unified communications, patch compliance and device
+              troubleshooting</strong>, Microsoft Teams Rooms unified communications, patch compliance and device
               configuration standards
             </li>
             <li>
@@ -322,7 +345,7 @@ export const experience: TimelineItem[] = [
             </li>
             <li>
               Resolve systemic technical issues through <strong>structured root-cause analysis</strong> — troubleshooting
-              Windows Server and virtualised workloads directly rather than escalating to third parties
+              Windows Server directly rather than escalating to third parties
             </li>
             <li>
               Apply <strong>problem management to recurring incident patterns</strong> — introducing proactive Zabbix
@@ -330,8 +353,8 @@ export const experience: TimelineItem[] = [
               by 20%
             </li>
             <li>
-              Own regional incident escalation across three markets — coordinating vendor-supplied engineers
-              technically and holding business stakeholder communication through to service restoration
+              Act as final technical escalation point across three markets — diagnosing faults directly alongside
+              vendor-supplied engineers, and holding business stakeholder communication through to service restoration
             </li>
           </ul>
         ),
@@ -361,10 +384,14 @@ export const experience: TimelineItem[] = [
   },
   {
     date: 'June 2022 - February 2023',
-    location: 'Tabsquare.ai',
+    location: 'TabSquare',
     title: 'Operations Manager',
     content: (
       <ul className="list-disc list-outside pl-5 space-y-1">
+        <li>
+          <strong>Diagnosed production product defects using Datadog</strong> — correlating application logs and traces
+          to isolate root cause across live client deployments, replacing guesswork with evidence-led fault isolation
+        </li>
         <li>
           <strong>Standardised end-to-end client deployment and onboarding workflows</strong> across an 8-person
           operation — separating deployment work from reactive maintenance and cutting client deployment time by 20%
@@ -392,7 +419,7 @@ export const experience: TimelineItem[] = [
       <ul className="list-disc list-outside pl-5 space-y-1">
         <li>
           <strong>Owned the response to a major incident</strong> in which a Tier-3 data centre SAN failure took
-          production workloads offline — acting as escalation owner, working the recovery alongside the MSP that owned
+          production workloads offline — acting as escalation point, working the recovery alongside the MSP that owned
           the SAN platform, holding stakeholder communication and driving restoration of service with minimal
           disruption
         </li>
@@ -406,28 +433,33 @@ export const experience: TimelineItem[] = [
           access and enforcing configuration standards across the estate
         </li>
         <li>
+          <strong>Monitored infrastructure health with PRTG</strong> across physical servers, virtual machines and
+          networking equipment — working sensor alerts and threshold breaches through to resolution during incident
+          triage
+        </li>
+        <li>
           Managed <strong>WSUS patch deployment</strong> across the server and endpoint estate, and administered the{' '}
           <strong>Ivanti endpoint management</strong> platform
         </li>
         <li>
-          Configured and troubleshot hybrid network security perimeters, managing{' '}
-          <strong>Layer 4/7 stateful filtering across F5 WAF, Palo Alto and Check Point</strong> next-generation
-          firewalls
+          Configured and troubleshot network security policy across <strong>Palo Alto and Check Point</strong>
+          next-generation firewalls, with <strong>F5</strong> handling web application firewall (WAF) policy — covering
+          rule review, change testing and fault isolation during incidents
         </li>
         <li>
           Administered identity and access management across <strong>Microsoft Entra ID and Microsoft 365</strong> —
           least-privilege access control, user provisioning and group management
         </li>
         <li>
-          Held <strong>change approval authority</strong> for infrastructure changes — assessing risk, impact and
-          readiness, and scheduling implementation windows to avoid service disruption
+          Held <strong>change approval authority</strong> for infrastructure changes — reviewing technical risk, rollback
+          plans and readiness, and scheduling implementation windows to avoid service disruption
         </li>
         <li>
           Governed corporate IT hardware leasing lifecycles, asset discovery and deployment schedules across an
           enterprise fleet of 300+ connected devices within a <strong>S$100K dedicated budget line</strong>
         </li>
         <li>
-          Served as <strong>final technical escalation owner</strong> for systemic infrastructure issues, and supervised
+          Served as <strong>final technical escalation point</strong> for systemic infrastructure issues, and supervised
           outsourced desktop support vendors against agreed service levels
         </li>
       </ul>
