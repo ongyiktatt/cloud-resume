@@ -29,18 +29,23 @@
 \fancyfoot{}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
-\addtolength{\oddsidemargin}{-0.5in}
-\addtolength{\evensidemargin}{-0.5in}
-\addtolength{\textwidth}{1in}
-\addtolength{\topmargin}{-.5in}
-\addtolength{\textheight}{1.1in}
+%----------PAGE GEOMETRY----------
+% Side margins ~0.49in, top margin tightened, text block extended to ~1.55in.
+% Keep \oddsidemargin/evensidemargin and \textwidth balanced as a pair, or the
+% text block drifts off-centre.
+\addtolength{\oddsidemargin}{-0.66in}
+\addtolength{\evensidemargin}{-0.66in}
+\addtolength{\textwidth}{1.32in}
+\addtolength{\topmargin}{-.80in}
+\addtolength{\textheight}{1.55in}
 \urlstyle{same}
 \raggedbottom
 \raggedright
 \setlength{\tabcolsep}{0in}
 % Section formatting
+% after-code space kept at -6pt: the rule sits above the first entry without overlap.
 \titleformat{\section}{
-  \vspace{-5pt}\scshape\raggedright\large
+  \vspace{-8pt}\scshape\raggedright\large
 }{}{0em}{}[\color{black}\titlerule \vspace{-6pt}]
 % Machine-readable output so parsers read characters, not glyph junk
 \pdfgentounicode=1
@@ -51,6 +56,8 @@
 \newcommand{\resumeItem}[1]{
   \item{#1}
 }
+% NOTE: opening vspace is -2pt on purpose. Any more negative pulls the first
+% entry up into the section rule (titlesec after-code is -6pt).
 \newcommand{\resumeSubheading}[4]{
   \vspace{-2pt}\item
     \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
@@ -86,23 +93,29 @@
 %-------------------------------------------
 \begin{document}
 %----------HEADING----------
+% \vspace*{-18pt} cancels the center environment's topsep and lifts the block.
+% \\[3pt] replaces "\\ \vspace{4pt}" (which stacked baselineskip + extra space).
+% If the name clips at the top edge in your viewer/printer, raise this to -12pt.
 \begin{center}
-    \textbf{\Huge \scshape Yik Tatt Ong} \\ \vspace{4pt}
-    \small Senior Infrastructure Engineer $\cdot$ Windows Server, Identity \& Endpoint $\cdot$ Hybrid Cloud (Azure / AWS) \\ \vspace{2pt}
+    \vspace*{-18pt}
+    \textbf{\Huge \scshape Yik Tatt Ong} \\[3pt]
+    \small Senior Infrastructure Engineer $\cdot$ Windows Server, Identity \& Endpoint $\cdot$ Hybrid Cloud (Azure / AWS Certified) \\[1pt]
     \small Singapore $\cdot$ +65 8342 9085 $\cdot$
-    \href{mailto:ytong95@gmail.com}{ytong95@gmail.com} \\ \vspace{2pt}
+    \href{mailto:ytong95@gmail.com}{ytong95@gmail.com} \\[1pt]
     \small \href{https://ongyiktatt.com}{ongyiktatt.com} $\cdot$
     \href{https://github.com/ongyiktatt}{GitHub} $\cdot$
     \href{https://www.linkedin.com/in/ongyiktatt/}{LinkedIn}
+    \vspace*{-6pt}
 \end{center}
 %----------SUMMARY----------
 \section{Summary}
 \begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{
-     \textbf{Hands-on infrastructure engineer with 12+ years across Windows Server, identity, endpoint and hybrid cloud} --- sole internal IT resource for a three-market APAC estate, administering Active Directory, Group Policy, Microsoft Entra ID, Intune and VMware vSphere alongside production incident resolution and root-cause analysis. \\
-     \textbf{Deep Windows Server and directory engineering} --- Windows Server administration and troubleshooting, AD DS and Group Policy at enterprise scale, WSUS patch compliance, Ivanti and Intune endpoint management, VMware vSphere virtualisation, and network perimeter troubleshooting across F5, Palo Alto and Check Point. \\
-     \textbf{Automation and root-cause discipline} --- PowerShell and Batch scripting that removed 20\% of manual device setup time and cut recurring incident escalations by 20\%; owned a Tier-3 data centre SAN failure as major incident escalation point, coordinating the MSP-owned platform recovery and restoring production with minimal disruption. \\
-     \textbf{Microsoft 365 Certified: Endpoint Administrator Associate (MD-102) and Microsoft Certified: Azure Administrator Associate (AZ-104)}, both Oct 2026; AWS Certified Solutions Architect and CloudOps Engineer --- Associate; ITIL 4 Foundation. \textbf{Available to start January 2027.}
+     \textbf{Hands-on infrastructure engineer with 12+ years across Windows Server, identity, endpoint and hybrid cloud} --- sole internal IT resource for a three-market APAC estate, hands-on with Windows Server, Active Directory and Group Policy troubleshooting, Microsoft Entra ID and Intune endpoint management, and a VMware-hosted server estate --- resolving production incidents and isolating faults directly. \\
+     \textbf{Deep Windows Server and directory engineering} --- Windows Server administration and troubleshooting, AD DS and Group Policy at enterprise scale, WSUS patch compliance, Ivanti and Intune endpoint management, and network perimeter troubleshooting across Palo Alto, Check Point and F5 application delivery infrastructure. \\
+     \textbf{Diagnostic and automation discipline} --- PowerShell and Batch scripting that removed 20\% of manual device setup time, PRTG infrastructure monitoring across servers, virtual machines and network equipment, proactive Zabbix monitoring that cut recurring escalations by 20\%, and Datadog log and trace correlation used to isolate product defects in live deployments. \\
+     \textbf{Works the fault personally} --- acted as escalation point on a Tier-3 data centre SAN failure, working the platform recovery alongside the MSP and restoring production with minimal disruption. \\
+     \textbf{Microsoft 365 Certified: Endpoint Administrator Associate (MD-102) and Microsoft Certified: Azure Administrator Associate (AZ-104)}, both Oct 2026; AWS Certified Solutions Architect and CloudOps Engineer --- Associate; ITIL 4 Foundation. \textbf{Available for interviews immediately; available to start January 2027.}
      \vspace{-6pt}
     }}
 \end{itemize}
@@ -110,12 +123,13 @@
 \section{Skills}
   \resumeSubHeadingListStart
     \item\small{
-      \textbf{Systems \& Server Infrastructure:} Windows Server (administration, troubleshooting, standard build imaging, patch compliance) $\cdot$ VMware vSphere $\cdot$ Proxmox VE $\cdot$ Docker $\cdot$ DNS $\cdot$ Server \& Hardware Lifecycle Management $\cdot$ Capacity \& Performance Tuning \\
-      \textbf{Identity \& Directory Services:} Active Directory (AD DS) $\cdot$ Group Policy (GPO) $\cdot$ Microsoft Entra ID (Azure AD) $\cdot$ Identity Lifecycle Management $\cdot$ Least-Privilege Access Control $\cdot$ Authentication \& Access Troubleshooting \\
+      \textbf{Systems \& Server Infrastructure:} Windows Server (administration, troubleshooting, standard build imaging, patch compliance) $\cdot$ VMware vSphere (VM operations \& guest-level troubleshooting) $\cdot$ DNS $\cdot$ Server \& Hardware Lifecycle Management $\cdot$ Capacity \& Performance Tuning \\
+      \textbf{Identity \& Directory Services:} Active Directory (AD DS) $\cdot$ Group Policy (GPO) administration \& troubleshooting $\cdot$ Microsoft Entra ID (Azure AD) $\cdot$ Identity Lifecycle Management $\cdot$ Least-Privilege Access Control $\cdot$ Authentication \& Access Troubleshooting \\
       \textbf{Endpoint \& Modern Workplace:} Microsoft Intune $\cdot$ Ivanti Endpoint Management $\cdot$ Conditional Access $\cdot$ Device Compliance Baselines $\cdot$ WSUS Patch Management $\cdot$ Device Lifecycle \& Asset Management $\cdot$ Microsoft 365 $\cdot$ Windows \& macOS \\
-      \textbf{Networking \& Security:} Layer 4/7 Stateful Firewall Policy (Palo Alto, Check Point, F5 WAF) $\cdot$ Routing \& Switching $\cdot$ VLANs \& Network Segmentation $\cdot$ VPN (IPSec, WireGuard) $\cdot$ TCP/IP $\cdot$ Infrastructure Hardening \& Patch Remediation \\
-      \textbf{Automation \& Scripting:} PowerShell $\cdot$ Batch $\cdot$ Proactive Monitoring (Zabbix) $\cdot$ AI-Assisted Script Development \& Debugging $\cdot$ Validating AI-Generated Output Before Implementation \\
-      \textbf{IT Service Management \& Collaboration:} ITIL 4 Foundation $\cdot$ Major Incident Coordination $\cdot$ Change Assessment \& Approval $\cdot$ Problem Management \& Root-Cause Analysis $\cdot$ ServiceNow (user) $\cdot$ Jira / Jira Service Management (user) $\cdot$ Microsoft Teams Rooms $\cdot$ Vendor Service Reviews
+      \textbf{Networking \& Security:} Next-Generation Firewall Policy (Palo Alto, Check Point) $\cdot$ F5 Web Application Firewall (WAF) $\cdot$ Routing \& Switching $\cdot$ VLANs \& Network Segmentation $\cdot$ VPN (IPSec, WireGuard) $\cdot$ TCP/IP $\cdot$ Infrastructure Hardening \& Patch Remediation \\
+      \textbf{Containers \& Homelab (self-hosted):} Docker \& Docker Compose $\cdot$ Proxmox VE $\cdot$ NetBox (IPAM) $\cdot$ Nginx Proxy Manager (reverse proxy, TLS) $\cdot$ Technitium DNS Server \\
+      \textbf{Automation, Scripting \& Observability:} PowerShell $\cdot$ Batch $\cdot$ PRTG (infrastructure, VM \& network monitoring) $\cdot$ Zabbix $\cdot$ Datadog (application logs \& traces) $\cdot$ AI-Assisted Script Development \& Debugging $\cdot$ Validating AI-Generated Output Before Implementation \\
+      \textbf{Technical Service Management:} ITIL 4 Foundation $\cdot$ Major Incident Response \& Technical Escalation $\cdot$ Root-Cause Analysis \& Problem Documentation $\cdot$ Change Risk Assessment \& Rollback Planning $\cdot$ Ticket Triage \& Fault Isolation $\cdot$ ServiceNow (incident/change/request) $\cdot$ Jira Service Management $\cdot$ Vendor Service Reviews $\cdot$ Microsoft Teams Rooms
       \vspace{-6pt}
     }
   \resumeSubHeadingListEnd
@@ -127,13 +141,13 @@
       {}{Singapore}
       \resumeSubSubheading{IT Manager, APAC}{May 2025 -- Dec 2026}
       \resumeItemListStart
-        \resumeItem{Sole internal IT resource for Singapore, Japan and South Korea --- personally hands-on across the entire regional estate rather than directing a team, covering Windows Server, VMware-hosted workloads, Active Directory, Group Policy and endpoint management across all three markets.}
-        \resumeItem{Own the Singapore end-user computing estate hands-on --- Active Directory and Group Policy administration, Microsoft Teams Rooms unified communications, patch compliance and device configuration standards.}
+        \resumeItem{Sole internal IT resource for Singapore, Japan and South Korea --- personally hands-on across the entire regional estate rather than directing a team, covering Windows Server, Active Directory and Group Policy troubleshooting, a VMware-hosted server estate and endpoint management across all three markets.}
+        \resumeItem{Own the Singapore end-user computing estate hands-on --- Active Directory and Group Policy troubleshooting, Microsoft Teams Rooms unified communications, patch compliance and device configuration standards.}
+        \resumeItem{Resolve systemic technical issues through structured root-cause analysis --- troubleshooting Windows Server directly rather than escalating to third parties.}
         \resumeItem{Lead vendor selection, quotation, deployment and ongoing server maintenance for the Singapore access control platform --- replacing an unsupported system with one carrying proper audit trails, and retaining hands-on ownership of the access control server.}
-        \resumeItem{Resolve systemic technical issues through structured root-cause analysis --- troubleshooting Windows Server and virtualised workloads directly rather than escalating to third parties.}
         \resumeItem{Apply problem management to recurring incident patterns --- introducing proactive Zabbix monitoring for printers, Microsoft Teams Rooms systems and virtual machines, cutting recurring incident escalations by 20\%.}
-        \resumeItem{Own regional incident escalation across three markets --- coordinating vendor-supplied engineers technically and holding business stakeholder communication through to service restoration.}
-        \resumeItem{Evaluate and sequence change for regional technical initiatives across Singapore, Japan and South Korea --- validating readiness and piloting locally before wider deployment.}
+        \resumeItem{Act as final technical escalation point across three markets --- diagnosing faults directly alongside vendor-supplied engineers, and holding business stakeholder communication through to service restoration.}
+        \resumeItem{Pilot and validate regional technical deployments across Singapore, Japan and South Korea --- confirming readiness locally before wider rollout, with change sequenced to avoid business disruption.}
       \resumeItemListEnd
       \resumeSubSubheading{IT Specialist, APAC}{Feb 2023 -- May 2025}
       \resumeItemListStart
@@ -145,6 +159,7 @@
       {TabSquare}{Jun 2022 -- Feb 2023}
       {Operations Manager}{Singapore}
       \resumeItemListStart
+        \resumeItem{Diagnosed production product defects using Datadog --- correlating application logs and traces to isolate root cause across live client deployments, replacing guesswork with evidence-led fault isolation.}
         \resumeItem{Standardised end-to-end client deployment and onboarding workflows across an 8-person operation --- separating deployment work from reactive maintenance and cutting client deployment time by 20\%.}
         \resumeItem{Designed and delivered technical training on IP networking, OS virtualisation and database fundamentals, building independent troubleshooting capability across the team and reducing reliance on escalation.}
         \resumeItem{Partnered with Product Engineering on recurring defect trends from live deployments, feeding operating issues into product release planning.}
@@ -156,13 +171,12 @@
       \resumeItemListStart
         \resumeItem{Owned the response to a major incident in which a Tier-3 data centre SAN failure took production workloads offline --- acting as escalation point, working the recovery alongside the MSP that owned the SAN platform, holding stakeholder communication and driving restoration of service with minimal disruption.}
         \resumeItem{Led migration of core enterprise applications --- including Microsoft Dynamics AX ERP and gaming systems --- into Tier-3 co-location facilities as part of a S\$2M digital transformation programme, with minimal production downtime.}
-        \resumeItem{Administered Active Directory and Group Policy for the corporate environment --- controlling user access and enforcing configuration standards across the estate.}
-        \resumeItem{Managed WSUS patch deployment across the server and endpoint estate, and administered the Ivanti endpoint management platform.}
-        \resumeItem{Configured and troubleshot hybrid network security perimeters, managing Layer 4/7 stateful filtering across F5 WAF, Palo Alto and Check Point next-generation firewalls.}
+        \resumeItem{Administered Active Directory, Group Policy, WSUS patch compliance and the Ivanti endpoint platform across the corporate server and endpoint estate --- controlling user access and enforcing configuration standards.}
+        \resumeItem{Monitored infrastructure health with PRTG across physical servers, virtual machines and networking equipment --- working sensor alerts and threshold breaches through to resolution during incident triage.}
+        \resumeItem{Configured and troubleshot network security policy across Palo Alto and Check Point next-generation firewalls, with F5 handling web application firewall (WAF) policy --- covering rule review, change testing and fault isolation during incidents.}
         \resumeItem{Administered identity and access management across Microsoft Entra ID (Azure AD) and Microsoft 365 --- least-privilege access control, user provisioning and group management.}
-        \resumeItem{Held change approval authority for infrastructure changes --- assessing risk, impact and readiness, and scheduling implementation windows to avoid service disruption.}
+        \resumeItem{Held change approval authority for infrastructure changes --- reviewing technical risk, rollback plans and readiness, and scheduling implementation windows to avoid service disruption.}
         \resumeItem{Governed corporate IT hardware leasing lifecycles, asset discovery and deployment schedules across an enterprise fleet of 300+ connected devices within a S\$100K annual hardware fleet budget line.}
-        \resumeItem{Served as final technical escalation owner for systemic infrastructure issues, and supervised outsourced desktop support vendors against agreed service levels.}
       \resumeItemListEnd
     \resumeSubheading
       {McDonald's Singapore}{Dec 2017 -- May 2021}
@@ -173,7 +187,6 @@
         \resumeItem{Reviewed service tickets to identify recurring technical causes and applied permanent fixes rather than closing the same issue repeatedly.}
         \resumeItem{Managed outsourced IT vendors against SLA and availability commitments across 135 outlets --- 500+ self-order kiosks, 1,000 POS terminals and 2,000 kitchen display systems.}
         \resumeItem{Ran monthly service reviews with the outsourced vendor service desk and reported service desk performance to management --- translating incident and request trends into prioritised technical improvements.}
-        \resumeItem{Engaged 135 restaurant outlets monthly to surface technology pain points before they escalated, feeding findings into the service improvement backlog.}
       \resumeItemListEnd
     \resumeSubheading
       {Systems Design}{Dec 2013 -- Dec 2017}
@@ -185,15 +198,33 @@
         \resumeItem{Logged, tracked and resolved incidents and service requests in ServiceNow, building the ITIL-aligned service management discipline applied in later roles.}
       \resumeItemListEnd
   \resumeSubHeadingListEnd
+%----------PROJECTS----------
+\section{Selected Projects}
+  \resumeSubHeadingListStart
+    \resumeProjectHeading
+      {\textbf{Homelab --- Container Host, IPAM \& Internal DNS} $|$ \emph{Docker, NetBox, Nginx Proxy Manager, Technitium}}
+      {}
+      \resumeItemListStart
+        \resumeItem{Run a self-hosted container environment on a Docker host, with Nginx Proxy Manager handling reverse proxying and TLS termination for internal services.}
+        \resumeItem{Maintain NetBox as the source of truth for IP address management (IPAM) and device inventory, and Technitium as the internal DNS resolver --- keeping addressing, naming and service exposure documented rather than ad hoc.}
+      \resumeItemListEnd
+    \resumeProjectHeading
+      {\textbf{ongyiktatt.com --- Hardened Static Site Delivery} $|$ \emph{CDN, WAF, CI/CD, Least-Privilege Access}}
+      {}
+      \resumeItemListStart
+        \resumeItem{Built and hardened a personal site --- static export served from a CDN behind a web application firewall, restricted by least-privilege access control and released through an automated CI/CD pipeline.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
 %----------CERTIFICATIONS----------
+% Ordered newest to oldest (descending by issue date).
 \section{Certifications}
   \resumeSubHeadingListStart
-    \resumeCertItem{ITIL 4 Foundation \textit{(Certificate ID: GR671273878OY)}}{May 2021}
     \resumeCertItem{\href{https://learn.microsoft.com/en-us/users/yiktattong-4161/credentials/ae5cff38fbbc119e}{Microsoft 365 Certified: Endpoint Administrator Associate (MD-102)}}{Oct 2026}
     \resumeCertItem{\href{https://learn.microsoft.com/en-sg/users/yiktattong-4161/credentials/2f92fdf4519b60ad}{Microsoft Certified: Azure Administrator Associate (AZ-104)}}{Oct 2026}
     \resumeCertItem{\href{https://www.credly.com/badges/209df12d-e120-4509-ad16-6c4d6fa05ca8/linked_in_profile}{AWS Certified CloudOps Engineer -- Associate}}{Aug 2026}
     \resumeCertItem{\href{https://www.credly.com/badges/b03143a4-ab95-45ea-93f4-068addd79ec6/linked_in_profile}{AWS Certified Solutions Architect -- Associate}}{Jul 2026}
     \resumeCertItem{\href{https://www.credly.com/badges/46c9f759-e3bc-42ae-8cab-73fd6da6f8ac/linked_in_profile}{AWS Certified Cloud Practitioner}}{May 2026}
+    \resumeCertItem{ITIL 4 Foundation \textit{(Certificate ID: GR671273878OY)}}{May 2021}
   \resumeSubHeadingListEnd
 %----------EDUCATION----------
 \section{Education}
