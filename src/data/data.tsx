@@ -26,9 +26,9 @@ import {
  * Page meta data
  */
 export const homePageMeta: HomepageMeta = {
-  title: 'Yik Tatt Ong | Senior Infrastructure Engineer',
+  title: 'Yik Tatt Ong | Infrastructure Engineer — Azure & AWS Certified',
   description:
-    'Senior infrastructure engineer in Singapore with 12+ years across Windows Server, Active Directory, identity, endpoint management and cloud platforms — hands-on across a three-market APAC estate, with PowerShell automation, infrastructure monitoring and root-cause discipline.',
+    'Infrastructure engineer in Singapore with 12+ years across hybrid identity, Windows Server, networking and cloud platforms — Microsoft Certified: Azure Administrator Associate (AZ-104) and AWS Certified Solutions Architect – Associate, with PowerShell automation, CI/CD delivery and network security depth.',
 };
 
 /**
@@ -55,26 +55,26 @@ export const heroData: Hero = {
   description: (
     <>
       <p className="text-lg font-semibold text-orange-400 sm:text-xl lg:text-2xl">
-        Senior Infrastructure Engineer · Windows Server, Identity &amp; Endpoint · Hybrid Cloud (Azure / AWS Certified)
+        Infrastructure Engineer · Azure &amp; AWS Certified · Hybrid Identity, Automation &amp; Network Security
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        Microsoft 365 Certified: Endpoint Administrator Associate (MD-102) · Microsoft Certified: Azure Administrator
-        Associate (AZ-104) · AWS Certified Solutions Architect – Associate · AWS Certified CloudOps Engineer – Associate
+        Microsoft Certified: Azure Administrator Associate (AZ-104) · Microsoft 365 Certified: Endpoint Administrator
+        Associate (MD-102) · AWS Certified Solutions Architect – Associate · AWS Certified CloudOps Engineer – Associate
         · AWS Certified Cloud Practitioner · ITIL 4 Foundation
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        I do the systems work myself — Windows Server, Active Directory, Entra ID and Intune endpoints, Group Policy
-        troubleshooting, and a VMware-hosted server estate I use day to day — across a three-market APAC estate, and I
-        still take the Tier-3 escalation when something breaks.
+        I do the systems work myself — Entra ID, Active Directory and Group Policy troubleshooting, Intune-managed
+        endpoints, and a VMware-hosted server estate I use day to day — across a three-market APAC estate, and I still
+        take the Tier-3 escalation when something breaks.
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
         <strong>12+ years in enterprise IT</strong> across Singapore and the APAC region — a 200-user estate spanning
         Singapore, Japan and South Korea, with production incident resolution, root-cause analysis and automation
-        throughout.
+        throughout. Currently building Terraform proficiency in a self-hosted lab.
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
         Open to{' '}
-        <strong>Senior Infrastructure Engineer, Systems Engineer, Technical Lead and Platform / Cloud Engineer</strong>{' '}
+        <strong>Cloud Engineer, Cloud Infrastructure Engineer, Senior Infrastructure Engineer and Systems Engineer</strong>{' '}
         roles in Singapore. Available for interviews immediately; available to start January 2027.
       </p>
     </>
@@ -113,9 +113,15 @@ export const aboutData: About = {
         work never went away.
       </p>
       <p>
+        What I bring to cloud and infrastructure engineering is the layer underneath it: Layer 4/7 policy across Palo
+        Alto and Check Point firewalls, F5 web application firewall, VLAN segmentation and VPN design, and observability
+        through PRTG, Zabbix and Datadog. A cloud engineer who can read a packet capture and explain a firewall rule is
+        a different proposition from one who can't.
+      </p>
+      <p>
         I like problems that other people have given up on. Recurring escalations get root-caused rather than closed;
-        repetitive work gets scripted. In October 2026 I passed Microsoft's Endpoint Administrator Associate (MD-102)
-        and Azure Administrator Associate (AZ-104), having added three AWS certifications earlier in the year alongside
+        repetitive work gets scripted. In October 2026 I passed Microsoft's Azure Administrator Associate (AZ-104) and
+        Endpoint Administrator Associate (MD-102), having added three AWS certifications earlier in the year alongside
         the role.
       </p>
       <p>Off the clock: cameras, hi-fi audio, and a homelab that's never quite finished.</p>
@@ -127,7 +133,7 @@ export const aboutData: About = {
     {label: 'Employment', text: 'Wargaming Asia', Icon: BuildingOffice2Icon},
     {
       label: 'Certifications',
-      text: ['Microsoft MD-102 · AZ-104', 'AWS SAA', 'CloudOps', 'Cloud Practitioner', 'ITIL 4 Foundation'],
+      text: ['Microsoft AZ-104 · MD-102', 'AWS SAA', 'CloudOps', 'Cloud Practitioner', 'ITIL 4 Foundation'],
       Icon: ShieldCheckIcon,
     },
   ],
@@ -135,15 +141,45 @@ export const aboutData: About = {
 
 /**
  * Skills section
+ * Mirrors the resume Skills section token-for-token, in the same order.
+ * Levels reflect evidenced hands-on use, not certification scope: cloud
+ * services sit deliberately below the identity and server skills.
  */
 export const skills: SkillGroup[] = [
   {
+    name: 'Cloud Platforms — AWS',
+    skills: [
+      {name: 'S3 & CloudFront — static hosting, CDN distribution', level: 7},
+      {name: 'Route 53 & ACM — DNS and TLS certificates', level: 6},
+      {name: 'IAM — roles, policies, least privilege', level: 6},
+      {name: 'AWS WAF', level: 5},
+      {name: 'Lambda & SNS — serverless integrations', level: 5},
+    ],
+  },
+  {
+    name: 'Cloud Platforms — Microsoft Azure',
+    skills: [
+      {name: 'Microsoft Entra ID (Azure AD)', level: 9},
+      {name: 'Conditional Access', level: 9},
+      {name: 'RBAC & Least-Privilege Access Control', level: 7},
+    ],
+  },
+  {
+    name: 'Infrastructure as Code & Delivery',
+    skills: [
+      {name: 'Terraform (in progress)', level: 3},
+      {name: 'Git', level: 7},
+      {name: 'GitHub Actions — OIDC Keyless Deployment', level: 7},
+      {name: 'CI/CD Pipeline Design', level: 6},
+    ],
+  },
+  {
     name: 'Systems & Server Infrastructure',
     skills: [
-      {name: 'Windows Server — Admin, Imaging & Troubleshooting', level: 9},
-      {name: 'VMware vSphere — VM Operations & Guest Troubleshooting', level: 8},
-      {name: 'DNS & Server Lifecycle Management', level: 8},
-      {name: 'Capacity & Performance Tuning', level: 7},
+      {name: 'Windows Server — administration, troubleshooting, standard build imaging, patch compliance', level: 9},
+      {name: 'Linux — Docker Host Administration', level: 6},
+      {name: 'VMware vSphere — VM Operations & Guest-Level Troubleshooting', level: 8},
+      {name: 'DNS & Server / Hardware Lifecycle Management', level: 8},
     ],
   },
   {
@@ -151,19 +187,20 @@ export const skills: SkillGroup[] = [
     skills: [
       {name: 'Active Directory (AD DS)', level: 9},
       {name: 'Group Policy (GPO) — Administration & Troubleshooting', level: 9},
-      {name: 'Microsoft Entra ID & Conditional Access', level: 9},
-      {name: 'Identity Lifecycle & Least Privilege', level: 8},
-      {name: 'Authentication & Access Troubleshooting', level: 8},
+      {name: 'Microsoft Entra ID (Azure AD)', level: 9},
+      {name: 'Identity Lifecycle Management', level: 8},
+      {name: 'Least-Privilege Access Control', level: 8},
     ],
   },
   {
     name: 'Endpoint & Modern Workplace',
     skills: [
-      {name: 'Microsoft Intune & Device Compliance', level: 9},
+      {name: 'Microsoft Intune', level: 9},
+      {name: 'Conditional Access', level: 9},
+      {name: 'Device Compliance Baselines', level: 8},
       {name: 'Ivanti Endpoint Management', level: 8},
       {name: 'WSUS Patch Management', level: 8},
-      {name: 'Device Lifecycle & Asset Management', level: 8},
-      {name: 'Microsoft 365 · Teams Rooms', level: 8},
+      {name: 'Microsoft 365 · Windows & macOS', level: 8},
     ],
   },
   {
@@ -171,19 +208,10 @@ export const skills: SkillGroup[] = [
     skills: [
       {name: 'Next-Generation Firewall Policy (Palo Alto · Check Point)', level: 8},
       {name: 'F5 Web Application Firewall (WAF)', level: 7},
-      {name: 'Routing, Switching & VLAN Segmentation', level: 8},
+      {name: 'Routing & Switching', level: 8},
+      {name: 'VLANs & Network Segmentation', level: 8},
       {name: 'VPN (IPSec · WireGuard) & TCP/IP', level: 8},
-      {name: 'Infrastructure Hardening & Patch Remediation', level: 8},
-    ],
-  },
-  {
-    name: 'Automation, Scripting & Observability',
-    skills: [
-      {name: 'PowerShell & Batch Automation', level: 9},
-      {name: 'Infrastructure Monitoring (PRTG · Zabbix)', level: 8},
-      {name: 'Application Observability (Datadog logs & traces)', level: 7},
-      {name: 'AI-Assisted Script Development & Debugging', level: 8},
-      {name: 'Root-Cause Analysis & Permanent Fixes', level: 9},
+      {name: 'Infrastructure Hardening', level: 8},
     ],
   },
   {
@@ -191,45 +219,48 @@ export const skills: SkillGroup[] = [
     skills: [
       {name: 'Docker & Docker Compose', level: 8},
       {name: 'Proxmox VE', level: 7},
-      {name: 'NetBox (IPAM) & Device Inventory', level: 8},
-      {name: 'Nginx Proxy Manager (Reverse Proxy · TLS)', level: 8},
+      {name: 'NetBox (IPAM)', level: 8},
+      {name: 'Nginx Proxy Manager — reverse proxy & TLS', level: 8},
       {name: 'Technitium DNS Server', level: 7},
     ],
   },
   {
-    name: 'Technical Service Management',
+    name: 'Automation & Observability',
     skills: [
-      {name: 'Major Incident Response & Technical Escalation', level: 9},
-      {name: 'Problem Documentation & Root-Cause Discipline', level: 9},
-      {name: 'Change Risk Assessment & Rollback Planning', level: 8},
-      {name: 'Ticket Triage & Fault Isolation', level: 8},
-      {name: 'ServiceNow · Jira · ITIL 4 Foundation', level: 7},
-      {name: 'Vendor Service Reviews & SLA Compliance', level: 8},
+      {name: 'PowerShell', level: 9},
+      {name: 'Bash', level: 6},
+      {name: 'Batch', level: 7},
+      {name: 'PRTG — infrastructure, VM & network monitoring', level: 8},
+      {name: 'Zabbix', level: 7},
+      {name: 'Datadog — application logs & traces', level: 7},
     ],
   },
 ];
 
 /**
  * Portfolio section
+ * The first two items mirror the resume's Selected Projects. The remaining
+ * three are evidence behind claims made in the experience section.
  */
 export const portfolioItems: PortfolioItem[] = [
   {
-    title: 'Access control platform replacement — vendor-led, end to end',
+    title: 'This site — serverless static delivery on AWS',
     description:
-      'Replaced an unsupported Singapore access control system with one carrying proper audit trails: scoped requirements, evaluated vendors, made the recommendation with trade-offs stated, ran the deployment around a live office so nobody was locked out, and handed it into BAU. I still administer the access control server today — patching, access database and exception handling.',
-    tech: ['Vendor Selection', 'Physical Security Integration', 'Server Administration', 'Deployment & Handover'],
+      'Built and hardened this site myself: a Next.js static export in S3 behind CloudFront, on a custom Route 53 domain with ACM-managed TLS and direct bucket access blocked. Releases run through GitHub Actions using OIDC role assumption — no stored access keys — so each merge to main builds, syncs and invalidates the CDN. Hardened with AWS WAF rules and least-privilege IAM, plus a serverless contact form on Lambda and SNS.',
+    tech: ['S3', 'CloudFront', 'Route 53', 'ACM', 'WAF', 'Lambda', 'SNS', 'GitHub Actions (OIDC)'],
+    url: 'https://github.com/ongyiktatt/cloud-resume',
+  },
+  {
+    title: 'Homelab — virtualisation, IPAM and infrastructure as code',
+    description:
+      'A self-hosted environment I run continuously: virtualised and containerised services on Proxmox VE and a Docker host, Nginx Proxy Manager handling reverse proxy and TLS termination, NetBox as the source of truth for IP address management and device inventory, and Technitium as the internal DNS resolver. Kept deliberately documented rather than ad hoc. Currently extending provisioning into Terraform using the Proxmox and Docker providers — defining virtual machines and containers as declarative configuration with state and changes tracked in Git, rather than built by hand.',
+    tech: ['Proxmox VE', 'Docker', 'Terraform (in progress)', 'NetBox (IPAM)', 'Nginx Proxy Manager', 'Technitium'],
   },
   {
     title: 'Tier-3 data centre SAN failure — major incident response',
     description:
-      'A SAN failure at the Tier-3 co-location facility took production workloads offline. I owned the technical response: working the recovery alongside the MSP that owned the SAN platform, coordinating across vendors, holding stakeholder communication throughout, and driving restoration of service with minimal disruption. Infrastructure health across servers, VMs and network gear was visible throughout via PRTG.',
+      'A SAN failure at the Tier-3 co-location facility took production workloads offline. I owned the response as escalation point: working the recovery alongside the MSP that owned the SAN platform, holding stakeholder communication throughout, and driving restoration of service with minimal disruption. Infrastructure health across servers, VMs and network equipment was visible throughout via PRTG.',
     tech: ['Major Incident Response', 'MSP Coordination', 'Disaster Recovery', 'PRTG Monitoring'],
-  },
-  {
-    title: 'Homelab — container host, IPAM and internal DNS',
-    description:
-      'A self-hosted environment I run continuously: Docker host with Compose-defined service stacks, Nginx Proxy Manager handling reverse proxy and TLS termination, NetBox as the source of truth for IP address management and device inventory, and Technitium as the internal DNS resolver. Kept deliberately documented rather than ad hoc — addressing, naming and service exposure all recorded.',
-    tech: ['Docker', 'NetBox (IPAM)', 'Nginx Proxy Manager', 'Technitium DNS'],
   },
   {
     title: 'Vulnerability triage automation — WannaCry response',
@@ -240,36 +271,30 @@ export const portfolioItems: PortfolioItem[] = [
   {
     title: 'Endpoint asset discovery automation',
     description:
-      'Built a diagnostics script (Batch) to scan client endpoints and extract hardware models, IP addresses and serial numbers — replacing manual asset tracking during rollouts, and forming the basis for the device-lifecycle and asset-management discipline I have run since.',
+      'Built a diagnostics script (Batch) to scan client endpoints and extract hardware models, IP addresses and serial numbers — replacing manual asset tracking during rollout programmes, and forming the basis for the device-lifecycle discipline I have run since.',
     tech: ['Batch', 'Asset Discovery', 'Device Lifecycle Management'],
-  },
-  {
-    title: 'This site',
-    description:
-      'Built and hardened this site myself — static export served through a CDN with a WAF and least-privilege access, and released through an automated CI/CD pipeline. It is here as evidence of technical grounding rather than as the day job.',
-    tech: ['Static Site Delivery', 'CDN', 'WAF', 'CI/CD', 'Least-Privilege Access'],
-    url: 'https://github.com/ongyiktatt/cloud-resume',
   },
 ];
 
 /**
  * Resume section
- * Certifications ordered newest to oldest.
+ * Certifications ordered newest to oldest. Within the Oct 2026 tie, AZ-104 is
+ * placed ahead of MD-102 because it matches the target role.
  */
 export const certification: TimelineItem[] = [
   {
     date: 'October 2026',
     location: 'Microsoft',
-    title: 'Microsoft 365 Endpoint Administrator Associate (MD-102)',
-    url: 'https://learn.microsoft.com/en-us/users/yiktattong-4161/credentials/ae5cff38fbbc119e',
+    title: 'Azure Administrator Associate (AZ-104)',
+    url: 'https://learn.microsoft.com/en-sg/users/yiktattong-4161/credentials/2f92fdf4519b60ad',
     compact: true,
     content: <></>,
   },
   {
     date: 'October 2026',
     location: 'Microsoft',
-    title: 'Azure Administrator Associate (AZ-104)',
-    url: 'https://learn.microsoft.com/en-sg/users/yiktattong-4161/credentials/2f92fdf4519b60ad',
+    title: 'Microsoft 365 Endpoint Administrator Associate (MD-102)',
+    url: 'https://learn.microsoft.com/en-us/users/yiktattong-4161/credentials/ae5cff38fbbc119e',
     compact: true,
     content: <></>,
   },
@@ -339,22 +364,14 @@ export const experience: TimelineItem[] = [
               configuration standards
             </li>
             <li>
-              Led <strong>vendor selection, quotation, deployment and ongoing server maintenance</strong> for the
-              Singapore access control platform — replacing an unsupported system with one carrying proper audit
-              trails, and retaining hands-on ownership of the access control server
-            </li>
-            <li>
-              Resolve systemic technical issues through <strong>structured root-cause analysis</strong> — troubleshooting
-              Windows Server directly rather than escalating to third parties
-            </li>
-            <li>
               Apply <strong>problem management to recurring incident patterns</strong> — introducing proactive Zabbix
-              monitoring for printers, Teams Rooms systems and virtual machines, cutting recurring incident escalations
-              by 20%
+              monitoring for printers, Microsoft Teams Rooms systems and virtual machines, cutting recurring incident
+              escalations by 20%
             </li>
             <li>
-              Act as final technical escalation point across three markets — diagnosing faults directly alongside
-              vendor-supplied engineers, and holding business stakeholder communication through to service restoration
+              Act as <strong>final technical escalation point across three markets</strong> — diagnosing faults directly
+              alongside vendor-supplied engineers, and holding business stakeholder communication through to service
+              restoration
             </li>
           </ul>
         ),
@@ -369,13 +386,12 @@ export const experience: TimelineItem[] = [
               <strong>Microsoft Intune, Microsoft Entra ID, Group Policy and Conditional Access</strong>
             </li>
             <li>
-              <strong>Built PowerShell automation to validate Secure Boot certificates and deploy language packs</strong>{' '}
-              — using AI-assisted development to accelerate script authoring and debugging — cutting manual device
-              setup time by 20%
+              <strong>Developed PowerShell automation for Secure Boot certificate validation and language-pack
+              deployment</strong>, cutting manual device setup time by 20%
             </li>
             <li>
-              Owned end-to-end identity access lifecycles — user provisioning, Active Directory group management,
-              least-privilege access and offboarding
+              Owned <strong>end-to-end identity access lifecycles</strong> — user provisioning, Active Directory group
+              management, least-privilege access and offboarding
             </li>
           </ul>
         ),
@@ -393,26 +409,14 @@ export const experience: TimelineItem[] = [
           to isolate root cause across live client deployments, replacing guesswork with evidence-led fault isolation
         </li>
         <li>
-          <strong>Standardised end-to-end client deployment and onboarding workflows</strong> across an 8-person
-          operation — separating deployment work from reactive maintenance and cutting client deployment time by 20%
-        </li>
-        <li>
-          Designed and delivered <strong>technical training on IP networking, OS virtualisation and database
-          fundamentals</strong>, building independent troubleshooting capability and reducing reliance on escalation
-        </li>
-        <li>
           Partnered with Product Engineering on recurring defect trends from live deployments, feeding operating issues
           into product release planning
-        </li>
-        <li>
-          Transferred day-to-day ownership to autonomous team leads while retaining <strong>technical authority over
-          escalations</strong>, lifting client onboarding capacity by 40%
         </li>
       </ul>
     ),
   },
   {
-    date: 'May 2021 - June 2022 (Contract)',
+    date: 'May 2021 - June 2022',
     location: 'SAFRA',
     title: 'IT Infrastructure Lead',
     content: (
@@ -424,43 +428,22 @@ export const experience: TimelineItem[] = [
           disruption
         </li>
         <li>
-          <strong>Led data centre migration as part of a S$2M digital transformation</strong>, moving core enterprise
-          applications — including Microsoft Dynamics AX ERP and gaming systems — into Tier-3 co-location facilities
+          <strong>Led migration of core enterprise applications</strong> — including Microsoft Dynamics AX ERP and gaming
+          systems — into Tier-3 co-location facilities as part of a <strong>S$2M digital transformation programme</strong>,
           with minimal production downtime
         </li>
         <li>
-          Administered <strong>Active Directory and Group Policy</strong> for the corporate environment — controlling user
-          access and enforcing configuration standards across the estate
+          Administered <strong>Active Directory, Group Policy, WSUS patch compliance and the Ivanti endpoint platform</strong>{' '}
+          across the corporate server and endpoint estate — controlling user access and enforcing configuration standards
         </li>
         <li>
-          <strong>Monitored infrastructure health with PRTG</strong> across physical servers, virtual machines and
-          networking equipment — working sensor alerts and threshold breaches through to resolution during incident
-          triage
-        </li>
-        <li>
-          Managed <strong>WSUS patch deployment</strong> across the server and endpoint estate, and administered the{' '}
-          <strong>Ivanti endpoint management</strong> platform
-        </li>
-        <li>
-          Configured and troubleshot network security policy across <strong>Palo Alto and Check Point</strong>
+          Configured and troubleshot network security policy across <strong>Palo Alto and Check Point</strong>{' '}
           next-generation firewalls, with <strong>F5</strong> handling web application firewall (WAF) policy — covering
           rule review, change testing and fault isolation during incidents
         </li>
         <li>
           Administered identity and access management across <strong>Microsoft Entra ID and Microsoft 365</strong> —
           least-privilege access control, user provisioning and group management
-        </li>
-        <li>
-          Held <strong>change approval authority</strong> for infrastructure changes — reviewing technical risk, rollback
-          plans and readiness, and scheduling implementation windows to avoid service disruption
-        </li>
-        <li>
-          Governed corporate IT hardware leasing lifecycles, asset discovery and deployment schedules across an
-          enterprise fleet of 300+ connected devices within a <strong>S$100K dedicated budget line</strong>
-        </li>
-        <li>
-          Served as <strong>final technical escalation point</strong> for systemic infrastructure issues, and supervised
-          outsourced desktop support vendors against agreed service levels
         </li>
       </ul>
     ),
@@ -476,24 +459,8 @@ export const experience: TimelineItem[] = [
           access and enforcing device configuration standards across <strong>135 restaurant outlets</strong>
         </li>
         <li>
-          Led hardware staging, configuration and network readiness for the{' '}
-          <strong>nationwide rollout of the McDonald's App</strong> across 135 outlets
-        </li>
-        <li>
-          <strong>Reviewed service tickets to identify recurring technical causes and applied permanent fixes</strong>{' '}
-          rather than closing the same issue repeatedly
-        </li>
-        <li>
           Managed outsourced IT vendors against SLA and availability commitments across 135 outlets —{' '}
           <strong>500+ self-order kiosks, 1,000 POS terminals and 2,000 kitchen display systems</strong>
-        </li>
-        <li>
-          Ran monthly service reviews with the outsourced vendor service desk and reported service desk performance to
-          management — translating incident and request trends into prioritised technical improvements
-        </li>
-        <li>
-          <strong>Engaged 135 restaurant outlets monthly</strong> to surface technology pain points before they
-          escalated, feeding findings into the service improvement backlog
         </li>
       </ul>
     ),
@@ -505,22 +472,14 @@ export const experience: TimelineItem[] = [
     content: (
       <ul className="list-disc list-outside pl-5 space-y-1">
         <li>
-          <strong>Wrote a Batch automation script during the WannaCry ransomware outbreak</strong> — scanning 60+ retail
-          sites for exposure, collating results to a central server for triage, and prioritising patching of affected
-          devices
+          <strong>Wrote Batch automation scripts during the WannaCry ransomware outbreak</strong> — scanning 60+ retail
+          sites for exposure, collating results to a central server for triage and prioritising patching of affected
+          devices — and built a diagnostics script to extract hardware models, IP addresses and serial numbers from
+          client endpoints
         </li>
         <li>
-          <strong>Built a diagnostics script (Batch) to scan client endpoints</strong> and extract hardware models, IP
-          addresses and serial numbers — replacing manual asset tracking during rollout programmes
-        </li>
-        <li>
-          Delivered on-site hardware deployment and maintenance for{' '}
-          <strong>point-of-sale and kitchen display systems</strong> across new client site openings, including
-          McDonald's Singapore outlets
-        </li>
-        <li>
-          <strong>Logged, tracked and resolved incidents and service requests in ServiceNow</strong>, building the
-          ITIL-aligned service management discipline applied in later roles
+          Delivered on-site hardware deployment and maintenance for point-of-sale and kitchen display systems across new
+          client site openings, and resolved incidents and service requests in ServiceNow
         </li>
       </ul>
     ),
