@@ -15,9 +15,21 @@ belongs in this file rather than in the source's comment header.
 ## Positioning is deliberate — do not drift
 
 As of **14 Nov 2026** this file is the **cloud-targeted variant**: an Infrastructure
-Engineer aimed at Cloud Engineer / Cloud Infrastructure Engineer / Senior Infrastructure
-Engineer / Systems Engineer roles, leading with the Azure and AWS certifications. It
-replaced the Windows Server / identity / endpoint positioning of 10 Nov.
+Engineer aimed at **cloud infrastructure / operations** roles — Cloud Infrastructure
+Engineer, Cloud Engineer, Cloud Operations Engineer, Senior Infrastructure Engineer —
+leading with the AWS certifications, then Azure. It replaced the Windows Server /
+identity / endpoint positioning of 10 Nov.
+
+A **17 Nov 2026** edit re-aimed the document at that lane without adding a claim: the
+summary was cut from four dense paragraphs to three and reordered to lead with production
+operations and the cloud evidence; the header tagline became *Infrastructure as Code,
+Network Security & Production Operations*; Skills were reordered (Networking & Security
+promoted to fourth, Endpoint demoted to last, and a new **Operations, Automation &
+Observability** line leading with incident escalation and problem management); the
+homelab project was retitled to lead with infrastructure as code. No service, tool or
+metric was added — see *Calibration* below for what remains off-limits. Certifications were
+briefly reordered by relevance and reverted the same day; see the site-identity note below
+for why.
 
 - The **master version** (Windows Server / identity / endpoint) is **not in the working
 tree** — the 14 Nov change overwrote it. Recover it with
@@ -45,8 +57,14 @@ is compiled and published, so keeping both live needs a second file plus a workf
   to past tense on 1 Jan 2027.
 
 **The website in `src/data/data.tsx` targets the same lane** and carries the same claims —
-`homePageMeta.title` is "Infrastructure Engineer — Azure & AWS Certified". Its portfolio
-entries go into more detail than the PDF. Do not copy site copy into the résumé. The
+`homePageMeta.title` is "Infrastructure Engineer — AWS & Azure Certified" and the manifest
+name is "Yik Tatt Ong | Infrastructure Engineer". Its portfolio entries go into more detail
+than the PDF. Do not copy site copy into the résumé.
+
+The site matches the PDF's claims, wording, Skills group order **and** certification
+order. Relevance ordering for the certificates was tried on 17 Nov 2026 and reverted the
+same day: this block prints a date in the right-hand column, so an out-of-sequence list
+reads as an error on both surfaces. Both are strictly newest-to-oldest. The
 manifest in `public/site.webmanifest` carries the site name too.
 
 ## Calibration — do not inflate
@@ -93,11 +111,24 @@ These all cause silent damage — the typeset output looks fine while being wron
   restored), so pagination is fully automatic. Combined with A4 that means **every content
   edit needs the compiled PDF checked** — nothing local can show where the page boundary
   falls, and the whole document is `\small`, so one added bullet can push an entry over.
+- **There is a deliberate `\vspace{6pt}` before `\section{Education}`.** The certification list
+  closes without the `\resumeItemListEnd` -5pt that every other section ends with, so the last
+  cert row and the EDUCATION heading sat tighter than every other gap. Do not delete it as
+  "stray spacing" — the mismatch is visible at four cert rows.
+- **`needspace` guards the entry headings — do not remove it.** `\resumeSubheading`,
+  `\resumeSubSubheading` and `\resumeProjectHeading` each open with
+  `\needspace{8\baselineskip}` (7 for projects), added 17 Nov 2026 after an automatic
+  break orphaned the SAFRA heading and its first two bullets at the foot of page 1. With
+  the package gone the same split returns silently. This is *not* a `\newpage`: it only
+  defers a break that would strand a heading, so it adapts to content changes. If an entry
+  is ever orphaned anyway, raise the `\baselineskip` count rather than adding a page break.
 
 ## How the PDF reaches the site
 
-There is no local TeX toolchain, so a `.tex` edit can only be structurally checked
-locally; CI is the real build. In the `main.yml` **build** job, in order:
+TinyTeX is installed locally at `~/Library/TinyTeX/bin/universal-darwin` (added 17 Nov
+2026, **not on `PATH`** — export it per shell). `pdflatex`, `latexmk` and `pdftoppm` are
+therefore available, so pagination and layout can be checked locally instead of through a
+CI round-trip. CI remains the published build. In the `main.yml` **build** job, in order:
 
 1. `Restore the compiled resume PDF` — `actions/cache/restore@v6`, key
    `resume-pdf-v1-${{ hashFiles('resume/resume.tex') }}`, path
@@ -127,6 +158,22 @@ literal space. If the file is ever renamed, update that literal, the three paths
 
 These were taken out of `resume.tex` by decision, not by accident, and the exact snippets
 are kept here so they can be restored without rewriting them:
+
+- **Two certifications trimmed from both surfaces on 17 Nov 2026** — the MD-102 endpoint credential (off-lane
+  for cloud infrastructure/operations) and Cloud Practitioner (redundant beneath Solutions Architect). The
+  four that remain are AZ-104, CloudOps Engineer – Associate, Solutions Architect – Associate and ITIL 4
+  Foundation, strictly newest to oldest. Restore either by pasting the matching line back into the
+  `Certifications` block of `resume.tex` **and** the `certification` array in `src/data/data.tsx` — they
+  must move together:
+
+  ```latex
+  \resumeCertItem{\href{https://learn.microsoft.com/en-us/users/yiktattong-4161/credentials/ae5cff38fbbc119e}{Microsoft 365 Certified: Endpoint Administrator Associate (MD-102)}}{Oct 2026}
+  \resumeCertItem{\href{https://www.credly.com/badges/46c9f759-e3bc-42ae-8cab-73fd6da6f8ac/linked_in_profile}{AWS Certified Cloud Practitioner}}{May 2026}
+  ```
+
+  If MD-102 returns, also restore the "Endpoint Administrator Associate (MD-102)" clause in the About
+  paragraph of `src/data/data.tsx`, which currently reads "passed Microsoft's Azure Administrator Associate
+  (AZ-104), having added the AWS Solutions Architect and CloudOps Engineer associates earlier in the year".
 
 - **SAFRA as a contract role** — whether that engagement was a contract was never
   confirmed. If it becomes relevant, the date field is

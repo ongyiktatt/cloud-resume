@@ -26,9 +26,9 @@ import {
  * Page meta data
  */
 export const homePageMeta: HomepageMeta = {
-  title: 'Yik Tatt Ong | Infrastructure Engineer — Azure & AWS Certified',
+  title: 'Yik Tatt Ong | Infrastructure Engineer — AWS & Azure Certified',
   description:
-    'Infrastructure engineer in Singapore with 12+ years across hybrid identity, Windows Server, networking and cloud platforms — Microsoft Certified: Azure Administrator Associate (AZ-104) and AWS Certified Solutions Architect – Associate, with PowerShell automation, CI/CD delivery and network security depth.',
+    'Infrastructure engineer in Singapore with 12+ years running production systems, targeting cloud infrastructure and operations roles — AWS Certified Solutions Architect and CloudOps Engineer – Associate, Microsoft Certified: Azure Administrator Associate (AZ-104). Infrastructure as Code with Terraform and GitHub Actions OIDC deployments, a serverless AWS build, Layer 4/7 firewall and WAF policy across Palo Alto and Check Point, and least-privilege identity design across Microsoft Entra ID and Active Directory.',
 };
 
 /**
@@ -55,26 +55,31 @@ export const heroData: Hero = {
   description: (
     <>
       <p className="text-lg font-semibold text-orange-400 sm:text-xl lg:text-2xl">
-        Infrastructure Engineer · Azure &amp; AWS Certified · Hybrid Identity, Automation &amp; Network Security
+        Infrastructure Engineer · AWS &amp; Azure Certified · Infrastructure as Code, Network Security &amp; Production
+        Operations
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        Microsoft Certified: Azure Administrator Associate (AZ-104) · Microsoft 365 Certified: Endpoint Administrator
-        Associate (MD-102) · AWS Certified Solutions Architect – Associate · AWS Certified CloudOps Engineer – Associate
-        · AWS Certified Cloud Practitioner · ITIL 4 Foundation
+        AWS Certified CloudOps Engineer – Associate · AWS Certified Solutions Architect – Associate · Microsoft
+        Certified: Azure Administrator Associate (AZ-104) · ITIL 4 Foundation
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
         I do the systems work myself — Entra ID, Active Directory and Group Policy troubleshooting, Intune-managed
-        endpoints, and a VMware-hosted server estate I use day to day — across a three-market APAC estate, and I still
-        take the Tier-3 escalation when something breaks.
+        endpoints and a VMware-hosted server estate across a three-market APAC estate — and I still take the final
+        Tier-3 escalation when something breaks. <strong>12+ years in enterprise IT</strong> across Singapore, Japan and
+        South Korea, a 200-user estate, with production incident resolution, root-cause analysis and automation
+        throughout.
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        <strong>12+ years in enterprise IT</strong> across Singapore and the APAC region — a 200-user estate spanning
-        Singapore, Japan and South Korea, with production incident resolution, root-cause analysis and automation
-        throughout. Currently building Terraform proficiency in a self-hosted lab.
+        That operational history is what I bring to cloud. On AWS I built and run the delivery pipeline behind this site
+        — S3 and CloudFront behind a custom Route 53 domain with ACM-managed TLS, released through GitHub Actions using
+        OIDC role assumption so no access keys are stored, and hardened with WAF rules and least-privilege IAM.
+        Currently extending the homelab into Terraform, with state and changes tracked in Git.
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
         Open to{' '}
-        <strong>Cloud Engineer, Cloud Infrastructure Engineer, Senior Infrastructure Engineer and Systems Engineer</strong>{' '}
+        <strong>
+          Cloud Infrastructure Engineer, Cloud Engineer, Cloud Operations Engineer and Senior Infrastructure Engineer
+        </strong>{' '}
         roles in Singapore. Available for interviews immediately; available to start January 2027.
       </p>
     </>
@@ -120,9 +125,9 @@ export const aboutData: About = {
       </p>
       <p>
         I like problems that other people have given up on. Recurring escalations get root-caused rather than closed;
-        repetitive work gets scripted. In October 2026 I passed Microsoft's Azure Administrator Associate (AZ-104) and
-        Endpoint Administrator Associate (MD-102), having added three AWS certifications earlier in the year alongside
-        the role.
+        repetitive work gets scripted. In October 2026 I passed Microsoft's Azure Administrator Associate (AZ-104),
+        having added the AWS Solutions Architect and CloudOps Engineer associates earlier in the year alongside the
+        role.
       </p>
       <p>Off the clock: cameras, hi-fi audio, and a homelab that's never quite finished.</p>
     </>
@@ -133,7 +138,12 @@ export const aboutData: About = {
     {label: 'Employment', text: 'Wargaming Asia', Icon: BuildingOffice2Icon},
     {
       label: 'Certifications',
-      text: ['Microsoft AZ-104 · MD-102', 'AWS SAA', 'CloudOps', 'Cloud Practitioner', 'ITIL 4 Foundation'],
+      text: [
+        'AWS CloudOps Engineer – Associate',
+        'AWS Solutions Architect – Associate',
+        'Microsoft AZ-104',
+        'ITIL 4 Foundation',
+      ],
       Icon: ShieldCheckIcon,
     },
   ],
@@ -141,9 +151,14 @@ export const aboutData: About = {
 
 /**
  * Skills section
- * Mirrors the resume Skills section token-for-token, in the same order.
- * Levels reflect evidenced hands-on use, not certification scope: cloud
- * services sit deliberately below the identity and server skills.
+ * Mirrors the résumé Skills section in group order and wording.
+ *
+ * Group order is the target lane: cloud first, then the infrastructure
+ * underneath it, with endpoint and modern workplace last. Order *within* a
+ * group is not set here — SkillGroup ranks by level at render time, so `level`
+ * is the only thing that orders a list. Levels reflect evidenced hands-on use,
+ * not certification scope: the cloud services sit deliberately below the
+ * identity and server skills even though their group leads the section.
  */
 export const skills: SkillGroup[] = [
   {
@@ -167,19 +182,40 @@ export const skills: SkillGroup[] = [
   {
     name: 'Infrastructure as Code & Delivery',
     skills: [
-      {name: 'Terraform (in progress)', level: 3},
+      {name: 'Terraform (in progress — Proxmox VE)', level: 3},
       {name: 'Git', level: 7},
       {name: 'GitHub Actions — OIDC Keyless Deployment', level: 7},
       {name: 'CI/CD Pipeline Design', level: 6},
     ],
   },
   {
+    name: 'Networking & Security',
+    skills: [
+      {name: 'Next-Generation Firewall Policy (Palo Alto · Check Point)', level: 8},
+      {name: 'Routing & Switching', level: 8},
+      {name: 'VLANs & Network Segmentation', level: 8},
+      {name: 'VPN (IPSec · WireGuard) & TCP/IP', level: 8},
+      {name: 'Infrastructure Hardening', level: 8},
+      {name: 'F5 Web Application Firewall (WAF)', level: 7},
+    ],
+  },
+  {
+    name: 'Containers, Virtualisation & Homelab',
+    skills: [
+      {name: 'Docker & Docker Compose', level: 8},
+      {name: 'VMware vSphere — VM operations & guest troubleshooting', level: 8},
+      {name: 'NetBox (IPAM)', level: 8},
+      {name: 'Nginx Proxy Manager — reverse proxy & TLS', level: 8},
+      {name: 'Proxmox VE', level: 7},
+      {name: 'Technitium DNS Server', level: 7},
+    ],
+  },
+  {
     name: 'Systems & Server Infrastructure',
     skills: [
       {name: 'Windows Server — administration, troubleshooting, standard build imaging, patch compliance', level: 9},
-      {name: 'Linux — Docker Host Administration', level: 6},
-      {name: 'VMware vSphere — VM Operations & Guest-Level Troubleshooting', level: 8},
       {name: 'DNS & Server / Hardware Lifecycle Management', level: 8},
+      {name: 'Linux — Docker Host Administration', level: 6},
     ],
   },
   {
@@ -193,46 +229,25 @@ export const skills: SkillGroup[] = [
     ],
   },
   {
+    name: 'Operations, Automation & Observability',
+    skills: [
+      {name: 'Incident Escalation & Problem Management', level: 9},
+      {name: 'PowerShell', level: 9},
+      {name: 'PRTG — infrastructure, VM & network monitoring', level: 8},
+      {name: 'Batch', level: 7},
+      {name: 'Zabbix', level: 7},
+      {name: 'Datadog — application logs & traces', level: 7},
+      {name: 'Bash', level: 6},
+    ],
+  },
+  {
     name: 'Endpoint & Modern Workplace',
     skills: [
       {name: 'Microsoft Intune', level: 9},
-      {name: 'Conditional Access', level: 9},
       {name: 'Device Compliance Baselines', level: 8},
       {name: 'Ivanti Endpoint Management', level: 8},
       {name: 'WSUS Patch Management', level: 8},
       {name: 'Microsoft 365 · Windows & macOS', level: 8},
-    ],
-  },
-  {
-    name: 'Networking & Security',
-    skills: [
-      {name: 'Next-Generation Firewall Policy (Palo Alto · Check Point)', level: 8},
-      {name: 'F5 Web Application Firewall (WAF)', level: 7},
-      {name: 'Routing & Switching', level: 8},
-      {name: 'VLANs & Network Segmentation', level: 8},
-      {name: 'VPN (IPSec · WireGuard) & TCP/IP', level: 8},
-      {name: 'Infrastructure Hardening', level: 8},
-    ],
-  },
-  {
-    name: 'Containers & Homelab (self-hosted)',
-    skills: [
-      {name: 'Docker & Docker Compose', level: 8},
-      {name: 'Proxmox VE', level: 7},
-      {name: 'NetBox (IPAM)', level: 8},
-      {name: 'Nginx Proxy Manager — reverse proxy & TLS', level: 8},
-      {name: 'Technitium DNS Server', level: 7},
-    ],
-  },
-  {
-    name: 'Automation & Observability',
-    skills: [
-      {name: 'PowerShell', level: 9},
-      {name: 'Bash', level: 6},
-      {name: 'Batch', level: 7},
-      {name: 'PRTG — infrastructure, VM & network monitoring', level: 8},
-      {name: 'Zabbix', level: 7},
-      {name: 'Datadog — application logs & traces', level: 7},
     ],
   },
 ];
@@ -251,10 +266,10 @@ export const portfolioItems: PortfolioItem[] = [
     url: 'https://github.com/ongyiktatt/cloud-resume',
   },
   {
-    title: 'Homelab — virtualisation, IPAM and infrastructure as code',
+    title: 'Homelab — infrastructure as code, virtualisation and IPAM',
     description:
-      'A self-hosted environment I run continuously: virtualised and containerised services on Proxmox VE and a Docker host, Nginx Proxy Manager handling reverse proxy and TLS termination, NetBox as the source of truth for IP address management and device inventory, and Technitium as the internal DNS resolver. Kept deliberately documented rather than ad hoc. Currently extending provisioning into Terraform using the Proxmox and Docker providers — defining virtual machines and containers as declarative configuration with state and changes tracked in Git, rather than built by hand.',
-    tech: ['Proxmox VE', 'Docker', 'Terraform (in progress)', 'NetBox (IPAM)', 'Nginx Proxy Manager', 'Technitium'],
+      'A self-hosted environment I run continuously, currently being brought under Terraform: virtual machines and containers defined as declarative configuration, with state and changes tracked in Git rather than built by hand, using the Proxmox provider. The platform underneath is Proxmox VE and a Docker host serving virtualised and containerised services, with Nginx Proxy Manager handling reverse proxy and TLS termination, NetBox as the source of truth for IP address management and device inventory, and Technitium as the internal DNS resolver. Kept deliberately documented rather than ad hoc.',
+    tech: ['Terraform (in progress)', 'Proxmox VE', 'Docker', 'NetBox (IPAM)', 'Nginx Proxy Manager', 'Technitium'],
   },
   {
     title: 'Tier-3 data centre SAN failure — major incident response',
@@ -278,8 +293,16 @@ export const portfolioItems: PortfolioItem[] = [
 
 /**
  * Resume section
- * Certifications ordered newest to oldest. Within the Oct 2026 tie, AZ-104 is
- * placed ahead of MD-102 because it matches the target role.
+ *
+ * Certifications are strictly newest-to-oldest, in the same order and with the same
+ * membership as the résumé PDF. Relevance ordering was tried and reverted: both
+ * surfaces print a date beside every certificate, so an out-of-sequence list reads
+ * as a mistake rather than a priority.
+ *
+ * MD-102 (endpoint) and Cloud Practitioner were trimmed from both surfaces on
+ * 17 Nov 2026 — MD-102 is off-lane for cloud infrastructure/operations and CCP is
+ * redundant beneath Solutions Architect. The Intune and endpoint claims they used to
+ * back are made by the Work entries, not by the credential.
  */
 export const certification: TimelineItem[] = [
   {
@@ -287,14 +310,6 @@ export const certification: TimelineItem[] = [
     location: 'Microsoft',
     title: 'Azure Administrator Associate (AZ-104)',
     url: 'https://learn.microsoft.com/en-sg/users/yiktattong-4161/credentials/2f92fdf4519b60ad',
-    compact: true,
-    content: <></>,
-  },
-  {
-    date: 'October 2026',
-    location: 'Microsoft',
-    title: 'Microsoft 365 Endpoint Administrator Associate (MD-102)',
-    url: 'https://learn.microsoft.com/en-us/users/yiktattong-4161/credentials/ae5cff38fbbc119e',
     compact: true,
     content: <></>,
   },
@@ -311,14 +326,6 @@ export const certification: TimelineItem[] = [
     location: 'AWS',
     title: 'AWS Certified Solutions Architect - Associate',
     url: 'https://www.credly.com/badges/b03143a4-ab95-45ea-93f4-068addd79ec6/linked_in_profile',
-    compact: true,
-    content: <></>,
-  },
-  {
-    date: 'May 2026',
-    location: 'AWS',
-    title: 'AWS Certified Cloud Practitioner',
-    url: 'https://www.credly.com/badges/46c9f759-e3bc-42ae-8cab-73fd6da6f8ac/linked_in_profile',
     compact: true,
     content: <></>,
   },
@@ -359,9 +366,8 @@ export const experience: TimelineItem[] = [
               markets
             </li>
             <li>
-              Own the Singapore end-user computing estate hands-on — <strong>Active Directory and Group Policy
-              troubleshooting</strong>, Microsoft Teams Rooms unified communications, patch compliance and device
-              configuration standards
+              Own the Singapore end-user computing estate hands-on — Microsoft Teams Rooms unified communications, patch
+              compliance and device configuration standards
             </li>
             <li>
               Apply <strong>problem management to recurring incident patterns</strong> — introducing proactive Zabbix
@@ -433,17 +439,15 @@ export const experience: TimelineItem[] = [
           with minimal production downtime
         </li>
         <li>
-          Administered <strong>Active Directory, Group Policy, WSUS patch compliance and the Ivanti endpoint platform</strong>{' '}
-          across the corporate server and endpoint estate — controlling user access and enforcing configuration standards
-        </li>
-        <li>
           Configured and troubleshot network security policy across <strong>Palo Alto and Check Point</strong>{' '}
           next-generation firewalls, with <strong>F5</strong> handling web application firewall (WAF) policy — covering
           rule review, change testing and fault isolation during incidents
         </li>
         <li>
-          Administered identity and access management across <strong>Microsoft Entra ID and Microsoft 365</strong> —
-          least-privilege access control, user provisioning and group management
+          Administered <strong>Active Directory, Group Policy, WSUS patch compliance and the Ivanti endpoint platform</strong>{' '}
+          across the corporate server and endpoint estate, alongside identity and access management across{' '}
+          <strong>Microsoft Entra ID and Microsoft 365</strong> — least-privilege access control, user provisioning and
+          group management
         </li>
       </ul>
     ),

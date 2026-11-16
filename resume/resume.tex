@@ -31,6 +31,10 @@
 \usepackage{fancyhdr}
 \usepackage[english]{babel}
 \usepackage{tabularx}
+% needspace keeps an entry's heading on the same page as its first bullets.
+% The file has no hard \newpage, so pagination is automatic and a heading could
+% otherwise land alone at the foot of a page with its bullets overleaf.
+\usepackage{needspace}
 \input{glyphtounicode}
 %----------FONT OPTIONS----------
 % Default is Computer Modern (serif). Uncomment ONE to change:
@@ -74,15 +78,17 @@
 }
 % NOTE: opening vspace is -2pt on purpose. Any more negative pulls the first
 % entry up into the section rule (titlesec after-code is -6pt).
+% \needspace{8\baselineskip}: heading plus roughly four bullet lines. Raise if
+% an entry is ever orphaned at a page foot; do NOT reach for \newpage instead.
 \newcommand{\resumeSubheading}[4]{
-  \vspace{-2pt}\item
+  \needspace{8\baselineskip}\vspace{-2pt}\item
     \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
       \textbf{#1} & #2 \\
       \textit{\small#3} & \textit{\small #4} \\
     \end{tabular*}\vspace{-7pt}
 }
 \newcommand{\resumeSubSubheading}[2]{
-  \item
+  \needspace{8\baselineskip}\item
     \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
       \textit{\small#1} & \textit{\small #2} \\
     \end{tabular*}\vspace{-7pt}
@@ -92,7 +98,7 @@
 % ran straight past the right margin. tabularx lets the left column wrap while
 % the right column (currently unused for projects) stays flush right.
 \newcommand{\resumeProjectHeading}[2]{
-    \item
+    \needspace{7\baselineskip}\item
     \begin{tabularx}{0.97\textwidth}{@{}>{\raggedright\arraybackslash}X@{}r@{}}
       \small#1 & #2 \\
     \end{tabularx}\vspace{-7pt}
@@ -121,7 +127,7 @@
 \begin{center}
     \vspace*{-18pt}
     \textbf{\Huge \scshape Yik Tatt Ong} \\[3pt]
-    \small Infrastructure Engineer $\cdot$ Azure \& AWS Certified $\cdot$ Hybrid Identity, Automation \& Network Security \\[1pt]
+    \small Infrastructure Engineer $\cdot$ AWS \& Azure Certified $\cdot$ Infrastructure as Code, Network Security \& Production Operations \\[1pt]
     \small Singapore $\cdot$ +65 8342 9085 $\cdot$
     \href{mailto:ytong95@gmail.com}{ytong95@gmail.com} \\[1pt]
     \small \href{https://ongyiktatt.com}{ongyiktatt.com} $\cdot$
@@ -133,10 +139,9 @@
 \section{Summary}
 \begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{
-     \textbf{Infrastructure engineer with 12+ years running production systems across Singapore and the APAC region, now targeting cloud and infrastructure engineering roles.} Microsoft Certified: Azure Administrator Associate (AZ-104) and AWS Certified Solutions Architect -- Associate, backed by a decade of hands-on identity, server and network work. \\
-     \textbf{Hybrid identity and access as a core production specialism} --- administers Microsoft Entra ID, Active Directory and Conditional Access, owns end-to-end identity access lifecycles, designs least-privilege access models, and enforces device compliance through Microsoft Intune across a three-market APAC estate. \\
-     \textbf{Platform and network depth beyond cloud certification} --- Layer 4/7 policy across Palo Alto and Check Point next-generation firewalls with F5 web application firewall, VLAN segmentation and VPN design, PRTG, Zabbix and Datadog observability, and Tier-3 ownership of a data-centre SAN failure worked through to production restoration alongside the platform MSP. \\
-     \textbf{Automates and delivers} --- PowerShell automation for endpoint configuration and compliance, Docker and Proxmox VE for self-hosted services, and GitHub Actions CI/CD using OIDC role assumption for keyless deployment to AWS. Currently building Terraform proficiency in a self-hosted lab. \textbf{Available for interviews immediately; available to start January 2027.}
+     \textbf{Infrastructure engineer with 12+ years running production systems across Singapore and the APAC region, targeting cloud infrastructure and operations roles.} AWS Certified Solutions Architect and CloudOps Engineer -- Associate, and Microsoft Certified: Azure Administrator Associate (AZ-104) --- certifications resting on a decade of hands-on server, network and identity work. \\
+     \textbf{Production operations as a core specialism} --- final technical escalation point across three markets, Tier-3 response to a data-centre SAN failure driven through to service restoration, and problem management that cut recurring incident escalations by 20\%. Layer 4/7 policy across Palo Alto and Check Point next-generation firewalls with F5 web application firewall, VLAN segmentation and VPN design, and least-privilege identity design across Microsoft Entra ID, Active Directory and Conditional Access. \\
+     \textbf{Building cloud engineering practice on that foundation} --- GitHub Actions CI/CD using OIDC role assumption for keyless deployment to AWS, a serverless AWS build spanning S3, CloudFront, Route 53, ACM, WAF, Lambda, SNS and least-privilege IAM, and Terraform used to describe homelab infrastructure declaratively with state and changes tracked in Git. \textbf{Available for interviews immediately; available to start January 2027.}
      \vspace{-6pt}
     }}
 \end{itemize}
@@ -146,13 +151,13 @@
     \item\small{
       \textbf{Cloud Platforms --- AWS:} S3 $\cdot$ CloudFront $\cdot$ Route 53 $\cdot$ ACM $\cdot$ WAF $\cdot$ Lambda $\cdot$ SNS $\cdot$ IAM \\
       \textbf{Cloud Platforms --- Microsoft Azure:} Microsoft Entra ID $\cdot$ Conditional Access $\cdot$ RBAC \\
-      \textbf{Infrastructure as Code \& Delivery:} Terraform \textit{(in progress)} $\cdot$ Git $\cdot$ GitHub Actions (OIDC keyless deployment) $\cdot$ CI/CD Pipeline Design \\
-      \textbf{Systems \& Server Infrastructure:} Windows Server (administration, troubleshooting, standard build imaging, patch compliance) $\cdot$ Linux (Docker host administration) $\cdot$ VMware vSphere (VM operations \& guest-level troubleshooting) $\cdot$ DNS $\cdot$ Server \& Hardware Lifecycle Management \\
-      \textbf{Identity \& Directory Services:} Active Directory (AD DS) $\cdot$ Group Policy (GPO) administration \& troubleshooting $\cdot$ Microsoft Entra ID (Azure AD) $\cdot$ Identity Lifecycle Management $\cdot$ Least-Privilege Access Control \\
-      \textbf{Endpoint \& Modern Workplace:} Microsoft Intune $\cdot$ Ivanti Endpoint Management $\cdot$ Conditional Access $\cdot$ Device Compliance Baselines $\cdot$ WSUS Patch Management $\cdot$ Microsoft 365 $\cdot$ Windows \& macOS \\
+      \textbf{Infrastructure as Code \& Delivery:} Terraform \textit{(in progress --- Proxmox VE provider)} $\cdot$ Git $\cdot$ GitHub Actions (OIDC keyless deployment) $\cdot$ CI/CD Pipeline Design \\
       \textbf{Networking \& Security:} Next-Generation Firewall Policy (Palo Alto, Check Point) $\cdot$ F5 Web Application Firewall (WAF) $\cdot$ Routing \& Switching $\cdot$ VLANs \& Network Segmentation $\cdot$ VPN (IPSec, WireGuard) $\cdot$ TCP/IP $\cdot$ Infrastructure Hardening \\
-      \textbf{Containers \& Homelab (self-hosted):} Docker \& Docker Compose $\cdot$ Proxmox VE $\cdot$ NetBox (IPAM) $\cdot$ Nginx Proxy Manager (reverse proxy, TLS) $\cdot$ Technitium DNS Server \\
-      \textbf{Automation \& Observability:} PowerShell $\cdot$ Bash $\cdot$ Batch $\cdot$ PRTG (infrastructure, VM \& network monitoring) $\cdot$ Zabbix $\cdot$ Datadog (application logs \& traces)
+      \textbf{Containers, Virtualisation \& Homelab:} Docker \& Docker Compose $\cdot$ Proxmox VE $\cdot$ VMware vSphere (VM operations \& guest-level troubleshooting) $\cdot$ NetBox (IPAM) $\cdot$ Nginx Proxy Manager (reverse proxy, TLS) $\cdot$ Technitium DNS Server \\
+      \textbf{Systems \& Server Infrastructure:} Windows Server (administration, troubleshooting, standard build imaging, patch compliance) $\cdot$ Linux (Docker host administration) $\cdot$ DNS $\cdot$ Server \& Hardware Lifecycle Management \\
+      \textbf{Identity \& Directory Services:} Active Directory (AD DS) $\cdot$ Group Policy (GPO) administration \& troubleshooting $\cdot$ Microsoft Entra ID (Azure AD) $\cdot$ Identity Lifecycle Management $\cdot$ Least-Privilege Access Control \\
+      \textbf{Operations, Automation \& Observability:} Incident escalation $\cdot$ Problem management $\cdot$ PowerShell $\cdot$ Bash $\cdot$ Batch $\cdot$ PRTG (infrastructure, VM \& network monitoring) $\cdot$ Zabbix $\cdot$ Datadog (application logs \& traces) \\
+      \textbf{Endpoint \& Modern Workplace:} Microsoft Intune $\cdot$ Ivanti Endpoint Management $\cdot$ Device Compliance Baselines $\cdot$ WSUS Patch Management $\cdot$ Microsoft 365 $\cdot$ Windows \& macOS
       \vspace{-6pt}
     }
   \resumeSubHeadingListEnd
@@ -164,8 +169,8 @@
       {}{Singapore}
       \resumeSubSubheading{IT Manager, APAC}{May 2025 -- Dec 2026}
       \resumeItemListStart
-        \resumeItem{Sole internal IT resource for Singapore, Japan and South Korea --- personally hands-on across the entire regional estate rather than directing a team, covering Windows Server, Active Directory and Group Policy troubleshooting, a VMware-hosted server estate and endpoint management across all three markets.}
-        \resumeItem{Own the Singapore end-user computing estate hands-on --- Active Directory and Group Policy troubleshooting, Microsoft Teams Rooms unified communications, patch compliance and device configuration standards.}
+        \resumeItem{Sole internal IT resource for Singapore, Japan and South Korea --- personally hands-on across the entire regional estate rather than directing a team: Windows Server, Active Directory and Group Policy troubleshooting, a VMware-hosted server estate, and endpoint management in all three markets.}
+        \resumeItem{Own the Singapore end-user computing estate hands-on --- Microsoft Teams Rooms unified communications, patch compliance and device configuration standards.}
         \resumeItem{Apply problem management to recurring incident patterns --- introducing proactive Zabbix monitoring for printers, Microsoft Teams Rooms systems and virtual machines, cutting recurring incident escalations by 20\%.}
         \resumeItem{Act as final technical escalation point across three markets --- diagnosing faults directly alongside vendor-supplied engineers, and holding business stakeholder communication through to service restoration.}
       \resumeItemListEnd
@@ -188,9 +193,8 @@
       \resumeItemListStart
         \resumeItem{Owned the response to a major incident in which a Tier-3 data centre SAN failure took production workloads offline --- acting as escalation point, working the recovery alongside the MSP that owned the SAN platform, holding stakeholder communication and driving restoration of service with minimal disruption.}
         \resumeItem{Led migration of core enterprise applications --- including Microsoft Dynamics AX ERP and gaming systems --- into Tier-3 co-location facilities as part of a S\$2M digital transformation programme, with minimal production downtime.}
-        \resumeItem{Administered Active Directory, Group Policy, WSUS patch compliance and the Ivanti endpoint platform across the corporate server and endpoint estate --- controlling user access and enforcing configuration standards.}
         \resumeItem{Configured and troubleshot network security policy across Palo Alto and Check Point next-generation firewalls, with F5 handling web application firewall (WAF) policy --- covering rule review, change testing and fault isolation during incidents.}
-        \resumeItem{Administered identity and access management across Microsoft Entra ID (Azure AD) and Microsoft 365 --- least-privilege access control, user provisioning and group management.}
+        \resumeItem{Administered Active Directory, Group Policy, WSUS patch compliance and the Ivanti endpoint platform across the corporate server and endpoint estate, alongside identity and access management across Microsoft Entra ID (Azure AD) and Microsoft 365 --- least-privilege access control, user provisioning and group management.}
       \resumeItemListEnd
     \resumeSubheading
       {McDonald's Singapore}{Dec 2017 -- May 2021}
@@ -219,30 +223,37 @@
         \resumeItem{Hardened the stack with AWS WAF rules and least-privilege IAM policy, and added a serverless contact form (Lambda + SNS) that notifies on submission.}
       \resumeItemListEnd
     \resumeProjectHeading
-      {\textbf{Homelab --- Virtualisation, IPAM \& Infrastructure as Code} $|$ \emph{Proxmox VE, Docker, Terraform, NetBox, Nginx Proxy Manager, Technitium}}
+      {\textbf{Homelab --- Infrastructure as Code, Virtualisation \& IPAM} $|$ \emph{Terraform, Proxmox VE, Docker, NetBox, Nginx Proxy Manager, Technitium}}
       {}
       \resumeItemListStart
+        \resumeItem{Currently extending homelab provisioning into Terraform using the Proxmox provider --- defining virtual machines and containers as declarative configuration with state and changes tracked in Git, rather than built by hand.}
         \resumeItem{Run virtualised and containerised self-hosted services on Proxmox VE and a Docker host, with Nginx Proxy Manager handling reverse proxying and TLS termination for internal services.}
-        \resumeItem{Currently extending homelab provisioning into Terraform using the Proxmox and Docker providers --- defining virtual machines and containers as declarative configuration with state and changes tracked in Git, rather than built by hand.}
         \resumeItem{Maintain NetBox as the source of truth for IP address management (IPAM) and device inventory, and Technitium as the internal DNS resolver --- keeping addressing, naming and service exposure documented rather than ad hoc.}
       \resumeItemListEnd
   \resumeSubHeadingListEnd
 %----------CERTIFICATIONS----------
-% Ordered newest to oldest (descending by issue date).
-% Ties within Oct 2026: AZ-104 is placed ahead of MD-102 because MD-102 leads
-% with "Endpoint Administrator", which is not the target identity for this
-% variant. If your instructions file requires strict tie-breaking by name,
-% swap them.
+% Strictly newest to oldest. Relevance ordering was tried on 17 Nov 2026 and
+% reverted the same day: this block prints a date in the right-hand column, so an
+% out-of-sequence list reads as an error.
+%
+% MD-102 (endpoint) and Cloud Practitioner were trimmed from BOTH surfaces on
+% 17 Nov 2026: MD-102 is off-lane for cloud infrastructure/operations and CCP is
+% redundant beneath Solutions Architect. The Intune and endpoint claims they used
+% to back are made by the experience bullets, not by the credential. Snippets for
+% restoring them are kept in the instructions file.
 \section{Certifications}
   \resumeSubHeadingListStart
     \resumeCertItem{\href{https://learn.microsoft.com/en-sg/users/yiktattong-4161/credentials/2f92fdf4519b60ad}{Microsoft Certified: Azure Administrator Associate (AZ-104)}}{Oct 2026}
-    \resumeCertItem{\href{https://learn.microsoft.com/en-us/users/yiktattong-4161/credentials/ae5cff38fbbc119e}{Microsoft 365 Certified: Endpoint Administrator Associate (MD-102)}}{Oct 2026}
     \resumeCertItem{\href{https://www.credly.com/badges/209df12d-e120-4509-ad16-6c4d6fa05ca8/linked_in_profile}{AWS Certified CloudOps Engineer -- Associate}}{Aug 2026}
     \resumeCertItem{\href{https://www.credly.com/badges/b03143a4-ab95-45ea-93f4-068addd79ec6/linked_in_profile}{AWS Certified Solutions Architect -- Associate}}{Jul 2026}
-    \resumeCertItem{\href{https://www.credly.com/badges/46c9f759-e3bc-42ae-8cab-73fd6da6f8ac/linked_in_profile}{AWS Certified Cloud Practitioner}}{May 2026}
     \resumeCertItem{ITIL 4 Foundation \textit{(Certificate ID: GR671273878OY)}}{May 2021}
   \resumeSubHeadingListEnd
 %----------EDUCATION----------
+% The certification list closes without the \resumeItemListEnd -5pt, so the last
+% cert row and this heading sat noticeably tighter than every other section gap
+% (pre-existing in the template, visible once the list was trimmed to four rows).
+% +6pt restores the gap to match the one above CERTIFICATIONS.
+\vspace{6pt}
 \section{Education}
   \resumeSubHeadingListStart
     \resumeSubheading

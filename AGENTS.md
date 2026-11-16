@@ -46,7 +46,7 @@ These instruction files load automatically for matching paths. Read the one that
 | `yarn lint`                                             | ⚠️ **Mutates files** (`prettier --write` + `eslint --fix`). Not a check.                                                                          |
 | `yarn eslint 'src/**/*.{ts,tsx}' --max-warnings=0`      | Read-only lint check (no `--fix`). Use this to verify instead of `yarn lint`.                                                                     |
 
-There is no test suite, and **no local LaTeX toolchain** (no `pdflatex`, `latexmk` or `docker`) — `resume/resume.tex` can only be compiled by CI.
+There is no test suite. `resume/resume.tex` is compiled by CI for publication, but since 17 Nov 2026 TinyTeX is installed locally at `~/Library/TinyTeX/bin/universal-darwin` (**not on `PATH`**) alongside `poppler`'s `pdftoppm`, so pagination and layout can be checked locally with `pdflatex` before pushing.
 
 ## Architecture
 
