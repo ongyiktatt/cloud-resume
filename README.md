@@ -162,8 +162,11 @@ before anything reaches S3.
 
 Build the bundle and update the function:
 
+`index.mjs` lives inside the Terraform module so that HCP Terraform can package it in a remote
+run — anything outside the module directory is not uploaded.
+
 ```bash
-cd aws/recaptcha-verify
+cd aws/terraform/environments/prod/lambda
 rm -f /tmp/function.zip && zip -q /tmp/function.zip index.mjs
 aws lambda update-function-code \
   --function-name recaptcha-verify \

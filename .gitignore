@@ -56,6 +56,9 @@ yarn-error.log*
 *.tfstate.*
 crash.log
 crash.*.log
+# archive_file writes the Lambda package here at plan time. It is derived from
+# aws/terraform/environments/prod/lambda/index.mjs and must never be committed.
+**/build/*.zip
 # Variable files commonly carry the contact-form notification address and other values this public
 # repo is not allowed to publish. Force-add one with `git add -f` if it is genuinely safe to share.
 *.tfvars

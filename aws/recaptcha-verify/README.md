@@ -41,8 +41,10 @@ aws iam attach-role-policy \
 
 ## 2. Create the function
 
+`index.mjs` moved into the Terraform module on 18 Nov 2026 so a remote run can package it:
+
 ```bash
-cd aws/recaptcha-verify
+cd aws/terraform/environments/prod/lambda
 rm -f /tmp/function.zip && zip -q /tmp/function.zip index.mjs
 
 aws lambda create-function \
@@ -338,10 +340,11 @@ proves the runtime boots, the SDK resolves and the secret is valid, without send
 - Rotate the secret key in the [reCAPTCHA admin console](https://www.google.com/recaptcha/admin)
   if it has ever been shared or committed, then update the Lambda's
   `RECAPTCHA_SECRET_KEY` environment variable.
-- To update the code later: `rm -f /tmp/function.zip && zip -q /tmp/function.zip index.mjs` then
+- To update the code later, run from `aws/terraform/environments/prod/lambda`:
+  `rm -f /tmp/function.zip && zip -q /tmp/function.zip index.mjs` then
   `aws lambda update-function-code --function-name recaptcha-verify --zip-file fileb:///tmp/function.zip --region ap-southeast-1`
   followed by `aws lambda wait function-updated --function-name recaptcha-verify --region ap-southeast-1`.
-  Build the zip in `/tmp`, not in this directory — a stray `function.zip` dirties the working tree.
+  Build the zip in `/tmp`, never next to `index.mjs` — a stray `function.zip` dirties the working tree.
 - **CORS is configured in exactly one place: the Function URL's `--cors` setting.**
   The handler must not set `Access-Control-Allow-Origin`. If it does, Lambda emits the
   header twice and browsers reject the response with

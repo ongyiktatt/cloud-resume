@@ -50,7 +50,8 @@ the `azure-prod-resume` stack.
 
 ## Churn avoidance
 
-- Build the deployment zip in `/tmp` (`zip -q /tmp/function.zip index.mjs`), not in the repo — otherwise `function.zip` dirties the working tree.
+- **`index.mjs` must stay inside the Terraform root module** (`aws/terraform/environments/prod/lambda/`). HCP Terraform uploads only the module directory for a remote run, so a source file outside it makes `archive_file` fail with a missing-file error. Do not move it back to `aws/recaptcha-verify/`.
+- Build a manual deployment zip in `/tmp` (`cd aws/terraform/environments/prod/lambda && zip -q /tmp/function.zip index.mjs`), not next to the source — otherwise `function.zip` dirties the working tree. `archive_file` writes to `aws/terraform/environments/prod/build/`, which is gitignored.
 - `aws lambda create-function` can fail with "role cannot be assumed by Lambda" right after creating the role (IAM propagation). Retry before troubleshooting.
 - Deleting and recreating the Function URL changes its hostname — update `src/config.ts`, `.env.local` and the CI variable together.
 - `aws cloudfront create-function --function-code` requires **raw base64**; the `fileb64://` prefix is not supported by this CLI.
