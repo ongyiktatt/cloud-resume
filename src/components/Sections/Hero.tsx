@@ -13,7 +13,11 @@ const Hero: FC = memo(() => {
 
   return (
     <Section noPadding sectionId={SectionId.Hero}>
-      <div className="relative flex h-screen w-full items-center justify-center">
+      {/* min-h rather than a fixed height: the copy is taller than a phone screen, and a centred
+          flex child in a fixed-height box overflows upwards — which put the name off-screen with
+          no way to scroll to it. The padding keeps the card clear of the fixed header and the
+          chevron once the hero grows past one screen. */}
+      <div className="relative flex min-h-svh w-full items-center justify-center py-20 sm:py-24">
         <Image
           alt={`${name}-image`}
           className="absolute z-0 h-full w-full object-cover"
