@@ -5,7 +5,8 @@ Personal resume site for **[ongyiktatt.com](https://ongyiktatt.com)**.
 The site is a **static export** — there is no Next.js server at runtime. Everything that
 serves HTTP is AWS: CloudFront in front of an S3 bucket, protected by WAF and a
 security-headers policy, with a Lambda function as the only dynamic endpoint. The site is
-built and shipped entirely from GitHub Actions.
+built and shipped entirely from GitHub Actions, and the AWS stack itself is defined in
+[Terraform](#terraform).
 
 ## AWS infrastructure
 
@@ -21,6 +22,7 @@ built and shipped entirely from GitHub Actions.
 | Lambda execution role  | `<LAMBDA_EXECUTION_ROLE>` + inline policy `sns-publish-contact-form`                         |
 | SNS topic              | `arn:aws:sns:ap-southeast-1:<ACCOUNT_ID>:contact-form-notifications`                         |
 | CI deploy role         | `<DEPLOY_ROLE_ARN>` — assumed by GitHub Actions via OIDC                                     |
+| Infrastructure as code | `aws/terraform/environments/prod` — HCP Terraform workspace `cloud-resume`                   |
 
 Tagging convention: `environment=production` and `stack=prod-resume`.
 
@@ -93,6 +95,40 @@ Two operational notes worth remembering:
 - **WAF changes take a few minutes to propagate.** A burst fired immediately after an ACL
   update can still return `200` while the rule is already in place.
 
+### Terraform
+
+The stack is defined as code in `aws/terraform/environments/prod/` — a single root module,
+no child modules. It manages the S3 bucket and policy, the CloudFront distribution with its
+cache and response-headers policies and viewer-response function, the CloudFront-scoped WAF
+web ACL, the ACM certificates, the GitHub Actions deploy role with its OIDC provider, the
+SNS topic and its email subscription, and the `recaptcha-verify` Lambda with its execution
+role.
+
+State lives in **HCP Terraform** (`organization = "ongyiktatt"`, workspace `cloud-resume`),
+so no state file is in this repository. Provider versions are pinned by
+`.terraform.lock.hcl` (`hashicorp/aws` 6.73.0, `hashicorp/archive` 2.7), and the root pins
+Terraform `1.17.2`.
+
+```bash
+cd aws/terraform/environments/prod
+terraform init
+terraform plan
+terraform apply
+```
+
+The inputs are declared in `variables.tf`; their values live in `terraform.tfvars`, which is
+**gitignored** because it carries the reCAPTCHA secret key, the SNS recipient address, the
+bucket name and the domain. Fill it in locally from the variable list — never
+`git add -f` a `.tfvars` file.
+
+Two things stay outside Terraform: the **site content deploy**, which remains the GitHub
+Actions pipeline below, and the **Lambda Function URL**, created with the CLI and referenced
+by the CSP.
+
+> A CloudFront Function cannot look anything up at runtime, so the Function URL is embedded
+> in `cloudfront_function/function.js`. That is the one account-scoped value committed here;
+> everything else comes from variables or the repository-variable workflow.
+
 ## CI/CD
 
 `.github/workflows/main.yml` — two jobs, triggered on every push to `main`.
@@ -125,8 +161,8 @@ docs still show, is one of them.
 
 ### Repository variables
 
-Both jobs read their configuration from **repository variables**, so no account id, bucket
-name, distribution id or endpoint is committed. Set them under
+Both jobs read their configuration from **repository variables**, so the workflow itself
+commits no account id, bucket name, distribution id or endpoint. Set them under
 **Settings → Secrets and variables → Actions → Variables**:
 
 | Variable                     | Value                                                    |
