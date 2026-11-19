@@ -56,20 +56,31 @@ the `azure-prod-resume` stack.
 - Deleting and recreating the Function URL changes its hostname — update `src/config.ts`, `.env.local` and the CI variable together.
 - `aws cloudfront create-function --function-code` requires **raw base64**; the `fileb64://` prefix is not supported by this CLI.
 
-## Terraform (a work in progress, not the deployment path)
+## Terraform (tracked since 19 Nov 2026)
 
-`aws/terraform/` exists but is **not** how this site is deployed — the workflow uses the
-AWS CLI and the live stack was built by hand, so where they disagree the **live account
-wins**. At the time of writing it is a provider-only skeleton: `environments/prod/main.tf`
-pins `hashicorp/aws = 6.64.0` alongside a committed `.terraform.lock.hcl`, while
-`bootstrap/` and the four `modules/` directories are still empty (git does not track empty
-directories, so committing the folder today would add exactly two files).
+`aws/terraform/environments/prod/` is **committed** and manages the live stack: S3,
+CloudFront plus the viewer-response function, WAF, ACM, the deploy IAM role and GitHub OIDC
+provider, SNS, and the reCAPTCHA Lambda. State lives in **HCP Terraform**
+(`organization = "ongyiktatt"`, workspace `cloud-resume`), so nothing stateful is in the
+repo. `bootstrap/` and the four `modules/` directories are empty placeholders — the working
+configuration is the single `environments/prod` root.
 
-- The folder is **untracked and owned by the user**. Do not commit it, restructure it, or
-  "finish" it unless asked.
-- `.gitignore` ignores `**/.terraform/*`. The trailing `/*` matters: only the **contents**
-  of a `.terraform` directory are ignored, not the directory entry itself, so
+What is and is not committed:
+
+- Committed: the `.tf` files, `cloudfront_function/function.js`, `lambda/index.mjs` and
+  `.terraform.lock.hcl` (pins `hashicorp/aws` 6.73.0 and `hashicorp/archive` 2.7).
+- **Never committed**: `terraform.tfvars` (carries `recaptcha_secret_key`, the SNS recipient
+  address, the bucket name and `domain_name`), `*.tfstate*`, `**/.terraform/*` (provider
+  cache and the local state cache) and `**/build/*.zip` (the derived Lambda package). All are
+  gitignored — **never `git add -f` a tfvars file**. There is no `.tfvars.example` yet;
+  derive the variable list from `variables.tf`.
+- `**/.terraform/*` only ignores the *contents* of a `.terraform` directory, so
   `git check-ignore` on the bare directory exits non-zero and looks like a broken rule.
-- `.terraform.lock.hcl` is deliberately **not** ignored — it pins provider versions and is
-  meant to be committed.
-- `*.tfvars` and state files are ignored because this repository is public.
+
+**Identifiers that are published on purpose** (accepted 19 Nov 2026): the Lambda Function
+URL is hardcoded in the CSP inside `cloudfront_function/function.js`, the CloudFront origin
+access control id and the `CreatedByCloudFront-<suffix>` WAF name are literals, and the OIDC
+trust pins `repo:ongyiktatt@…/cloud-resume@…:ref:refs/heads/main`. None is a credential —
+the Function URL is already inlined into the public bundle, and the rest need IAM — but do
+not widen the exposure: no `terraform output` of the Function URL or other account-scoped
+ids, and re-audit before adding resources or infrastructure docs.
