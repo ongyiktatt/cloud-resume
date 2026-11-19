@@ -12,9 +12,12 @@
 %   - No AWS landing zone project, no AWS homelab. Homelab is described exactly
 %     as built (Proxmox VE, Docker, Terraform, NetBox, Nginx Proxy Manager,
 %     Technitium).
-%   - Terraform appears as in-progress / currently-building ONLY - no claim of
-%     completed Terraform-provisioned infrastructure.
-%   - No Python, Kubernetes, Ansible, CloudWatch, Azure Policy or Azure Monitor.
+%   - Terraform: the AWS stack is genuinely managed as code - committed, applied,
+%     remote state on HCP Terraform, OIDC dynamic credentials, existing resources
+%     imported rather than rebuilt. The homelab Proxmox provisioning is still
+%     being extended, so that half stays "in progress".
+%   - Not claimed: Terraform modules, a Terraform CI pipeline, Python, Kubernetes,
+%     Ansible, CloudWatch, Azure Policy or Azure Monitor.
 %   - Azure line limited to production-evidenced services (Entra ID, Conditional
 %     Access, RBAC). No VNet/NSG/VM/Storage claims.
 %   - AWS services listed are those used by the ongyiktatt.com build.
@@ -141,7 +144,7 @@
     \small{\item{
      \textbf{Infrastructure engineer with 12+ years running production systems across Singapore and the APAC region, targeting cloud infrastructure and operations roles.} AWS Certified Solutions Architect and CloudOps Engineer -- Associate, and Microsoft Certified: Azure Administrator Associate (AZ-104) --- certifications resting on a decade of hands-on server, network and identity work. \\
      \textbf{Production operations as a core specialism} --- final technical escalation point across three markets, Tier-3 response to a data-centre SAN failure driven through to service restoration, and problem management that cut recurring incident escalations by 20\%. Layer 4/7 policy across Palo Alto and Check Point next-generation firewalls with F5 web application firewall, VLAN segmentation and VPN design, and least-privilege identity design across Microsoft Entra ID, Active Directory and Conditional Access. \\
-     \textbf{Building cloud engineering practice on that foundation} --- GitHub Actions CI/CD using OIDC role assumption for keyless deployment to AWS, a serverless AWS build spanning S3, CloudFront, Route 53, ACM, WAF, Lambda, SNS and least-privilege IAM, and Terraform used to describe homelab infrastructure declaratively with state and changes tracked in Git. \textbf{Available for interviews immediately; available to start January 2027.}
+     \textbf{Building cloud engineering practice on that foundation} --- GitHub Actions CI/CD using OIDC role assumption for keyless deployment to AWS, a serverless AWS build spanning S3, CloudFront, Route 53, ACM, WAF, Lambda, SNS and least-privilege IAM, and that entire stack now managed as Terraform code --- existing resources imported into remote state on HCP Terraform, authenticating to AWS through OIDC dynamic credentials rather than stored keys. \textbf{Available for interviews immediately; available to start January 2027.}
      \vspace{-6pt}
     }}
 \end{itemize}
@@ -151,7 +154,7 @@
     \item\small{
       \textbf{Cloud Platforms --- AWS:} S3 $\cdot$ CloudFront $\cdot$ Route 53 $\cdot$ ACM $\cdot$ WAF $\cdot$ Lambda $\cdot$ SNS $\cdot$ IAM \\
       \textbf{Cloud Platforms --- Microsoft Azure:} Microsoft Entra ID $\cdot$ Conditional Access $\cdot$ RBAC \\
-      \textbf{Infrastructure as Code \& Delivery:} Terraform \textit{(in progress --- Proxmox VE provider)} $\cdot$ Git $\cdot$ GitHub Actions (OIDC keyless deployment) $\cdot$ CI/CD Pipeline Design \\
+      \textbf{Infrastructure as Code \& Delivery:} Terraform (remote state on HCP Terraform $\cdot$ OIDC dynamic credentials $\cdot$ resource imports $\cdot$ provider aliasing) $\cdot$ Git $\cdot$ GitHub Actions (OIDC keyless deployment) $\cdot$ CI/CD Pipeline Design \\
       \textbf{Networking \& Security:} Next-Generation Firewall Policy (Palo Alto, Check Point) $\cdot$ F5 Web Application Firewall (WAF) $\cdot$ Routing \& Switching $\cdot$ VLANs \& Network Segmentation $\cdot$ VPN (IPSec, WireGuard) $\cdot$ TCP/IP $\cdot$ Infrastructure Hardening \\
       \textbf{Containers, Virtualisation \& Homelab:} Docker \& Docker Compose $\cdot$ Proxmox VE $\cdot$ VMware vSphere (VM operations \& guest-level troubleshooting) $\cdot$ NetBox (IPAM) $\cdot$ Nginx Proxy Manager (reverse proxy, TLS) $\cdot$ Technitium DNS Server \\
       \textbf{Systems \& Server Infrastructure:} Windows Server (administration, troubleshooting, standard build imaging, patch compliance) $\cdot$ Linux (Docker host administration) $\cdot$ DNS $\cdot$ Server \& Hardware Lifecycle Management \\
@@ -215,12 +218,13 @@
 \section{Selected Projects}
   \resumeSubHeadingListStart
     \resumeProjectHeading
-      {\textbf{ongyiktatt.com --- Serverless Static Site on AWS} $|$ \emph{S3, CloudFront, Route 53, ACM, WAF, Lambda, SNS, GitHub Actions (OIDC)}}
+      {\textbf{ongyiktatt.com --- Serverless Static Site on AWS, Managed as Code} $|$ \emph{Terraform, S3, CloudFront, Route 53, ACM, WAF, Lambda, SNS, GitHub Actions (OIDC)}}
       {}
       \resumeItemListStart
         \resumeItem{Deployed a Next.js site as an S3 static export behind CloudFront with a custom Route 53 domain, ACM-managed TLS and direct bucket access blocked.}
         \resumeItem{Automated releases with GitHub Actions using OIDC role assumption --- no stored access keys --- so each merge to main builds, syncs and invalidates the content delivery network.}
         \resumeItem{Hardened the stack with AWS WAF rules and least-privilege IAM policy, and added a serverless contact form (Lambda + SNS) that notifies on submission.}
+        \resumeItem{Imported the whole running stack into Terraform --- 20+ existing resources adopted into remote state on HCP Terraform rather than rebuilt --- authenticating to AWS through OIDC dynamic credentials instead of stored keys, with a second provider configuration in us-east-1 for the CloudFront-scoped WAF Web ACL.}
       \resumeItemListEnd
     \resumeProjectHeading
       {\textbf{Homelab --- Infrastructure as Code, Virtualisation \& IPAM} $|$ \emph{Terraform, Proxmox VE, Docker, NetBox, Nginx Proxy Manager, Technitium}}

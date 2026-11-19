@@ -72,8 +72,10 @@ export const heroData: Hero = {
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
         That operational history is what I bring to cloud. On AWS I built and run the delivery pipeline behind this site
         — S3 and CloudFront behind a custom Route 53 domain with ACM-managed TLS, released through GitHub Actions using
-        OIDC role assumption so no access keys are stored, and hardened with WAF rules and least-privilege IAM.
-        Currently extending the homelab into Terraform, with state and changes tracked in Git.
+        OIDC role assumption so no access keys are stored, and hardened with WAF rules and least-privilege IAM. The whole
+        stack is now managed as Terraform code: 20+ existing resources imported into remote state on HCP Terraform,
+        authenticating through OIDC dynamic credentials rather than stored keys, with a second provider configuration in
+        us-east-1 for CloudFront-scoped WAF.
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
         Open to{' '}
@@ -182,7 +184,7 @@ export const skills: SkillGroup[] = [
   {
     name: 'Infrastructure as Code & Delivery',
     skills: [
-      {name: 'Terraform (in progress — Proxmox VE)', level: 3},
+      {name: 'Terraform — remote state, OIDC dynamic credentials', level: 5},
       {name: 'Git', level: 7},
       {name: 'GitHub Actions — OIDC Keyless Deployment', level: 7},
       {name: 'CI/CD Pipeline Design', level: 6},
@@ -259,17 +261,17 @@ export const skills: SkillGroup[] = [
  */
 export const portfolioItems: PortfolioItem[] = [
   {
-    title: 'This site — serverless static delivery on AWS',
+    title: 'This site — serverless AWS stack, managed as Terraform',
     description:
-      'Built and hardened this site myself: a Next.js static export in S3 behind CloudFront, on a custom Route 53 domain with ACM-managed TLS and direct bucket access blocked. Releases run through GitHub Actions using OIDC role assumption — no stored access keys — so each merge to main builds, syncs and invalidates the CDN. Hardened with AWS WAF rules and least-privilege IAM, plus a serverless contact form on Lambda and SNS.',
-    tech: ['S3', 'CloudFront', 'Route 53', 'ACM', 'WAF', 'Lambda', 'SNS', 'GitHub Actions (OIDC)'],
+      'Built and hardened this site myself: a Next.js static export in S3 behind CloudFront, on a custom Route 53 domain with ACM-managed TLS and direct bucket access blocked. Releases run through GitHub Actions using OIDC role assumption — no stored access keys — so each merge to main builds, syncs and invalidates the CDN. Hardened with AWS WAF rules and least-privilege IAM, plus a serverless contact form on Lambda and SNS. The whole running stack is now managed as Terraform: 20+ existing resources adopted into remote state on HCP Terraform rather than rebuilt, authenticating through OIDC dynamic credentials, with a second us-east-1 provider configuration for the CloudFront-scoped WAF Web ACL.',
+    tech: ['Terraform', 'S3', 'CloudFront', 'Route 53', 'ACM', 'WAF', 'Lambda', 'SNS', 'GitHub Actions (OIDC)'],
     url: 'https://github.com/ongyiktatt/cloud-resume',
   },
   {
     title: 'Homelab — infrastructure as code, virtualisation and IPAM',
     description:
       'A self-hosted environment I run continuously, currently being brought under Terraform: virtual machines and containers defined as declarative configuration, with state and changes tracked in Git rather than built by hand, using the Proxmox provider. The platform underneath is Proxmox VE and a Docker host serving virtualised and containerised services, with Nginx Proxy Manager handling reverse proxy and TLS termination, NetBox as the source of truth for IP address management and device inventory, and Technitium as the internal DNS resolver. Kept deliberately documented rather than ad hoc.',
-    tech: ['Terraform (in progress)', 'Proxmox VE', 'Docker', 'NetBox (IPAM)', 'Nginx Proxy Manager', 'Technitium'],
+    tech: ['Proxmox VE', 'Terraform', 'Docker', 'NetBox (IPAM)', 'Nginx Proxy Manager', 'Technitium'],
   },
   {
     title: 'Tier-3 data centre SAN failure — major incident response',
