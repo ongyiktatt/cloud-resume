@@ -41,11 +41,14 @@ is compiled and published, so keeping both live needs a second file plus a workf
     Access, RBAC. No VNet / NSG / VM / Storage claims.
   - **AWS** is limited to what ongyiktatt.com actually uses — S3, CloudFront, Route 53,
     ACM, WAF, Lambda, SNS, IAM.
-  - **Terraform appears as "in progress / currently building" only** — the skills line,
-    the summary sentence and the homelab project. Never claim completed
-    Terraform-provisioned infrastructure, modules or managed remote state.
-  - Not claimed: Python, Kubernetes, Ansible, CloudWatch, Azure Policy, Azure Monitor,
-    and no AWS landing-zone project or AWS homelab.
+  - **Terraform is now a completed claim for AWS** (changed 18 Nov 2026, when
+    `aws/terraform/` was committed): the whole production stack is managed as code —
+    20+ existing resources imported into remote state on HCP Terraform, OIDC dynamic
+    credentials, provider aliasing, `default_tags`. The **homelab Proxmox** provisioning
+    is still being extended, so that half keeps its "currently extending" wording.
+  - Still not claimed: Terraform **modules**, a Terraform **CI pipeline**, Python,
+    Kubernetes, Ansible, CloudWatch, Azure Policy, Azure Monitor, and no AWS landing-zone
+    project or AWS homelab.
 - The manager titles at Wargaming and TabSquare remain **administrative seniority, never
   people management**. No claim to lead a large team.
 - Networking stays at perimeter level: Layer 4/7 policy across Palo Alto and Check Point,
@@ -78,10 +81,12 @@ This knowledge used to sit in the source as comments. It belongs here instead.
   (lab and homelab scale), Windows Server, WSUS patch management, and **Ivanti endpoint
   management** — never "Ivanti MDM", and never scoped to enrolled mobile devices.
 - **Zabbix** is the named monitoring platform behind the proactive-monitoring claim.
-- **Terraform is an in-progress claim only.** The skills line marks it `(in progress)`,
-  the summary says "currently building", and the homelab bullet says provisioning is
-  *being extended* into Terraform. Do not upgrade that to proficiency, completed modules
-  or a managed-state claim.
+- **Terraform: AWS is evidenced, homelab is in progress.** The skills line names what is
+  actually in use (remote state on HCP Terraform, OIDC dynamic credentials, resource
+  imports, provider aliasing), the summary claims the stack *is* managed as code, and the
+  AWS project carries the import bullet. The homelab bullet keeps "currently extending".
+  Do not upgrade any of it to **modules**, a **Terraform CI pipeline**, or proficiency
+  language ("expert", "architect") — none of those are evidenced.
 - **Not claimed anywhere**: SCCM, PKI, SCOM, Citrix, Nutanix, Autopilot, Ansible, Python,
   Kubernetes, CloudWatch, Azure Policy, Azure Monitor, post-incident review ownership.
 - **Never invent a figure.** Where no number was supplied, none is asserted, and the
